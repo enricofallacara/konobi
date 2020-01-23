@@ -14,4 +14,11 @@ public class cellTest {
        assertEquals(cell.getColor(), cellStatus.empty);
        assertEquals(cell.getCoordinates(), new Point(3, 4));
     }
+
+    @Test
+    public void testChangeColour() {
+        Cell cell = new Cell(new Point (3, 4));
+        cell.setColor(cellStatus.black);
+        assertEquals(cell.getColor(), cellStatus.black);
+    }
 }

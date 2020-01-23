@@ -14,6 +14,9 @@ public class Cell {
     public cellStatus getColor() {
         return color;
     }
+    public void setColor( cellStatus c) {
+        color = c;
+    }
 
     public Point getCoordinates() {
         return coordinates;
