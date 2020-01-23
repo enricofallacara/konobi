@@ -2,7 +2,6 @@ package core;
 
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.*;
 import java.awt.Point;
 
