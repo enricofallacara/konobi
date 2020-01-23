@@ -2,7 +2,7 @@ apply plugin: 'java'
 
 apply plugin: 'application'
 
-mainClassName = 'main.core.main'
+mainClassName = 'main.java.core.main'
 
 repositories {
     mavenCentral()
@@ -12,9 +12,9 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    implementation "joda-time:joda-time:2.2"
-    testImplementation "junit:junit:4.12"
+    testImplementation("junit:junit:4.12")
 }
+
 
 jar {
     archiveBaseName = 'gs-gradle'
