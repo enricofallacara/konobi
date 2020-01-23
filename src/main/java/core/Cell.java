@@ -1,7 +1,9 @@
-package main.core;
+package core;
 
 public class Cell {
-    public Cell() {};
+    public Cell() {
+        color = cellStatus.empty;
+    };
     private cellStatus color;
 
     public cellStatus getColor() {

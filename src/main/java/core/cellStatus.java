@@ -1,3 +1,3 @@
-package main.core;
+package core;
 
 public enum cellStatus { empty, black, white }

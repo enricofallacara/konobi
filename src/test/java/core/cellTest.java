@@ -1,6 +1,5 @@
-package test.core;
+package core;
 
-import main.core.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

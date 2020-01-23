@@ -1,4 +1,4 @@
-package main.core;
+package core;
 
 public class main {
     public static void main(String[] args) {
