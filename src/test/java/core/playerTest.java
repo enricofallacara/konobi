@@ -7,14 +7,14 @@ public class playerTest {
 
     @Test
     public void testColor() {
-        Player player = new Player(cellStatus.black);
-        assertEquals(player.getColor(), cellStatus.black);
+        Player player = new Player(Color.black);
+        assertEquals(player.getColor(), Color.black);
     }
 
     @Test
     public void testSwitchSides() {
-        Player player = new Player(cellStatus.white);
+        Player player = new Player(Color.white);
         player.changeSide();
-        assertEquals(player.getColor(), cellStatus.black);
+        assertEquals(player.getColor(), Color.black);
     }
 }

@@ -1,17 +1,18 @@
 package core;
 
 public class Player {
-    private cellStatus color;
+    private Color color;
 
-    public Player(cellStatus c) {
+    public Player(Color c) {
         color = c;
     }
 
-    public cellStatus getColor() {
+    public Color getColor() {
         return color;
     }
 
     public void changeSide() {
-        color = cellStatus.black;
+        // NEED TO THROW EXCEPTION IF CALLED UPON BLACK PLAYER
+        color = Color.black;
     }
 }

@@ -1,22 +1,22 @@
 package core;
 
-import java.awt.*;
+import java.awt.Point;
 
 public class Cell {
 
     public Cell(Point p) {
-        color = cellStatus.empty;
+        color = null;
         coordinates = p;
     }
 
-    private cellStatus color;
+    private Color color;
     private Point coordinates;
 
-    public cellStatus getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor( cellStatus c) {
+    public void setColor(Color c) {
         color = c;
     }
 
