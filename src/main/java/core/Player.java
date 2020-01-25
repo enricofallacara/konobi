@@ -12,7 +12,6 @@ public class Player {
     }
 
     public void changeSide() {
-        // NEED TO THROW EXCEPTION IF CALLED UPON BLACK PLAYER
-        color = Color.black;
+        color = (color == Color.black) ? Color.white : Color.black;
     }
 }
