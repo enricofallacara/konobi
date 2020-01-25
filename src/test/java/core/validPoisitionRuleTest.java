@@ -11,11 +11,11 @@ public class validPoisitionRuleTest {
         Board board = new Board(11);
         Player player = new Player(Color.black);
         Point p = new Point(2, 3);
-        assertFalse(ValidPositionRule.hasStrong(p, board, player));
+        assertFalse(ValidPositionRule.hasCertainNeighbours(p, board, player, board::getStrongNeighbours));
         board.setCell(new Point(3, 3), Color.white);
-        assertFalse(ValidPositionRule.hasStrong(p, board, player));
+        assertFalse(ValidPositionRule.hasCertainNeighbours(p, board, player, board::getStrongNeighbours));
         board.setCell(new Point(1, 3), Color.black);
-        assertTrue(ValidPositionRule.hasStrong(p, board, player));
+        assertTrue(ValidPositionRule.hasCertainNeighbours(p, board, player, board::getStrongNeighbours));
     }
 
     @Test
@@ -23,10 +23,10 @@ public class validPoisitionRuleTest {
         Board board = new Board(11);
         Player player = new Player(Color.black);
         Point p = new Point(2, 3);
-        assertFalse(ValidPositionRule.hasWeak(p, board, player));
+        assertFalse(ValidPositionRule.hasCertainNeighbours(p, board, player, board::getWeakNeighbours));
         board.setCell(new Point(3, 4), Color.white);
-        assertFalse(ValidPositionRule.hasWeak(p, board, player));
+        assertFalse(ValidPositionRule.hasCertainNeighbours(p, board, player, board::getWeakNeighbours));
         board.setCell(new Point(1, 2), Color.black);
-        assertTrue(ValidPositionRule.hasWeak(p, board, player));
+        assertTrue(ValidPositionRule.hasCertainNeighbours(p, board, player, board::getWeakNeighbours));
     }
 }

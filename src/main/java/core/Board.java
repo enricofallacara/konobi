@@ -3,9 +3,11 @@ package core;
 import java.awt.Point;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.function.Function;
 import java.util.stream.IntStream;
 
 public class Board implements Iterable<Cell>{
+
     public Board(int s){
         size = s;  // necessary to add a control on value of s > 0
         grid = IntStream.range(0, s).mapToObj(x -> IntStream.range(0, s)
