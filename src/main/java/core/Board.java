@@ -25,6 +25,15 @@ public class Board implements Iterable<Cell>{
         getCell(p).setColor(c);
     }
 
+    public ArrayList<Cell> getColumn(int column) {
+        // control column is legal
+        return IntStream.range(0, size - 1).mapToObj(x -> grid[x][column]).collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public ArrayList<Cell> getRow(int row) {
+        return Arrays.stream(grid[row], 0, size - 1).collect(Collectors.toCollection(ArrayList::new));
+    }
+
     @Override
     public Iterator<Cell> iterator(){
         return new Iterator<Cell>() {
@@ -68,6 +77,15 @@ public class Board implements Iterable<Cell>{
         return Arrays.stream(weakPoints).filter(this::isOnBoard).map(this::getCell).collect(Collectors.toCollection(ArrayList::new));
     }
 
+    public ArrayList<Cell> getNeighbours(Point point, Function<Point, ArrayList<Cell>> function) {
+        return function.apply(point);
+    }
+
+    public ArrayList<Cell> getColoredNeighbours(Point point, Player player, Function<Point, ArrayList<Cell>> function) {
+        ArrayList<Cell> neighbours = getNeighbours(point, function);
+        neighbours.removeIf(x -> x.getColor() != player.getColor());
+        return neighbours;
+    }
 
     public boolean isOnBoard(Point p){ return (0<= p.x && p.x < size) && (0 <= p.y && p.y < size);}
 }
