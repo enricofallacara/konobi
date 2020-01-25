@@ -11,7 +11,11 @@ public class Player {
         return color;
     }
 
+    public Color getOppositeColor() {
+        return (color == Color.black) ? Color.white : Color.black;
+    }
+
     public void changeSide() {
-        color = (color == Color.black) ? Color.white : Color.black;
+        color = getOppositeColor();
     }
 }

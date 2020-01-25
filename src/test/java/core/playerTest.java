@@ -12,9 +12,17 @@ public class playerTest {
     }
 
     @Test
+    public void testOppositeColor() {
+        Player player = new Player(Color.black);
+        assertEquals(player.getOppositeColor(), Color.white);
+    }
+
+    @Test
     public void testSwitchSides() {
         Player player = new Player(Color.white);
         player.changeSide();
         assertEquals(player.getColor(), Color.black);
     }
+
+
 }
