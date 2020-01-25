@@ -1,6 +1,7 @@
 package core;
 
 import java.awt.Point;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.stream.IntStream;
 
@@ -41,8 +42,13 @@ public class Board implements Iterable<Cell>{
         };
     }
 
-    public static Cell[] getStrongNeighbours(Point p){
-        return new Cell[]{};
+    public Cell[] getStrongNeighbours(Point p){
+        Point[] strongPoints = new Point[]{new Point(p.x,p.y+1),
+                                           new Point(p.x,p.y-1),
+                                           new Point(p.x+1,p.y),
+                                           new Point(p.x-1,p.y)};
+
+        return Arrays.stream(strongPoints).filter(this::isOnBoard).map(this::getCell).toArray(Cell[]::new);
     }
     public boolean isOnBoard(Point p){ return (0<= p.x && p.x < size) && (0 <= p.y && p.y < size);}
 }
