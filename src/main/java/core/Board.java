@@ -41,4 +41,8 @@ public class Board implements Iterable<Cell>{
         };
     }
 
+    public static Cell[] getStrongNeighbours(Point p){
+        return new Cell[]{};
+    }
+    public boolean isOnBoard(Point p){ return (0<= p.x && p.x < size) && (0 <= p.y && p.y < size);}
 }

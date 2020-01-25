@@ -37,4 +37,15 @@ public class boardTest {
             idx++;
         }
     }
+
+    @Test
+    public void onBoardTest(){
+        Board board = new Board(11);
+        assertTrue(board.isOnBoard(new Point(0,0)));
+        assertTrue(board.isOnBoard(new Point(10,10)));
+        assertTrue(board.isOnBoard(new Point(0,10)));
+        assertTrue(board.isOnBoard(new Point(10,0)));
+        assertFalse(board.isOnBoard(new Point(10,11)));
+        assertFalse(board.isOnBoard(new Point(-1,0)));
+    }
 }
