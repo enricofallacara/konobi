@@ -26,9 +26,8 @@ public class ValidPositionRule {
 
         Cell[] neighbours = board.getWeakNeighbours(point);
         for(Cell c : neighbours) {
-            if(
-
-                    c.getColor() == player.getColor()) {
+            if(board.getCell(new Point(point.x, c.getCoordinates().y)).getColor() == player.getOppositeColor()
+              && board.getCell(new Point(c.getCoordinates().x, point.y)).getColor() == player.getOppositeColor()) {
                 return true;
             }
         }
