@@ -23,11 +23,11 @@ public class validPoisitionRuleTest {
         Board board = new Board(11);
         Player player = new Player(Color.black);
         Point point = new Point(2, 3);
-       // assertFalse(ValidPositionRule.hasCertainNeighbours(point, board, player, board::getWeakNeighbours));
+        assertFalse(ValidPositionRule.hasCertainNeighbours(point, board, player, board::getWeakNeighbours));
         board.setCell(new Point(3, 4), Color.white);
-       // assertFalse(ValidPositionRule.hasCertainNeighbours(point, board, player, board::getWeakNeighbours));
+        assertFalse(ValidPositionRule.hasCertainNeighbours(point, board, player, board::getWeakNeighbours));
         board.setCell(new Point(1, 2), Color.black);
-       // assertTrue(ValidPositionRule.hasCertainNeighbours(point, board, player, board::getWeakNeighbours));
+        assertTrue(ValidPositionRule.hasCertainNeighbours(point, board, player, board::getWeakNeighbours));
     }
 
 
