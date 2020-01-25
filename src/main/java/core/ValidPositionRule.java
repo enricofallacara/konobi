@@ -18,6 +18,16 @@ public class ValidPositionRule {
     return false;
     }
 
+    public static boolean hasWeak(Point point, Board board, Player player){
+        Cell[] weakNeighbours = board.getWeakNeighbours(point);
+        for(Cell c : weakNeighbours) {
+            if(c.getColor() == player.getColor()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 
 }
