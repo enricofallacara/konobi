@@ -18,4 +18,6 @@ public class ValidPositionRule {
     return false;
     }
 
+
+
 }

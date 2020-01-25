@@ -70,4 +70,17 @@ public class boardTest {
         assertArrayEquals(strongNeighbours,expectedNeighbours);
     }
 
+    @Test
+    public void weakNeighboursTest(){
+        Board board = new Board(11);
+        Point p = new Point(3,3);
+
+        Cell[] weakNeighbours = board.getWeakNeighbours(p);
+        Cell[] expectedNeighbours = new Cell[]{board.getCell(new Point(p.x+1,p.y+1)),
+                board.getCell(new Point(p.x+1,p.y-1)),
+                board.getCell(new Point(p.x-1,p.y+1)),
+                board.getCell(new Point(p.x-1,p.y-1))};
+        assertArrayEquals(weakNeighbours,expectedNeighbours);
+    }
+
 }

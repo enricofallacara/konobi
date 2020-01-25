@@ -53,5 +53,15 @@ public class Board implements Iterable<Cell>{
 
         return Arrays.stream(strongPoints).filter(this::isOnBoard).map(this::getCell).toArray(Cell[]::new);
     }
+
+    public Cell[] getWeakNeighbours(Point p){
+        Point[] weakPoints = new Point[]{new Point(p.x+1,p.y+1),
+                                           new Point(p.x+1,p.y-1),
+                                           new Point(p.x-1,p.y+1),
+                                           new Point(p.x-1,p.y-1)};
+
+        return Arrays.stream(weakPoints).filter(this::isOnBoard).map(this::getCell).toArray(Cell[]::new);
+    }
+
     public boolean isOnBoard(Point p){ return (0<= p.x && p.x < size) && (0 <= p.y && p.y < size);}
 }
