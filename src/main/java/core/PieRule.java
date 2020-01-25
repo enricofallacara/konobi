@@ -3,5 +3,5 @@ package core;
 
 public class PieRule {
 
-    public static boolean query(int nTurn){return false;}
+    public static boolean query(int nTurn){return nTurn == 2;}
 }
