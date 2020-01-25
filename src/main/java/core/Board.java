@@ -1,9 +1,12 @@
 package core;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Board implements Iterable<Cell>{
@@ -47,13 +50,13 @@ public class Board implements Iterable<Cell>{
         };
     }
 
-    public Cell[] getStrongNeighbours(Point p){
+    public ArrayList<Cell> getStrongNeighbours(Point p){
         Point[] strongPoints = new Point[]{new Point(p.x,p.y+1),
                                            new Point(p.x,p.y-1),
                                            new Point(p.x+1,p.y),
                                            new Point(p.x-1,p.y)};
 
-        return Arrays.stream(strongPoints).filter(this::isOnBoard).map(this::getCell).toArray(Cell[]::new);
+        return Arrays.stream(strongPoints).filter(this::isOnBoard).map(this::getCell).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public Cell[] getWeakNeighbours(Point p){
@@ -64,6 +67,7 @@ public class Board implements Iterable<Cell>{
 
         return Arrays.stream(weakPoints).filter(this::isOnBoard).map(this::getCell).toArray(Cell[]::new);
     }
+
 
     public boolean isOnBoard(Point p){ return (0<= p.x && p.x < size) && (0 <= p.y && p.y < size);}
 }
