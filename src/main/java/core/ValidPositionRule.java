@@ -16,12 +16,12 @@ public class ValidPositionRule {
         return false;
     }
 
-    public static List<Cell> getCertainNeighbours(Point point, Board board, Player player, Function<Point, Cell[]> function) {
-        Cell[] neighbours = function.apply(point);
-        return Arrays.stream(neighbours).filter(x -> x.getColor() == player.getColor()).collect(Collectors.toList());
+    public static ArrayList<Cell> getCertainNeighbours(Point point, Board board, Player player, Function<Point, ArrayList<Cell>> function) {
+        ArrayList<Cell> neighbours = function.apply(point);
+        return neighbours.stream().filter(x -> x.getColor() == player.getColor()).collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public static boolean hasCertainNeighbours(Point point, Board board, Player player, Function<Point, Cell[]> function) {
+    public static boolean hasCertainNeighbours(Point point, Board board, Player player, Function<Point, ArrayList<Cell>> function) {
         return getCertainNeighbours(point, board, player, function).size() > 0;
     }
 
@@ -31,10 +31,10 @@ public class ValidPositionRule {
             return false;
         }
 
-        Cell[] neighbours = board.getWeakNeighbours(point);
+        ArrayList<Cell> neighbours = board.getWeakNeighbours(point);
         for(Cell c : neighbours) {
             if(board.getCell(new Point(point.x, c.getCoordinates().y)).getColor() == player.getOppositeColor()
-              && board.getCell(new Point(c.getCoordinates().x, point.y)).getColor() == player.getOppositeColor()) {
+                    && board.getCell(new Point(c.getCoordinates().x, point.y)).getColor() == player.getOppositeColor()) {
                 return true;
             }
         }
@@ -42,7 +42,7 @@ public class ValidPositionRule {
     }
 
     public static boolean specialWeakPosition(Point point, Board board, Player player) {
-        List<Cell> weakNeighbours = getCertainNeighbours(point, board, player, board::getWeakNeighbours);
+        ArrayList<Cell> weakNeighbours = getCertainNeighbours(point, board, player, board::getWeakNeighbours);
         ArrayList<Boolean> result = new ArrayList<>();
 
         for(Cell c1 : weakNeighbours) {
@@ -53,13 +53,12 @@ public class ValidPositionRule {
                 }
             }
         }
-
-        System.out.println(result);
-
         return result.stream().allMatch(x -> x == true);
     }
 
 
-
-
 }
+
+
+
+

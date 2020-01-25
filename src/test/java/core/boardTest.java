@@ -2,6 +2,7 @@ package core;
 import org.junit.Test;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -62,12 +63,14 @@ public class boardTest {
         Board board = new Board(11);
         Point p = new Point(3,3);
 
-        //Cell[] strongNeighbours = board.getStrongNeighbours(p);
-        //Cell[] expectedNeighbours = new Cell[]{board.getCell(new Point(p.x,p.y+1)),
-         //       board.getCell(new Point(p.x,p.y-1)),
-         //       board.getCell(new Point(p.x+1,p.y)),
-         //       board.getCell(new Point(p.x-1,p.y))};
-        //assertArrayEquals(strongNeighbours,expectedNeighbours);
+        ArrayList<Cell> strongNeighbours = board.getStrongNeighbours(p);
+        ArrayList<Cell> expectedNeighbours = new ArrayList<>();
+        expectedNeighbours.add(board.getCell(new Point(p.x,p.y+1)));
+        expectedNeighbours.add(board.getCell(new Point(p.x,p.y-1)));
+        expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y)));
+        expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y)));
+
+        assertEquals(strongNeighbours, expectedNeighbours);
     }
 
     @Test
@@ -75,12 +78,14 @@ public class boardTest {
         Board board = new Board(11);
         Point p = new Point(3,3);
 
-        Cell[] weakNeighbours = board.getWeakNeighbours(p);
-        Cell[] expectedNeighbours = new Cell[]{board.getCell(new Point(p.x+1,p.y+1)),
-                board.getCell(new Point(p.x+1,p.y-1)),
-                board.getCell(new Point(p.x-1,p.y+1)),
-                board.getCell(new Point(p.x-1,p.y-1))};
-        assertArrayEquals(weakNeighbours,expectedNeighbours);
+        ArrayList<Cell> weakNeighbours = board.getWeakNeighbours(p);
+        ArrayList<Cell> expectedNeighbours = new ArrayList<>();
+        expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y+1)));
+        expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y-1)));
+        expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y+1)));
+        expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y-1)));
+
+        assertEquals(weakNeighbours, expectedNeighbours);
     }
 
 }
