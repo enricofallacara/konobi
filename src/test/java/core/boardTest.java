@@ -20,6 +20,14 @@ public class boardTest {
     }
 
     @Test
+    public void setCellTest(){
+        Board board = new Board(11);
+        Point p = new Point(2, 3);
+        board.setCell(p, Color.black);
+        assertEquals(board.getCell(p).getColor(), Color.black);
+    }
+
+    @Test
     public void iteratorTest(){
         Board board = new Board(11);
         Point[] list = new Point[11*11];
@@ -61,4 +69,5 @@ public class boardTest {
                 board.getCell(new Point(p.x-1,p.y))};
         assertArrayEquals(strongNeighbours,expectedNeighbours);
     }
+
 }

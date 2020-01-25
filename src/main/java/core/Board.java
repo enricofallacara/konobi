@@ -16,6 +16,9 @@ public class Board implements Iterable<Cell>{
 
     public int getSize(){ return size;}
     public Cell getCell(Point p){ return grid[p.x][p.y];}
+    public void setCell(Point p, Color c) {
+        getCell(p).setColor(c);
+    }
 
     @Override
     public Iterator<Cell> iterator(){
