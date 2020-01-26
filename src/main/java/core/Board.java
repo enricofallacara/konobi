@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -25,13 +26,18 @@ public class Board implements Iterable<Cell>{
         getCell(p).setColor(c);
     }
 
-    public ArrayList<Cell> getColumn(int column) {
+    /*public ArrayList<Cell> getColumn(int column) {
         // control column is legal
         return IntStream.range(0, size - 1).mapToObj(x -> grid[x][column]).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public ArrayList<Cell> getRow(int row) {
         return Arrays.stream(grid[row], 0, size - 1).collect(Collectors.toCollection(ArrayList::new));
+    }*/
+
+    public Cell[] slice(int startX, int endX, int startY, int endY) {
+        return Arrays.stream(grid).skip(startY).limit(endY - startY).
+                flatMap(x -> Arrays.stream(x).skip(startX).limit(endX - startX)).toArray(Cell[]::new);
     }
 
     @Override
@@ -80,6 +86,11 @@ public class Board implements Iterable<Cell>{
     public ArrayList<Cell> getNeighbours(Point point, Function<Point, ArrayList<Cell>> function) {
         return function.apply(point);
     }
+
+    /*public ArrayList<Cell> getNeighbours(Point point, BiPredicate<Point, Point> function) {
+        ArrayList<Point> neighbours = new ArrayList();
+        return neighbours.stream().filter(this::isOnBoard).filter(n -> function.test(point, n)).map(this::getCell).collect(Collectors.toCollection(ArrayList::new));
+    }*/
 
     public ArrayList<Cell> getColoredNeighbours(Point point, Player player, Function<Point, ArrayList<Cell>> function) {
         ArrayList<Cell> neighbours = getNeighbours(point, function);

@@ -1,8 +1,10 @@
 package core;
 import org.junit.Test;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.*;
 public class boardTest {
@@ -87,22 +89,17 @@ public class boardTest {
         assertEquals(expectedNeighbours, weakNeighbours);
     }
 
-/*    @Test
+    @Test
     public void testSlice() {
         Board board = new Board(11);
         board.setCell(new Point(0, 0), Color.white);
-        Cell[] portion = board.slice(0, 2, 0, 2);
-        Cell[] expected = new Cell[]{board.getCell(new Point(0, 0)),
-                                      board.getCell(new Point(1, 0)),
-                                      board.getCell(new Point(0, 1)),
-                                      board.getCell(new Point(1, 1))};
-        for (Cell c : portion) {
-            System.out.println(c);
-        }
-        for (Cell c : expected) {
-            System.out.println(c);
-        }
-        assertArrayEquals(expected, portion);
-    }*/
+        List<Cell> portion = Arrays.asList(board.slice(0, 2, 0, 2));
+        List<Cell> expected = Arrays.asList(board.getCell(new Point(0, 0)),
+                board.getCell(new Point(1, 0)),
+                board.getCell(new Point(0, 1)),
+                board.getCell(new Point(1, 1)));
+        assertTrue(expected.size() == portion.size() &&
+                expected.containsAll(portion) && portion.containsAll(expected));
+    }
 
 }
