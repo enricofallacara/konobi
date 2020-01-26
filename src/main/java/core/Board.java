@@ -56,6 +56,10 @@ public class Board implements Iterable<Cell>{
         };
     }
 
+    public Cell[] getMooreNeighbours(Point p) {
+        return slice(p.x - 1, p.x + 2, p.y - 1, p.y + 2);
+    }
+
     public ArrayList<Cell> getStrongNeighbours(Point p){
         Point[] strongPoints = new Point[]{new Point(p.x,p.y+1),
                                            new Point(p.x,p.y-1),

@@ -30,6 +30,19 @@ public class boardTest {
     }
 
     @Test
+    public void testSlice() {
+        Board board = new Board(11);
+        board.setCell(new Point(0, 0), Color.white);
+        List<Cell> portion = Arrays.asList(board.slice(0, 2, 0, 2));
+        List<Cell> expected = Arrays.asList(board.getCell(new Point(0, 0)),
+                board.getCell(new Point(1, 0)),
+                board.getCell(new Point(0, 1)),
+                board.getCell(new Point(1, 1)));
+        assertTrue(expected.size() == portion.size() &&
+                expected.containsAll(portion) && portion.containsAll(expected));
+    }
+
+    @Test
     public void iteratorTest(){
         Board board = new Board(11);
         Point[] list = new Point[11*11];
@@ -90,16 +103,20 @@ public class boardTest {
     }
 
     @Test
-    public void testSlice() {
+    public void testMooreNeighbours() {
         Board board = new Board(11);
-        board.setCell(new Point(0, 0), Color.white);
-        List<Cell> portion = Arrays.asList(board.slice(0, 2, 0, 2));
-        List<Cell> expected = Arrays.asList(board.getCell(new Point(0, 0)),
-                board.getCell(new Point(1, 0)),
-                board.getCell(new Point(0, 1)),
-                board.getCell(new Point(1, 1)));
-        assertTrue(expected.size() == portion.size() &&
-                expected.containsAll(portion) && portion.containsAll(expected));
+        Point p = new Point(3,3);
+        List<Cell> mooreNeighbours = Arrays.asList(board.getMooreNeighbours(p));
+        ArrayList<Cell> expectedNeighbours = new ArrayList<>();
+        expectedNeighbours.add(board.getCell(new Point(p.x,p.y+1)));
+        expectedNeighbours.add(board.getCell(new Point(p.x,p.y-1)));
+        expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y)));
+        expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y)));
+        expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y+1)));
+        expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y-1)));
+        expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y+1)));
+        expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y-1)));
+        assertTrue(expectedNeighbours.size() == mooreNeighbours.size() - 1 &&
+                mooreNeighbours.containsAll(expectedNeighbours));
     }
-
 }
