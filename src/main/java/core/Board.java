@@ -3,7 +3,6 @@ package core;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
@@ -57,7 +56,7 @@ public class Board implements Iterable<Cell>{
     }
 
     public Cell[] getMooreNeighbours(Point p, int level) {
-        return slice(p.x - level, p.x + level + 1, p.y - level, p.y + level + 1);
+        return slice(Math.max(0, p.x - level), Math.min(p.x + level + 1, size), Math.max(0, p.y - level), Math.min(p.y + level + 1, size));
     }
 
     public ArrayList<Cell> getStrongNeighbours(Point p){
@@ -82,10 +81,10 @@ public class Board implements Iterable<Cell>{
         return function.apply(point);
     }
 
-    /*public ArrayList<Cell> getNeighbours(Point point, BiPredicate<Point, Point> function) {
-        ArrayList<Point> neighbours = new ArrayList();
-        return neighbours.stream().filter(this::isOnBoard).filter(n -> function.test(point, n)).map(this::getCell).collect(Collectors.toCollection(ArrayList::new));
-    }*/
+    public ArrayList<Cell> getNeighbours(Point point, BiPredicate<Point, Point> function) {
+        return Arrays.stream(getMooreNeighbours(point, 1)).
+                filter(cell -> function.test(point, cell.getCoordinates())).collect(Collectors.toCollection(ArrayList::new));
+    }
 
     public ArrayList<Cell> getColoredNeighbours(Point point, Player player, Function<Point, ArrayList<Cell>> function) {
         ArrayList<Cell> neighbours = getNeighbours(point, function);
