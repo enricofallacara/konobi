@@ -11,11 +11,11 @@ public class validPoisitionRuleTest {
         Board board = new Board(11);
         Player player = new Player(Color.black);
         Point point = new Point(2, 3);
-        assertTrue(board.getColoredNeighbours(point, player, board::getStrongNeighbours).isEmpty());
+        assertTrue(board.getColoredNeighbours(point, player, Board::isStrongNeighbour).isEmpty());
         board.setCell(new Point(3, 3), Color.white);
-        assertTrue(board.getColoredNeighbours(point, player, board::getStrongNeighbours).isEmpty());
+        assertTrue(board.getColoredNeighbours(point, player, Board::isStrongNeighbour).isEmpty());
         board.setCell(new Point(1, 3), Color.black);
-        assertFalse(board.getColoredNeighbours(point, player, board::getStrongNeighbours).isEmpty());
+        assertFalse(board.getColoredNeighbours(point, player, Board::isStrongNeighbour).isEmpty());
     }
 
     @Test
@@ -23,11 +23,11 @@ public class validPoisitionRuleTest {
         Board board = new Board(11);
         Player player = new Player(Color.black);
         Point point = new Point(2, 3);
-        assertTrue(board.getColoredNeighbours(point, player, board::getWeakNeighbours).isEmpty());
+        assertTrue(board.getColoredNeighbours(point, player, Board::isWeakNeighbour).isEmpty());
         board.setCell(new Point(3, 4), Color.white);
-        assertTrue(board.getColoredNeighbours(point, player, board::getWeakNeighbours).isEmpty());
+        assertTrue(board.getColoredNeighbours(point, player, Board::isWeakNeighbour).isEmpty());
         board.setCell(new Point(1, 2), Color.black);
-        assertFalse(board.getColoredNeighbours(point, player, board::getWeakNeighbours).isEmpty());
+        assertFalse(board.getColoredNeighbours(point, player, Board::isWeakNeighbour).isEmpty());
     }
 
 
