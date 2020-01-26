@@ -38,7 +38,7 @@ public class Board implements Iterable<Cell>{
 
             @Override
             public boolean hasNext() {
-                return currentPoint.x < size-1 || currentPoint.y < size-1;
+                return currentPoint.x <= size-1 && currentPoint.y <= size-1;
             }
 
             @Override
