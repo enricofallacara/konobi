@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class ValidPositionRule {
     public static boolean query(Point point, Board board, Player player){
-        // PROBLEMA: SE QUALCUNO VUOLE AGGIUNGERE UNA REGOLA, DEVE AGGIUNGERE UN ELSE IF,
+        // TODO: PROBLEMA: SE QUALCUNO VUOLE AGGIUNGERE UNA REGOLA, DEVE AGGIUNGERE UN ELSE IF,
         // CHE RENDE IL CODICE PIU RIGIDO E VIOLA L'OPEN CLOSED PRINCIPLE.
         if (hasCrosscut(point, board, player)) {
             return false;
