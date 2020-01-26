@@ -3,7 +3,6 @@ import org.junit.Test;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.*;
 public class boardTest {
@@ -11,13 +10,13 @@ public class boardTest {
     @Test
     public void sizeTest(){
         Board board = new Board(11);
-        assertEquals(board.getSize(), 11);
+        assertEquals(11, board.getSize());
     }
 
     @Test
     public void cellCoordinatesTest(){
         Board board = new Board(11);
-        assertEquals(board.getCell(new Point(3,4)).getCoordinates(), new Point(3,4));
+        assertEquals(new Point(3,4), board.getCell(new Point(3,4)).getCoordinates());
     }
 
     @Test
@@ -25,7 +24,7 @@ public class boardTest {
         Board board = new Board(11);
         Point p = new Point(2, 3);
         board.setCell(p, Color.black);
-        assertEquals(board.getCell(p).getColor(), Color.black);
+        assertEquals(Color.black, board.getCell(p).getColor());
     }
 
     @Test
@@ -42,7 +41,7 @@ public class boardTest {
         }
         idx = 0;
         for(Cell c: board){
-            assertEquals(c.getCoordinates(),list[idx]);
+            assertEquals(list[idx], c.getCoordinates());
             idx++;
         }
     }
@@ -70,7 +69,7 @@ public class boardTest {
         expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y)));
         expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y)));
 
-        assertEquals(strongNeighbours, expectedNeighbours);
+        assertEquals(expectedNeighbours, strongNeighbours);
     }
 
     @Test
@@ -85,7 +84,25 @@ public class boardTest {
         expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y+1)));
         expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y-1)));
 
-        assertEquals(weakNeighbours, expectedNeighbours);
+        assertEquals(expectedNeighbours, weakNeighbours);
     }
+
+/*    @Test
+    public void testSlice() {
+        Board board = new Board(11);
+        board.setCell(new Point(0, 0), Color.white);
+        Cell[] portion = board.slice(0, 2, 0, 2);
+        Cell[] expected = new Cell[]{board.getCell(new Point(0, 0)),
+                                      board.getCell(new Point(1, 0)),
+                                      board.getCell(new Point(0, 1)),
+                                      board.getCell(new Point(1, 1))};
+        for (Cell c : portion) {
+            System.out.println(c);
+        }
+        for (Cell c : expected) {
+            System.out.println(c);
+        }
+        assertArrayEquals(expected, portion);
+    }*/
 
 }
