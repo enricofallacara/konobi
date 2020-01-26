@@ -1,14 +1,7 @@
 package core;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class ValidPositionRule {
     public static boolean query(Point point, Board board, Player player){
