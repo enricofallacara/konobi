@@ -14,6 +14,7 @@ public class ValidPositionRule {
     public static boolean query(Point point, Board board, Player player){
         // TODO: PROBLEMA: SE QUALCUNO VUOLE AGGIUNGERE UNA REGOLA, DEVE AGGIUNGERE UN ELSE IF,
         // CHE RENDE IL CODICE PIU RIGIDO E VIOLA L'OPEN CLOSED PRINCIPLE.
+        // TODO: LA SOLUZIONE E LA CLASSE RULEBOOK
         if (hasCrosscut(point, board, player)) {
             return false;
         }

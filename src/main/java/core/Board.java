@@ -87,17 +87,23 @@ public class Board implements Iterable<Cell>{
         return target.distance(query) == Math.sqrt(2);  // se ci limitiamo a intorni a un livello, questo puo usare .negate()
     }
 
+    public boolean isSameColor(Point target, Point query) {
+        return getCell(target).getColor() == getCell(query).getColor();
+    }
+
     public ArrayList<Cell> getNeighbours(Point point, Function<Point, ArrayList<Cell>> function) {
         return function.apply(point);
     }
 
-    public ArrayList<Cell> getNewNeighbours(Point point, BiPredicate<Point, Point> function) {
+    @SafeVarargs
+    public final ArrayList<Cell> getNewNeighbours(Point point, BiPredicate<Point, Point>... functions) {
         return Arrays.stream(getMooreNeighbours(point, 1)).
-                filter(cell -> function.test(point, cell.getCoordinates())).collect(Collectors.toCollection(ArrayList::new));
+                filter(cell -> Arrays.stream(functions).allMatch(x -> x.test(point, cell.getCoordinates()))).collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public ArrayList<Cell> getColoredNeighbours(Point point, Player player, Function<Point, ArrayList<Cell>> function) {
-        ArrayList<Cell> neighbours = getNeighbours(point, function);
+    public ArrayList<Cell> getColoredNeighbours(Point point, Player player, BiPredicate<Point, Point>... functions) {
+        ArrayList<Cell> neighbours = getNewNeighbours(point, functions);
+        //ArrayList<Cell> neighbours = getNeighbours(point, function);
         neighbours.removeIf(x -> x.getColor() != player.getColor());
         return neighbours;
     }
