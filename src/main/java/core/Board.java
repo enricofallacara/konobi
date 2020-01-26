@@ -26,15 +26,6 @@ public class Board implements Iterable<Cell>{
         getCell(p).setColor(c);
     }
 
-    /*public ArrayList<Cell> getColumn(int column) {
-        // control column is legal
-        return IntStream.range(0, size - 1).mapToObj(x -> grid[x][column]).collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    public ArrayList<Cell> getRow(int row) {
-        return Arrays.stream(grid[row], 0, size - 1).collect(Collectors.toCollection(ArrayList::new));
-    }*/
-
     public Cell[] slice(int startX, int endX, int startY, int endY) {
         return Arrays.stream(grid).skip(startY).limit(endY - startY).
                 flatMap(x -> Arrays.stream(x).skip(startX).limit(endX - startX)).toArray(Cell[]::new);
