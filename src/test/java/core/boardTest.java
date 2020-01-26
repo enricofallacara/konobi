@@ -123,11 +123,4 @@ public class boardTest {
         assertTrue(expectedNeighbours.size() == mooreNeighbours.size() - 1 &&
                 mooreNeighbours.containsAll(expectedNeighbours));
     }
-
-    @Test
-    public void myTest() {
-        Board board = new Board(11);
-        Point p = new Point(3,3);
-        board.getNewNeighbours(p, Board::isStrongNeighbour);
-    }
 }
