@@ -60,28 +60,38 @@ public class Board implements Iterable<Cell>{
     }
 
     public ArrayList<Cell> getStrongNeighbours(Point p){
-        Point[] strongPoints = new Point[]{new Point(p.x,p.y+1),
+        /*Point[] strongPoints = new Point[]{new Point(p.x,p.y+1),
                                            new Point(p.x,p.y-1),
                                            new Point(p.x+1,p.y),
                                            new Point(p.x-1,p.y)};
 
-        return Arrays.stream(strongPoints).filter(this::isOnBoard).map(this::getCell).collect(Collectors.toCollection(ArrayList::new));
+        return Arrays.stream(strongPoints).filter(this::isOnBoard).map(this::getCell).collect(Collectors.toCollection(ArrayList::new));*/
+        return getNewNeighbours(p, Board::isStrongNeighbour);
     }
 
     public ArrayList<Cell> getWeakNeighbours(Point p){
-        Point[] weakPoints = new Point[]{new Point(p.x+1,p.y+1),
+        /*Point[] weakPoints = new Point[]{new Point(p.x+1,p.y+1),
                                            new Point(p.x+1,p.y-1),
                                            new Point(p.x-1,p.y+1),
                                            new Point(p.x-1,p.y-1)};
 
-        return Arrays.stream(weakPoints).filter(this::isOnBoard).map(this::getCell).collect(Collectors.toCollection(ArrayList::new));
+        return Arrays.stream(weakPoints).filter(this::isOnBoard).map(this::getCell).collect(Collectors.toCollection(ArrayList::new));*/
+        return getNewNeighbours(p, Board::isWeakNeighbour);
+    }
+
+    public static boolean isStrongNeighbour(Point target, Point query) {
+        return target.distance(query) == 1.0;
+    }
+
+    public static boolean isWeakNeighbour(Point target, Point query) {
+        return target.distance(query) == Math.sqrt(2);  // se ci limitiamo a intorni a un livello, questo puo usare .negate()
     }
 
     public ArrayList<Cell> getNeighbours(Point point, Function<Point, ArrayList<Cell>> function) {
         return function.apply(point);
     }
 
-    public ArrayList<Cell> getNeighbours(Point point, BiPredicate<Point, Point> function) {
+    public ArrayList<Cell> getNewNeighbours(Point point, BiPredicate<Point, Point> function) {
         return Arrays.stream(getMooreNeighbours(point, 1)).
                 filter(cell -> function.test(point, cell.getCoordinates())).collect(Collectors.toCollection(ArrayList::new));
     }

@@ -84,7 +84,9 @@ public class boardTest {
         expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y)));
         expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y)));
 
-        assertEquals(expectedNeighbours, strongNeighbours);
+        //assertEquals(expectedNeighbours, strongNeighbours);
+        assertTrue(expectedNeighbours.size() == strongNeighbours.size() &&
+                expectedNeighbours.containsAll(strongNeighbours) && strongNeighbours.containsAll(expectedNeighbours));
     }
 
     @Test
@@ -99,7 +101,9 @@ public class boardTest {
         expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y+1)));
         expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y-1)));
 
-        assertEquals(expectedNeighbours, weakNeighbours);
+        //assertEquals(expectedNeighbours, weakNeighbours);
+        assertTrue(expectedNeighbours.size() == weakNeighbours.size() &&
+                expectedNeighbours.containsAll(weakNeighbours) && weakNeighbours.containsAll(expectedNeighbours));
     }
 
     @Test
@@ -118,5 +122,12 @@ public class boardTest {
         expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y-1)));
         assertTrue(expectedNeighbours.size() == mooreNeighbours.size() - 1 &&
                 mooreNeighbours.containsAll(expectedNeighbours));
+    }
+
+    @Test
+    public void myTest() {
+        Board board = new Board(11);
+        Point p = new Point(3,3);
+        board.getNewNeighbours(p, Board::isStrongNeighbour);
     }
 }
