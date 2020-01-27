@@ -43,12 +43,8 @@ public class Board implements Iterable<Cell>{
             @Override
             public Cell next() {
                 Point tmp = new Point(currentPoint);
-                if(currentPoint.x == size - 1){
-                    currentPoint.setLocation(0 , currentPoint.y+1);
-                }
-                else {
-                    currentPoint.setLocation(currentPoint.x+1, currentPoint.y);
-                }
+                Point newLocation = (currentPoint.x == size - 1) ? new Point(0, currentPoint.y + 1) : new Point(currentPoint.x + 1, currentPoint.y);
+                currentPoint.setLocation(newLocation);
                 return getCell(tmp);
             }
         };
