@@ -1,6 +1,5 @@
 package core;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -12,7 +11,7 @@ public class EndGameRule {
         // DUE MOTIVI: 1) NON E DETTO CHE UNA CATENA SI SVILUPPI SOLAMENTE
         // "IN AVANTI"; 2) SI PUO USARE UNA STRUTTURA DATI (COME UNA HASHTABLE)
         // PER RICORDARE CHI E STATO ATTRAVERSATO E CHI NO.
-        /*ArrayList<Cell> endpoints = checkEndPoints(board, player);
+        /*ArrayList<Cell> endpoints = getEndPoints(board, player);
         if (endpoints.size() == 0) {
             return false;
         }
@@ -21,28 +20,12 @@ public class EndGameRule {
         return false;
     }
 
-    public static ArrayList<Cell> checkEndPoints(Board board, Player player) {
-        // TODO: PROBLEMA: LONG METHOD
-        // TODO: QUESTA FUNZIONE LASCIA MOLTO A DESIDERARE, SOPRATTUTTO NELL'ABUSO DEGLI ARRAYLIST
-        // E NEL FLUSSO GENERALE
-        ArrayList<Cell> start;
-        ArrayList<Cell> end;
+    public static ArrayList<Cell> getEndPoints(Board board, Player player) {
         Color color = player.getColor();
         int size = board.getSize();
-        if (color == Color.black) {
-            start = new ArrayList<>(Arrays.asList(board.slice(0, size, 0, 1)));//getColumn(0);
-            end = new ArrayList<>(Arrays.asList(board.slice(0, size, size - 1, size)));//getColumn(board.getSize() - 1);
-        }
-        else {
-            start = new ArrayList<>(Arrays.asList(board.slice(0, 1, 0, size)));//getRow(0);
-            end = new ArrayList<>(Arrays.asList(board.slice(0, 1, size - 1, size)));//getRow(board.getSize() - 1);
-        }
-        start = start.stream().filter(x -> x.getColor() == color).collect(Collectors.toCollection(ArrayList::new));
-        end = end.stream().filter(x -> x.getColor() == color).collect(Collectors.toCollection(ArrayList::new));
-        if (start.size() == 0 || end.size() == 0) {
-            return new ArrayList<>();
-        }
-        return start;
+        int[] startIdxs = (color == Color.black) ? new int[]{0, size, 0, 1} : new int[]{0, 1, 0, size};
+        return Arrays.stream(board.slice(startIdxs[0], startIdxs[1], startIdxs[2], startIdxs[3])).
+                filter(x -> x.getColor() == color).collect(Collectors.toCollection(ArrayList::new));
     }
 
     private boolean propagate(Cell current, Player player) {
