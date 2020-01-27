@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 public class ValidPositionRule {
-    public static boolean query(PositionRule[] rules, Point point, Board board, Player player) {
+    public static boolean query(ArrayList<PositionRule> rules, Point point, Board board, Player player) {
 
         ArrayList<Boolean> result = new ArrayList<>();
 

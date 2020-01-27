@@ -1,9 +1,13 @@
 package core;
 
-public class Rulebook {
-    private static PositionRule[] positionRules = new PositionRule[]{new WeakRule(), new CrosscutRule(), new EmptyRule()};
+import java.util.ArrayList;
+import java.util.Arrays;
 
-    public static PositionRule[] getPositionRules(){
+public class Rulebook {
+    private static ArrayList<PositionRule> positionRules = new ArrayList<>(Arrays.asList(new WeakRule(),
+            new CrosscutRule(), new EmptyRule()));
+
+    public static ArrayList<PositionRule> getPositionRules(){
         return positionRules;
     }
 
