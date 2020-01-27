@@ -11,24 +11,24 @@ public class ValidPositionRule {
         if (hasCrosscut(point, board, player)) {
             return false;
         }
-        else if (!board.getColoredNeighbours(point, player, Board::isStrongNeighbour).isEmpty()) {
+        else if (!board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour).isEmpty()) {
             return true;
         }
         else if (specialWeakPosition(point, board, player)) {
             return true;
         }
-        else if (!board.getColoredNeighbours(point, player, Board::isWeakNeighbour).isEmpty()) {
+        else if (!board.getColoredNeighbours(point, 1, player, Board::isWeakNeighbour).isEmpty()) {
             return false;
         }
         return true;
     }
 
     public static boolean hasCrosscut(Point point, Board board, Player player) {
-        if(board.getColoredNeighbours(point, player, Board::isWeakNeighbour).isEmpty()) {
+        if(board.getColoredNeighbours(point, 1, player, Board::isWeakNeighbour).isEmpty()) {
             return false;
         }
 
-        ArrayList<Cell> neighbours = board.getColoredNeighbours(point, player, Board::isWeakNeighbour);
+        ArrayList<Cell> neighbours = board.getColoredNeighbours(point, 1, player, Board::isWeakNeighbour);
         for(Cell c : neighbours) {
             if(board.getCell(new Point(point.x, c.getCoordinates().y)).getColor() == player.getOppositeColor()
                     && board.getCell(new Point(c.getCoordinates().x, point.y)).getColor() == player.getOppositeColor()) {
@@ -39,14 +39,14 @@ public class ValidPositionRule {
     }
 
     public static boolean specialWeakPosition(Point point, Board board, Player player) {
-        ArrayList<Cell> weakNeighbours = board.getColoredNeighbours(point, player, Board::isWeakNeighbour);
+        ArrayList<Cell> weakNeighbours = board.getColoredNeighbours(point, 1, player, Board::isWeakNeighbour);
         ArrayList<Boolean> result = new ArrayList<>();
 
         for(Cell c1 : weakNeighbours) {
-            ArrayList<Cell> strongOfWeak = board.getNeighbours(c1.getCoordinates(), Board::isStrongNeighbour);
+            ArrayList<Cell> strongOfWeak = board.getNeighbours(c1.getCoordinates(), 1, Board::isStrongNeighbour);
             for(Cell c2 : strongOfWeak) {
                 if( c2.getColor() == null ) {
-                    result.add(!board.getColoredNeighbours(c2.getCoordinates(), player, Board::isWeakNeighbour).isEmpty());
+                    result.add(!board.getColoredNeighbours(c2.getCoordinates(), 1, player, Board::isWeakNeighbour).isEmpty());
                 }
             }
         }

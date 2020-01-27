@@ -53,30 +53,10 @@ public class Board implements Iterable<Cell>{
             }
         };
     }
-
+    // TODO: forse adegua questa funzione all'interfaccia delle funzioni dei vicini facendo ritornare un ArrayList<Cell>
     public Cell[] getMooreNeighbours(Point p, int level) {
         return slice(Math.max(0, p.x - level), Math.min(p.x + level + 1, size), Math.max(0, p.y - level), Math.min(p.y + level + 1, size));
     }
-
-    /*public ArrayList<Cell> getStrongNeighbours(Point p){
-        Point[] strongPoints = new Point[]{new Point(p.x,p.y+1),
-                                           new Point(p.x,p.y-1),
-                                           new Point(p.x+1,p.y),
-                                           new Point(p.x-1,p.y)};
-
-        return Arrays.stream(strongPoints).filter(this::isOnBoard).map(this::getCell).collect(Collectors.toCollection(ArrayList::new));
-        return getNeighbours(p, Board::isStrongNeighbour);
-    }
-
-    public ArrayList<Cell> getWeakNeighbours(Point p){
-        Point[] weakPoints = new Point[]{new Point(p.x+1,p.y+1),
-                                           new Point(p.x+1,p.y-1),
-                                           new Point(p.x-1,p.y+1),
-                                           new Point(p.x-1,p.y-1)};
-
-        return Arrays.stream(weakPoints).filter(this::isOnBoard).map(this::getCell).collect(Collectors.toCollection(ArrayList::new));
-        return getNeighbours(p, Board::isWeakNeighbour);
-    }*/
 
     public static boolean isStrongNeighbour(Point target, Point query) {
         return target.distance(query) == 1.0;
@@ -86,24 +66,19 @@ public class Board implements Iterable<Cell>{
         return target.distance(query) == Math.sqrt(2);  // se ci limitiamo a intorni a un livello, questo puo usare .negate()
     }
 
-    /*public boolean isSameColor(Point target, Point query) {
-        return getCell(target).getColor() == getCell(query).getColor();
-    }*/
-
-    /*public ArrayList<Cell> getNeighbours(Point point, Function<Point, ArrayList<Cell>> function) {
-        return function.apply(point);
-    }*/
-
     @SafeVarargs
-    public final ArrayList<Cell> getNeighbours(Point point, BiPredicate<Point, Point>... functions) {
-        return Arrays.stream(getMooreNeighbours(point, 1)).
+    public final ArrayList<Cell> getNeighbours(Point point, int level, BiPredicate<Point, Point>... functions) {
+        return Arrays.stream(getMooreNeighbours(point, level)).
                 filter(cell -> Arrays.stream(functions).allMatch(x -> x.test(point, cell.getCoordinates()))).collect(Collectors.toCollection(ArrayList::new));
     }
 
     @SafeVarargs
-    public final ArrayList<Cell> getColoredNeighbours(Point point, Player player, BiPredicate<Point, Point>... functions) {
-        ArrayList<Cell> neighbours = getNeighbours(point, functions);
+    public final ArrayList<Cell> getColoredNeighbours(Point point, int level, Player player, BiPredicate<Point, Point>... functions) {
+        ArrayList<Cell> neighbours = getNeighbours(point, level, functions);
         neighbours.removeIf(x -> x.getColor() != player.getColor());
+        for (Cell cell : neighbours) {
+            System.out.println(cell.getColor() + " " + cell.getCoordinates());
+        }
         return neighbours;
     }
 

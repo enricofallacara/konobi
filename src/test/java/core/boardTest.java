@@ -80,7 +80,7 @@ public class boardTest {
         Board board = new Board(11);
         Point p = new Point(3,3);
 
-        ArrayList<Cell> strongNeighbours = board.getNeighbours(p, Board::isStrongNeighbour);
+        ArrayList<Cell> strongNeighbours = board.getNeighbours(p, 1, Board::isStrongNeighbour);
         ArrayList<Cell> expectedNeighbours = new ArrayList<>();
         expectedNeighbours.add(board.getCell(new Point(p.x,p.y+1)));
         expectedNeighbours.add(board.getCell(new Point(p.x,p.y-1)));
@@ -97,7 +97,7 @@ public class boardTest {
         Board board = new Board(11);
         Point p = new Point(3,3);
 
-        ArrayList<Cell> weakNeighbours = board.getNeighbours(p, Board::isWeakNeighbour);
+        ArrayList<Cell> weakNeighbours = board.getNeighbours(p, 1, Board::isWeakNeighbour);
         ArrayList<Cell> expectedNeighbours = new ArrayList<>();
         expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y+1)));
         expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y-1)));
