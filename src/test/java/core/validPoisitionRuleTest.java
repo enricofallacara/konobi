@@ -76,4 +76,23 @@ public class validPoisitionRuleTest {
 
         assertFalse(cross.isValid(point, board, player));
     }
+
+    @Test
+    public void weakRuleTest() {
+        Board board = new Board(11);
+        Player player = new Player(Color.white);
+        Point point = new Point(1, 2);
+
+        board.setCell(new Point(0, 0), Color.white);
+        board.setCell(new Point(2, 1), Color.white);
+        board.setCell(new Point(3, 3), Color.white);
+
+        board.setCell(new Point(2, 0), Color.black);
+        board.setCell(new Point(3, 0), Color.black);
+        board.setCell(new Point(3, 1), Color.black);
+
+        WeakRule weak = new WeakRule();
+
+        assertTrue(weak.isValid(point, board, player));
+    }
 }
