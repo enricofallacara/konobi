@@ -1,8 +1,9 @@
 package core;
 import org.junit.Test;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -11,13 +12,13 @@ public class boardTest {
     @Test
     public void sizeTest(){
         Board board = new Board(11);
-        assertEquals(board.getSize(), 11);
+        assertEquals(11, board.getSize());
     }
 
     @Test
     public void cellCoordinatesTest(){
         Board board = new Board(11);
-        assertEquals(board.getCell(new Point(3,4)).getCoordinates(), new Point(3,4));
+        assertEquals(new Point(3,4), board.getCell(new Point(3,4)).getCoordinates());
     }
 
     @Test
@@ -25,14 +26,27 @@ public class boardTest {
         Board board = new Board(11);
         Point p = new Point(2, 3);
         board.setCell(p, Color.black);
-        assertEquals(board.getCell(p).getColor(), Color.black);
+        assertEquals(Color.black, board.getCell(p).getColor());
+    }
+
+    @Test
+    public void testSlice() {
+        Board board = new Board(11);
+        List<Cell> portion = Arrays.asList(board.slice(2, 4, 2, 4));
+        List<Cell> expected = Arrays.asList(board.getCell(new Point(2, 2)),
+                board.getCell(new Point(3, 2)),
+                board.getCell(new Point(2, 3)),
+                board.getCell(new Point(3, 3)));
+        assertTrue(expected.size() == portion.size() &&
+                expected.containsAll(portion) && portion.containsAll(expected));
     }
 
     @Test
     public void iteratorTest(){
         Board board = new Board(11);
-        Point[] list = new Point[11*11];
-
+        Point[] list = new Point[11 * 11];
+        Point[] actual = new Point[11 * 11];
+        // TODO: cerca maniera di trasformare questo in funzionale
         int idx = 0;
         for(int i = 0; i < board.getSize(); i++){
             for(int j = 0; j < board.getSize(); j++){
@@ -41,10 +55,12 @@ public class boardTest {
             }
         }
         idx = 0;
+        // TODO: cerca maniera di trasformare questo in funzionale
         for(Cell c: board){
-            assertEquals(c.getCoordinates(),list[idx]);
+            actual[idx] = c.getCoordinates();
             idx++;
         }
+        assertArrayEquals(list, actual);
     }
 
     @Test
@@ -63,14 +79,15 @@ public class boardTest {
         Board board = new Board(11);
         Point p = new Point(3,3);
 
-        ArrayList<Cell> strongNeighbours = board.getStrongNeighbours(p);
+        ArrayList<Cell> strongNeighbours = board.getNeighbours(p, 1, Board::isStrongNeighbour);
         ArrayList<Cell> expectedNeighbours = new ArrayList<>();
         expectedNeighbours.add(board.getCell(new Point(p.x,p.y+1)));
         expectedNeighbours.add(board.getCell(new Point(p.x,p.y-1)));
         expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y)));
         expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y)));
 
-        assertEquals(strongNeighbours, expectedNeighbours);
+        assertTrue(expectedNeighbours.size() == strongNeighbours.size() &&
+                expectedNeighbours.containsAll(strongNeighbours) && strongNeighbours.containsAll(expectedNeighbours));
     }
 
     @Test
@@ -78,14 +95,32 @@ public class boardTest {
         Board board = new Board(11);
         Point p = new Point(3,3);
 
-        ArrayList<Cell> weakNeighbours = board.getWeakNeighbours(p);
+        ArrayList<Cell> weakNeighbours = board.getNeighbours(p, 1, Board::isWeakNeighbour);
         ArrayList<Cell> expectedNeighbours = new ArrayList<>();
         expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y+1)));
         expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y-1)));
         expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y+1)));
         expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y-1)));
 
-        assertEquals(weakNeighbours, expectedNeighbours);
+        assertTrue(expectedNeighbours.size() == weakNeighbours.size() &&
+                expectedNeighbours.containsAll(weakNeighbours) && weakNeighbours.containsAll(expectedNeighbours));
     }
 
+    @Test
+    public void testMooreNeighbours() {
+        Board board = new Board(11);
+        Point p = new Point(3,3);
+        List<Cell> mooreNeighbours = Arrays.asList(board.getMooreNeighbours(p, 1));
+        ArrayList<Cell> expectedNeighbours = new ArrayList<>();
+        expectedNeighbours.add(board.getCell(new Point(p.x,p.y+1)));
+        expectedNeighbours.add(board.getCell(new Point(p.x,p.y-1)));
+        expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y)));
+        expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y)));
+        expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y+1)));
+        expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y-1)));
+        expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y+1)));
+        expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y-1)));
+        assertTrue(expectedNeighbours.size() == mooreNeighbours.size() - 1 &&
+                mooreNeighbours.containsAll(expectedNeighbours));
+    }
 }
