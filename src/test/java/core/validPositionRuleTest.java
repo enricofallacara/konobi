@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-public class validPoisitionRuleTest {
+public class validPositionRuleTest {
 
     @Test
     public void hasStrongNeighboursTest(){
@@ -111,7 +111,7 @@ public class validPoisitionRuleTest {
     }
 
     @Test
-    public void validPositionRuleTest() {
+    public void validPositionRuleClassTest() {
         Board board = new Board(11);
         Player player = new Player(Color.black);
 
