@@ -65,6 +65,18 @@ public class validPoisitionRuleTest {
  */
 
     @Test
+    public void emptyPositionRule() {
+        Board board = new Board(11);
+        Player player = new Player(Color.black);
+
+        board.setCell(new Point(1, 2), Color.black);
+
+        PositionRule[] posRules = new PositionRule[]{new WeakRule(), new CrosscutRule()};
+        Point point = new Point(1, 2);
+        assertFalse(ValidPositionRule.query(posRules, point, board, player));
+    }
+
+    @Test
     public void crosscutRuleTest() {
         Board board = new Board(11);
         Player player = new Player(Color.black);
