@@ -3,6 +3,27 @@ package core;
 import java.awt.*;
 import java.util.ArrayList;
 
+
+public class ValidPositionRule {
+    public static boolean query(PositionRule[] rules, Point point, Board board, Player player) {
+
+        ArrayList<Boolean> result = new ArrayList<>();
+
+        for(PositionRule rule : rules) {
+            result.add(rule.isValid(point, board, player));
+        }
+
+        return result.stream().allMatch(x -> x == true);
+    }
+
+}
+
+
+
+
+
+/*
+
 public class ValidPositionRule {
     public static boolean query(Point point, Board board, Player player){
         // TODO: PROBLEMA: SE QUALCUNO VUOLE AGGIUNGERE UNA REGOLA, DEVE AGGIUNGERE UN ELSE IF,
@@ -22,6 +43,7 @@ public class ValidPositionRule {
         }
         return true;
     }
+
 
     public static boolean hasCrosscut(Point point, Board board, Player player) {
         if(board.getColoredNeighbours(point, 1, player, Board::isWeakNeighbour).isEmpty()) {
@@ -53,9 +75,6 @@ public class ValidPositionRule {
         return result.stream().allMatch(x -> x == true);
     }
 
-
 }
 
-
-
-
+ */

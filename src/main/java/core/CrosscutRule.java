@@ -1,7 +1,7 @@
 package core;
 
-        import java.awt.*;
-        import java.util.ArrayList;
+import java.awt.*;
+import java.util.ArrayList;
 
 public class CrosscutRule implements PositionRule {
     @Override
