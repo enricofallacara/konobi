@@ -6,14 +6,22 @@ import java.util.ArrayList;
 
 public class ValidPositionRule {
     public static boolean query(ArrayList<PositionRule> rules, Point point, Board board, Player player) {
+        /*
 
         ArrayList<Boolean> result = new ArrayList<>();
+
+        rules.stream().forEach(x -> x.isValid(point, board, player));
 
         for(PositionRule rule : rules) {
             result.add(rule.isValid(point, board, player));
         }
 
-        return result.stream().allMatch(x -> x == true);
+        return result.stream().allMatch(x -> x);
+
+         */
+
+        return rules.stream().allMatch(x -> x.isValid(point, board, player));
+
     }
 
 }

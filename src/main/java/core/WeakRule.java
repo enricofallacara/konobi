@@ -23,7 +23,7 @@ public class WeakRule implements PositionRule {
                     }
                 }
             }
-            return result.stream().allMatch(x -> x == true);
+            return result.stream().allMatch(x -> x);
         }
     }
 }
