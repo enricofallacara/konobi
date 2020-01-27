@@ -61,4 +61,19 @@ public class validPoisitionRuleTest {
         board.setCell(new Point(3, 1), Color.black);
         assertTrue(ValidPositionRule.specialWeakPosition(point, board, player));
     }
+
+    @Test
+    public void crosscutRuleTest() {
+        Board board = new Board(11);
+        Player player = new Player(Color.black);
+        Point point = new Point(2, 3);
+
+        board.setCell(new Point(1, 2), Color.black);
+        board.setCell(new Point(2, 2), Color.white);
+        board.setCell(new Point(1, 3), Color.white);
+
+        CrosscutRule cross = new CrosscutRule();
+
+        assertFalse(cross.isValid(point, board, player));
+    }
 }
