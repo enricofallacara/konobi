@@ -71,9 +71,8 @@ public class validPositionRuleTest {
 
         board.setCell(new Point(1, 2), Color.black);
 
-        PositionRule[] posRules = new PositionRule[]{new WeakRule(), new CrosscutRule(), new EmptyRule()};
         Point point = new Point(1, 2);
-        assertFalse(ValidPositionRule.query(posRules, point, board, player));
+        assertFalse(ValidPositionRule.query(Rulebook.getPositionRules(), point, board, player));
     }
 
     @Test
@@ -115,8 +114,6 @@ public class validPositionRuleTest {
         Board board = new Board(11);
         Player player = new Player(Color.black);
 
-        PositionRule[] posRules = new PositionRule[]{new WeakRule(), new CrosscutRule()};
-
         // Checkerboard setting.
         board.setCell(new Point(0, 0), Color.black);
         board.setCell(new Point(2, 1), Color.black);
@@ -125,11 +122,11 @@ public class validPositionRuleTest {
 
         // Legal example move.
         Point point1 = new Point(1, 1);
-        assertTrue(ValidPositionRule.query(posRules, point1, board, player));
+        assertTrue(ValidPositionRule.query(Rulebook.getPositionRules(), point1, board, player));
 
         // Illegal example move.
         Point point2 = new Point(1, 0);
-        assertFalse(ValidPositionRule.query(posRules, point2, board, player));
+        assertFalse(ValidPositionRule.query(Rulebook.getPositionRules(), point2, board, player));
 
     }
 
