@@ -59,11 +59,11 @@ public class Board implements Iterable<Cell>{
     }
 
     public static boolean isStrongNeighbour(Point target, Point query) {
-        return euclideanDistance(target.x, query.x, target.y, query.y) == 1.0;
+        return manhattanDistance(target.x, query.x, target.y, query.y) == 1.0;
     }
 
     public static boolean isWeakNeighbour(Point target, Point query) {
-        return euclideanDistance(target.x, query.x, target.y, query.y) == 2.0;
+        return manhattanDistance(target.x, query.x, target.y, query.y) == 2.0;
     }
 
     @SafeVarargs
@@ -81,7 +81,7 @@ public class Board implements Iterable<Cell>{
 
     public boolean isOnBoard(Point p){ return (0<= p.x && p.x < size) && (0 <= p.y && p.y < size);}
 
-    private static double euclideanDistance(int x1, int x2, int y1, int y2) {
+    private static double manhattanDistance(int x1, int x2, int y1, int y2) {
         return Math.abs(x1 - x2) + Math.abs(y1 - y2);
     }
 }
