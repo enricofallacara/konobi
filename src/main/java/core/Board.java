@@ -59,6 +59,7 @@ public class Board implements Iterable<Cell>{
     }
 
     public static boolean isStrongNeighbour(Point target, Point query) {
+        System.out.println(target.distance(query));
         return target.distance(query) == 1.0;
     }
 
@@ -71,14 +72,16 @@ public class Board implements Iterable<Cell>{
         return Arrays.stream(getMooreNeighbours(point, level)).
                 filter(cell -> Arrays.stream(functions).allMatch(x -> x.test(point, cell.getCoordinates()))).collect(Collectors.toCollection(ArrayList::new));
     }
-
+    // TODO: validPositionRuleTest falliscono perché c'é un bug nella funzione di distanza. Controllo domani
     @SafeVarargs
     public final ArrayList<Cell> getColoredNeighbours(Point point, int level, Player player, BiPredicate<Point, Point>... functions) {
         ArrayList<Cell> neighbours = getNeighbours(point, level, functions);
-        neighbours.removeIf(x -> x.getColor() != player.getColor());
+        System.out.println(neighbours.size());
         for (Cell cell : neighbours) {
             System.out.println(cell.getColor() + " " + cell.getCoordinates());
         }
+        neighbours.removeIf(x -> x.getColor() != player.getColor());
+        //System.out.println(neighbours.size());
         return neighbours;
     }
 

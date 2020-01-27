@@ -2,6 +2,8 @@ package core;
 
 import org.junit.Test;
 import java.awt.*;
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class validPoisitionRuleTest {
@@ -15,9 +17,11 @@ public class validPoisitionRuleTest {
         board.setCell(new Point(3, 3), Color.white);
         assertTrue(board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour).isEmpty());
         board.setCell(new Point(1, 3), Color.black);
-        //for (Cell cell : board) {
-        //    System.out.println(cell.getColor() + " " + cell.getCoordinates());
-        //}
+        ArrayList<Cell> test = board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour);
+        for (Cell cell : test) {
+            System.out.println(cell.getColor() + " " + cell.getCoordinates());
+        }
+        //System.out.println(test.size());
         assertFalse(board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour).isEmpty());
     }
 
