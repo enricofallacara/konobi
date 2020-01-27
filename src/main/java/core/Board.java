@@ -18,8 +18,8 @@ public class Board implements Iterable<Cell>{
     private int size;
     private Cell[][] grid;
 
-    public int getSize(){ return size;}
-    public Cell getCell(Point p){ return grid[p.x][p.y];}
+    public int getSize(){ return size; }
+    public Cell getCell(Point p){ return grid[p.x][p.y]; }
     public void setCell(Point p, Color c) {
         getCell(p).setColor(c);
     }
@@ -55,16 +55,15 @@ public class Board implements Iterable<Cell>{
     }
     // TODO: forse adegua questa funzione all'interfaccia delle funzioni dei vicini facendo ritornare un ArrayList<Cell>
     public Cell[] getMooreNeighbours(Point p, int level) {
-        return slice(Math.max(0, p.x - level), Math.min(p.x + level + 1, size), Math.max(0, p.y - level), Math.min(p.y + level + 1, size));
+        return slice(Math.max(0, p.y - level), Math.min(p.y + level + 1, size), Math.max(0, p.x - level), Math.min(p.x + level + 1, size));
     }
 
     public static boolean isStrongNeighbour(Point target, Point query) {
-        System.out.println(target.distance(query));
-        return target.distance(query) == 1.0;
+        return euclideanDistance(target.x, query.x, target.y, query.y) == 1.0;
     }
 
     public static boolean isWeakNeighbour(Point target, Point query) {
-        return target.distance(query) == Math.sqrt(2);  // se ci limitiamo a intorni a un livello, questo puo usare .negate()
+        return euclideanDistance(target.x, query.x, target.y, query.y) == 2.0;
     }
 
     @SafeVarargs
@@ -72,18 +71,17 @@ public class Board implements Iterable<Cell>{
         return Arrays.stream(getMooreNeighbours(point, level)).
                 filter(cell -> Arrays.stream(functions).allMatch(x -> x.test(point, cell.getCoordinates()))).collect(Collectors.toCollection(ArrayList::new));
     }
-    // TODO: validPositionRuleTest falliscono perché c'é un bug nella funzione di distanza. Controllo domani
+
     @SafeVarargs
     public final ArrayList<Cell> getColoredNeighbours(Point point, int level, Player player, BiPredicate<Point, Point>... functions) {
         ArrayList<Cell> neighbours = getNeighbours(point, level, functions);
-        System.out.println(neighbours.size());
-        for (Cell cell : neighbours) {
-            System.out.println(cell.getColor() + " " + cell.getCoordinates());
-        }
         neighbours.removeIf(x -> x.getColor() != player.getColor());
-        //System.out.println(neighbours.size());
         return neighbours;
     }
 
     public boolean isOnBoard(Point p){ return (0<= p.x && p.x < size) && (0 <= p.y && p.y < size);}
+
+    private static double euclideanDistance(int x1, int x2, int y1, int y2) {
+        return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+    }
 }

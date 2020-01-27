@@ -32,12 +32,11 @@ public class boardTest {
     @Test
     public void testSlice() {
         Board board = new Board(11);
-        board.setCell(new Point(0, 0), Color.white);
-        List<Cell> portion = Arrays.asList(board.slice(0, 2, 0, 2));
-        List<Cell> expected = Arrays.asList(board.getCell(new Point(0, 0)),
-                board.getCell(new Point(1, 0)),
-                board.getCell(new Point(0, 1)),
-                board.getCell(new Point(1, 1)));
+        List<Cell> portion = Arrays.asList(board.slice(2, 4, 2, 4));
+        List<Cell> expected = Arrays.asList(board.getCell(new Point(2, 2)),
+                board.getCell(new Point(3, 2)),
+                board.getCell(new Point(2, 3)),
+                board.getCell(new Point(3, 3)));
         assertTrue(expected.size() == portion.size() &&
                 expected.containsAll(portion) && portion.containsAll(expected));
     }
@@ -87,7 +86,6 @@ public class boardTest {
         expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y)));
         expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y)));
 
-        //assertEquals(expectedNeighbours, strongNeighbours);
         assertTrue(expectedNeighbours.size() == strongNeighbours.size() &&
                 expectedNeighbours.containsAll(strongNeighbours) && strongNeighbours.containsAll(expectedNeighbours));
     }
@@ -104,7 +102,6 @@ public class boardTest {
         expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y+1)));
         expectedNeighbours.add(board.getCell(new Point(p.x-1,p.y-1)));
 
-        //assertEquals(expectedNeighbours, weakNeighbours);
         assertTrue(expectedNeighbours.size() == weakNeighbours.size() &&
                 expectedNeighbours.containsAll(weakNeighbours) && weakNeighbours.containsAll(expectedNeighbours));
     }

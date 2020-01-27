@@ -18,10 +18,6 @@ public class validPoisitionRuleTest {
         assertTrue(board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour).isEmpty());
         board.setCell(new Point(1, 3), Color.black);
         ArrayList<Cell> test = board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour);
-        for (Cell cell : test) {
-            System.out.println(cell.getColor() + " " + cell.getCoordinates());
-        }
-        //System.out.println(test.size());
         assertFalse(board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour).isEmpty());
     }
 
