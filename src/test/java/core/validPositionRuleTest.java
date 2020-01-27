@@ -42,7 +42,7 @@ public class validPositionRuleTest {
         board.setCell(new Point(1, 2), Color.black);
 
         Point point = new Point(1, 2);
-        assertFalse(ValidPositionRule.query(Rulebook.getPositionRules(), point, board, player));
+        assertFalse(Rulebook.queryValidPosition(point, board, player));
     }
 
     @Test
@@ -92,11 +92,11 @@ public class validPositionRuleTest {
 
         // Legal example move.
         Point point1 = new Point(1, 1);
-        assertTrue(ValidPositionRule.query(Rulebook.getPositionRules(), point1, board, player));
+        assertTrue(Rulebook.queryValidPosition(point1, board, player));
 
         // Illegal example move.
         Point point2 = new Point(1, 0);
-        assertFalse(ValidPositionRule.query(Rulebook.getPositionRules(), point2, board, player));
+        assertFalse(Rulebook.queryValidPosition(point2, board, player));
 
     }
 
