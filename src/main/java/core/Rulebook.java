@@ -24,5 +24,7 @@ public class Rulebook {
         return PieRule.query(nTurn);
     }
 
+    public static boolean queryPassRule(Board board, Player player){ return PassRule.query(board, player);}
+
 
 }
