@@ -123,4 +123,17 @@ public class boardTest {
         assertTrue(expectedNeighbours.size() == mooreNeighbours.size() - 1 &&
                 mooreNeighbours.containsAll(expectedNeighbours));
     }
+
+    @Test
+    public void isOnEndingEdgeTest() {
+        Board board = new Board(11);
+        Point point = new Point(0,10);
+
+        Player black = new Player(Color.black);
+        assertTrue(board.isOnEndingEdge(point, black));
+
+        Player white = new Player(Color.white);
+        assertFalse(board.isOnEndingEdge(point, white));
+    }
+
 }
