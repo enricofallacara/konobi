@@ -31,7 +31,6 @@ public class EndGameRule {
 
 
     public static boolean searchForEndingEdge(Cell current, Board board, Player player) {
-        System.out.println(current.getCoordinates().x + " " + current.getCoordinates().y);
         if (board.isOnEndingEdge(current.getCoordinates(), player)) { return true; }
 
         table.add(current);

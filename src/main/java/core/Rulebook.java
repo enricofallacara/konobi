@@ -12,6 +12,10 @@ public class Rulebook {
         return getPositionRules().stream().allMatch(x -> x.isValid(point, board, player));
     }
 
+    public static boolean queryEndGameRule(Board board, Player player) {
+        return EndGameRule.query(board, player);
+    }
+
     public static ArrayList<PositionRule> getPositionRules(){
         return positionRules;
     }
