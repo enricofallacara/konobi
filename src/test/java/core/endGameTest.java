@@ -12,10 +12,10 @@ public class endGameTest {
     @Test
     public void testGetEndpoints() {
         Board board = new Board(11);
-        Player player = new Player(Color.white);
+        Player player = new Player(Color.black);
         assertTrue(EndGameRule.getStartingPoints(board, player).isEmpty());
-        board.setCell(new Point(3, 0), Color.white);
-        board.setCell(new Point(4, 0), Color.black);
+        board.setCell(new Point(3, 0), Color.black);
+        board.setCell(new Point(4, 0), Color.white);
         ArrayList<Cell> expected = new ArrayList<>();
         expected.add(board.getCell(new Point(3, 0)));
         assertEquals(expected, EndGameRule.getStartingPoints(board, player));
