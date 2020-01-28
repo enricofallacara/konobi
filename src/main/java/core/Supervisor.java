@@ -1,36 +1,40 @@
 package core;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Supervisor {
     private Board board;
     private Player playerOne;
     private Player playerTwo;
-    private Point move;
+    private ArrayList<Point> moves;
     private int nTurn;
-    private Color currentTurn;
+    private Color currentColor;
 
     public Supervisor(int s){
         board = new Board(s);
         playerOne = new Player(Color.black);
         playerTwo = new Player(Color.white);
-        currentTurn = Color.black;
+        currentColor = Color.black;
+        nTurn = 0;
+        moves = new ArrayList<>();
     }
 
     public Player getCurrentPlayer() {
-        return (playerOne.getColor() == currentTurn) ? playerOne : playerTwo;
+        return (playerOne.getColor() == currentColor) ? playerOne : playerTwo;
     }
 
-    private void setCurrentMove(Point point){
-        move = point;
-        board.setCell(move, currentTurn);
+    private void updateStatus(Point newPoint, Player currentPlayer){
+        moves.add(newPoint);
+        board.setCell(newPoint, currentColor);
+        currentColor = currentPlayer.getOppositeColor();
+        nTurn++;
     }
 
     public boolean newMove(Point point){
         Player currentPlayer = getCurrentPlayer();
         if(Rulebook.queryValidPosition(point, board, currentPlayer)) {
-            setCurrentMove(point);
-            currentTurn = currentPlayer.getOppositeColor();
+            updateStatus(point, currentPlayer);
             return true;
         }
         return false;
