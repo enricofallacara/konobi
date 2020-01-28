@@ -7,18 +7,33 @@ public class Supervisor {
     private Player playerOne;
     private Player playerTwo;
     private Point move;
+    private int nTurn;
+    private Color currentTurn;
 
     public Supervisor(int s){
         board = new Board(s);
         playerOne = new Player(Color.black);
         playerTwo = new Player(Color.white);
+        currentTurn = Color.black;
     }
 
-    public void setCurrentMove(Point p){ move = p;}
+    public Player getCurrentPlayer() {
+        return (playerOne.getColor() == currentTurn) ? playerOne : playerTwo;
+    }
 
-    public  void  newMove(Point p){
-        setCurrentMove(p);
-        // TODO: check validity of the move
+    private void setCurrentMove(Point point){
+        move = point;
+        board.setCell(move, currentTurn);
+    }
+
+    public boolean newMove(Point point){
+        Player currentPlayer = getCurrentPlayer();
+        if(Rulebook.queryValidPosition(point, board, currentPlayer)) {
+            setCurrentMove(point);
+            currentTurn = currentPlayer.getOppositeColor();
+            return true;
+        }
+        return false;
     }
 
     public static void query(){
