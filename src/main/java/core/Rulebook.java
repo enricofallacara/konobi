@@ -16,6 +16,10 @@ public class Rulebook {
         return EndGameRule.query(board, player);
     }
 
+    public static boolean queryPieRule(int nTurn) {
+        return PieRule.query(nTurn);
+    }
+
     public static ArrayList<PositionRule> getPositionRules(){
         return positionRules;
     }

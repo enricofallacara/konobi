@@ -10,4 +10,9 @@ public class pieRuleTest {
     public void checkQuery(){
         assertTrue(PieRule.query(2));
     }
+    @Test
+    public void rulebookQueryTest(){
+        assertTrue(Rulebook.queryPieRule(2));
+        assertFalse(Rulebook.queryPieRule(4));
+    }
 }
