@@ -43,4 +43,28 @@ public class endGameTest {
         board.setCell(new Point(2, 2), Color.white);
         assertFalse(EndGameRule.searchForEndingEdge(board.getCell(point), board, player));
     }
+    @Test
+    public void testQuery() {
+        Board board = new Board(4);
+        Player black = new Player(Color.black);
+        Player white = new Player(Color.white);
+
+        board.setCell(new Point(1, 0), Color.black);
+        board.setCell(new Point(2, 1), Color.black);
+        board.setCell(new Point(2, 2), Color.black);
+        board.setCell(new Point(2, 3), Color.black);
+        board.setCell(new Point(3, 3), Color.black);
+
+        board.setCell(new Point(2, 0), Color.white);
+        board.setCell(new Point(1, 1), Color.white);
+        board.setCell(new Point(1, 2), Color.white);
+        board.setCell(new Point(1, 3), Color.white);
+
+        assertTrue(EndGameRule.query(board, black));
+        assertFalse(EndGameRule.query(board, white));
+
+        board.setCell(new Point(2, 2), Color.white);
+        assertFalse(EndGameRule.query(board, black));
+        assertFalse(EndGameRule.query(board, white));
+    }
 }
