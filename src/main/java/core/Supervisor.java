@@ -40,8 +40,22 @@ public class Supervisor {
         return false;
     }
 
-    public static void query(){
-        // CICLO WHILE DEL GIOCO
+    public static boolean query() {
+        /*
+        if(ispassrule) {return true;}
+        if(ispierule) {
+            if(intercaccia.askpierule()) {
+                performpierule;
+                return true;
+            }
+        }
+
+        newmove = intefaccia.input();
+        newMove(newmove);
+
+        if(winning) {iterface.win(), return false;};
+        */
+        return false;
     }
 
     public static void startGame(){
