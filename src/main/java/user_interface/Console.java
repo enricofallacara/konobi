@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Console implements UserInterface {
     private Scanner scanner;
 
-    public Console(){ scanner = new Scanner(System.in); }
+    public Console() { scanner = new Scanner(System.in); }
 
     @Override
     public Point getInput() {
@@ -47,6 +47,10 @@ public class Console implements UserInterface {
 
     @Override
     public void display(Board board){
+        // TODO: scrivere la funzione in maniera piu compatta
+        // TODO: la catena di if-else if nel doppio loop viola
+        // l'Open Closed Principle, in quanto invece di dire di disegnarsi,
+        // chiediamo che cosa sia (Tell, don't ask)
         for(int y = board.getSize() - 1 ; y >= 0; y--){
             String space = (y < 10) ? "  " : " ";
             System.out.print(y + space);

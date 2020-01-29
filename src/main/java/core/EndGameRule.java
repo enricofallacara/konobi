@@ -29,7 +29,6 @@ public class EndGameRule {
                 filter(x -> x.getColor() == color).collect(Collectors.toCollection(ArrayList::new));
     }
 
-
     public static boolean searchForEndingEdge(Cell current, Board board, Player player) {
         if (board.isOnEndingEdge(current.getCoordinates(), player)) { return true; }
 

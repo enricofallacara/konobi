@@ -49,15 +49,9 @@ public class Supervisor {
 
     public Board getBoard(){ return board; }
 
-    public boolean isEndGame() {
-        return Rulebook.queryEndGameRule(board, getLastPlayer());
-    }
+    public boolean isEndGame() { return Rulebook.queryEndGameRule(board, getLastPlayer()); }
 
-    public boolean isPassRule() {
-        return Rulebook.queryPassRule(board, getCurrentPlayer());
-    }
+    public boolean isPassRule() { return Rulebook.queryPassRule(board, getCurrentPlayer()); }
 
-    public boolean isPieRule() {
-        return Rulebook.queryPieRule(nTurn);
-    }
+    public boolean isPieRule() { return Rulebook.queryPieRule(nTurn); }
 }
