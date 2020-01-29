@@ -1,5 +1,6 @@
 package user_interface;
 
+import core.Board;
 import core.Player;
 import java.awt.*;
 
@@ -10,5 +11,6 @@ public interface UserInterface {
     void notifyEndGame(Player player);
     int askSize();
     void notifyPass();
+    void display(Board board);
 
 }

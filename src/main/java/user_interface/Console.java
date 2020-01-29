@@ -43,6 +43,7 @@ public class Console implements UserInterface {
         System.out.println("YOU SHALL PASS!");
     }
 
+    @Override
     public void display(Board board){
         for(int y = board.getSize() - 1 ; y >= 0; y--){
             String space = (y < 10) ? "  " : " ";
@@ -61,5 +62,6 @@ public class Console implements UserInterface {
         for (int i = 0; i < board.getSize(); ++i) {
             System.out.print(" " + i + " ");
         }
+        System.out.println();
     }
 }

@@ -11,7 +11,7 @@ public class Konobi {
         int size = userInterface.askSize();
         Supervisor supervisor = new Supervisor(size);
         while (!supervisor.isEndGame()) {
-            //System.out.println("siamo qua");
+            userInterface.display(supervisor.getBoard());
             if (supervisor.isPassRule()) {
                 userInterface.notifyPass();
             }
