@@ -24,6 +24,6 @@ public class Konobi {
                 supervisor.newMove(newPoint);
             }
         }
-        userInterface.endGame(supervisor.getCurrentPlayer());
+        //userInterface.endGame(supervisor.getCurrentPlayer());
     }
 }
