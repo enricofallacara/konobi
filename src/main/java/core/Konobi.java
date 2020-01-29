@@ -17,9 +17,7 @@ public class Konobi {
             }
             else if (supervisor.isPieRule()) {
                 //System.out.println("siamo dopo pie rule");
-                if (userInterface.askPieRule()) {
-                    supervisor.performPieRule();
-                }
+                supervisor.performPieRule(userInterface.askPieRule());
             }
             else {
                 //System.out.println("siamo prima dell'input");

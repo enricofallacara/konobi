@@ -40,9 +40,11 @@ public class Supervisor {
         return false;
     }
 
-    public void performPieRule(){
-        playerOne.changeSide();
-        playerTwo.changeSide();
+    public void performPieRule(boolean status){
+        if (status) {
+            playerOne.changeSide();
+            playerTwo.changeSide();
+        }
         nTurn++;
     }
 

@@ -25,7 +25,9 @@ public class Console implements UserInterface {
 
     @Override
     public boolean askPieRule() {
-        return false;
+        System.out.println("Do You Want to Apply the Pie Rule? (y/n)");
+        String answer = scanner.next();
+        return answer.equals("y");
     }
 
     @Override
