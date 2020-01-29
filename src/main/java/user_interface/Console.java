@@ -16,7 +16,11 @@ public class Console implements UserInterface {
 
     @Override
     public Point getInput() {
-        return null;
+        System.out.print("Please Insert Next X Coordinate: ");
+        int newX = scanner.nextInt();
+        System.out.print("Please Insert Next Y Coordinate: ");
+        int newY = scanner.nextInt();
+        return new Point(newX, newY);
     }
 
     @Override
