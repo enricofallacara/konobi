@@ -13,8 +13,8 @@ public class Supervisor {
 
     public Supervisor(int s){
         board = new Board(s);
-        playerOne = new Player(Color.black);
-        playerTwo = new Player(Color.white);
+        playerOne = new Player(Color.black, "playerOne");
+        playerTwo = new Player(Color.white, "playerTwo");
         currentColor = Color.black;
         nTurn = 0;
         moves = new ArrayList<>();
@@ -40,12 +40,19 @@ public class Supervisor {
         return false;
     }
 
+    public void performPieRule(){
+        playerOne.changeSide();
+        playerTwo.changeSide();
+        nTurn++;
+    }
+
     public static boolean query() {
         /*
         if(ispassrule) {return true;}
         if(ispierule) {
             if(intercaccia.askpierule()) {
                 performpierule;
+                nTurn++;
                 return true;
             }
         }

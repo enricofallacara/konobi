@@ -17,4 +17,17 @@ public class supervisorTest {
         assertTrue(supervisor.newMove(new Point(2, 3)));
         assertSame(supervisor.getCurrentPlayer().getColor(), Color.white);
     }
+
+    @Test
+    public void performPieRuleTest(){
+
+        Supervisor supervisor = new Supervisor(11);
+        assertEquals(supervisor.getCurrentPlayer().getColor(),Color.black);
+        supervisor.newMove(new Point(0,0));
+        assertEquals(supervisor.getCurrentPlayer().getColor(),Color.white);
+        assertEquals(supervisor.getCurrentPlayer().getName(), "playerTwo");
+        supervisor.performPieRule();
+        assertEquals(supervisor.getCurrentPlayer().getColor(),Color.white);
+        assertEquals(supervisor.getCurrentPlayer().getName(), "playerOne");
+    }
 }
