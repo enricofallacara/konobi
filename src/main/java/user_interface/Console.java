@@ -65,6 +65,7 @@ public class Console implements UserInterface {
         for (int x = 0; x < board.getSize(); x++) {
             displayCell(board.getCell(new Point(x, y)));
         }
+        System.out.println();
     }
 
     private String padLeft(String s) {
@@ -75,7 +76,6 @@ public class Console implements UserInterface {
     public void display(Board board){
         for(int y = board.getSize() - 1 ; y >= 0; y--){
             displayRow(board, y);
-            System.out.println();
         }
 
         System.out.print("\t");
