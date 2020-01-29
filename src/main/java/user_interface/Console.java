@@ -4,8 +4,10 @@ import core.Board;
 import core.Cell;
 import core.Color;
 import core.Player;
+import org.w3c.dom.ranges.Range;
 
 import java.awt.*;
+import java.awt.font.NumericShaper;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -58,6 +60,34 @@ public class Console implements UserInterface {
         System.out.print(cellColorMap.get(cell.getColor()));
     }
 
+    private void displayRow(Board board, int y) {
+        System.out.print(y + "\t");
+        for (int x = 0; x < board.getSize(); x++) {
+            displayCell(board.getCell(new Point(x, y)));
+        }
+    }
+
+    private String padLeft(String s) {
+        return String.format("%" + 3 + "s", s);
+    }
+
+    @Override
+    public void display(Board board){
+        for(int y = board.getSize() - 1 ; y >= 0; y--){
+            displayRow(board, y);
+            System.out.println();
+        }
+
+        System.out.print("\t");
+        for (int i = 0; i < board.getSize(); ++i) {
+            // NOTA: funziona bene solo fino a numeri di due cifre.
+            System.out.print(padLeft(i + " "));
+        }
+
+        System.out.println();
+    }
+
+   /*
     @Override
     public void display(Board board){
         // TODO: scrivere la funzione in maniera piu compatta
@@ -68,7 +98,13 @@ public class Console implements UserInterface {
             String space = (y < 10) ? "  " : " ";
             System.out.print(y + space);
             for(int x = 0; x < board.getSize(); x++){
-                displayCell(board.getCell(new Point(x, y)));
+                board.getCell(new Point(x, y));
+                if(board.getCell(new Point(x,y)).getColor() == Color.black)
+                    System.out.print("[" + "x" + "]");
+                else if(board.getCell(new Point(x,y)).getColor() == Color.white)
+                    System.out.print("[" + "o" + "]");
+                else
+                    System.out.print("[" + " " + "]");
             }
             System.out.println();
         }
@@ -78,6 +114,8 @@ public class Console implements UserInterface {
         }
         System.out.println();
     }
+
+    */
 
     @Override
     public void notifyInvalidMove() { System.out.println("The Selected Position is Invalid!"); }
