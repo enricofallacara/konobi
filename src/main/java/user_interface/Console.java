@@ -5,12 +5,15 @@ import core.Color;
 import core.Player;
 
 import java.awt.*;
+import java.util.Scanner;
 
 public class Console implements UserInterface {
+    private Scanner scanner;
 
     public Console(){
-
+        scanner = new Scanner(System.in);
     }
+
     @Override
     public Point getInput() {
         return null;
@@ -26,8 +29,20 @@ public class Console implements UserInterface {
 
     }
 
+    @Override
+    public int askSize() {
+        return 11;
+    }
+
+    @Override
+    public void notifyPass() {
+        System.out.println("YOU SHALL PASS!");
+    }
+
     public void display(Board board){
         for(int y = board.getSize() - 1 ; y >= 0; y--){
+            String space = (y < 10) ? "  " : " ";
+            System.out.print(y + space);
             for(int x = 0; x < board.getSize(); x++){
                 if(board.getCell(new Point(x,y)).getColor() == Color.black)
                     System.out.print("[" + "x" + "]");
@@ -37,6 +52,10 @@ public class Console implements UserInterface {
                     System.out.print("[" + " " + "]");
             }
             System.out.println();
+        }
+        System.out.print("   ");
+        for (int i = 0; i < board.getSize(); ++i) {
+            System.out.print(" " + i + " ");
         }
     }
 }

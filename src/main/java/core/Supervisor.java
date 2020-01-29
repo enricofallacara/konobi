@@ -50,7 +50,7 @@ public class Supervisor {
         return board;
     }
 
-    public static boolean query() {
+    public boolean query() {
         /*
         if(ispassrule) {return true;}
         if(ispierule) {
@@ -67,6 +67,18 @@ public class Supervisor {
         if(winning) {iterface.win(), return false;};
         */
         return false;
+    }
+
+    public boolean isEndGame() {
+        return Rulebook.queryEndGameRule(board, getCurrentPlayer());
+    }
+
+    public boolean isPassRule() {
+        return Rulebook.queryPassRule(board, getCurrentPlayer());
+    }
+
+    public boolean isPieRule() {
+        return Rulebook.queryPieRule(nTurn);
     }
 
     public static void startGame(){

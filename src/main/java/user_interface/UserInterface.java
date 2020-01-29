@@ -8,5 +8,7 @@ public interface UserInterface {
     Point getInput();
     boolean askPieRule();
     void endGame(Player player);
+    int askSize();
+    void notifyPass();
 
 }
