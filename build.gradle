@@ -5,7 +5,8 @@ apply plugin: 'application'
 mainClassName = 'core.Konobi'
 
 repositories {
-    mavenCentral()
+   mavenCentral()
+   jcenter()
 }
 
 sourceCompatibility = 1.8
