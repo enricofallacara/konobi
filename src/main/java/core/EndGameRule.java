@@ -12,7 +12,7 @@ public class EndGameRule {
     public static boolean query(Board board, Player player) {
         ArrayList<Cell> startingPoints = getStartingPoints(board, player);
 
-        if (startingPoints.size() == 0) {
+        if (startingPoints.isEmpty()) {
             return false;
         }
 

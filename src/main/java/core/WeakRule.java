@@ -7,10 +7,14 @@ public class WeakRule implements PositionRule {
     @Override
     public boolean isValid(Point point, Board board, Player player) {
         ArrayList<Cell> weakNeighbours = board.getColoredNeighbours(point, 1, player, Board::isWeakNeighbour);
-        if(weakNeighbours.isEmpty()) {
+        if (weakNeighbours.isEmpty()) {
             // If it has no weak neighbours.
             return true;
-        } else {
+        } // TODO: controllare se questo puo essere leggibile
+        return weakNeighbours.stream().flatMap(c1 -> board.getNeighbours(c1.getCoordinates(), 1,
+                Board::isStrongNeighbour).stream().filter(c2 -> c2.getColor() == null).map(c3 -> !board.
+                getColoredNeighbours(c3.getCoordinates(), 1, player, Board::isWeakNeighbour).isEmpty())).allMatch(b -> b);
+        /*} else {
             // Else (some weak connections), check they are special weaks.
             ArrayList<Boolean> result = new ArrayList<>();
 
@@ -22,8 +26,8 @@ public class WeakRule implements PositionRule {
 
                     }
                 }
-            }
-            return result.stream().allMatch(x -> x);
-        }
+            }*/
+            //return result.stream().allMatch(x -> x);
+ //       }
     }
 }
