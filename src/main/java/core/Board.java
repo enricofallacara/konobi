@@ -54,13 +54,9 @@ public class Board implements Iterable<Cell>{
         return slice(Math.max(0, p.y - level), Math.min(p.y + level + 1, size), Math.max(0, p.x - level), Math.min(p.x + level + 1, size));
     }
 
-    public static boolean isStrongNeighbour(Point target, Point query) {
-        return manhattanDistance(target.x, query.x, target.y, query.y) == 1.0;
-    }
+    public static boolean isStrongNeighbour(Point target, Point query) { return manhattanDistance(target.x, query.x, target.y, query.y) == 1.0; }
 
-    public static boolean isWeakNeighbour(Point target, Point query) {
-        return manhattanDistance(target.x, query.x, target.y, query.y) == 2.0;
-    }
+    public static boolean isWeakNeighbour(Point target, Point query) { return manhattanDistance(target.x, query.x, target.y, query.y) == 2.0; }
 
     @SafeVarargs
     public final ArrayList<Cell> getNeighbours(Point point, int level, BiPredicate<Point, Point>... functions) {
@@ -78,14 +74,13 @@ public class Board implements Iterable<Cell>{
     public boolean isOnBoard(Point point){ return (0<= point.x && point.x < size) && (0 <= point.y && point.y < size);}
 
     public boolean isOnEndingEdge(Point point, Player player) {
-        if(player.getColor() == Color.white) {
+        return (player.getColor() == Color.white) ? point.x == size - 1 : point.y == size - 1;
+        /*if(player.getColor() == Color.white) {
             return point.x == size - 1;
         } else {
             return point.y == size - 1;
-        }
+        }*/
     }
 
-    private static double manhattanDistance(int x1, int x2, int y1, int y2) {
-        return Math.abs(x1 - x2) + Math.abs(y1 - y2);
-    }
+    private static double manhattanDistance(int x1, int x2, int y1, int y2) { return Math.abs(x1 - x2) + Math.abs(y1 - y2); }
 }
