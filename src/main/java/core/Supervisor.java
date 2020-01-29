@@ -46,6 +46,10 @@ public class Supervisor {
         nTurn++;
     }
 
+    public Board getBoard(){
+        return board;
+    }
+
     public static boolean query() {
         /*
         if(ispassrule) {return true;}
