@@ -48,7 +48,7 @@ public class Console implements UserInterface {
         System.out.println("YOU SHALL PASS!");
     }
 
-    Map<Color, String> cellColorMap = new HashMap<>() {{
+    Map<Color, String> cellColorMap = new HashMap<Color, String>() {{
         put(Color.black, "[x]");
         put(Color.white, "[o]");
         put(null, "[ ]");
