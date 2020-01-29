@@ -29,7 +29,7 @@ public class Console implements UserInterface {
     }
 
     @Override
-    public void endGame(Player player) {
+    public void notifyEndGame(Player player) {
 
     }
 

@@ -28,6 +28,6 @@ public class Konobi {
             }
             //System.out.println("siamo prima di endgame");
         }
-        userInterface.endGame(supervisor.getCurrentPlayer());
+        userInterface.notifyEndGame(supervisor.getCurrentPlayer());
     }
 }
