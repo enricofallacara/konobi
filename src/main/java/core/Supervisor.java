@@ -16,7 +16,7 @@ public class Supervisor {
         playerOne = new Player(Color.black, "playerOne");
         playerTwo = new Player(Color.white, "playerTwo");
         currentColor = Color.black;
-        nTurn = 0;
+        nTurn = 1;
         moves = new ArrayList<>();
     }
 

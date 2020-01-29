@@ -11,19 +11,23 @@ public class Konobi {
         int size = userInterface.askSize();
         Supervisor supervisor = new Supervisor(size);
         while (!supervisor.isEndGame()) {
+            //System.out.println("siamo qua");
             if (supervisor.isPassRule()) {
                 userInterface.notifyPass();
             }
             else if (supervisor.isPieRule()) {
+                //System.out.println("siamo dopo pie rule");
                 if (userInterface.askPieRule()) {
                     supervisor.performPieRule();
                 }
             }
             else {
+                //System.out.println("siamo prima dell'input");
                 Point newPoint = userInterface.getInput();
                 supervisor.newMove(newPoint);
             }
+            //System.out.println("siamo prima di endgame");
         }
-        //userInterface.endGame(supervisor.getCurrentPlayer());
+        userInterface.endGame(supervisor.getCurrentPlayer());
     }
 }
