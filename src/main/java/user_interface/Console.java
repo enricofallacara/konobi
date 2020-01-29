@@ -37,8 +37,8 @@ public class Console implements UserInterface {
 
     @Override
     public int askSize() {
-
-        return 11;
+        System.out.println("Enter the Size of the Board: ");
+        return scanner.nextInt();
     }
 
     @Override
