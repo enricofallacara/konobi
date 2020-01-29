@@ -32,7 +32,8 @@ public class Console implements UserInterface {
 
     @Override
     public void notifyEndGame(Player player) {
-        System.out.println("Winner: " + player.getName() + " with color: " + player.getColor());
+        System.out.println("Winner: " + player.getName());
+        System.out.println("Color: " + player.getColor());
     }
 
     @Override

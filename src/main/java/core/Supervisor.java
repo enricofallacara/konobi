@@ -23,7 +23,7 @@ public class Supervisor {
     public Player getCurrentPlayer() {
         return (playerOne.getColor() == currentColor) ? playerOne : playerTwo;
     }
-    public Player getOppositePlayer() {return (playerOne.getColor() == currentColor) ? playerTwo : playerOne; }
+    public Player getLastPlayer() {return (playerOne.getColor() == currentColor) ? playerTwo : playerOne; }
 
     private void updateStatus(Point newPoint, Player currentPlayer){
         moves.add(newPoint);
@@ -34,7 +34,7 @@ public class Supervisor {
 
     public boolean newMove(Point point){
         Player currentPlayer = getCurrentPlayer();
-        if(Rulebook.queryValidPosition(point, board, currentPlayer)) {
+        if (Rulebook.queryValidPosition(point, board, currentPlayer)) {
             updateStatus(point, currentPlayer);
             return true;
         }
@@ -47,9 +47,7 @@ public class Supervisor {
         nTurn++;
     }
 
-    public Board getBoard(){
-        return board;
-    }
+    public Board getBoard(){ return board; }
 
     public boolean query() {
         /*
@@ -71,7 +69,7 @@ public class Supervisor {
     }
 
     public boolean isEndGame() {
-        return Rulebook.queryEndGameRule(board, getOppositePlayer());
+        return Rulebook.queryEndGameRule(board, getLastPlayer());
     }
 
     public boolean isPassRule() {
