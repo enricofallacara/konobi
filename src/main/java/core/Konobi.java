@@ -1,6 +1,6 @@
 package core;
 
-public class main {
+public class Konobi {
     public static void main(String[] args) {
     }
 }
