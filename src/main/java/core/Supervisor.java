@@ -23,6 +23,7 @@ public class Supervisor {
     public Player getCurrentPlayer() {
         return (playerOne.getColor() == currentColor) ? playerOne : playerTwo;
     }
+    public Player getOppositePlayer() {return (playerOne.getColor() == currentColor) ? playerTwo : playerOne; }
 
     private void updateStatus(Point newPoint, Player currentPlayer){
         moves.add(newPoint);
@@ -40,11 +41,9 @@ public class Supervisor {
         return false;
     }
 
-    public void performPieRule(boolean status){
-        if (status) {
-            playerOne.changeSide();
-            playerTwo.changeSide();
-        }
+    public void performPieRule(){
+        playerOne.changeSide();
+        playerTwo.changeSide();
         nTurn++;
     }
 
@@ -72,7 +71,7 @@ public class Supervisor {
     }
 
     public boolean isEndGame() {
-        return Rulebook.queryEndGameRule(board, getCurrentPlayer());
+        return Rulebook.queryEndGameRule(board, getOppositePlayer());
     }
 
     public boolean isPassRule() {

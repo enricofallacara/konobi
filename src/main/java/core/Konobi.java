@@ -3,26 +3,25 @@ package core;
 import user_interface.Console;
 import user_interface.UserInterface;
 
-import java.awt.*;
-
 public class Konobi {
     public static void main(String[] args) {
         UserInterface userInterface = new Console();
         Supervisor supervisor = new Supervisor(userInterface.askSize());
-        while (!supervisor.isEndGame()) {
+        do {
             userInterface.display(supervisor.getBoard());
             if (supervisor.isPassRule()) {
                 userInterface.notifyPass();
+                continue;
             }
-            else if (supervisor.isPieRule()) {
-                supervisor.performPieRule(userInterface.askPieRule());
+            if (supervisor.isPieRule() && userInterface.askPieRule()) {
+                supervisor.performPieRule();
+                continue;
             }
-            else {
-                while (!supervisor.newMove(userInterface.getInput())) {
-                    userInterface.notifyInvalidMove();
-                }
+            while (!supervisor.newMove(userInterface.getInput())) {
+                userInterface.notifyInvalidMove();
             }
-        }
+        } while (!supervisor.isEndGame());
+        userInterface.display(supervisor.getBoard());
         userInterface.notifyEndGame(supervisor.getCurrentPlayer());
     }
 }
