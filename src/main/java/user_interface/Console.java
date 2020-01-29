@@ -1,10 +1,13 @@
 package user_interface;
 
 import core.Board;
+import core.Cell;
 import core.Color;
 import core.Player;
 
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Console implements UserInterface {
@@ -45,6 +48,16 @@ public class Console implements UserInterface {
         System.out.println("YOU SHALL PASS!");
     }
 
+    Map<Color, String> cellColorMap = new HashMap<>() {{
+        put(Color.black, "[x]");
+        put(Color.white, "[o]");
+        put(null, "[ ]");
+    }};
+
+    private void displayCell(Cell cell) {
+        System.out.print(cellColorMap.get(cell.getColor()));
+    }
+
     @Override
     public void display(Board board){
         // TODO: scrivere la funzione in maniera piu compatta
@@ -55,12 +68,7 @@ public class Console implements UserInterface {
             String space = (y < 10) ? "  " : " ";
             System.out.print(y + space);
             for(int x = 0; x < board.getSize(); x++){
-                if(board.getCell(new Point(x,y)).getColor() == Color.black)
-                    System.out.print("[" + "x" + "]");
-                else if(board.getCell(new Point(x,y)).getColor() == Color.white)
-                    System.out.print("[" + "o" + "]");
-                else
-                    System.out.print("[" + " " + "]");
+                displayCell(board.getCell(new Point(x, y)));
             }
             System.out.println();
         }
