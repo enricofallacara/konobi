@@ -10,9 +10,7 @@ import java.util.Scanner;
 public class Console implements UserInterface {
     private Scanner scanner;
 
-    public Console(){
-        scanner = new Scanner(System.in);
-    }
+    public Console(){ scanner = new Scanner(System.in); }
 
     @Override
     public Point getInput() {

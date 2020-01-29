@@ -49,25 +49,6 @@ public class Supervisor {
 
     public Board getBoard(){ return board; }
 
-    public boolean query() {
-        /*
-        if(ispassrule) {return true;}
-        if(ispierule) {
-            if(intercaccia.askpierule()) {
-                performpierule;
-                nTurn++;
-                return true;
-            }
-        }
-
-        newmove = intefaccia.input();
-        newMove(newmove);
-
-        if(winning) {iterface.win(), return false;};
-        */
-        return false;
-    }
-
     public boolean isEndGame() {
         return Rulebook.queryEndGameRule(board, getLastPlayer());
     }
@@ -79,12 +60,4 @@ public class Supervisor {
     public boolean isPieRule() {
         return Rulebook.queryPieRule(nTurn);
     }
-
-    public static void startGame(){
-       // TODO: pensare come passare la prima mossa
-    }
-
-
-
-
 }
