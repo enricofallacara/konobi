@@ -37,6 +37,7 @@ public class Console implements UserInterface {
 
     @Override
     public int askSize() {
+
         return 11;
     }
 
@@ -66,4 +67,7 @@ public class Console implements UserInterface {
         }
         System.out.println();
     }
+
+    @Override
+    public void notifyInvalidMove() { System.out.println("The Selected Position is Invalid!"); }
 }

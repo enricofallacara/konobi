@@ -21,8 +21,10 @@ public class Konobi {
             }
             else {
                 //System.out.println("siamo prima dell'input");
-                Point newPoint = userInterface.getInput();
-                supervisor.newMove(newPoint);
+                //Point newPoint = userInterface.getInput();
+                while (!supervisor.newMove(userInterface.getInput())) {
+                    userInterface.notifyInvalidMove();
+                }
             }
             //System.out.println("siamo prima di endgame");
         }

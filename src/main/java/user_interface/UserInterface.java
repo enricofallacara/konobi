@@ -12,5 +12,6 @@ public interface UserInterface {
     int askSize();
     void notifyPass();
     void display(Board board);
+    void notifyInvalidMove();
 
 }
