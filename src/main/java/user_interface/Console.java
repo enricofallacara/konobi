@@ -49,8 +49,8 @@ public class Console implements UserInterface {
     }
 
     Map<Color, String> cellColorMap = new HashMap<>() {{
-        put(Color.black, "[x]");
-        put(Color.white, "[o]");
+        put(Color.black, "[\u25A0]");
+        put(Color.white, "[\u25A1]");
         put(null, "[ ]");
     }};
 
