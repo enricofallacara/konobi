@@ -37,6 +37,7 @@ public class Supervisor {
     }
 
     public boolean newMove(Point point){
+
         Player currentPlayer = getCurrentPlayer();
         setCurrentPoint(point);
         if (Rulebook.queryValidPosition(this)) {

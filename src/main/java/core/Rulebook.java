@@ -12,6 +12,8 @@ public class Rulebook {
     private static final Rule passRule = new PassRule();
 
     public static boolean queryValidPosition(Supervisor supervisor){
+        if(!supervisor.getBoard().isOnBoard(supervisor.getCurrentPoint()))
+            return false;
         return positionRules.stream().allMatch(x -> x.isValid(supervisor));
     }
 

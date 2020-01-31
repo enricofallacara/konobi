@@ -25,10 +25,8 @@ public class Console implements UserInterface {
     @Override
     public Point getInput(Player player) {
         displayPlayer(player);
-        System.out.println("Please Insert Next X Coordinate: ");
-        int newX = scanner.nextInt();
-        System.out.println("Please Insert Next Y Coordinate: ");
-        int newY = scanner.nextInt();
+        int newX = checkInput("Please Insert Next X Coordinate: ");
+        int newY = checkInput("Please Insert Next Y Coordinate: ");
         return new Point(newX, newY);
     }
 
@@ -47,8 +45,14 @@ public class Console implements UserInterface {
 
     @Override
     public int askSize() {
-        System.out.println("Enter the Size of the Board: ");
-        return scanner.nextInt();
+
+        int size;
+
+        do{
+            size = checkInput("Enter the Size of the Board (the grid must be, at least, 3x3!)");
+        }while( size <= 2);
+
+        return size;
     }
 
     @Override
@@ -107,5 +111,13 @@ public class Console implements UserInterface {
 
     public void displayPlayer(Player player){
         System.out.println(player.getName() + "'s turn! " + cellColorMap.get(player.getColor()));
+    }
+    public int checkInput(String message){
+        System.out.println(message);
+        while(!scanner.hasNextInt()){
+            System.out.println("Invalid input, please insert a valid integer!");
+            scanner.next();
+        }
+        return scanner.nextInt();
     }
 }
