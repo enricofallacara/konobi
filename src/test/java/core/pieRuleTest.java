@@ -8,9 +8,6 @@ public class pieRuleTest {
 
     @Test
     public void checkQuery(){
-        PieRule pieRule = new PieRule();
-        Supervisor supervisor = new Supervisor(11);
-        supervisor.newMove(new Point(0, 0));
-        assertTrue(pieRule.isValid(supervisor));
+        assertTrue(PieRule.isValid(2));
     }
 }

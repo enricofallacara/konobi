@@ -1,14 +1,17 @@
 package core;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class WeakRule implements Rule {
     @Override
     public boolean isValid(Supervisor supervisor) {
-        Board board = supervisor.getBoard();
-        Player player = supervisor.getCurrentPlayer();
+        return isValid(supervisor.getCurrentPoint(), supervisor.getBoard(), supervisor.getCurrentPlayer());
+    }
+
+    public static boolean isValid(Point point, Board board, Player player) {
         ArrayList<Cell> weakNeighbours = board.getColoredNeighbours(
-                                                supervisor.getCurrentPoint(), 1, player, Board::isWeakNeighbour);
+                                                point, 1, player, Board::isWeakNeighbour);
         if (weakNeighbours.isEmpty()) {
             return true;
         }

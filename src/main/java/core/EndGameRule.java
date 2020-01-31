@@ -9,9 +9,12 @@ public class EndGameRule implements Rule{
 
     private static final HashSet<Cell> table = new HashSet<>();
 
+    @Override
     public boolean isValid(Supervisor supervisor) {
-        Board board = supervisor.getBoard();
-        Player player = supervisor.getLastPlayer();
+        return isValid(supervisor.getBoard(), supervisor.getCurrentPlayer());
+    }
+
+    public static boolean isValid(Board board, Player player) {
         ArrayList<Cell> startingPoints = getStartingPoints(board, player);
 
         if (startingPoints.isEmpty()) { return false;}
