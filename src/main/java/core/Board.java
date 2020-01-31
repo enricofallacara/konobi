@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 public class Board implements Iterable<Cell>{
 
     public Board(int s){
-        size = s;  // necessary to add a control on value of s > 0
+        size = s;
         grid = IntStream.range(0, s).mapToObj(x -> IntStream.range(0, s)
                 .mapToObj(y -> new Cell(new Point(x, y))).toArray(Cell[]::new)).toArray(Cell[][]::new);
     }
@@ -49,7 +49,7 @@ public class Board implements Iterable<Cell>{
             }
         };
     }
-    // TODO: forse adegua questa funzione all'interfaccia delle funzioni dei vicini facendo ritornare un ArrayList<Cell>
+
     public ArrayList<Cell> getMooreNeighbours(Point p, int level) {
         return new ArrayList<>(Arrays.asList(
                 slice(  Math.max(0, p.y - level),
