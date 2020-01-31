@@ -74,7 +74,7 @@ public class Board implements Iterable<Cell>{
     @SafeVarargs
     public final ArrayList<Cell> getColoredNeighbours(Point point, int level, Player player, BiPredicate<Point, Point>... functions) {
         ArrayList<Cell> neighbours = getNeighbours(point, level, functions);
-        neighbours.removeIf(x -> x.getColor() != player.getColor());
+        neighbours.removeIf(x -> !x.hasSameColorAsPlayer(player));
         return neighbours;
     }
 
