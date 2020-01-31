@@ -13,16 +13,18 @@ import java.util.Scanner;
 public class Console implements UserInterface {
     private final Scanner scanner;
     private final Map<Color, String> cellColorMap = new HashMap<>() {{
-        //put(Color.black, "[\u25A0]");
-        //put(Color.white, "[\u25A1]");
-        put(Color.black, "[x]");
-        put(Color.white, "[o]");
+        put(Color.black, "[\u25A0]");
+        put(Color.white, "[\u25A1]");
         put(null, "[ ]");
     }};
-    public Console() { scanner = new Scanner(System.in); }
+    public Console() {
+        scanner = new Scanner(System.in);
+        initialize();
+    }
 
     @Override
-    public Point getInput() {
+    public Point getInput(Player player) {
+        displayPlayer(player);
         System.out.println("Please Insert Next X Coordinate: ");
         int newX = scanner.nextInt();
         System.out.println("Please Insert Next Y Coordinate: ");
@@ -32,7 +34,7 @@ public class Console implements UserInterface {
 
     @Override
     public boolean askPieRule() {
-        System.out.println("Do You Want to Apply the Pie Rule? (y/n)");
+        System.out.println("PlayerTwo, do You Want to Apply the Pie Rule? (y/n)");
         String answer = scanner.next();
         return answer.equals("y");
     }
@@ -72,6 +74,7 @@ public class Console implements UserInterface {
 
     @Override
     public void display(Board board){
+        System.out.println("\f");
         for(int y = board.getSize() - 1 ; y >= 0; y--){
             displayRow(board, y);
         }
@@ -86,4 +89,23 @@ public class Console implements UserInterface {
 
     @Override
     public void notifyInvalidMove() { System.out.println("The Selected Position is Invalid!"); }
+
+    @Override
+    public void initialize(){
+        printLogo();
+    }
+
+    public void printLogo(){
+        System.out.println(" _   __                  _     _ \n" +
+                           "| | / /                 | |   (_)\n" +
+                           "| |/ /  ___  _ __   ___ | |__  _ \n" +
+                           "|    \\ / _ \\| '_ \\ / _ \\| '_ \\| |\n" +
+                           "| |\\  \\ (_) | | | | (_) | |_) | |\n" +
+                           "\\_| \\_/\\___/|_| |_|\\___/|_.__/|_|\n" +
+                "                                 ");
+    }
+
+    public void displayPlayer(Player player){
+        System.out.println(player.getName() + "'s turn! " + cellColorMap.get(player.getColor()));
+    }
 }

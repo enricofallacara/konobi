@@ -6,12 +6,13 @@ import java.awt.*;
 
 public interface UserInterface {
 
-    Point getInput();
+    Point getInput(Player player);
     boolean askPieRule();
     void notifyEndGame(Player player);
     int askSize();
     void notifyPass();
     void display(Board board);
     void notifyInvalidMove();
+    void initialize();
 
 }

@@ -8,6 +8,8 @@ public class Konobi {
         UserInterface userInterface = new Console();
         Supervisor supervisor = new Supervisor(userInterface.askSize());
 
+        userInterface.initialize();
+
         while (!supervisor.isEndGame()) {
             userInterface.display(supervisor.getBoard());
             if (supervisor.isPassRule()) {
@@ -18,7 +20,7 @@ public class Konobi {
                 supervisor.performPieRule();
                 continue;
             }
-            while (!supervisor.newMove(userInterface.getInput())) {
+            while (!supervisor.newMove(userInterface.getInput(supervisor.getCurrentPlayer()))) {
                 userInterface.notifyInvalidMove();
             }
         }
