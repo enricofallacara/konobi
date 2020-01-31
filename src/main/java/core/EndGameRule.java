@@ -26,7 +26,7 @@ public class EndGameRule implements Rule{
         int size = board.getSize();
         int[] startIdxs = (color == Color.white) ? new int[]{0, size, 0, 1} : new int[]{0, 1, 0, size};
         return Arrays.stream(board.slice(startIdxs[0], startIdxs[1], startIdxs[2], startIdxs[3])).
-                filter(x -> x.getColor() == color).collect(Collectors.toCollection(ArrayList::new));
+                filter(x -> x.hasThisColor(color)).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public static boolean searchForEndingEdge(Cell current, Board board, Player player) {

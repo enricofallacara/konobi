@@ -20,6 +20,9 @@ public class Cell {
         color = c;
     }
 
+    public boolean hasThisColor(Color otherColor) { return color == otherColor; }
+    public boolean hasSameColorAsPlayer(Player player) {return hasThisColor(player.getColor()); }
+
     public Point getCoordinates() {
         return coordinates;
     }

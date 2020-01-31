@@ -15,7 +15,7 @@ public class WeakRule implements Rule {
         return weakNeighbours.stream()
                 .flatMap(
                         c1 -> board.getNeighbours(c1.getCoordinates(), 1, Board::isStrongNeighbour)
-                                .stream().filter(c2 -> c2.getColor() == null)
+                                .stream().filter(c2 -> c2.hasThisColor(null))
                                 .map(c3 -> !board.getColoredNeighbours(c3.getCoordinates(), 1, player, Board::isWeakNeighbour)
                                         .isEmpty()))
                 .allMatch(b -> b);
