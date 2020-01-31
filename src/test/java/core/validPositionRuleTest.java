@@ -17,7 +17,6 @@ public class validPositionRuleTest {
         board.setCell(new Point(3, 3), Color.white);
         assertTrue(board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour).isEmpty());
         board.setCell(new Point(1, 3), Color.black);
-        //ArrayList<Cell> test = board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour);
         assertFalse(board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour).isEmpty());
     }
 
@@ -55,8 +54,6 @@ public class validPositionRuleTest {
         board.setCell(new Point(2, 2), Color.white);
         board.setCell(new Point(1, 3), Color.white);
 
-        //CrosscutRule cross = new CrosscutRule();
-
         assertFalse(CrosscutRule.isValid(point, board, player));
     }
 
@@ -73,8 +70,6 @@ public class validPositionRuleTest {
         board.setCell(new Point(2, 0), Color.black);
         board.setCell(new Point(3, 0), Color.black);
         board.setCell(new Point(3, 1), Color.black);
-
-        //WeakRule weak = new WeakRule();
 
         assertTrue(WeakRule.isValid(point, board, player));
     }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class CrosscutRule implements Rule {
     @Override
     public boolean isValid(Supervisor supervisor) {
-        return isValid(supervisor.getCurrentPoint(), supervisor.getBoard(), supervisor.getLastPlayer());
+        return isValid(supervisor.getCurrentPoint(), supervisor.getBoard(), supervisor.getCurrentPlayer());
     }
 
     public static boolean isValid(Point point, Board board, Player player) {
@@ -15,8 +15,8 @@ public class CrosscutRule implements Rule {
 
         return neighbours.stream()
                 .noneMatch(c ->
-                        board.getCell(new Point(point.x, c.getCoordinates().y)).hasSameColorAsPlayer(player)
+                        board.getCell(new Point(point.x, c.getCoordinates().y)).hasThisColor(player.getOppositeColor())
                         &&
-                        board.getCell(new Point(c.getCoordinates().x, point.y)).hasSameColorAsPlayer(player));
+                        board.getCell(new Point(c.getCoordinates().x, point.y)).hasThisColor(player.getOppositeColor()));
     }
 }
