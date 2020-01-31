@@ -7,16 +7,14 @@ import java.util.stream.Collectors;
 
 public class EndGameRule implements Rule{
 
-    private static HashSet<Cell> table = new HashSet<>();
+    private static final HashSet<Cell> table = new HashSet<>();
 
     public boolean isValid(Supervisor supervisor) {
         Board board = supervisor.getBoard();
         Player player = supervisor.getLastPlayer();
         ArrayList<Cell> startingPoints = getStartingPoints(board, player);
 
-        if (startingPoints.isEmpty()) {
-            return false;
-        }
+        if (startingPoints.isEmpty()) { return false;}
 
         table.clear();
 
@@ -39,7 +37,6 @@ public class EndGameRule implements Rule{
         for (Cell neighbour : board.getColoredNeighbours(current.getCoordinates(), 1, player, (x, y) -> true)) {
            if (!table.contains(neighbour)) { return searchForEndingEdge(neighbour, board, player); }
         }
-
         return false;
     }
 

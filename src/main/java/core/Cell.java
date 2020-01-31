@@ -10,7 +10,7 @@ public class Cell {
     }
 
     private Color color;
-    private Point coordinates;
+    private final Point coordinates;
 
     public Color getColor() {
         return color;

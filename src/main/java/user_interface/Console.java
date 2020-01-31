@@ -4,17 +4,21 @@ import core.Board;
 import core.Cell;
 import core.Color;
 import core.Player;
-import org.w3c.dom.ranges.Range;
 
 import java.awt.*;
-import java.awt.font.NumericShaper;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Console implements UserInterface {
-    private Scanner scanner;
-
+    private final Scanner scanner;
+    private final Map<Color, String> cellColorMap = new HashMap<>() {{
+        //put(Color.black, "[\u25A0]");
+        //put(Color.white, "[\u25A1]");
+        put(Color.black, "[x]");
+        put(Color.white, "[o]");
+        put(null, "[ ]");
+    }};
     public Console() { scanner = new Scanner(System.in); }
 
     @Override
@@ -50,12 +54,6 @@ public class Console implements UserInterface {
         System.out.println("YOU SHALL PASS!");
     }
 
-    Map<Color, String> cellColorMap = new HashMap<>() {{
-        put(Color.black, "[\u25A0]");
-        put(Color.white, "[\u25A1]");
-        put(null, "[ ]");
-    }};
-
     private void displayCell(Cell cell) {
         System.out.print(cellColorMap.get(cell.getColor()));
     }
@@ -80,7 +78,6 @@ public class Console implements UserInterface {
 
         System.out.print("\t");
         for (int i = 0; i < board.getSize(); ++i) {
-            // NOTA: funziona bene solo fino a numeri di due cifre.
             System.out.print(padLeft(i + " "));
         }
 

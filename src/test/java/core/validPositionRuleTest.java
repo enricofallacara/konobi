@@ -2,7 +2,6 @@ package core;
 
 import org.junit.Test;
 import java.awt.*;
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -17,7 +16,6 @@ public class validPositionRuleTest {
         board.setCell(new Point(3, 3), Color.white);
         assertTrue(board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour).isEmpty());
         board.setCell(new Point(1, 3), Color.black);
-        ArrayList<Cell> test = board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour);
         assertFalse(board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour).isEmpty());
     }
 
@@ -38,7 +36,6 @@ public class validPositionRuleTest {
     public void emptyPositionRule() {
         Supervisor supervisor = new Supervisor(11);
         Board board = supervisor.getBoard();
-        //Player player = new Player(Color.black);
 
         board.setCell(new Point(1, 2), Color.black);
 
@@ -50,14 +47,11 @@ public class validPositionRuleTest {
     public void crosscutRuleTest() {
         Supervisor supervisor = new Supervisor(11);
         Board board = supervisor.getBoard();
-        //Player player = new Player(Color.black);
         Point point = new Point(2, 3);
 
         board.setCell(new Point(1, 2), Color.black);
         board.setCell(new Point(2, 2), Color.white);
         board.setCell(new Point(1, 3), Color.white);
-
-        //CrosscutRule cross = new CrosscutRule();
 
         assertFalse(supervisor.newMove(point));
     }
@@ -66,7 +60,6 @@ public class validPositionRuleTest {
     public void weakRuleTest() {
         Supervisor supervisor = new Supervisor(11);
         Board board = supervisor.getBoard();
-        //Player player = new Player(Color.white);
         Point point = new Point(1, 2);
 
         board.setCell(new Point(0, 0), Color.black);
@@ -77,8 +70,6 @@ public class validPositionRuleTest {
         board.setCell(new Point(3, 0), Color.white);
         board.setCell(new Point(3, 1), Color.white);
 
-        //WeakRule weak = new WeakRule();
-
         assertTrue(supervisor.newMove(point));
     }
 
@@ -86,7 +77,6 @@ public class validPositionRuleTest {
     public void validPositionRuleClassTest() {
         Supervisor supervisor = new Supervisor(11);
         Board board = supervisor.getBoard();
-        Player player = new Player(Color.black);
 
         // Checkerboard setting.
         board.setCell(new Point(0, 0), Color.black);
@@ -96,7 +86,6 @@ public class validPositionRuleTest {
 
         // Legal example move.
         Point point1 = new Point(1, 1);
-        //supervisor.newMove(point1);
         assertTrue(supervisor.newMove(point1));
 
         // Illegal example move.
@@ -104,5 +93,4 @@ public class validPositionRuleTest {
         assertFalse(supervisor.newMove(point2));
 
     }
-
 }

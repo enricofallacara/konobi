@@ -1,6 +1,6 @@
 package core;
 
-import java.awt.Point;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -15,8 +15,8 @@ public class Board implements Iterable<Cell>{
         grid = IntStream.range(0, s).mapToObj(x -> IntStream.range(0, s)
                 .mapToObj(y -> new Cell(new Point(x, y))).toArray(Cell[]::new)).toArray(Cell[][]::new);
     }
-    private int size;
-    private Cell[][] grid;
+    private final int size;
+    private final Cell[][] grid;
 
     public int getSize(){ return size; }
     public Cell getCell(Point p){ return grid[p.x][p.y]; }
@@ -31,13 +31,13 @@ public class Board implements Iterable<Cell>{
 
     @Override
     public Iterator<Cell> iterator(){
-        return new Iterator<Cell>() {
+        return new Iterator<>() {
 
-            private Point currentPoint = new Point(0,0);
+            private final Point currentPoint = new Point(0, 0);
 
             @Override
             public boolean hasNext() {
-                return currentPoint.x <= size-1 && currentPoint.y <= size-1;
+                return currentPoint.x <= size - 1 && currentPoint.y <= size - 1;
             }
 
             @Override
@@ -50,8 +50,13 @@ public class Board implements Iterable<Cell>{
         };
     }
     // TODO: forse adegua questa funzione all'interfaccia delle funzioni dei vicini facendo ritornare un ArrayList<Cell>
-    public Cell[] getMooreNeighbours(Point p, int level) {
-        return slice(Math.max(0, p.y - level), Math.min(p.y + level + 1, size), Math.max(0, p.x - level), Math.min(p.x + level + 1, size));
+    public ArrayList<Cell> getMooreNeighbours(Point p, int level) {
+        return new ArrayList<>(Arrays.asList(
+                slice(  Math.max(0, p.y - level),
+                        Math.min(p.y + level + 1, size),
+                        Math.max(0, p.x - level),
+                        Math.min(p.x + level + 1, size))
+                ));
     }
 
     public static boolean isStrongNeighbour(Point target, Point query) { return manhattanDistance(target.x, query.x, target.y, query.y) == 1.0; }
@@ -60,8 +65,10 @@ public class Board implements Iterable<Cell>{
 
     @SafeVarargs
     public final ArrayList<Cell> getNeighbours(Point point, int level, BiPredicate<Point, Point>... functions) {
-        return Arrays.stream(getMooreNeighbours(point, level)).
-                filter(cell -> Arrays.stream(functions).allMatch(x -> x.test(point, cell.getCoordinates()))).collect(Collectors.toCollection(ArrayList::new));
+        return getMooreNeighbours(point, level).stream()
+                .filter(cell -> Arrays.stream(functions)
+                        .allMatch(x -> x.test(point, cell.getCoordinates())))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     @SafeVarargs

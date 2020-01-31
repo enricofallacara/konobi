@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Rulebook {
-    private static ArrayList<Rule> positionRules = new ArrayList<>(Arrays.asList(new WeakRule(),
+    private static final ArrayList<Rule> positionRules = new ArrayList<>(Arrays.asList(new WeakRule(),
             new CrosscutRule(), new EmptyRule()));
-    private static Rule endGameRule = new EndGameRule();
-    private static Rule pieRule = new PieRule();
-    private static Rule passRule = new PassRule();
 
-    /*public static ArrayList<Rule> getPositionRules(){
-        return positionRules;
-    }*/
+    private static final Rule endGameRule = new EndGameRule();
+    private static final Rule pieRule = new PieRule();
+    private static final Rule passRule = new PassRule();
 
     public static boolean queryValidPosition(Supervisor supervisor){
         return positionRules.stream().allMatch(x -> x.isValid(supervisor));

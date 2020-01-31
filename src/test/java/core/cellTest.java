@@ -11,7 +11,7 @@ public class cellTest {
     @Test
     public void testVariables() {
        Cell cell = new Cell(new Point(3, 4));
-       assertEquals(cell.getColor(), null);
+       assertNull(cell.getColor());
        assertEquals(cell.getCoordinates(), new Point(3, 4));
     }
 

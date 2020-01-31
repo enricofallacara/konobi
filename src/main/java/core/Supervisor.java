@@ -4,10 +4,10 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Supervisor {
-    private Board board;
-    private Player playerOne;
-    private Player playerTwo;
-    private ArrayList<Point> moves;
+    private final Board board;
+    private final Player playerOne;
+    private final Player playerTwo;
+    private final ArrayList<Point> moves;
     private Point currentPoint;
     private int nTurn;
     private Color currentColor;

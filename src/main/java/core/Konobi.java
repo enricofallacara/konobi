@@ -7,6 +7,7 @@ public class Konobi {
     public static void main(String[] args) {
         UserInterface userInterface = new Console();
         Supervisor supervisor = new Supervisor(userInterface.askSize());
+
         while (!supervisor.isEndGame()) {
             userInterface.display(supervisor.getBoard());
             if (supervisor.isPassRule()) {

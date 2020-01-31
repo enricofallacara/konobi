@@ -10,17 +10,12 @@ public class CrosscutRule implements Rule {
         Player player = supervisor.getCurrentPlayer();
         Point point = supervisor.getCurrentPoint();
         ArrayList<Cell> neighbours = board.getColoredNeighbours(point, 1, player, Board::isWeakNeighbour);
-        if (neighbours.isEmpty()) {
-            return true;
-        }  // TODO: controllare se questo puo essere leggibile
-        return neighbours.stream().noneMatch(c -> board.getCell(new Point(point.x, c.getCoordinates().y)).getColor() == player.getOppositeColor()
-                && board.getCell(new Point(c.getCoordinates().x, point.y)).getColor() == player.getOppositeColor());
-        /*for(Cell c : neighbours) {
-            if(board.getCell(new Point(point.x, c.getCoordinates().y)).getColor() == player.getOppositeColor()
-                    && board.getCell(new Point(c.getCoordinates().x, point.y)).getColor() == player.getOppositeColor()) {
-                return false;
-            }
-        }
-        return true;*/
+        if (neighbours.isEmpty()) { return true;}
+
+        return neighbours.stream()
+                .noneMatch(c ->
+                        board.getCell(new Point(point.x, c.getCoordinates().y)).getColor() == player.getOppositeColor()
+                        &&
+                        board.getCell(new Point(c.getCoordinates().x, point.y)).getColor() == player.getOppositeColor());
     }
 }

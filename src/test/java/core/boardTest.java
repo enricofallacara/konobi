@@ -110,7 +110,7 @@ public class boardTest {
     public void testMooreNeighbours() {
         Board board = new Board(11);
         Point p = new Point(3,3);
-        List<Cell> mooreNeighbours = Arrays.asList(board.getMooreNeighbours(p, 1));
+        ArrayList<Cell> mooreNeighbours = board.getMooreNeighbours(p, 1);
         ArrayList<Cell> expectedNeighbours = new ArrayList<>();
         expectedNeighbours.add(board.getCell(new Point(p.x,p.y+1)));
         expectedNeighbours.add(board.getCell(new Point(p.x,p.y-1)));

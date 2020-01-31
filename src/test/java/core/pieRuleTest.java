@@ -13,9 +13,4 @@ public class pieRuleTest {
         supervisor.newMove(new Point(0, 0));
         assertTrue(pieRule.isValid(supervisor));
     }
-    /*@Test
-    public void rulebookQueryTest(){
-        assertTrue(Rulebook.queryPieRule(2));
-        assertFalse(Rulebook.queryPieRule(4));
-    }*/
 }
