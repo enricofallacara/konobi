@@ -6,9 +6,10 @@ import java.util.ArrayList;
 public class CrosscutRule implements Rule {
     @Override
     public boolean isValid(Supervisor supervisor) {
-        Board board = supervisor.getBoard();
-        Player player = supervisor.getCurrentPlayer();
-        Point point = supervisor.getCurrentPoint();
+        return isValid(supervisor.getCurrentPoint(), supervisor.getBoard(), supervisor.getCurrentPlayer());
+    }
+
+    public static boolean isValid(Point point, Board board, Player player) {
         ArrayList<Cell> neighbours = board.getColoredNeighbours(point, 1, player, Board::isWeakNeighbour);
         if (neighbours.isEmpty()) { return true;}
 

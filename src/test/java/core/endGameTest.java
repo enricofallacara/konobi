@@ -45,21 +45,26 @@ public class endGameTest {
     }
     @Test
     public void testQuery() {
-        Supervisor supervisor = new Supervisor(4);
-        Board board = supervisor.getBoard();
+        Board board = new Board(4);
+        Player black = new Player(Color.black);
+        Player white = new Player(Color.white);
 
         board.setCell(new Point(1, 0), Color.black);
         board.setCell(new Point(2, 1), Color.black);
         board.setCell(new Point(2, 2), Color.black);
         board.setCell(new Point(2, 3), Color.black);
+        board.setCell(new Point(3, 3), Color.black);
 
         board.setCell(new Point(2, 0), Color.white);
         board.setCell(new Point(1, 1), Color.white);
         board.setCell(new Point(1, 2), Color.white);
         board.setCell(new Point(1, 3), Color.white);
 
-        supervisor.newMove(new Point(3, 3));
-        assertTrue(supervisor.isEndGame());
+        assertTrue(EndGameRule.isValid(board, black));
+        assertFalse(EndGameRule.isValid(board, white));
 
+        board.setCell(new Point(2, 2), Color.white);
+        assertFalse(EndGameRule.isValid(board, black));
+        assertFalse(EndGameRule.isValid(board, white));
     }
 }

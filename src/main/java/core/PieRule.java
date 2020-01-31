@@ -2,5 +2,7 @@ package core;
 
 
 public class PieRule implements Rule{
-    public boolean isValid(Supervisor supervisor){return supervisor.getTurn() == 2;}
+    @Override
+    public boolean isValid(Supervisor supervisor) {return isValid(supervisor.getTurn());}
+    public static boolean isValid(int nTurn){return nTurn == 2;}
 }
