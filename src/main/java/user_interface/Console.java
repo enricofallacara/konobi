@@ -9,6 +9,7 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class Console implements UserInterface {
     private final Scanner scanner;
@@ -66,9 +67,7 @@ public class Console implements UserInterface {
 
     private void displayRow(Board board, int y) {
         System.out.print(y + "\t");
-        for (int x = 0; x < board.getSize(); x++) {
-            displayCell(board.getCell(new Point(x, y)));
-        }
+        IntStream.range(0, board.getSize()).forEach(x -> displayCell(board.getCell(new Point(x, y))));
         System.out.println();
     }
 
@@ -79,14 +78,10 @@ public class Console implements UserInterface {
     @Override
     public void display(Board board){
         System.out.println("\f");
-        for(int y = board.getSize() - 1 ; y >= 0; y--){
-            displayRow(board, y);
-        }
+        IntStream.iterate(board.getSize() - 1, x -> --x).limit(board.getSize()).forEach(y -> displayRow(board, y));
 
         System.out.print("\t");
-        for (int i = 0; i < board.getSize(); ++i) {
-            System.out.print(padLeft(i + " "));
-        }
+        IntStream.range(0, board.getSize()).forEach(i -> System.out.print(padLeft(i + " ")));
 
         System.out.println();
     }
