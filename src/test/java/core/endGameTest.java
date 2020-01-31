@@ -45,34 +45,38 @@ public class endGameTest {
     }
     @Test
     public void testQuery() {
-        Board board = new Board(4);
-        Player black = new Player(Color.black);
-        Player white = new Player(Color.white);
+        Supervisor supervisor = new Supervisor(4);
+        Board board = supervisor.getBoard();
+        //Player black = new Player(Color.black);
+        //Player white = new Player(Color.white);
 
         board.setCell(new Point(1, 0), Color.black);
         board.setCell(new Point(2, 1), Color.black);
         board.setCell(new Point(2, 2), Color.black);
         board.setCell(new Point(2, 3), Color.black);
-        board.setCell(new Point(3, 3), Color.black);
+        //board.setCell(new Point(3, 3), Color.black);
 
         board.setCell(new Point(2, 0), Color.white);
         board.setCell(new Point(1, 1), Color.white);
         board.setCell(new Point(1, 2), Color.white);
         board.setCell(new Point(1, 3), Color.white);
 
-        assertTrue(EndGameRule.query(board, black));
-        assertFalse(EndGameRule.query(board, white));
+        //EndGameRule endGame = new EndGameRule();
+        supervisor.newMove(new Point(3, 3));
+        assertTrue(supervisor.isEndGame());
+        /*assertFalse(endGame.isValid(supervisor));
 
         board.setCell(new Point(2, 2), Color.white);
-        assertFalse(EndGameRule.query(board, black));
-        assertFalse(EndGameRule.query(board, white));
+        assertFalse(endGame.isValid(supervisor));
+        assertFalse(endGame.isValid(supervisor));*/
     }
 
-    @Test
+    /*@Test
     public void rulebookEndGameTest() {
-        Board board = new Board(4);
-        Player black = new Player(Color.black);
-        Player white = new Player(Color.white);
+        Supervisor supervisor = new Supervisor(4);
+        Board board = supervisor.getBoard();
+        //Player black = new Player(Color.black);
+        //Player white = new Player(Color.white);
 
         board.setCell(new Point(1, 0), Color.black);
         board.setCell(new Point(2, 1), Color.black);
@@ -85,11 +89,13 @@ public class endGameTest {
         board.setCell(new Point(1, 2), Color.white);
         board.setCell(new Point(1, 3), Color.white);
 
-        assertTrue(Rulebook.queryEndGameRule(board, black));
-        assertFalse(EndGameRule.query(board, white));
+        EndGameRule endGame = new EndGameRule();
+
+        assertTrue(endGame.isValid(supervisor));
+        assertFalse(endGame.isValid(supervisor));
 
         board.setCell(new Point(2, 2), Color.white);
-        assertFalse(Rulebook.queryEndGameRule(board, black));
-        assertFalse(Rulebook.queryEndGameRule(board, white));
-    }
+        assertFalse(endGame.isValid(supervisor));
+        assertFalse(endGame.isValid(supervisor));
+    }*/
 }

@@ -3,10 +3,12 @@ package core;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class WeakRule implements PositionRule {
+public class WeakRule implements Rule {
     @Override
-    public boolean isValid(Point point, Board board, Player player) {
-        ArrayList<Cell> weakNeighbours = board.getColoredNeighbours(point, 1, player, Board::isWeakNeighbour);
+    public boolean isValid(Supervisor supervisor) {
+        Board board = supervisor.getBoard();
+        Player player = supervisor.getCurrentPlayer();
+        ArrayList<Cell> weakNeighbours = board.getColoredNeighbours(supervisor.getCurrentPoint(), 1, player, Board::isWeakNeighbour);
         if (weakNeighbours.isEmpty()) {
             // If it has no weak neighbours.
             return true;

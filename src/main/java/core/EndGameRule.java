@@ -5,11 +5,13 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
-public class EndGameRule {
+public class EndGameRule implements Rule{
 
     private static HashSet<Cell> table = new HashSet<>();
 
-    public static boolean query(Board board, Player player) {
+    public boolean isValid(Supervisor supervisor) {
+        Board board = supervisor.getBoard();
+        Player player = supervisor.getLastPlayer();
         ArrayList<Cell> startingPoints = getStartingPoints(board, player);
 
         if (startingPoints.isEmpty()) {
