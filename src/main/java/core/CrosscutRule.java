@@ -3,9 +3,12 @@ package core;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class CrosscutRule implements PositionRule {
+public class CrosscutRule implements Rule {
     @Override
-    public boolean isValid(Point point, Board board, Player player) {
+    public boolean isValid(Supervisor supervisor) {
+        Board board = supervisor.getBoard();
+        Player player = supervisor.getCurrentPlayer();
+        Point point = supervisor.getCurrentPoint();
         ArrayList<Cell> neighbours = board.getColoredNeighbours(point, 1, player, Board::isWeakNeighbour);
         if (neighbours.isEmpty()) {
             return true;

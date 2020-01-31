@@ -36,52 +36,56 @@ public class validPositionRuleTest {
 
     @Test
     public void emptyPositionRule() {
-        Board board = new Board(11);
-        Player player = new Player(Color.black);
+        Supervisor supervisor = new Supervisor(11);
+        Board board = supervisor.getBoard();
+        //Player player = new Player(Color.black);
 
         board.setCell(new Point(1, 2), Color.black);
 
         Point point = new Point(1, 2);
-        assertFalse(Rulebook.queryValidPosition(point, board, player));
+        assertFalse(supervisor.newMove(point));
     }
 
     @Test
     public void crosscutRuleTest() {
-        Board board = new Board(11);
-        Player player = new Player(Color.black);
+        Supervisor supervisor = new Supervisor(11);
+        Board board = supervisor.getBoard();
+        //Player player = new Player(Color.black);
         Point point = new Point(2, 3);
 
         board.setCell(new Point(1, 2), Color.black);
         board.setCell(new Point(2, 2), Color.white);
         board.setCell(new Point(1, 3), Color.white);
 
-        CrosscutRule cross = new CrosscutRule();
+        //CrosscutRule cross = new CrosscutRule();
 
-        assertFalse(cross.isValid(point, board, player));
+        assertFalse(supervisor.newMove(point));
     }
 
     @Test
     public void weakRuleTest() {
-        Board board = new Board(11);
-        Player player = new Player(Color.white);
+        Supervisor supervisor = new Supervisor(11);
+        Board board = supervisor.getBoard();
+        //Player player = new Player(Color.white);
         Point point = new Point(1, 2);
 
-        board.setCell(new Point(0, 0), Color.white);
-        board.setCell(new Point(2, 1), Color.white);
-        board.setCell(new Point(3, 3), Color.white);
+        board.setCell(new Point(0, 0), Color.black);
+        board.setCell(new Point(2, 1), Color.black);
+        board.setCell(new Point(3, 3), Color.black);
 
-        board.setCell(new Point(2, 0), Color.black);
-        board.setCell(new Point(3, 0), Color.black);
-        board.setCell(new Point(3, 1), Color.black);
+        board.setCell(new Point(2, 0), Color.white);
+        board.setCell(new Point(3, 0), Color.white);
+        board.setCell(new Point(3, 1), Color.white);
 
-        WeakRule weak = new WeakRule();
+        //WeakRule weak = new WeakRule();
 
-        assertTrue(weak.isValid(point, board, player));
+        assertTrue(supervisor.newMove(point));
     }
 
     @Test
     public void validPositionRuleClassTest() {
-        Board board = new Board(11);
+        Supervisor supervisor = new Supervisor(11);
+        Board board = supervisor.getBoard();
         Player player = new Player(Color.black);
 
         // Checkerboard setting.
@@ -92,11 +96,12 @@ public class validPositionRuleTest {
 
         // Legal example move.
         Point point1 = new Point(1, 1);
-        assertTrue(Rulebook.queryValidPosition(point1, board, player));
+        //supervisor.newMove(point1);
+        assertTrue(supervisor.newMove(point1));
 
         // Illegal example move.
         Point point2 = new Point(1, 0);
-        assertFalse(Rulebook.queryValidPosition(point2, board, player));
+        assertFalse(supervisor.newMove(point2));
 
     }
 

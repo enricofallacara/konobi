@@ -8,11 +8,14 @@ public class pieRuleTest {
 
     @Test
     public void checkQuery(){
-        assertTrue(PieRule.query(2));
+        PieRule pieRule = new PieRule();
+        Supervisor supervisor = new Supervisor(11);
+        supervisor.newMove(new Point(0, 0));
+        assertTrue(pieRule.isValid(supervisor));
     }
-    @Test
+    /*@Test
     public void rulebookQueryTest(){
         assertTrue(Rulebook.queryPieRule(2));
         assertFalse(Rulebook.queryPieRule(4));
-    }
+    }*/
 }

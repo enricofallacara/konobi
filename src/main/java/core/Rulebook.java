@@ -1,30 +1,32 @@
 package core;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Rulebook {
-    private static ArrayList<PositionRule> positionRules = new ArrayList<>(Arrays.asList(new WeakRule(),
+    private static ArrayList<Rule> positionRules = new ArrayList<>(Arrays.asList(new WeakRule(),
             new CrosscutRule(), new EmptyRule()));
+    private static Rule endGameRule = new EndGameRule();
+    private static Rule pieRule = new PieRule();
+    private static Rule passRule = new PassRule();
 
-    public static ArrayList<PositionRule> getPositionRules(){
+    /*public static ArrayList<Rule> getPositionRules(){
         return positionRules;
+    }*/
+
+    public static boolean queryValidPosition(Supervisor supervisor){
+        return positionRules.stream().allMatch(x -> x.isValid(supervisor));
     }
 
-    public static boolean queryValidPosition(Point point, Board board, Player player){
-        return getPositionRules().stream().allMatch(x -> x.isValid(point, board, player));
+    public static boolean queryEndGameRule(Supervisor supervisor) {
+        return endGameRule.isValid(supervisor);
     }
 
-    public static boolean queryEndGameRule(Board board, Player player) {
-        return EndGameRule.query(board, player);
+    public static boolean queryPieRule(Supervisor supervisor) {
+        return pieRule.isValid(supervisor);
     }
 
-    public static boolean queryPieRule(int nTurn) {
-        return PieRule.query(nTurn);
-    }
-
-    public static boolean queryPassRule(Board board, Player player){ return PassRule.query(board, player);}
+    public static boolean queryPassRule(Supervisor supervisor){ return passRule.isValid(supervisor);}
 
 
 }

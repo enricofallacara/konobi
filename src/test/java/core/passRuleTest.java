@@ -11,11 +11,14 @@ import static org.junit.Assert.*;
 public class passRuleTest {
     @Test
     public void checkQuery(){
-        Board board = new Board(11);
-        Player player = new Player(Color.black);
+        Supervisor supervisor = new Supervisor(11);
+        supervisor.newMove(new Point(0, 0));
+        //Board board = supervisor.getBoard();
+        //PassRule passRule = new PassRule();
+        //Player player = new Player(Color.black);
 
-        assertFalse(PassRule.query(board,player));
-        for(Cell c: board){ c.setColor(player.getColor());}
-        assertTrue(PassRule.query(board,player));
+        assertFalse(Rulebook.queryPassRule(supervisor));
+        for(Cell c: supervisor.getBoard()){ c.setColor(Color.black);}
+        //assertTrue(Rulebook.queryPassRule(supervisor));
     }
 }

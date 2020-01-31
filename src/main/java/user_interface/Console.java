@@ -87,36 +87,6 @@ public class Console implements UserInterface {
         System.out.println();
     }
 
-   /*
-    @Override
-    public void display(Board board){
-        // TODO: scrivere la funzione in maniera piu compatta
-        // TODO: la catena di if-else if nel doppio loop viola
-        // l'Open Closed Principle, in quanto invece di dire di disegnarsi,
-        // chiediamo che cosa sia (Tell, don't ask)
-        for(int y = board.getSize() - 1 ; y >= 0; y--){
-            String space = (y < 10) ? "  " : " ";
-            System.out.print(y + space);
-            for(int x = 0; x < board.getSize(); x++){
-                board.getCell(new Point(x, y));
-                if(board.getCell(new Point(x,y)).getColor() == Color.black)
-                    System.out.print("[" + "x" + "]");
-                else if(board.getCell(new Point(x,y)).getColor() == Color.white)
-                    System.out.print("[" + "o" + "]");
-                else
-                    System.out.print("[" + " " + "]");
-            }
-            System.out.println();
-        }
-        System.out.print("   ");
-        for (int i = 0; i < board.getSize(); ++i) {
-            System.out.print(" " + i + " ");
-        }
-        System.out.println();
-    }
-
-    */
-
     @Override
     public void notifyInvalidMove() { System.out.println("The Selected Position is Invalid!"); }
 }

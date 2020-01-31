@@ -1,6 +1,6 @@
 package core;
 
 
-public class PieRule {
-    public static boolean query(int nTurn){return nTurn == 2;}
+public class PieRule implements Rule{
+    public boolean isValid(Supervisor supervisor){return supervisor.getTurn() == 2;}
 }

@@ -8,6 +8,7 @@ public class Supervisor {
     private Player playerOne;
     private Player playerTwo;
     private ArrayList<Point> moves;
+    private Point currentPoint;
     private int nTurn;
     private Color currentColor;
 
@@ -23,7 +24,10 @@ public class Supervisor {
     public Player getCurrentPlayer() {
         return (playerOne.getColor() == currentColor) ? playerOne : playerTwo;
     }
-    public Player getLastPlayer() {return (playerOne.getColor() == currentColor) ? playerTwo : playerOne; }
+    public Player getLastPlayer() { return (playerOne.getColor() == currentColor) ? playerTwo : playerOne; }
+    public Point getCurrentPoint() { return currentPoint; }
+    public void setCurrentPoint(Point point) { currentPoint = point;}
+    public int getTurn() { return nTurn; }
 
     private void updateStatus(Point newPoint, Player currentPlayer){
         moves.add(newPoint);
@@ -34,7 +38,8 @@ public class Supervisor {
 
     public boolean newMove(Point point){
         Player currentPlayer = getCurrentPlayer();
-        if (Rulebook.queryValidPosition(point, board, currentPlayer)) {
+        setCurrentPoint(point);
+        if (Rulebook.queryValidPosition(this)) {
             updateStatus(point, currentPlayer);
             return true;
         }
@@ -49,9 +54,9 @@ public class Supervisor {
 
     public Board getBoard(){ return board; }
 
-    public boolean isEndGame() { return Rulebook.queryEndGameRule(board, getLastPlayer()); }
+    public boolean isEndGame() { return Rulebook.queryEndGameRule(this); }
 
-    public boolean isPassRule() { return Rulebook.queryPassRule(board, getCurrentPlayer()); }
+    public boolean isPassRule() { return Rulebook.queryPassRule(this); }
 
-    public boolean isPieRule() { return Rulebook.queryPieRule(nTurn); }
+    public boolean isPieRule() { return Rulebook.queryPieRule(this); }
 }
