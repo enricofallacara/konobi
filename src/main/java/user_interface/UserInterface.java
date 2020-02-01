@@ -13,6 +13,6 @@ public interface UserInterface {
     void notifyPass();
     void display(Board board);
     void notifyInvalidMove();
-    void initialize();
+    int initialize();
 
 }

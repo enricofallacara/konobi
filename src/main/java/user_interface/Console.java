@@ -18,10 +18,7 @@ public class Console implements UserInterface {
         put(Color.white, "[\u25A1]");
         put(null, "[ ]");
     }};
-    public Console() {
-        scanner = new Scanner(System.in);
-        initialize();
-    }
+    public Console() { scanner = new Scanner(System.in); }
 
     @Override
     public Point getInput(Player player) {
@@ -90,8 +87,9 @@ public class Console implements UserInterface {
     public void notifyInvalidMove() { System.out.println("The Selected Position is Invalid!"); }
 
     @Override
-    public void initialize(){
+    public int initialize(){
         printLogo();
+        return askSize();
     }
 
     public void printLogo(){

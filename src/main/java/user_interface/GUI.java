@@ -4,13 +4,13 @@ import core.Board;
 import core.Player;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.binding.IntegerBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -29,15 +29,17 @@ public class GUI extends Application implements UserInterface{
     @Override
     public void start(Stage primaryStage) {
         stage = primaryStage;
-        initUI();
+        initialize();
     }
 
     public void initUI() {
 
+        int size = askSize();
+
         GridPane board = new GridPane();
 
-        for (int row = 0; row < 11; row++) {
-            for (int col = 0; col < 11; col++) {
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col++) {
                 Rectangle r = new Rectangle(col * SIZE,row * SIZE , SIZE, SIZE);
                 r.setFill( (col + row) % 2 == 0 ? Color.BEIGE : Color.BLUE);
                 board.addRow(row,r);
@@ -53,11 +55,6 @@ public class GUI extends Application implements UserInterface{
         stage.setTitle("ChessBoard");
         stage.setScene(scene);
         stage.show();
-
-
-
-
-
     }
 
     @Override
@@ -77,6 +74,17 @@ public class GUI extends Application implements UserInterface{
 
     @Override
     public int askSize() {
+        int size = 3;
+        TextInputDialog dialog = new TextInputDialog("11");
+        dialog.setTitle("Enter Size");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Please Enter the Size of the Board:");
+        dialog.getDialogPane().lookupButton(ButtonType.CANCEL).setDisable(true);
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            return Integer.parseInt(result.get());
+        }
+        Platform.exit();
         return 0;
     }
 
@@ -96,10 +104,10 @@ public class GUI extends Application implements UserInterface{
     }
 
     @Override
-    public void initialize() {
+    public int initialize() {
         HBox initPane = new HBox();
         Button startButton = new Button("Start");
-        startButton.setOnAction((ActionEvent e) -> System.out.println("start"));
+        startButton.setOnAction((ActionEvent e) -> initUI());
         Button endButton = new Button("Quit");
         endButton.setOnAction((ActionEvent e) -> Platform.exit());
         Button rulesButton = new Button("Rules");
@@ -113,6 +121,7 @@ public class GUI extends Application implements UserInterface{
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
+        return 1;
     }
 }
 

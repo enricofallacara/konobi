@@ -6,9 +6,7 @@ import user_interface.UserInterface;
 public class Konobi {
     public static void main(String[] args) {
         UserInterface userInterface = new Console();
-        Supervisor supervisor = new Supervisor(userInterface.askSize());
-
-        userInterface.initialize();
+        Supervisor supervisor = new Supervisor(userInterface.initialize());
 
         while (!supervisor.isEndGame()) {
             userInterface.display(supervisor.getBoard());
