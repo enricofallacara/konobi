@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -14,35 +15,46 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class GUI extends Application {
+    private final int SIZE = 50;
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage){
+    public void start(Stage primaryStage) {
         initUI(primaryStage);
     }
+
     private void initUI(Stage stage) {
+        StackPane root = new StackPane();
 
-        Pane root = new Pane();
+        Pane board = new Pane();
 
-        Rectangle rect = new Rectangle(25, 25, 50, 50);
-        rect.setFill(Color.CADETBLUE);
+        for (int row = 0; row < 11; row++) {
+            for (int col = 0; col < 11; col++) {
 
-        Line line = new Line(90, 40, 230, 40);
-        line.setStroke(Color.BLACK);
+                Rectangle r = new Rectangle(col * SIZE, row * SIZE,
+                        SIZE, SIZE);
 
-        Circle circle = new Circle(130, 130, 30);
-        circle.setFill(Color.CHOCOLATE);
+                if ((col + row) % 2 == 0) {
+                    r.setFill(Color.BLUE);
+                } else {
+                    r.setFill(Color.BEIGE);
+                }
 
-        root.getChildren().addAll(rect, line, circle);
+                board.getChildren().add(r);
+            }
 
-        Scene scene = new Scene(root, 250, 220, Color.WHITESMOKE);
+        }
+        root.getChildren().add(board);
 
-        stage.setTitle("Absolute layout");
+        Scene scene = new Scene(root, Color.WHITESMOKE);
+
+        stage.setTitle("ChessBoard");
         stage.setScene(scene);
         stage.show();
     }
-
 }
+
+
