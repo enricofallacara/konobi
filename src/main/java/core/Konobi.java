@@ -2,6 +2,7 @@ package core;
 
 import user_interface.Console;
 import user_interface.ConsoleBoardDisplayer;
+import user_interface.ConsoleMessageWriter;
 import user_interface.UserInterface;
 
 public class Konobi {
@@ -10,6 +11,7 @@ public class Konobi {
     Supervisor supervisor;
 
     ConsoleBoardDisplayer boardDisplayer = new ConsoleBoardDisplayer();
+    ConsoleMessageWriter messageWriter = new ConsoleMessageWriter();
 
     Konobi() {
         userInterface = new Console();
@@ -24,13 +26,13 @@ public class Konobi {
 
         boardDisplayer.displayBoard(supervisor.getBoard());
         Player winner = supervisor.getLastPlayer();
-        userInterface.notifyEndGame(winner);
+        messageWriter.notifyEndGame(winner);
     }
 
     private void playTurn() {
         boardDisplayer.displayBoard(supervisor.getBoard());
         if (supervisor.isPassRule()) {
-            userInterface.notifyPass();
+            messageWriter.notifyPass();
             return;
         }
         if (supervisor.isPieRule() && userInterface.askPieRule()) {
@@ -38,7 +40,7 @@ public class Konobi {
             return;
         }
         while (!supervisor.newMove(userInterface.getInput(supervisor.getCurrentPlayer()))) {
-            userInterface.notifyInvalidMove();
+            messageWriter.notifyInvalidMove();
         }
     }
 }

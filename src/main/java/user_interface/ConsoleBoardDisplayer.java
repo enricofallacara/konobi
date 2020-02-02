@@ -2,23 +2,14 @@ package user_interface;
 
 import core.Board;
 import core.Cell;
-import core.Color;
 
 import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.IntStream;
 
 public class ConsoleBoardDisplayer {
 
-    private final Map<core.Color, String> cellColorMap = new HashMap<>() {{
-        put(core.Color.black, "[\u25A0]");
-        put(Color.white, "[\u25A1]");
-        put(null, "[ ]");
-    }};
-
     private void displayCell(Cell cell) {
-        System.out.print(cellColorMap.get(cell.getColor()));
+        System.out.print(ConsoleCellRepresentation.getRepresentation(cell.getColor()));
     }
 
     private void displayRow(Board board, int y) {
