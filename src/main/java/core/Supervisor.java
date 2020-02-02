@@ -46,7 +46,7 @@ public class Supervisor {
         // TODO: le mosse invalide (sopra una pedina o fuori dalla board)
         //       sarebbero più propriamente eccezioni?
 
-        if (Rulebook.queryValidPosition(this)) {
+        if (Rulebook.queryRule(this, ValidPositionRule::new)) {
             updateStatus(point, currentPlayer);
             return true;
         }
@@ -62,9 +62,9 @@ public class Supervisor {
 
     public Board getBoard() { return board; }
 
-    public boolean isEndGame() { return Rulebook.queryEndGameRule(this); }
+    /*public boolean isEndGame() { return Rulebook.queryEndGameRule(this); }
 
     public boolean isPassRule() { return Rulebook.queryPassRule(this); }
 
-    public boolean isPieRule() { return Rulebook.queryPieRule(this); }
+    public boolean isPieRule() { return Rulebook.queryPieRule(this); }*/
 }

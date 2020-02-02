@@ -6,7 +6,8 @@ import java.util.HashSet;
 import java.util.stream.Collectors;
 
 public class EndGameRule implements Rule{
-
+    // TODO: table puo diventare non-statico, ma ricorda
+    // di aggiornare i test
     private static final HashSet<Cell> table = new HashSet<>();
 
     @Override
