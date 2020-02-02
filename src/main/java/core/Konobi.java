@@ -1,12 +1,15 @@
 package core;
 
 import user_interface.Console;
+import user_interface.ConsoleBoardDisplayer;
 import user_interface.UserInterface;
 
 public class Konobi {
 
     UserInterface userInterface;
     Supervisor supervisor;
+
+    ConsoleBoardDisplayer boardDisplayer = new ConsoleBoardDisplayer();
 
     Konobi() {
         userInterface = new Console();
@@ -19,13 +22,13 @@ public class Konobi {
             playTurn();
         }
 
-        userInterface.display(supervisor.getBoard());
+        boardDisplayer.displayBoard(supervisor.getBoard());
         Player winner = supervisor.getLastPlayer();
         userInterface.notifyEndGame(winner);
     }
 
     private void playTurn() {
-        userInterface.display(supervisor.getBoard());
+        boardDisplayer.displayBoard(supervisor.getBoard());
         if (supervisor.isPassRule()) {
             userInterface.notifyPass();
             return;
