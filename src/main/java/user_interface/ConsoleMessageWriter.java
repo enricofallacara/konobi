@@ -17,7 +17,7 @@ public class ConsoleMessageWriter {
                 "                                 ");
     }
 
-    public void displayPlayer(Player player){
+    public static void displayPlayer(Player player){
         System.out.println(player.getName() + "'s turn! " +
                 ConsoleCellRepresentation.getRepresentation(player.getColor()));
     }

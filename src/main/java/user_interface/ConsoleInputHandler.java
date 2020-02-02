@@ -1,6 +1,11 @@
 package user_interface;
 
+import core.Player;
+
+import java.awt.*;
 import java.util.Scanner;
+
+import static user_interface.ConsoleMessageWriter.displayPlayer;
 
 public class ConsoleInputHandler {
 
@@ -33,5 +38,12 @@ public class ConsoleInputHandler {
         }while( size <= 2);
 
         return size;
+    }
+
+    public Point getInput(Player player) {
+        displayPlayer(player);
+        int newX = checkInput("Please Insert Next X Coordinate: ");
+        int newY = checkInput("Please Insert Next Y Coordinate: ");
+        return new Point(newX, newY);
     }
 }

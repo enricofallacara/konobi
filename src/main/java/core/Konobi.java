@@ -1,10 +1,12 @@
 package core;
 
-import user_interface.*;
+
+import user_interface.ConsoleBoardDisplayer;
+import user_interface.ConsoleInputHandler;
+import user_interface.ConsoleMessageWriter;
 
 public class Konobi {
 
-    UserInterface userInterface;
     Supervisor supervisor;
 
     ConsoleBoardDisplayer boardDisplayer = new ConsoleBoardDisplayer();
@@ -12,8 +14,8 @@ public class Konobi {
     ConsoleInputHandler inputHandler = new ConsoleInputHandler();
 
     Konobi() {
-        userInterface = new Console();
         // TODO: Forse ha senso dividere initalise() e askSize();
+        messageWriter.printLogo();
         supervisor = new Supervisor(inputHandler.askSize());
     }
 
@@ -37,7 +39,7 @@ public class Konobi {
             supervisor.performPieRule();
             return;
         }
-        while (!supervisor.newMove(userInterface.getInput(supervisor.getCurrentPlayer()))) {
+        while (!supervisor.newMove(inputHandler.getInput(supervisor.getCurrentPlayer()))) {
             messageWriter.notifyInvalidMove();
         }
     }

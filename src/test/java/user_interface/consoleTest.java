@@ -7,6 +7,8 @@ import java.awt.*;
 
 public class consoleTest {
 
+    //TODO: reimplement test.
+   /*
     @Test
     public void displayTest(){
         Supervisor supervisor = new Supervisor(11);
@@ -17,4 +19,5 @@ public class consoleTest {
         supervisor.newMove(new Point(6,1));
         console.display(supervisor.getBoard());
     }
+    */
 }
