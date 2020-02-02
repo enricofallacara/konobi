@@ -14,7 +14,7 @@ public class Konobi {
     Konobi() {
         userInterface = new Console();
         // TODO: Forse ha senso dividere initalise() e askSize();
-        supervisor = new Supervisor(userInterface.initialize());
+        supervisor = new Supervisor(inputHandler.askSize());
     }
 
     public void play() {
