@@ -1,7 +1,6 @@
 package user_interface;
 
 import core.Color;
-import core.Player;
 
 import java.util.HashMap;
 import java.util.Map;
