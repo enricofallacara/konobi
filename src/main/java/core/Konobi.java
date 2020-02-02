@@ -1,15 +1,12 @@
 package core;
 
-import user_interface.*;
+import user_interface.Console;
+import user_interface.UserInterface;
 
 public class Konobi {
 
     UserInterface userInterface;
     Supervisor supervisor;
-
-    ConsoleBoardDisplayer boardDisplayer = new ConsoleBoardDisplayer();
-    ConsoleMessageWriter messageWriter = new ConsoleMessageWriter();
-    ConsoleInputHandler inputHandler = new ConsoleInputHandler();
 
     Konobi() {
         userInterface = new Console();
@@ -22,23 +19,23 @@ public class Konobi {
             playTurn();
         }
 
-        boardDisplayer.displayBoard(supervisor.getBoard());
+        userInterface.display(supervisor.getBoard());
         Player winner = supervisor.getLastPlayer();
-        messageWriter.notifyEndGame(winner);
+        userInterface.notifyEndGame(winner);
     }
 
     private void playTurn() {
-        boardDisplayer.displayBoard(supervisor.getBoard());
+        userInterface.display(supervisor.getBoard());
         if (supervisor.isPassRule()) {
-            messageWriter.notifyPass();
+            userInterface.notifyPass();
             return;
         }
-        if (supervisor.isPieRule() && inputHandler.askPieRule()) {
+        if (supervisor.isPieRule() && userInterface.askPieRule()) {
             supervisor.performPieRule();
             return;
         }
         while (!supervisor.newMove(userInterface.getInput(supervisor.getCurrentPlayer()))) {
-            messageWriter.notifyInvalidMove();
+            userInterface.notifyInvalidMove();
         }
     }
 }
