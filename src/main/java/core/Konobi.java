@@ -7,6 +7,7 @@ import user_interface.ConsoleMessageWriter;
 
 public class Konobi {
 
+    //Test
     Supervisor supervisor;
 
     ConsoleBoardDisplayer boardDisplayer = new ConsoleBoardDisplayer();
