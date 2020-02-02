@@ -10,7 +10,7 @@ public class Konobi {
 
     Konobi() {
         userInterface = new Console();
-        // Forse ha senso dividere initalise() e askSize();
+        // TODO: Forse ha senso dividere initalise() e askSize();
         supervisor = new Supervisor(userInterface.initialize());
     }
 
