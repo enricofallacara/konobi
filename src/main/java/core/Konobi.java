@@ -1,7 +1,7 @@
 package core;
 
 
-import user_interface.ConsoleBoardDisplayer;
+import user_interface.ConsoleBoardWriter;
 import user_interface.ConsoleInputHandler;
 import user_interface.ConsoleMessageWriter;
 
@@ -10,7 +10,7 @@ public class Konobi {
     //Test
     Supervisor supervisor;
 
-    ConsoleBoardDisplayer boardDisplayer = new ConsoleBoardDisplayer();
+    ConsoleBoardWriter boardDisplayer = new ConsoleBoardWriter();
     ConsoleMessageWriter messageWriter = new ConsoleMessageWriter();
     ConsoleInputHandler inputHandler = new ConsoleInputHandler();
 

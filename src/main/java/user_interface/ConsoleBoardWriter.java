@@ -6,7 +6,7 @@ import core.Cell;
 import java.awt.*;
 import java.util.stream.IntStream;
 
-public class ConsoleBoardDisplayer {
+public class ConsoleBoardWriter {
 
     private void displayCell(Cell cell) {
         System.out.print(ConsoleCellRepresentation.getRepresentation(cell.getColor()));
