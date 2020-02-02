@@ -5,9 +5,11 @@ import core.Player;
 public class ConsoleMessageWriter {
 
 
-    public void notifyInvalidMove() { System.out.println("The Selected Position is Invalid!"); }
+    public void notifyInvalidMove() {
+        System.out.println("The Selected Position is Invalid!");
+    }
 
-    public void printLogo(){
+    public void printLogo() {
         System.out.println(" _   __                  _     _ \n" +
                 "| | / /                 | |   (_)\n" +
                 "| |/ /  ___  _ __   ___ | |__  _ \n" +
@@ -17,7 +19,7 @@ public class ConsoleMessageWriter {
                 "                                 ");
     }
 
-    public static void displayPlayer(Player player){
+    public static void displayPlayer(Player player) {
         System.out.println(player.getName() + "'s turn! " +
                 ConsoleCellRepresentation.getRepresentation(player.getColor()));
     }
@@ -27,9 +29,20 @@ public class ConsoleMessageWriter {
         System.out.println("Color: " + player.getColor());
     }
 
-    public void notifyPass() { System.out.println("YOU SHALL PASS!"); }
+    public void notifyPass() {
+        System.out.println("YOU SHALL PASS!");
+    }
 
     public static void pieRuleMessage() {
         System.out.println("Player two, do you want to apply the Pie Rule? (y/n)");
     }
+
+    public static void getXInputMessage() {
+        System.out.println("Please insert next X coordinate: ");
+    }
+
+    public static void getYInputMessage() {
+        System.out.println("Please insert next Y coordinate: ");
+    }
+
 }

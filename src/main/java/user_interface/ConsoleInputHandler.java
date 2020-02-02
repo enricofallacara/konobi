@@ -21,6 +21,7 @@ public class ConsoleInputHandler {
     }
 
     public int checkInput(String message){
+        //TODO: potrebbe essere trattata come eccezione?
         System.out.println(message);
         while(!scanner.hasNextInt()){
             System.out.println("Invalid input, please insert a valid integer!");
@@ -30,6 +31,7 @@ public class ConsoleInputHandler {
     }
 
     public int askSize() {
+        //TODO: forse la size <= 2 può essere gestita diversamente?
 
         int size;
 
@@ -42,8 +44,10 @@ public class ConsoleInputHandler {
 
     public Point getInput(Player player) {
         displayPlayer(player);
-        int newX = checkInput("Please Insert Next X Coordinate: ");
-        int newY = checkInput("Please Insert Next Y Coordinate: ");
+        ConsoleMessageWriter.getXInputMessage();
+        int newX = checkInput("");
+        ConsoleMessageWriter.getYInputMessage();
+        int newY = checkInput("");
         return new Point(newX, newY);
     }
 }
