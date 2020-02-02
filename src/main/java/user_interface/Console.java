@@ -11,6 +11,12 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
+
+// TODO: Seguendo le lamentele che hanno ricevuto gli altri, forse bisognerebbe spezzare
+//       questa classe in diverse classi: una che gestisce gli input, una che manda messaggi,
+//       una che fa il display e magari stampa il logo.
+//       In questo caso viene meno l'interfaccia, ma morirebbe comunque.
+
 public class Console implements UserInterface {
     private final Scanner scanner;
     private final Map<Color, String> cellColorMap = new HashMap<>() {{
@@ -18,6 +24,7 @@ public class Console implements UserInterface {
         put(Color.white, "[\u25A1]");
         put(null, "[ ]");
     }};
+
     public Console() { scanner = new Scanner(System.in); }
 
     @Override
