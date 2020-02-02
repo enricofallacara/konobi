@@ -1,9 +1,6 @@
 package core;
 
-import user_interface.Console;
-import user_interface.ConsoleBoardDisplayer;
-import user_interface.ConsoleMessageWriter;
-import user_interface.UserInterface;
+import user_interface.*;
 
 public class Konobi {
 
@@ -12,6 +9,7 @@ public class Konobi {
 
     ConsoleBoardDisplayer boardDisplayer = new ConsoleBoardDisplayer();
     ConsoleMessageWriter messageWriter = new ConsoleMessageWriter();
+    ConsoleInputHandler inputHandler = new ConsoleInputHandler();
 
     Konobi() {
         userInterface = new Console();
@@ -35,7 +33,7 @@ public class Konobi {
             messageWriter.notifyPass();
             return;
         }
-        if (supervisor.isPieRule() && userInterface.askPieRule()) {
+        if (supervisor.isPieRule() && inputHandler.askPieRule()) {
             supervisor.performPieRule();
             return;
         }

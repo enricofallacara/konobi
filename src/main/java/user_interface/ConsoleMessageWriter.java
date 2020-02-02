@@ -4,6 +4,7 @@ import core.Player;
 
 public class ConsoleMessageWriter {
 
+
     public void notifyInvalidMove() { System.out.println("The Selected Position is Invalid!"); }
 
     public void printLogo(){
@@ -27,4 +28,8 @@ public class ConsoleMessageWriter {
     }
 
     public void notifyPass() { System.out.println("YOU SHALL PASS!"); }
+
+    public static void pieRuleMessage() {
+        System.out.println("Player two, do you want to apply the Pie Rule? (y/n)");
+    }
 }
