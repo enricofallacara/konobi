@@ -1,17 +1,22 @@
 package core;
 
-import user_interface.Console;
-import user_interface.UserInterface;
+
+import user_interface.ConsoleBoardDisplayer;
+import user_interface.ConsoleInputHandler;
+import user_interface.ConsoleMessageWriter;
 
 public class Konobi {
 
-    UserInterface userInterface;
     Supervisor supervisor;
 
+    ConsoleBoardDisplayer boardDisplayer = new ConsoleBoardDisplayer();
+    ConsoleMessageWriter messageWriter = new ConsoleMessageWriter();
+    ConsoleInputHandler inputHandler = new ConsoleInputHandler();
+
     Konobi() {
-        userInterface = new Console();
         // TODO: Forse ha senso dividere initalise() e askSize();
-        supervisor = new Supervisor(userInterface.initialize());
+        messageWriter.printLogo();
+        supervisor = new Supervisor(inputHandler.askSize());
     }
 
     public void play() {
@@ -19,23 +24,23 @@ public class Konobi {
             playTurn();
         }
 
-        userInterface.display(supervisor.getBoard());
+        boardDisplayer.displayBoard(supervisor.getBoard());
         Player winner = supervisor.getLastPlayer();
-        userInterface.notifyEndGame(winner);
+        messageWriter.notifyEndGame(winner);
     }
 
     private void playTurn() {
-        userInterface.display(supervisor.getBoard());
+        boardDisplayer.displayBoard(supervisor.getBoard());
         if (supervisor.isPassRule()) {
-            userInterface.notifyPass();
+            messageWriter.notifyPass();
             return;
         }
-        if (supervisor.isPieRule() && userInterface.askPieRule()) {
+        if (supervisor.isPieRule() && inputHandler.askPieRule()) {
             supervisor.performPieRule();
             return;
         }
-        while (!supervisor.newMove(userInterface.getInput(supervisor.getCurrentPlayer()))) {
-            userInterface.notifyInvalidMove();
+        while (!supervisor.newMove(inputHandler.getInput(supervisor.getCurrentPlayer()))) {
+            messageWriter.notifyInvalidMove();
         }
     }
 }
