@@ -15,8 +15,8 @@ public class CrosscutRule implements Rule {
 
         return neighbours.stream()
                 .noneMatch(c ->
-                        board.getCell(new Point(point.x, c.getCoordinates().y)).hasThisColor(player.getOppositeColor())
+                        board.getCell(new Point(point.x, c.getCoordinates().y)).hasThisColor(player.getColor().getOppositeColor())
                         &&
-                        board.getCell(new Point(c.getCoordinates().x, point.y)).hasThisColor(player.getOppositeColor()));
+                        board.getCell(new Point(c.getCoordinates().x, point.y)).hasThisColor(player.getColor().getOppositeColor()));
     }
 }

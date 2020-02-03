@@ -30,24 +30,21 @@ public class Supervisor {
 
     public int getTurn() { return nTurn; }
 
-    private void updateStatus(Point newPoint, Player currentPlayer) {
+    private void updateStatus(Point newPoint) {
         // moves.add(newPoint);
         board.setCell(newPoint, currentColor);
-        // TODO: vedere che il colore corrente è l'opposto del colore
-        //       del player corrente fa un poco male all'anima.
-        currentColor = currentPlayer.getOppositeColor();
+        currentColor = currentColor.getOppositeColor();
         nTurn++;
     }
 
     public boolean newMove(Point point){
-        Player currentPlayer = getCurrentPlayer();
         setCurrentPoint(point);
 
         // TODO: le mosse invalide (sopra una pedina o fuori dalla board)
         //       sarebbero più propriamente eccezioni?
 
         if (Rulebook.queryRule(this, ValidPositionRule::new)) {
-            updateStatus(point, currentPlayer);
+            updateStatus(point);
             return true;
         }
 
@@ -62,9 +59,4 @@ public class Supervisor {
 
     public Board getBoard() { return board; }
 
-    /*public boolean isEndGame() { return Rulebook.queryEndGameRule(this); }
-
-    public boolean isPassRule() { return Rulebook.queryPassRule(this); }
-
-    public boolean isPieRule() { return Rulebook.queryPieRule(this); }*/
 }

@@ -16,11 +16,7 @@ public class Player {
     }
     public String getName(){ return name;}
 
-    public Color getOppositeColor() {
-        return (color == Color.black) ? Color.white : Color.black;
-    }
-
     public void changeSide() {
-        color = getOppositeColor();
+        color = color.getOppositeColor();
     }
 }

@@ -14,7 +14,7 @@ public class playerTest {
     @Test
     public void testOppositeColor() {
         Player player = new Player(Color.black);
-        assertEquals(player.getOppositeColor(), Color.white);
+        assertEquals(player.getColor().getOppositeColor(), Color.white);
     }
 
     @Test
