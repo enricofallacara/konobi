@@ -6,13 +6,20 @@ import javafx.scene.shape.Rectangle;
 
 public class GUIBoardFiller {
 
-    public static GridPane createAndFillBoard(int gridSize, int tileSize) {
+    int boardSize;
+    int tileSize;
+
+    GUIBoardFiller(int bS, int tS) {
+        boardSize = bS;
+        tileSize = tS;
+    }
+
+    public GridPane createAndFillBoard() {
 
         GridPane gridPane = new GridPane();
 
-
-        for (int row = 0; row < gridSize; row++) {
-            for (int col = 0; col < gridSize; col++) {
+        for (int row = 0; row < boardSize; row++) {
+            for (int col = 0; col < boardSize; col++) {
                 Rectangle r = new Rectangle(col * tileSize,row * tileSize , tileSize, tileSize);
                 r.setFill( (col + row) % 2 == 0 ? Color.PALEVIOLETRED : Color.DARKSEAGREEN);
                 gridPane.addRow(row,r);

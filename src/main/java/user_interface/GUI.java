@@ -35,8 +35,10 @@ public class GUI extends Application {
 
     public void initUI(int size) {
 
-        gridPane = GUIBoardFiller.createAndFillBoard(size, SIZE);
         supervisor = new Supervisor(size);
+        GUIBoardFiller boardFiller = new GUIBoardFiller(size, SIZE);
+
+        gridPane = boardFiller.createAndFillBoard();
         gridPane.setOnMouseClicked(e -> inputHandler(e.getX(), e.getY()));
 
         Scene scene = new Scene(gridPane, Color.WHITESMOKE);
@@ -51,31 +53,41 @@ public class GUI extends Application {
     }
 
 
+    // TODO: ha senso metterla nella classe Cell o in una nuova classe?
     private static final Map<core.Color, Paint> colorPaintMap = new HashMap<>() {{
         put(core.Color.black, Color.BLACK);
         put(core.Color.white, Color.WHITE);
     }};
 
+    public void addTile(GridPane gridPane, int X, int Y, Supervisor supervisor) {
+        Rectangle rect = new Rectangle(X * SIZE, Y * SIZE, SIZE-12, SIZE-12);
+        rect.setFill(colorPaintMap.get(supervisor.getLastPlayer().getColor()));
+        gridPane.add(rect, X, Y);
+
+    }
 
     private void inputHandler(double X, double Y) {
+
         int columnIndex = coordinateConversion(X);
         int rowIndex = coordinateConversion(Y);
-
 
         if(!supervisor.newMove(new Point(columnIndex, rowIndex))) {
             GUIMessageWriter.notifyInvalidMove();
             return;
         }
 
+        /*
         Rectangle rect = new Rectangle(X * SIZE, Y * SIZE, SIZE-12, SIZE-12);
         rect.setFill(colorPaintMap.get(supervisor.getLastPlayer().getColor()));
         gridPane.add(rect, columnIndex, rowIndex);
+         */
+        addTile(gridPane, columnIndex, rowIndex, supervisor);
 
         if(Rulebook.queryRule(supervisor, EndGameRule::new)){
             GUIMessageWriter.notifyEndGame(supervisor.getLastPlayer());
             stop();
         }
-        if(Rulebook.queryRule(supervisor, PieRule::new) && askPieRule()){
+        if(Rulebook.queryRule(supervisor, PieRule::new) && GUIAsker.askPieRule()){
             supervisor.performPieRule();
         }
         if(Rulebook.queryRule(supervisor, PassRule::new) ){
@@ -90,43 +102,13 @@ public class GUI extends Application {
     }
 
 
-    public boolean askPieRule() {
-        // TODO: aggiungere delay
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Pie Rule Dialog");
-        alert.setContentText("PlayerTwo: Do you want to apply the Pie Rule?");
-        alert.setHeaderText(null);
-
-        ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Yes");
-        ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("No");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        return result.filter(buttonType -> buttonType == ButtonType.OK).isPresent();
-
-    }
-
-
-    public int askSize() {
-        int size = 11;
-        TextInputDialog dialog = new TextInputDialog(Integer.toString(size));
-        dialog.setTitle("Enter Size");
-        dialog.setHeaderText(null);
-        dialog.setContentText("Please Enter the Size of the Board:");
-        dialog.getDialogPane().lookupButton(ButtonType.CANCEL).setDisable(true);
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
-            return Integer.parseInt(result.get());
-        }
-        Platform.exit();
-        return 0;
-    }
 
 
     public int initialize() {
         HBox initPane = new HBox();
         Button startButton = new Button("Start");
         startButton.setOnAction((ActionEvent e) -> {
-            int size = askSize();
+            int size = GUIAsker.askSize();
             initUI(size);});
         Button endButton = new Button("Quit");
         endButton.setOnAction((ActionEvent e) -> Platform.exit());
