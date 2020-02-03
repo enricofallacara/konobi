@@ -33,6 +33,7 @@ public class Konobi {
     private void playTurn() {
         boardDisplayer.displayBoard(supervisor.getBoard());
         if (Rulebook.queryRule(supervisor, PassRule::new)) {
+            supervisor.performPassRule();
             messageWriter.notifyPass();
             return;
         }

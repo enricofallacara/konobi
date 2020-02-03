@@ -57,6 +57,11 @@ public class Supervisor {
         nTurn++;
     }
 
+    public void performPassRule(){
+        currentColor = currentColor.getOppositeColor();
+        nTurn++;
+    }
+
     public Board getBoard() { return board; }
 
 }
