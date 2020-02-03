@@ -11,14 +11,16 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.awt.Point;
-
 public class GUI extends Application {
     private final int TILESIZE = 50;
     private Stage stage;
     private GridPane gridPane;
     private Supervisor supervisor;
     private GUIBoardFiller boardFiller;
+
+    public GridPane getPane() { return gridPane; }
+    public Supervisor getSupervisor() { return supervisor; }
+    public GUIBoardFiller getBoardFiller() { return boardFiller; }
 
 
     @Override
@@ -34,18 +36,24 @@ public class GUI extends Application {
         boardFiller = new GUIBoardFiller(boardSize, TILESIZE);
 
         gridPane = boardFiller.createEmptyBoard();
+        gridPane.setGridLinesVisible(true);
 
-        gridPane.setOnMouseClicked(e -> inputHandler(e.getX(), e.getY()));
+        GUIInputHandler inputHandler = new GUIInputHandler(this);
+        gridPane.setOnMouseClicked(inputHandler);
 
         Scene scene = new Scene(gridPane, Color.WHITESMOKE);
+        // TODO: questo risolve automaticamente il problema del resize, ma bisogna importare il jar
+        /*SceneSizeChangeListener sizeListener = new SceneSizeChangeListener(scene, ratio, initHeight, initWidth, contentPane);
+        scene.widthProperty().addListener(sizeListener);
+        scene.heightProperty().addListener(sizeListener);*/
         stage.setTitle("ChessBoard");
         stage.setScene(scene);
         stage.show();
     }
-
-    private int coordinateConversion(double coordinate) {
-        return (int)coordinate/ TILESIZE;
-    }
+    // TODO: forse privato in GUIInputHandler
+    public int coordinateConversion(double coordinate) {
+        return (int)coordinate / TILESIZE;
+    }/*
 
     private void inputHandler(double X, double Y) {
 
@@ -70,15 +78,12 @@ public class GUI extends Application {
             supervisor.performPassRule();
             GUIMessageWriter.notifyPass();
         }
-    }
+    }*/
 
     @Override
     public void stop(){
         Platform.exit();
     }
-
-
-
 
     public int initialize() {
         HBox initPane = new HBox();

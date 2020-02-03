@@ -22,6 +22,5 @@ public class WeakRule implements Rule {
                                 .map(c3 -> !board.getColoredNeighbours(c3.getCoordinates(), 1, player, Board::isWeakNeighbour)
                                         .isEmpty()))
                 .allMatch(b -> b);
-
     }
 }
