@@ -8,14 +8,16 @@ import java.util.stream.Collectors;
 public class EndGameRule implements Rule{
     // TODO: table puo diventare non-statico, ma ricorda
     // di aggiornare i test
-    private static final HashSet<Cell> table = new HashSet<>();
-
+    private HashSet<Cell> table;
+    public EndGameRule(){
+        table = new HashSet<>();
+    }
     @Override
     public boolean isValid(Supervisor supervisor) {
-        return isValid(supervisor.getBoard(), supervisor.getCurrentPlayer());
+        return isValid(supervisor.getBoard(), supervisor.getLastPlayer());
     }
 
-    public static boolean isValid(Board board, Player player) {
+    public boolean isValid(Board board, Player player) {
         ArrayList<Cell> startingPoints = getStartingPoints(board, player);
 
         if (startingPoints.isEmpty()) { return false;}
@@ -25,15 +27,15 @@ public class EndGameRule implements Rule{
         return startingPoints.stream().anyMatch(x -> searchForEndingEdge(x, board, player));
     }
 
-    public static ArrayList<Cell> getStartingPoints(Board board, Player player) {
+    public ArrayList<Cell> getStartingPoints(Board board, Player player) {
         Color color = player.getColor();
         int size = board.getSize();
-        int[] startIdxs = (color == Color.white) ? new int[]{0, size, 0, 1} : new int[]{0, 1, 0, size};
+        int[] startIdxs = (color == Color.white) ? new int[]{0, size, 0, 1} :  new int[]{0, 1, 0, size};
         return Arrays.stream(board.slice(startIdxs[0], startIdxs[1], startIdxs[2], startIdxs[3])).
                 filter(x -> x.hasThisColor(color)).collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public static boolean searchForEndingEdge(Cell current, Board board, Player player) {
+    public boolean searchForEndingEdge(Cell current, Board board, Player player) {
         if (board.isOnEndingEdge(current.getCoordinates(), player)) { return true; }
 
         table.add(current);

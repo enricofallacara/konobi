@@ -21,9 +21,9 @@ public class Konobi {
     }
 
     public void play() {
-        while(!Rulebook.queryRule(supervisor, EndGameRule::new)) {
+        do {
             playTurn();
-        }
+        }while(!Rulebook.queryRule(supervisor, EndGameRule::new));
 
         boardDisplayer.displayBoard(supervisor.getBoard());
         Player winner = supervisor.getLastPlayer();

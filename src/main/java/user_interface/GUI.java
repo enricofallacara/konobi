@@ -1,8 +1,6 @@
 package user_interface;
 
-import core.Board;
-import core.Player;
-import core.Supervisor;
+import core.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -37,21 +35,8 @@ public class GUI extends Application implements UserInterface{
 
         gridPane = createAndFillBoard(size);
         supervisor = new Supervisor(size);
+        gridPane.setOnMouseClicked(e -> inputHandler(e.getX(), e.getY()));
 
-        gridPane.setOnMouseClicked(e -> {
-
-            inputHandler(e.getX(), e.getY());
-
-            /*
-            Rectangle rect = new Rectangle(e.getX() * SIZE, e.getY() * SIZE, SIZE, SIZE);
-            rect.setFill(Color.BLACK);
-            int columIndex = (int)e.getX()/SIZE;
-            int rowIndex = (int)e.getY()/SIZE;
-            if (columIndex < size && rowIndex < size) {
-                gridPane.add(rect, columIndex, rowIndex);
-            }
-             */
-        });
 
         Scene scene = new Scene(gridPane, Color.WHITESMOKE);
         stage.setTitle("ChessBoard");
@@ -71,17 +56,29 @@ public class GUI extends Application implements UserInterface{
 
 
     private void inputHandler(double X, double Y) {
-        int columIndex = coordinateConversion(X);
+        int columnIndex = coordinateConversion(X);
         int rowIndex = coordinateConversion(Y);
-        if(!supervisor.newMove(new Point(columIndex, rowIndex))) {
+
+        if(!supervisor.newMove(new Point(columnIndex, rowIndex))) {
             System.out.println("Invalid move");
             return;
         }
 
-        Rectangle rect = new Rectangle(X * SIZE, Y * SIZE, SIZE-12, SIZE-12);
 
+        Rectangle rect = new Rectangle(X * SIZE, Y * SIZE, SIZE-12, SIZE-12);
         rect.setFill(colorPaintMap.get(supervisor.getLastPlayer().getColor()));
-        gridPane.add(rect, columIndex, rowIndex);
+        gridPane.add(rect, columnIndex, rowIndex);
+
+        if(Rulebook.queryRule(supervisor, EndGameRule::new)){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("End Game Information");
+            alert.setHeaderText(null);
+            alert.setContentText(supervisor.getLastPlayer().getName() + " has won!");
+            alert.showAndWait();
+            stop();
+        }
+       // supervisor.currentPlayer = supervisor.getLastPlayer();
+
 
     }
 
@@ -99,6 +96,12 @@ public class GUI extends Application implements UserInterface{
 
         return gridPane;
     }
+    @Override
+    public void stop(){
+
+        Platform.exit();
+    }
+
     @Override
     public Point getInput(Player player) {
         return null;
