@@ -29,6 +29,7 @@ public class GUI extends Application implements UserInterface{
     @Override
     public void start(Stage primaryStage) {
         stage = primaryStage;
+        stage.setResizable(false);
         initialize();
     }
 
@@ -39,6 +40,7 @@ public class GUI extends Application implements UserInterface{
         gridPane.setOnMouseClicked(e -> inputHandler(e.getX(), e.getY()));
 
         Scene scene = new Scene(gridPane, Color.WHITESMOKE);
+
         stage.setTitle("ChessBoard");
         stage.setScene(scene);
         stage.show();
@@ -89,6 +91,7 @@ public class GUI extends Application implements UserInterface{
 
         gridPane = new GridPane();
 
+
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
                 Rectangle r = new Rectangle(col * SIZE,row * SIZE , SIZE, SIZE);
@@ -96,6 +99,22 @@ public class GUI extends Application implements UserInterface{
                 gridPane.addRow(row,r);
             }
         }
+ /*       for (int x = 0 ; x <= size ; x++) {
+            ColumnConstraints cc = new ColumnConstraints();
+            cc.setPercentWidth(100.0 / (size+1));
+            cc.setFillWidth(true);
+            gridPane.getColumnConstraints().add(cc);
+        }
+
+        // row constraints:
+        for (int y = 0 ; y <= size; y++) {
+            RowConstraints rc = new RowConstraints();
+            rc.setPercentHeight(100.0 / (size+1));
+            rc.setFillHeight(true);
+            gridPane.getRowConstraints().add(rc);
+        }
+
+  */
 
         return gridPane;
     }
