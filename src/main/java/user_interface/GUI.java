@@ -85,7 +85,7 @@ public class GUI extends Application {
         Platform.exit();
     }
 
-    public int initialize() {
+    public void initialize() {
         HBox initPane = new HBox();
         Button startButton = new Button("Start");
         startButton.setOnAction((ActionEvent e) -> {
@@ -104,7 +104,6 @@ public class GUI extends Application {
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
-        return 1;
     }
 }
 

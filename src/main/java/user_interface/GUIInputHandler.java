@@ -10,7 +10,7 @@ public class GUIInputHandler implements EventHandler<MouseEvent> {
     private GUI gui;
 
     public GUIInputHandler(GUI g) { gui = g; }
-
+    // TODO: Long Method smell
     @Override
     public void handle(MouseEvent event) {
         Supervisor supervisor = gui.getSupervisor();
