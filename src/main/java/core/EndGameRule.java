@@ -6,12 +6,12 @@ import java.util.HashSet;
 import java.util.stream.Collectors;
 
 public class EndGameRule implements Rule{
-    // TODO: table puo diventare non-statico, ma ricorda
-    // di aggiornare i test
     private HashSet<Cell> table;
+
     public EndGameRule(){
         table = new HashSet<>();
     }
+
     @Override
     public boolean isValid(Supervisor supervisor) {
         return isValid(supervisor.getBoard(), supervisor.getLastPlayer());

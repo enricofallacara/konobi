@@ -23,7 +23,7 @@ public class GUI extends Application implements UserInterface{
     private final int SIZE = 50;
     private Stage stage;
     private GridPane gridPane;
-    Supervisor supervisor;
+    private Supervisor supervisor;
 
 
     @Override
@@ -99,22 +99,20 @@ public class GUI extends Application implements UserInterface{
                 gridPane.addRow(row,r);
             }
         }
- /*       for (int x = 0 ; x <= size ; x++) {
+        /*for (int x = 0 ; x < size ; x++) {
             ColumnConstraints cc = new ColumnConstraints();
-            cc.setPercentWidth(100.0 / (size+1));
+            cc.setPercentWidth(100.0 / (size));
             cc.setFillWidth(true);
             gridPane.getColumnConstraints().add(cc);
         }
 
         // row constraints:
-        for (int y = 0 ; y <= size; y++) {
+        for (int y = 0 ; y < size; y++) {
             RowConstraints rc = new RowConstraints();
-            rc.setPercentHeight(100.0 / (size+1));
+            rc.setPercentHeight(100.0 / (size));
             rc.setFillHeight(true);
             gridPane.getRowConstraints().add(rc);
-        }
-
-  */
+        }*/
 
         return gridPane;
     }
@@ -156,8 +154,8 @@ public class GUI extends Application implements UserInterface{
 
     @Override
     public int askSize() {
-        int size = 3;
-        TextInputDialog dialog = new TextInputDialog("11");
+        int size = 11;
+        TextInputDialog dialog = new TextInputDialog(Integer.toString(size));
         dialog.setTitle("Enter Size");
         dialog.setHeaderText(null);
         dialog.setContentText("Please Enter the Size of the Board:");

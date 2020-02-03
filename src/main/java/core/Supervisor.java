@@ -20,6 +20,8 @@ public class Supervisor {
         // moves = new ArrayList<>();
     }
 
+    public Board getBoard() { return board; }
+
     public Player getCurrentPlayer() { return (playerOne.getColor() == currentColor) ? playerOne : playerTwo; }
 
     public Player getLastPlayer() { return (playerOne.getColor() == currentColor) ? playerTwo : playerOne; }
@@ -61,7 +63,5 @@ public class Supervisor {
         currentColor = currentColor.getOppositeColor();
         nTurn++;
     }
-
-    public Board getBoard() { return board; }
 
 }
