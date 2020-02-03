@@ -63,7 +63,7 @@ public class GUI extends Application implements UserInterface{
 
 
         if(!supervisor.newMove(new Point(columnIndex, rowIndex))) {
-            notifyInvalidMove();
+            GUIMessageWriter.notifyInvalidMove();
             return;
         }
 
@@ -72,7 +72,7 @@ public class GUI extends Application implements UserInterface{
         gridPane.add(rect, columnIndex, rowIndex);
 
         if(Rulebook.queryRule(supervisor, EndGameRule::new)){
-            notifyEndGame(supervisor.getLastPlayer());
+            GUIMessageWriter.notifyEndGame(supervisor.getLastPlayer());
             stop();
         }
         if(Rulebook.queryRule(supervisor, PieRule::new) && askPieRule()){
@@ -80,7 +80,7 @@ public class GUI extends Application implements UserInterface{
         }
         if(Rulebook.queryRule(supervisor, PassRule::new) ){
             supervisor.performPassRule();
-            notifyPass();
+            GUIMessageWriter.notifyPass();
         }
 
 
@@ -118,7 +118,6 @@ public class GUI extends Application implements UserInterface{
     }
     @Override
     public void stop(){
-
         Platform.exit();
     }
 
@@ -145,11 +144,6 @@ public class GUI extends Application implements UserInterface{
 
     @Override
     public void notifyEndGame(Player player) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("End Game Information");
-        alert.setHeaderText(null);
-        alert.setContentText(supervisor.getLastPlayer().getName() + " has won!");
-        alert.showAndWait();
     }
 
     @Override
@@ -170,11 +164,6 @@ public class GUI extends Application implements UserInterface{
 
     @Override
     public void notifyPass() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Pass Rule Information");
-        alert.setHeaderText(null);
-        alert.setContentText("You shall pass!");
-        alert.showAndWait();
     }
 
     @Override
@@ -184,11 +173,6 @@ public class GUI extends Application implements UserInterface{
 
     @Override
     public void notifyInvalidMove() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Invalid Move Information");
-        alert.setHeaderText(null);
-        alert.setContentText("Invalid move! Try again!");
-        alert.showAndWait();
     }
 
     @Override
