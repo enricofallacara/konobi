@@ -11,16 +11,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.awt.Point;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 public class GUI extends Application implements UserInterface{
     private final int SIZE = 50;
     private Stage stage;
     private GridPane gridPane;
+    Supervisor supervisor;
 
 
     @Override
@@ -32,21 +36,53 @@ public class GUI extends Application implements UserInterface{
     public void initUI(int size) {
 
         gridPane = createAndFillBoard(size);
-        Supervisor supervisor = new Supervisor(size);
+        supervisor = new Supervisor(size);
 
-        gridPane.setOnMouseClicked(e -> {Rectangle rect = new Rectangle(e.getX() * SIZE, e.getY() * SIZE, SIZE, SIZE);
+        gridPane.setOnMouseClicked(e -> {
+
+            inputHandler(e.getX(), e.getY());
+
+            /*
+            Rectangle rect = new Rectangle(e.getX() * SIZE, e.getY() * SIZE, SIZE, SIZE);
             rect.setFill(Color.BLACK);
             int columIndex = (int)e.getX()/SIZE;
             int rowIndex = (int)e.getY()/SIZE;
             if (columIndex < size && rowIndex < size) {
                 gridPane.add(rect, columIndex, rowIndex);
             }
+             */
         });
 
         Scene scene = new Scene(gridPane, Color.WHITESMOKE);
         stage.setTitle("ChessBoard");
         stage.setScene(scene);
         stage.show();
+    }
+
+    private int coordinateConversion(double coordinate) {
+        return (int)coordinate/SIZE;
+    }
+
+
+    private static final Map<core.Color, Paint> colorPaintMap = new HashMap<>() {{
+        put(core.Color.black, Color.BLACK);
+        put(core.Color.white, Color.WHITE);
+    }};
+
+
+    private void inputHandler(double X, double Y) {
+        int columIndex = coordinateConversion(X);
+        int rowIndex = coordinateConversion(Y);
+        if(!supervisor.newMove(new Point(columIndex, rowIndex))) {
+            System.out.println("Invalid move");
+            return;
+        }
+
+        Rectangle rect = new Rectangle(X * SIZE, Y * SIZE, SIZE-12, SIZE-12);
+
+        rect.setFill(colorPaintMap.get(supervisor.getLastPlayer().getColor()));
+        gridPane.add(rect, columIndex, rowIndex);
+
     }
 
     private GridPane createAndFillBoard(int size) {
@@ -56,7 +92,7 @@ public class GUI extends Application implements UserInterface{
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
                 Rectangle r = new Rectangle(col * SIZE,row * SIZE , SIZE, SIZE);
-                r.setFill( (col + row) % 2 == 0 ? Color.BEIGE : Color.BLUE);
+                r.setFill( (col + row) % 2 == 0 ? Color.PALEVIOLETRED : Color.DARKSEAGREEN);
                 gridPane.addRow(row,r);
             }
         }
