@@ -60,7 +60,11 @@ public class GUI extends Application implements UserInterface{
         int rowIndex = coordinateConversion(Y);
 
         if(!supervisor.newMove(new Point(columnIndex, rowIndex))) {
-            System.out.println("Invalid move");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Invalid Move Information");
+            alert.setHeaderText(null);
+            alert.setContentText("Invalid move! Try again!");
+            alert.showAndWait();
             return;
         }
 
