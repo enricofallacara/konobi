@@ -2,29 +2,26 @@ package user_interface;
 
 import core.Board;
 import core.Player;
+import core.Supervisor;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.beans.binding.IntegerBinding;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.awt.Point;
-import java.io.IOException;
 import java.util.Optional;
 
 public class GUI extends Application implements UserInterface{
     private final int SIZE = 50;
     private Stage stage;
+    private GridPane gridPane;
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -32,31 +29,40 @@ public class GUI extends Application implements UserInterface{
         initialize();
     }
 
-    public void initUI() {
+    public void initUI(int size) {
 
-        int size = askSize();
+        gridPane = createAndFillBoard(size);
+        Supervisor supervisor = new Supervisor(size);
 
-        GridPane board = new GridPane();
-
-        for (int row = 0; row < size; row++) {
-            for (int col = 0; col < size; col++) {
-                Rectangle r = new Rectangle(col * SIZE,row * SIZE , SIZE, SIZE);
-                r.setFill( (col + row) % 2 == 0 ? Color.BEIGE : Color.BLUE);
-                board.addRow(row,r);
-            }
-        }
-
-        board.setOnMouseClicked(e -> {Rectangle rect = new Rectangle(e.getX() * SIZE, e.getY() * SIZE, SIZE, SIZE);
+        gridPane.setOnMouseClicked(e -> {Rectangle rect = new Rectangle(e.getX() * SIZE, e.getY() * SIZE, SIZE, SIZE);
             rect.setFill(Color.BLACK);
-            board.add(rect, (int)e.getX()/SIZE, (int)e.getY()/SIZE);
+            int columIndex = (int)e.getX()/SIZE;
+            int rowIndex = (int)e.getY()/SIZE;
+            if (columIndex < size && rowIndex < size) {
+                gridPane.add(rect, columIndex, rowIndex);
+            }
         });
 
-        Scene scene = new Scene(board, Color.WHITESMOKE);
+        Scene scene = new Scene(gridPane, Color.WHITESMOKE);
         stage.setTitle("ChessBoard");
         stage.setScene(scene);
         stage.show();
     }
 
+    private GridPane createAndFillBoard(int size) {
+
+        gridPane = new GridPane();
+
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col++) {
+                Rectangle r = new Rectangle(col * SIZE,row * SIZE , SIZE, SIZE);
+                r.setFill( (col + row) % 2 == 0 ? Color.BEIGE : Color.BLUE);
+                gridPane.addRow(row,r);
+            }
+        }
+
+        return gridPane;
+    }
     @Override
     public Point getInput(Player player) {
         return null;
@@ -107,7 +113,9 @@ public class GUI extends Application implements UserInterface{
     public int initialize() {
         HBox initPane = new HBox();
         Button startButton = new Button("Start");
-        startButton.setOnAction((ActionEvent e) -> initUI());
+        startButton.setOnAction((ActionEvent e) -> {
+            int size = askSize();
+            initUI(size);});
         Button endButton = new Button("Quit");
         endButton.setOnAction((ActionEvent e) -> Platform.exit());
         Button rulesButton = new Button("Rules");
