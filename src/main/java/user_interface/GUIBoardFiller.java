@@ -52,6 +52,8 @@ public class GUIBoardFiller {
             gridPane.getRowConstraints().add(rc);
         }*/
 
+        //TODO: renderlo più carino con un po' di pad e aggiungere funzione per switchare,
+        // o mappa per leggere la rappresentazione da ConsoleCellRepresentation.
         Text p1 = new Text("PlayerOne: " + "\u25CF");
         Text p2 = new Text("PlayerTwo: "+ "\u25CB" );
         Rectangle r = new Rectangle(boardSize * tileSize,0 , tileSize, tileSize);
