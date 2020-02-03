@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
-public class GUI extends Application implements UserInterface{
+public class GUI extends Application {
     private final int SIZE = 50;
     private Stage stage;
     private GridPane gridPane;
@@ -35,7 +35,7 @@ public class GUI extends Application implements UserInterface{
 
     public void initUI(int size) {
 
-        gridPane = createAndFillBoard(size);
+        gridPane = GUIBoardFiller.createAndFillBoard(size, SIZE);
         supervisor = new Supervisor(size);
         gridPane.setOnMouseClicked(e -> inputHandler(e.getX(), e.getY()));
 
@@ -82,51 +82,14 @@ public class GUI extends Application implements UserInterface{
             supervisor.performPassRule();
             GUIMessageWriter.notifyPass();
         }
-
-
-
     }
 
-    private GridPane createAndFillBoard(int size) {
-
-        gridPane = new GridPane();
-
-
-        for (int row = 0; row < size; row++) {
-            for (int col = 0; col < size; col++) {
-                Rectangle r = new Rectangle(col * SIZE,row * SIZE , SIZE, SIZE);
-                r.setFill( (col + row) % 2 == 0 ? Color.PALEVIOLETRED : Color.DARKSEAGREEN);
-                gridPane.addRow(row,r);
-            }
-        }
-        /*for (int x = 0 ; x < size ; x++) {
-            ColumnConstraints cc = new ColumnConstraints();
-            cc.setPercentWidth(100.0 / (size));
-            cc.setFillWidth(true);
-            gridPane.getColumnConstraints().add(cc);
-        }
-
-        // row constraints:
-        for (int y = 0 ; y < size; y++) {
-            RowConstraints rc = new RowConstraints();
-            rc.setPercentHeight(100.0 / (size));
-            rc.setFillHeight(true);
-            gridPane.getRowConstraints().add(rc);
-        }*/
-
-        return gridPane;
-    }
     @Override
     public void stop(){
         Platform.exit();
     }
 
-    @Override
-    public Point getInput(Player player) {
-        return null;
-    }
 
-    @Override
     public boolean askPieRule() {
         // TODO: aggiungere delay
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -142,11 +105,7 @@ public class GUI extends Application implements UserInterface{
 
     }
 
-    @Override
-    public void notifyEndGame(Player player) {
-    }
 
-    @Override
     public int askSize() {
         int size = 11;
         TextInputDialog dialog = new TextInputDialog(Integer.toString(size));
@@ -162,20 +121,7 @@ public class GUI extends Application implements UserInterface{
         return 0;
     }
 
-    @Override
-    public void notifyPass() {
-    }
 
-    @Override
-    public void display(Board board) {
-
-    }
-
-    @Override
-    public void notifyInvalidMove() {
-    }
-
-    @Override
     public int initialize() {
         HBox initPane = new HBox();
         Button startButton = new Button("Start");
