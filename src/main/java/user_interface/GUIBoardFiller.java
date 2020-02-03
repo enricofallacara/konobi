@@ -1,9 +1,13 @@
 package user_interface;
 
+import core.Player;
 import core.Supervisor;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 import java.util.HashMap;
@@ -54,10 +58,12 @@ public class GUIBoardFiller {
         put(core.Color.white, Color.WHITE);
     }};
 
-    public void addTile(GridPane gridPane, int X, int Y, Supervisor supervisor) {
-        Rectangle rect = new Rectangle(X * tileSize, Y * tileSize, tileSize -12, tileSize -12);
-        rect.setFill(colorPaintMap.get(supervisor.getLastPlayer().getColor()));
-        gridPane.add(rect, X, Y);
+    public void addTile(GridPane gridPane, int X, int Y, Player player) {
+        Circle stone = new Circle(X * tileSize, Y * tileSize, tileSize*0.4);
+        stone.setFill(colorPaintMap.get(player.getColor()));
+        GridPane.setHalignment(stone, HPos.CENTER); // To align horizontally in the cell
+        GridPane.setValignment(stone, VPos.CENTER); // To align vertically in the cell
+        gridPane.add(stone, X, Y);
 
     }
 }
