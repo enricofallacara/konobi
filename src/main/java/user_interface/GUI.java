@@ -57,7 +57,7 @@ public class GUI extends Application {
             return;
         }
 
-        boardFiller.addTile(gridPane, columnIndex, rowIndex, supervisor.getLastPlayer());
+        boardFiller.addPiece(gridPane, columnIndex, rowIndex, supervisor.getLastPlayer());
 
         if(Rulebook.queryRule(supervisor, EndGameRule::new)){
             GUIMessageWriter.notifyEndGame(supervisor.getLastPlayer());

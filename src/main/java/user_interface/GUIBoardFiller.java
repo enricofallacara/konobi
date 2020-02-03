@@ -58,12 +58,12 @@ public class GUIBoardFiller {
         put(core.Color.white, Color.WHITE);
     }};
 
-    public void addTile(GridPane gridPane, int X, int Y, Player player) {
-        Circle stone = new Circle(X * tileSize, Y * tileSize, tileSize*0.4);
-        stone.setFill(colorPaintMap.get(player.getColor()));
-        GridPane.setHalignment(stone, HPos.CENTER); // To align horizontally in the cell
-        GridPane.setValignment(stone, VPos.CENTER); // To align vertically in the cell
-        gridPane.add(stone, X, Y);
+    public void addPiece(GridPane gridPane, int X, int Y, Player player) {
+        Circle piece = new Circle(X * tileSize, Y * tileSize, tileSize*0.4);
+        piece.setFill(colorPaintMap.get(player.getColor()));
+        GridPane.setHalignment(piece, HPos.CENTER); // To align horizontally in the cell
+        GridPane.setValignment(piece, VPos.CENTER); // To align vertically in the cell
+        gridPane.add(piece, X, Y);
 
     }
 }
