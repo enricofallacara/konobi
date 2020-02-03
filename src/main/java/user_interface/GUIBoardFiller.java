@@ -1,15 +1,18 @@
 package user_interface;
 
 import core.Player;
-import core.Supervisor;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,6 +51,12 @@ public class GUIBoardFiller {
             rc.setFillHeight(true);
             gridPane.getRowConstraints().add(rc);
         }*/
+
+        Text p1 = new Text("PlayerOne: " + "\u25CF");
+        Text p2 = new Text("PlayerTwo: "+ "\u25CB" );
+        Rectangle r = new Rectangle(boardSize * tileSize,0 , tileSize, tileSize);
+        gridPane.add(p1, boardSize + 1, 0, 2, 1);
+        gridPane.add(p2, boardSize + 1, 1, 2, 1);
 
         return gridPane;
     }
