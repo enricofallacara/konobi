@@ -17,6 +17,7 @@ import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 public class GUI extends Application implements UserInterface{
     private final int SIZE = 50;
@@ -36,7 +37,6 @@ public class GUI extends Application implements UserInterface{
         gridPane = createAndFillBoard(size);
         supervisor = new Supervisor(size);
         gridPane.setOnMouseClicked(e -> inputHandler(e.getX(), e.getY()));
-
 
         Scene scene = new Scene(gridPane, Color.WHITESMOKE);
         stage.setTitle("ChessBoard");
@@ -58,6 +58,7 @@ public class GUI extends Application implements UserInterface{
     private void inputHandler(double X, double Y) {
         int columnIndex = coordinateConversion(X);
         int rowIndex = coordinateConversion(Y);
+
 
         if(!supervisor.newMove(new Point(columnIndex, rowIndex))) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -81,7 +82,10 @@ public class GUI extends Application implements UserInterface{
             alert.showAndWait();
             stop();
         }
-       // supervisor.currentPlayer = supervisor.getLastPlayer();
+        if(Rulebook.queryRule(supervisor, PieRule::new) && askPieRule()){
+            supervisor.performPieRule();
+        }
+
 
 
     }
@@ -113,7 +117,18 @@ public class GUI extends Application implements UserInterface{
 
     @Override
     public boolean askPieRule() {
-        return false;
+        // TODO: aggiungere delay
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Pie Rule Dialog");
+        alert.setContentText("PlayerTwo: Do you want to apply the Pie Rule?");
+        alert.setHeaderText(null);
+
+        ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Yes");
+        ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("No");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.filter(buttonType -> buttonType == ButtonType.OK).isPresent();
+
     }
 
     @Override
