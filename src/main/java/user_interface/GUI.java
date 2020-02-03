@@ -9,21 +9,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.awt.Point;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 public class GUI extends Application {
-    private final int SIZE = 50;
+    private final int TILESIZE = 50;
     private Stage stage;
     private GridPane gridPane;
     private Supervisor supervisor;
+    private GUIBoardFiller boardFiller;
 
 
     @Override
@@ -33,37 +28,23 @@ public class GUI extends Application {
         initialize();
     }
 
-    public void initUI(int size) {
+    public void initUI(int boardSize) {
 
-        supervisor = new Supervisor(size);
-        GUIBoardFiller boardFiller = new GUIBoardFiller(size, SIZE);
+        supervisor = new Supervisor(boardSize);
+        boardFiller = new GUIBoardFiller(boardSize, TILESIZE);
 
-        gridPane = boardFiller.createAndFillBoard();
+        gridPane = boardFiller.createEmptyBoard();
+
         gridPane.setOnMouseClicked(e -> inputHandler(e.getX(), e.getY()));
 
         Scene scene = new Scene(gridPane, Color.WHITESMOKE);
-
         stage.setTitle("ChessBoard");
         stage.setScene(scene);
         stage.show();
     }
 
     private int coordinateConversion(double coordinate) {
-        return (int)coordinate/SIZE;
-    }
-
-
-    // TODO: ha senso metterla nella classe Cell o in una nuova classe?
-    private static final Map<core.Color, Paint> colorPaintMap = new HashMap<>() {{
-        put(core.Color.black, Color.BLACK);
-        put(core.Color.white, Color.WHITE);
-    }};
-
-    public void addTile(GridPane gridPane, int X, int Y, Supervisor supervisor) {
-        Rectangle rect = new Rectangle(X * SIZE, Y * SIZE, SIZE-12, SIZE-12);
-        rect.setFill(colorPaintMap.get(supervisor.getLastPlayer().getColor()));
-        gridPane.add(rect, X, Y);
-
+        return (int)coordinate/ TILESIZE;
     }
 
     private void inputHandler(double X, double Y) {
@@ -76,12 +57,7 @@ public class GUI extends Application {
             return;
         }
 
-        /*
-        Rectangle rect = new Rectangle(X * SIZE, Y * SIZE, SIZE-12, SIZE-12);
-        rect.setFill(colorPaintMap.get(supervisor.getLastPlayer().getColor()));
-        gridPane.add(rect, columnIndex, rowIndex);
-         */
-        addTile(gridPane, columnIndex, rowIndex, supervisor);
+        boardFiller.addTile(gridPane, columnIndex, rowIndex, supervisor);
 
         if(Rulebook.queryRule(supervisor, EndGameRule::new)){
             GUIMessageWriter.notifyEndGame(supervisor.getLastPlayer());

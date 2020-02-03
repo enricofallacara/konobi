@@ -1,8 +1,13 @@
 package user_interface;
 
+import core.Supervisor;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class GUIBoardFiller {
 
@@ -14,7 +19,7 @@ public class GUIBoardFiller {
         tileSize = tS;
     }
 
-    public GridPane createAndFillBoard() {
+    public GridPane createEmptyBoard() {
 
         GridPane gridPane = new GridPane();
 
@@ -41,5 +46,18 @@ public class GUIBoardFiller {
         }*/
 
         return gridPane;
+    }
+
+    // TODO: ha senso metterla nella classe Cell o in una nuova classe?
+    private static final Map<core.Color, Paint> colorPaintMap = new HashMap<>() {{
+        put(core.Color.black, Color.BLACK);
+        put(core.Color.white, Color.WHITE);
+    }};
+
+    public void addTile(GridPane gridPane, int X, int Y, Supervisor supervisor) {
+        Rectangle rect = new Rectangle(X * tileSize, Y * tileSize, tileSize -12, tileSize -12);
+        rect.setFill(colorPaintMap.get(supervisor.getLastPlayer().getColor()));
+        gridPane.add(rect, X, Y);
+
     }
 }
