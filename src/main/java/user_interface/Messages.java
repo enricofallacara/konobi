@@ -15,5 +15,7 @@ public class Messages {
                                         "| |\\  \\ (_) | | | | (_) | |_) | |\n" +
                                         "\\_| \\_/\\___/|_| |_|\\___/|_.__/|_|\n" +
                                         "                                 ";
+    public final static String invalidIntegerInput = "Invalid input, please insert a valid integer!";
+    public final static String askSize = "Invalid input, please insert a valid integer!";
 
 }

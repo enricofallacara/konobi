@@ -24,7 +24,7 @@ public class ConsoleInputHandler {
     public int checkValidInteger(){
         //TODO: potrebbe essere trattata come eccezione?
         while(!scanner.hasNextInt()){
-            System.out.println("Invalid input, please insert a valid integer!");
+            System.out.println(Messages.invalidIntegerInput);
             scanner.next();
         }
         return scanner.nextInt();
@@ -34,7 +34,7 @@ public class ConsoleInputHandler {
         int size;
 
         do {
-            System.out.println("Enter the Size of the Board (the grid must be, at least, 3x3!)");
+            System.out.println(Messages.askSize);
             size = checkValidInteger();
         } while( size <= 2 );
 
