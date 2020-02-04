@@ -3,9 +3,11 @@ package user_interface;
 import core.*;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -20,6 +22,7 @@ public class GUI extends Application {
     private final int TILESIZE = 50;
     private Stage stage;
     private GridPane gridBoard;
+    private GridPane labelBoard;
     private Supervisor supervisor;
     private GUIBoardFiller boardFiller;
 
@@ -46,12 +49,13 @@ public class GUI extends Application {
         gridBoard = boardFiller.createEmptyBoard();
         gridBoard.setGridLinesVisible(true);
 
+        labelBoard = boardFiller.createLabelPane();
         GUIInputHandler inputHandler = new GUIInputHandler(this);
         gridBoard.setOnMouseClicked(inputHandler);
 
         pane.add(gridBoard, 0, 0);
+        pane.add(labelBoard, 0, 1);
 
-        pane.add(boardFiller.createLabelPane(), 0, 1);
 
 
         Scene scene = new Scene(pane, Color.WHITESMOKE);
@@ -81,6 +85,13 @@ public class GUI extends Application {
         button.setPrefWidth(width);
         button.setPrefHeight(height);
         return button;
+    }
+
+    public void switchLablesColors(){
+        Circle cBLACK = (Circle) labelBoard.getChildren().get(2);
+        cBLACK.setFill(Color.WHITE);
+        Circle cWhite = (Circle) labelBoard.getChildren().get(3);
+        cWhite.setFill(Color.BLACK);
     }
 
 
@@ -124,6 +135,7 @@ public class GUI extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
 }
 
 
