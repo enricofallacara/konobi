@@ -3,6 +3,7 @@ package user_interface;
 import core.Player;
 
 import java.awt.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static user_interface.ConsoleMessageWriter.displayPlayer;
@@ -20,9 +21,8 @@ public class ConsoleInputHandler {
         return answer.toLowerCase().equals("y");
     }
 
-    public int checkInput(String message){
+    public int checkValidInteger(){
         //TODO: potrebbe essere trattata come eccezione?
-        System.out.println(message);
         while(!scanner.hasNextInt()){
             System.out.println("Invalid input, please insert a valid integer!");
             scanner.next();
@@ -31,13 +31,12 @@ public class ConsoleInputHandler {
     }
 
     public int askSize() {
-        //TODO: forse la size <= 2 può essere gestita diversamente?
-
         int size;
 
-        do{
-            size = checkInput("Enter the Size of the Board (the grid must be, at least, 3x3!)");
-        }while( size <= 2);
+        do {
+            System.out.println("Enter the Size of the Board (the grid must be, at least, 3x3!)");
+            size = checkValidInteger();
+        } while( size <= 2 );
 
         return size;
     }
@@ -45,9 +44,9 @@ public class ConsoleInputHandler {
     public Point getInput(Player player) {
         displayPlayer(player);
         ConsoleMessageWriter.getXInputMessage();
-        int newX = checkInput("");
+        int newX = checkValidInteger();
         ConsoleMessageWriter.getYInputMessage();
-        int newY = checkInput("");
+        int newY = checkValidInteger();
         return new Point(newX, newY);
     }
 }
