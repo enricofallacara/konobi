@@ -10,7 +10,7 @@ public class GUIInputHandler implements EventHandler<MouseEvent> {
     private GUI gui;
 
     public GUIInputHandler(GUI g) { gui = g; }
-    // TODO: Long Method smell
+
     @Override
     public void handle(MouseEvent event) {
         Supervisor supervisor = gui.getSupervisor();
@@ -23,18 +23,8 @@ public class GUIInputHandler implements EventHandler<MouseEvent> {
         }
 
         gui.getBoardFiller().addPiece(gui.getGridBoard(), columnIndex, rowIndex, supervisor.getLastPlayer());
-
-        if(Rulebook.queryRule(supervisor, EndGameRule::new)){
-            GUIMessageWriter.notifyEndGame(supervisor.getLastPlayer());
-            gui.stop();
-        }
-        if(Rulebook.queryRule(supervisor, PieRule::new) && GUIAsker.askPieRule()){
-            supervisor.performPieRule();
-            gui.switchLabelsColors();
-        }
-        if(Rulebook.queryRule(supervisor, PassRule::new) ){
-            supervisor.performPassRule();
-            GUIMessageWriter.notifyPass();
-        }
+        gui.getGridBoard().fireEvent(new EndGameEvent());
+        gui.getGridBoard().fireEvent(new PassRuleEvent());
+        gui.getGridBoard().fireEvent(new PieRuleEvent());
     }
 }

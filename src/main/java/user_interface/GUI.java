@@ -3,11 +3,9 @@ package user_interface;
 import core.*;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -52,6 +50,12 @@ public class GUI extends Application {
         GridPane labelBoard = boardFiller.createLabelPane();
         GUIInputHandler inputHandler = new GUIInputHandler(this);
         gridBoard.setOnMouseClicked(inputHandler);
+        GUIEndGameHandler endGameHandler = new GUIEndGameHandler(this);
+        gridBoard.addEventHandler(EndGameEvent.END_GAME_EVENT_TYPE, endGameHandler);
+        GUIPassRuleHandler passRuleHandler = new GUIPassRuleHandler(this);
+        gridBoard.addEventHandler(PassRuleEvent.PASS_RULE_EVENT_TYPE, passRuleHandler);
+        GUIPieRuleHandler pieRuleHandler = new GUIPieRuleHandler(this);
+        gridBoard.addEventHandler(PieRuleEvent.PIE_RULE_EVENT_TYPE, pieRuleHandler);
 
         gridPane.add(gridBoard, 0, 0);
         gridPane.add(labelBoard, 0, 1);
