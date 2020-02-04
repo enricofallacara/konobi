@@ -2,11 +2,7 @@ package user_interface;
 
 import core.*;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
 import java.awt.Point;
 
@@ -34,7 +30,7 @@ public class GUIInputHandler implements EventHandler<MouseEvent> {
         }
         if(Rulebook.queryRule(supervisor, PieRule::new) && GUIAsker.askPieRule()){
             supervisor.performPieRule();
-            gui.switchLablesColors();
+            gui.switchLabelsColors();
         }
         if(Rulebook.queryRule(supervisor, PassRule::new) ){
             supervisor.performPassRule();

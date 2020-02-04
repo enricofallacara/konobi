@@ -21,12 +21,12 @@ import javafx.stage.Stage;
 public class GUI extends Application {
     private final int TILESIZE = 50;
     private Stage stage;
-    private GridPane gridBoard;
-    private GridPane labelBoard;
+    private GridPane gridPane;
     private Supervisor supervisor;
     private GUIBoardFiller boardFiller;
 
-    public GridPane getGridBoard() { return gridBoard; }
+    public GridPane getGridBoard() { return (GridPane)gridPane.getChildren().get(0); }
+    public GridPane getLabelBoard() { return (GridPane)gridPane.getChildren().get(1); }
     public Supervisor getSupervisor() { return supervisor; }
     public GUIBoardFiller getBoardFiller() { return boardFiller; }
 
@@ -40,25 +40,25 @@ public class GUI extends Application {
 
     public void initUI(int boardSize) {
 
-        GridPane pane = new GridPane();
-        pane.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-        pane.setVgap(20);
+        gridPane = new GridPane();
+        gridPane.setBackground(new Background(new BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+        gridPane.setVgap(20);
         supervisor = new Supervisor(boardSize);
         boardFiller = new GUIBoardFiller(boardSize, TILESIZE);
 
-        gridBoard = boardFiller.createEmptyBoard();
+        GridPane gridBoard = boardFiller.createEmptyBoard();
         gridBoard.setGridLinesVisible(true);
 
-        labelBoard = boardFiller.createLabelPane();
+        GridPane labelBoard = boardFiller.createLabelPane();
         GUIInputHandler inputHandler = new GUIInputHandler(this);
         gridBoard.setOnMouseClicked(inputHandler);
 
-        pane.add(gridBoard, 0, 0);
-        pane.add(labelBoard, 0, 1);
+        gridPane.add(gridBoard, 0, 0);
+        gridPane.add(labelBoard, 0, 1);
 
 
 
-        Scene scene = new Scene(pane, Color.WHITESMOKE);
+        Scene scene = new Scene(gridPane, Color.WHITESMOKE);
         // TODO: questo risolve automaticamente il problema del resize, ma bisogna importare il jar
         /*SceneSizeChangeListener sizeListener = new SceneSizeChangeListener(scene, ratio, initHeight, initWidth, contentPane);
         scene.widthProperty().addListener(sizeListener);
@@ -87,7 +87,8 @@ public class GUI extends Application {
         return button;
     }
 
-    public void switchLablesColors(){
+    public void switchLabelsColors(){
+        GridPane labelBoard = getLabelBoard();
         Circle cBLACK = (Circle) labelBoard.getChildren().get(2);
         cBLACK.setFill(Color.WHITE);
         Circle cWhite = (Circle) labelBoard.getChildren().get(3);
