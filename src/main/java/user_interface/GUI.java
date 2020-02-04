@@ -20,6 +20,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.util.function.Consumer;
+import java.util.function.Function;
+
 
 public class GUI extends Application {
     private final int TILESIZE = 50;
@@ -84,10 +88,11 @@ public class GUI extends Application {
         Platform.exit();
     }
 
-    public Button createButton(String text, int width, int height) {
+    public Button cretaeAndSetButton(String text, int width, int height, EventHandler<ActionEvent> handler) {
         Button button = new Button(text);
         button.setPrefWidth(width);
         button.setPrefHeight(height);
+        button.setOnAction(handler);
         return button;
     }
 
@@ -115,16 +120,13 @@ public class GUI extends Application {
         int width = 80;
         int height = 35;
 
-        Button startButton = createButton("Start", width, height);
-        startButton.setOnAction((ActionEvent e) -> {
+        Button startButton = cretaeAndSetButton("Start", width, height, (ActionEvent e) -> {
             int size = GUIAsker.askSize();
             initUI(size);});
 
-        Button endButton = createButton("Exit", width, height);
-        endButton.setOnAction((ActionEvent e) -> stop());
+        Button endButton = cretaeAndSetButton("Exit", width, height, (ActionEvent e) -> stop());
 
-        Button rulesButton = createButton("Rules", width, height);
-        rulesButton.setOnAction((ActionEvent e) -> getHostServices().showDocument("https://boardgamegeek.com/boardgame/123213/konobi"));
+        Button rulesButton = cretaeAndSetButton("Rules", width, height, (ActionEvent e) -> getHostServices().showDocument("https://boardgamegeek.com/boardgame/123213/konobi"));
 
         HBox hBox = new HBox();
         hBox.getChildren().addAll(startButton, endButton, rulesButton);
