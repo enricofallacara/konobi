@@ -14,9 +14,11 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.awt.Point;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.function.BinaryOperator;
 
 public class GUI extends Application {
     private final int TILESIZE = 50;
@@ -93,40 +95,44 @@ public class GUI extends Application {
     }
 
 
+    public Button createButton(String text, int width, int height) {
+        Button button = new Button(text);
+        button.setPrefWidth(width);
+        button.setPrefHeight(height);
+        return button;
+    }
 
 
     public void initialize() throws FileNotFoundException {
 
         Pane pane =  new Pane();
-        pane.setBackground(new Background(new BackgroundFill(Color.web("#FFFFFF"),CornerRadii.EMPTY, Insets.EMPTY)));
+        pane.setBackground(new Background(new BackgroundFill(Color.web("#FFFFFF"),
+                CornerRadii.EMPTY, new Insets(25, 25, 25, 25))));
 
-        Image image1 = new Image(new FileInputStream("logo.png"));
-        ImageView imgView = new ImageView(image1);
+        Image logo = new Image(new FileInputStream("logo.png"));
+        ImageView imgView = new ImageView(logo);
         imgView.setX(0);
         imgView.setY(5);
 
         pane.getChildren().add(imgView);
 
-        Button startButton = new Button("Start");
-        startButton.setPrefWidth(80);
-        startButton.setPrefHeight(35);
+        int width = 80;
+        int height = 35;
+
+        Button startButton = createButton("Start", width, height);
         startButton.setOnAction((ActionEvent e) -> {
             int size = GUIAsker.askSize();
             initUI(size);});
 
-        Button endButton = new Button("Quit");
-        endButton.setPrefWidth(80);
-        endButton.setPrefHeight(35);
+        Button endButton = createButton("Exit", width, height);
         endButton.setOnAction((ActionEvent e) -> Platform.exit());
 
-        Button rulesButton = new Button("Rules");
-        rulesButton.setPrefWidth(80);
-        rulesButton.setPrefHeight(35);
+        Button rulesButton = createButton("Rules", width, height);
         rulesButton.setOnAction((ActionEvent e) -> System.out.println("RULES NOT AVAILABLE YET"));
 
         HBox hBox = new HBox();
         hBox.setSpacing(15);
-        hBox.getChildren().addAll(startButton,endButton,rulesButton);
+        hBox.getChildren().addAll(startButton, endButton, rulesButton);
         hBox.setPadding(new Insets(25, 25, 25, 25));
         hBox.setLayoutX(60);
         hBox.setLayoutY(50);
