@@ -7,16 +7,13 @@ import user_interface.ConsoleMessageWriter;
 
 public class Konobi {
 
-    //Test
     Supervisor supervisor;
 
     ConsoleBoardWriter boardDisplayer = new ConsoleBoardWriter();
-    ConsoleMessageWriter messageWriter = new ConsoleMessageWriter();
     ConsoleInputHandler inputHandler = new ConsoleInputHandler();
 
     public Konobi() {
-        // TODO: Forse ha senso dividere initalise() e askSize();
-        messageWriter.printLogo();
+        ConsoleMessageWriter.printLogo();
         supervisor = new Supervisor(inputHandler.askSize());
     }
 
@@ -27,14 +24,14 @@ public class Konobi {
 
         boardDisplayer.displayBoard(supervisor.getBoard());
         Player winner = supervisor.getLastPlayer();
-        messageWriter.notifyEndGame(winner);
+        ConsoleMessageWriter.notifyEndGame(winner);
     }
 
     private void playTurn() {
         boardDisplayer.displayBoard(supervisor.getBoard());
         if (Rulebook.queryRule(supervisor, PassRule::new)) {
             supervisor.performPassRule();
-            messageWriter.notifyPass();
+            ConsoleMessageWriter.notifyPass();
             return;
         }
         if (Rulebook.queryRule(supervisor, PieRule::new) && inputHandler.askPieRule()) {
@@ -42,7 +39,7 @@ public class Konobi {
             return;
         }
         while (!supervisor.newMove(inputHandler.getInput(supervisor.getCurrentPlayer()))) {
-            messageWriter.notifyInvalidMove();
+            ConsoleMessageWriter.notifyInvalidMove();
         }
     }
 }

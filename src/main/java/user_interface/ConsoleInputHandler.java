@@ -3,10 +3,8 @@ package user_interface;
 import core.Player;
 
 import java.awt.*;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static user_interface.ConsoleMessageWriter.displayPlayer;
 
 public class ConsoleInputHandler {
 
@@ -21,7 +19,7 @@ public class ConsoleInputHandler {
         return answer.toLowerCase().equals("y");
     }
 
-    public int checkValidInteger(){
+    public int getInteger(){
         //TODO: potrebbe essere trattata come eccezione?
         while(!scanner.hasNextInt()){
             System.out.println(Messages.invalidIntegerInput);
@@ -35,18 +33,18 @@ public class ConsoleInputHandler {
 
         do {
             System.out.println(Messages.askSize);
-            size = checkValidInteger();
+            size = getInteger();
         } while( size <= 2 );
 
         return size;
     }
 
     public Point getInput(Player player) {
-        displayPlayer(player);
+        ConsoleMessageWriter.displayPlayer(player);
         ConsoleMessageWriter.getXInputMessage();
-        int newX = checkValidInteger();
+        int newX = getInteger();
         ConsoleMessageWriter.getYInputMessage();
-        int newY = checkValidInteger();
+        int newY = getInteger();
         return new Point(newX, newY);
     }
 }
