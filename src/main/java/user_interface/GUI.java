@@ -3,19 +3,26 @@ package user_interface;
 import core.*;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import javax.swing.*;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 
 public class GUI extends Application {
@@ -30,7 +37,6 @@ public class GUI extends Application {
     public Supervisor getSupervisor() { return supervisor; }
     public GUIBoardFiller getBoardFiller() { return boardFiller; }
 
-
     @Override
     public void start(Stage primaryStage) {
         stage = primaryStage;
@@ -39,7 +45,6 @@ public class GUI extends Application {
     }
 
     public void initUI(int boardSize) {
-
         gridPane = new GridPane();
         gridPane.setBackground(new Background(new BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         gridPane.setVgap(20);
@@ -50,13 +55,14 @@ public class GUI extends Application {
         gridBoard.setGridLinesVisible(true);
 
         GridPane labelBoard = boardFiller.createLabelPane();
-        GUIInputHandler inputHandler = new GUIInputHandler(this);
-        gridBoard.setOnMouseClicked(inputHandler);
+
+        createAndSetHandlerOnNode(gridBoard, MouseEvent.MOUSE_CLICKED, new GUIMouseInputHandler(this));
+        createAndSetHandlerOnNode(gridBoard, EndGameEvent.END_GAME_EVENT_TYPE, new GUIEndGameHandler(this));
+        createAndSetHandlerOnNode(gridBoard, PassRuleEvent.PASS_RULE_EVENT_TYPE, new GUIPassRuleHandler(this));
+        createAndSetHandlerOnNode(gridBoard, PieRuleEvent.PIE_RULE_EVENT_TYPE, new GUIPieRuleHandler(this));
 
         gridPane.add(gridBoard, 0, 0);
         gridPane.add(labelBoard, 0, 1);
-
-
 
         Scene scene = new Scene(gridPane, Color.WHITESMOKE);
         // TODO: questo risolve automaticamente il problema del resize, ma bisogna importare il jar
@@ -64,12 +70,15 @@ public class GUI extends Application {
         scene.widthProperty().addListener(sizeListener);
         scene.heightProperty().addListener(sizeListener);*/
 
-
         stage.setTitle("ChessBoard");
         stage.setScene(scene);
         stage.show();
     }
-    // TODO: forse privato in GUIInputHandler
+
+    public <T extends Event> void createAndSetHandlerOnNode(Node source, EventType<T> eventType, EventHandler<? super T> eventHandler) {
+        source.addEventHandler(eventType, eventHandler);
+    }
+
     public int coordinateConversion(double coordinate) {
         return (int)coordinate / TILESIZE;
     }
@@ -79,11 +88,11 @@ public class GUI extends Application {
         Platform.exit();
     }
 
-
-    public Button createButton(String text, int width, int height) {
+    public Button cretaeAndSetButton(String text, int width, int height, EventHandler<ActionEvent> handler) {
         Button button = new Button(text);
         button.setPrefWidth(width);
         button.setPrefHeight(height);
+        button.setOnAction(handler);
         return button;
     }
 
@@ -96,9 +105,7 @@ public class GUI extends Application {
         cWhite.setFill(Color.BLACK);
     }
 
-
     public void initialize() {
-
         GridPane pane = new GridPane();
 
         pane.setPadding(new Insets(20, 20, 20, 20));
@@ -113,16 +120,13 @@ public class GUI extends Application {
         int width = 80;
         int height = 35;
 
-        Button startButton = createButton("Start", width, height);
-        startButton.setOnAction((ActionEvent e) -> {
+        Button startButton = cretaeAndSetButton("Start", width, height, (ActionEvent e) -> {
             int size = GUIAsker.askSize();
             initUI(size);});
 
-        Button endButton = createButton("Exit", width, height);
-        endButton.setOnAction((ActionEvent e) -> Platform.exit());
+        Button endButton = cretaeAndSetButton("Exit", width, height, (ActionEvent e) -> stop());
 
-        Button rulesButton = createButton("Rules", width, height);
-        rulesButton.setOnAction((ActionEvent e) -> getHostServices().showDocument("https://boardgamegeek.com/boardgame/123213/konobi"));
+        Button rulesButton = cretaeAndSetButton("Rules", width, height, (ActionEvent e) -> getHostServices().showDocument("https://boardgamegeek.com/boardgame/123213/konobi"));
 
         HBox hBox = new HBox();
         hBox.getChildren().addAll(startButton, endButton, rulesButton);
