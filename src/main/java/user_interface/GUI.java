@@ -28,7 +28,6 @@ public class GUI extends Application {
     public Supervisor getSupervisor() { return supervisor; }
     public GUIBoardFiller getBoardFiller() { return boardFiller; }
 
-
     @Override
     public void start(Stage primaryStage) {
         stage = primaryStage;
@@ -48,6 +47,7 @@ public class GUI extends Application {
         gridBoard.setGridLinesVisible(true);
 
         GridPane labelBoard = boardFiller.createLabelPane();
+
         GUIMouseInputHandler inputHandler = new GUIMouseInputHandler(this);
         gridBoard.setOnMouseClicked(inputHandler);
         GUIEndGameHandler endGameHandler = new GUIEndGameHandler(this);
@@ -73,7 +73,7 @@ public class GUI extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    // TODO: forse privato in GUIMouseInputHandler
+
     public int coordinateConversion(double coordinate) {
         return (int)coordinate / TILESIZE;
     }
@@ -82,7 +82,6 @@ public class GUI extends Application {
     public void stop(){
         Platform.exit();
     }
-
 
     public Button createButton(String text, int width, int height) {
         Button button = new Button(text);
@@ -99,7 +98,6 @@ public class GUI extends Application {
         Circle cWhite = (Circle) labelBoard.getChildren().get(3);
         cWhite.setFill(Color.BLACK);
     }
-
 
     public void initialize() {
 
