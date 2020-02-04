@@ -4,10 +4,15 @@ import core.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -36,7 +41,6 @@ public class GUI extends Application {
     }
 
     public void initUI(int boardSize) {
-
         gridPane = new GridPane();
         gridPane.setBackground(new Background(new BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         gridPane.setVgap(20);
@@ -48,19 +52,13 @@ public class GUI extends Application {
 
         GridPane labelBoard = boardFiller.createLabelPane();
 
-        GUIMouseInputHandler inputHandler = new GUIMouseInputHandler(this);
-        gridBoard.setOnMouseClicked(inputHandler);
-        GUIEndGameHandler endGameHandler = new GUIEndGameHandler(this);
-        gridBoard.addEventHandler(EndGameEvent.END_GAME_EVENT_TYPE, endGameHandler);
-        GUIPassRuleHandler passRuleHandler = new GUIPassRuleHandler(this);
-        gridBoard.addEventHandler(PassRuleEvent.PASS_RULE_EVENT_TYPE, passRuleHandler);
-        GUIPieRuleHandler pieRuleHandler = new GUIPieRuleHandler(this);
-        gridBoard.addEventHandler(PieRuleEvent.PIE_RULE_EVENT_TYPE, pieRuleHandler);
+        createAndSetHandlerOnNode(gridBoard, MouseEvent.MOUSE_CLICKED, new GUIMouseInputHandler(this));
+        createAndSetHandlerOnNode(gridBoard, EndGameEvent.END_GAME_EVENT_TYPE, new GUIEndGameHandler(this));
+        createAndSetHandlerOnNode(gridBoard, PassRuleEvent.PASS_RULE_EVENT_TYPE, new GUIPassRuleHandler(this));
+        createAndSetHandlerOnNode(gridBoard, PieRuleEvent.PIE_RULE_EVENT_TYPE, new GUIPieRuleHandler(this));
 
         gridPane.add(gridBoard, 0, 0);
         gridPane.add(labelBoard, 0, 1);
-
-
 
         Scene scene = new Scene(gridPane, Color.WHITESMOKE);
         // TODO: questo risolve automaticamente il problema del resize, ma bisogna importare il jar
@@ -68,10 +66,13 @@ public class GUI extends Application {
         scene.widthProperty().addListener(sizeListener);
         scene.heightProperty().addListener(sizeListener);*/
 
-
         stage.setTitle("ChessBoard");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public <T extends Event> void createAndSetHandlerOnNode(Node source, EventType<T> eventType, EventHandler<? super T> eventHandler) {
+        source.addEventHandler(eventType, eventHandler);
     }
 
     public int coordinateConversion(double coordinate) {
@@ -100,7 +101,6 @@ public class GUI extends Application {
     }
 
     public void initialize() {
-
         GridPane pane = new GridPane();
 
         pane.setPadding(new Insets(20, 20, 20, 20));
@@ -121,7 +121,7 @@ public class GUI extends Application {
             initUI(size);});
 
         Button endButton = createButton("Exit", width, height);
-        endButton.setOnAction((ActionEvent e) -> Platform.exit());
+        endButton.setOnAction((ActionEvent e) -> stop());
 
         Button rulesButton = createButton("Rules", width, height);
         rulesButton.setOnAction((ActionEvent e) -> getHostServices().showDocument("https://boardgamegeek.com/boardgame/123213/konobi"));

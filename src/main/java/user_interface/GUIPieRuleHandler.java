@@ -1,6 +1,5 @@
 package user_interface;
 
-import core.PassRule;
 import core.PieRule;
 import core.Rulebook;
 import javafx.event.EventHandler;

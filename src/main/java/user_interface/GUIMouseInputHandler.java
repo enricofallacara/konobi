@@ -8,8 +8,7 @@ import java.awt.Point;
 public class GUIMouseInputHandler implements EventHandler<MouseEvent> {
     private GUI gui;
     // TODO: con questo design, sarebbe bello rimuovere la duplicazione sul costruttore e il
-    // membro privato degli Handler, ma la classe astratta non fa una bellissima figura perche
-    // bisognerebbe chiamare il costruttore
+    // membro privato degli Handler, ma la classe astratta non fa una bellissima figura
     public GUIMouseInputHandler(GUI g) { gui = g; }
 
     @Override
