@@ -48,7 +48,7 @@ public class GUI extends Application {
         gridBoard.setGridLinesVisible(true);
 
         GridPane labelBoard = boardFiller.createLabelPane();
-        GUIInputHandler inputHandler = new GUIInputHandler(this);
+        GUIMouseInputHandler inputHandler = new GUIMouseInputHandler(this);
         gridBoard.setOnMouseClicked(inputHandler);
         GUIEndGameHandler endGameHandler = new GUIEndGameHandler(this);
         gridBoard.addEventHandler(EndGameEvent.END_GAME_EVENT_TYPE, endGameHandler);
@@ -73,7 +73,7 @@ public class GUI extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    // TODO: forse privato in GUIInputHandler
+    // TODO: forse privato in GUIMouseInputHandler
     public int coordinateConversion(double coordinate) {
         return (int)coordinate / TILESIZE;
     }

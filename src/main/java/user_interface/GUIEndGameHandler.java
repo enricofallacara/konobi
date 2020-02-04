@@ -6,7 +6,7 @@ import javafx.event.EventHandler;
 
 public class GUIEndGameHandler implements EventHandler<EndGameEvent> {
     private GUI gui;
-    // TODO: con questo design, occorre una classe astratta con il costruttore in comune
+
     public GUIEndGameHandler(GUI g) { gui = g; }
 
     @Override
