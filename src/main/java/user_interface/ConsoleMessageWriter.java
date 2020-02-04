@@ -4,45 +4,37 @@ import core.Player;
 
 public class ConsoleMessageWriter {
 
-
     public void notifyInvalidMove() {
-        System.out.println("The Selected Position is Invalid!");
+        System.out.println(Messages.invalidMove);
     }
 
     public void printLogo() {
-        System.out.println(" _   __                  _     _ \n" +
-                "| | / /                 | |   (_)\n" +
-                "| |/ /  ___  _ __   ___ | |__  _ \n" +
-                "|    \\ / _ \\| '_ \\ / _ \\| '_ \\| |\n" +
-                "| |\\  \\ (_) | | | | (_) | |_) | |\n" +
-                "\\_| \\_/\\___/|_| |_|\\___/|_.__/|_|\n" +
-                "                                 ");
+        System.out.println(Messages.consoleLogo);
     }
 
     public static void displayPlayer(Player player) {
-        System.out.println(player.getName() + "'s turn! " +
-                ConsoleCellRepresentation.getRepresentation(player.getColor()));
+        System.out.println(String.format(Messages.playerTurn, player.getName(),
+                ConsoleCellRepresentation.getRepresentation(player.getColor())));
     }
 
     public void notifyEndGame(Player player) {
-        System.out.println("Winner: " + player.getName());
-        System.out.println("Color: " + player.getColor());
+        System.out.println(String.format(Messages.endGame, player.getName(), player.getColor()));
     }
 
     public void notifyPass() {
-        System.out.println("YOU SHALL PASS!");
+        System.out.println(Messages.pass);
     }
 
     public static void pieRuleMessage() {
-        System.out.println("Player two, do you want to apply the Pie Rule? (y/n)");
+        System.out.println(Messages.pieRule);
     }
 
     public static void getXInputMessage() {
-        System.out.println("Please insert next X coordinate: ");
+        System.out.println(Messages.xInput);
     }
 
     public static void getYInputMessage() {
-        System.out.println("Please insert next Y coordinate: ");
+        System.out.println(Messages.yInput);
     }
 
 }

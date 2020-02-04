@@ -14,10 +14,10 @@ public class ConsoleInputHandler {
     public ConsoleInputHandler() { scanner = new Scanner(System.in); }
 
     public boolean askPieRule() {
+        // TODO: eccezione se risponde qualcosa di diverso y/n.
         ConsoleMessageWriter.pieRuleMessage();
         String answer = scanner.next();
-        // TODO: e se scrive Y?
-        return answer.equals("y");
+        return answer.toLowerCase().equals("y");
     }
 
     public int checkInput(String message){
