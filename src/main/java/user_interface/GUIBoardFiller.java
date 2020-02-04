@@ -57,7 +57,6 @@ public class GUIBoardFiller {
     }
 
     public GridPane createLabelPane() {
-        // TODO: metodo per invertire i cerchietti colorati.
         GridPane gridLabels = new GridPane();
         gridLabels.setVgap(10);
 
