@@ -4,14 +4,18 @@ import core.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -33,7 +37,7 @@ public class GUI extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws FileNotFoundException {
+    public void start(Stage primaryStage) {
         stage = primaryStage;
         stage.setResizable(false);
         initialize();
@@ -103,18 +107,18 @@ public class GUI extends Application {
     }
 
 
-    public void initialize() throws FileNotFoundException {
+    public void initialize() {
 
-        Pane pane =  new Pane();
-        pane.setBackground(new Background(new BackgroundFill(Color.web("#FFFFFF"),
-                CornerRadii.EMPTY, new Insets(25, 25, 25, 25))));
+        GridPane pane = new GridPane();
 
-        Image logo = new Image(new FileInputStream("logo.png"));
-        ImageView imgView = new ImageView(logo);
-        imgView.setX(0);
-        imgView.setY(5);
+        pane.setPadding(new Insets(20, 20, 20, 20));
+        pane.setVgap(20);
 
-        pane.getChildren().add(imgView);
+        Text text = new Text("Konobi Game");
+        text.setFont(Font.font("Tahoma", 40));
+
+        pane.add(text, 0, 0 );
+        GridPane.setHalignment(text, HPos.CENTER);
 
         int width = 80;
         int height = 35;
@@ -131,13 +135,12 @@ public class GUI extends Application {
         rulesButton.setOnAction((ActionEvent e) -> System.out.println("RULES NOT AVAILABLE YET"));
 
         HBox hBox = new HBox();
-        hBox.setSpacing(15);
         hBox.getChildren().addAll(startButton, endButton, rulesButton);
-        hBox.setPadding(new Insets(25, 25, 25, 25));
-        hBox.setLayoutX(60);
-        hBox.setLayoutY(50);
 
-        pane.getChildren().add(hBox);
+        pane.add(hBox, 0, 1);
+        hBox.setSpacing(15);
+        GridPane.setHalignment(hBox, HPos.CENTER);
+
         Scene scene = new Scene(pane);
 
         stage.setTitle("Konobi");
