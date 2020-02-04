@@ -6,23 +6,14 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-import java.awt.Point;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.function.BinaryOperator;
 
 public class GUI extends Application {
     private final int TILESIZE = 50;
@@ -66,32 +57,7 @@ public class GUI extends Application {
     // TODO: forse privato in GUIInputHandler
     public int coordinateConversion(double coordinate) {
         return (int)coordinate / TILESIZE;
-    }/*
-
-    private void inputHandler(double X, double Y) {
-
-        int columnIndex = coordinateConversion(X);
-        int rowIndex = coordinateConversion(Y);
-
-        if(!supervisor.newMove(new Point(columnIndex, rowIndex))) {
-            GUIMessageWriter.notifyInvalidMove();
-            return;
-        }
-
-        boardFiller.addPiece(gridPane, columnIndex, rowIndex, supervisor.getLastPlayer());
-
-        if(Rulebook.queryRule(supervisor, EndGameRule::new)){
-            GUIMessageWriter.notifyEndGame(supervisor.getLastPlayer());
-            stop();
-        }
-        if(Rulebook.queryRule(supervisor, PieRule::new) && GUIAsker.askPieRule()){
-            supervisor.performPieRule();
-        }
-        if(Rulebook.queryRule(supervisor, PassRule::new) ){
-            supervisor.performPassRule();
-            GUIMessageWriter.notifyPass();
-        }
-    }*/
+    }
 
     @Override
     public void stop(){
