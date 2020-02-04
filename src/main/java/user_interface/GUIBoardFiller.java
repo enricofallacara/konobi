@@ -37,28 +37,6 @@ public class GUIBoardFiller {
                 gridPane.addRow(row,r);
             }
         }
-        /*for (int x = 0 ; x < size ; x++) {
-            ColumnConstraints cc = new ColumnConstraints();
-            cc.setPercentWidth(100.0 / (size));
-            cc.setFillWidth(true);
-            gridPane.getColumnConstraints().add(cc);
-        }
-
-        // row constraints:
-        for (int y = 0 ; y < size; y++) {
-            RowConstraints rc = new RowConstraints();
-            rc.setPercentHeight(100.0 / (size));
-            rc.setFillHeight(true);
-            gridPane.getRowConstraints().add(rc);
-        }*/
-
-        //TODO: renderlo più carino con un po' di pad e aggiungere funzione per switchare,
-        // o mappa per leggere la rappresentazione da ConsoleCellRepresentation.
-        Text p1 = new Text("PlayerOne: " + "\u25CF");
-        Text p2 = new Text("PlayerTwo: "+ "\u25CB" );
-        Rectangle r = new Rectangle(boardSize * tileSize,0 , tileSize, tileSize);
-        gridPane.add(p1, boardSize + 1, 0, 2, 1);
-        gridPane.add(p2, boardSize + 1, 1, 2, 1);
 
         return gridPane;
     }
@@ -76,5 +54,27 @@ public class GUIBoardFiller {
         GridPane.setValignment(piece, VPos.CENTER); // To align vertically in the cell
         gridPane.add(piece, X, Y);
 
+    }
+
+    public GridPane createLabelPane() {
+        GridPane gridLabels = new GridPane();
+        gridLabels.setVgap(10);
+
+        Text p1 = new Text("PlayerOne: ");
+        Text p2 = new Text("PlayerTwo: ");
+
+        gridLabels.add(p1, 0, 0);
+        gridLabels.add(p2, 0, 1);
+
+        Circle wCircle = new Circle(tileSize * 0.1);
+        Circle bCircle = new Circle(tileSize * 0.1);
+
+        wCircle.setFill(Color.BLACK);
+        bCircle.setFill(Color.WHITE);
+
+        gridLabels.add(wCircle, 1, 0);
+        gridLabels.add(bCircle, 1, 1);
+
+        return gridLabels;
     }
 }

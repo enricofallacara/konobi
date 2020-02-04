@@ -22,7 +22,7 @@ public class GUIInputHandler implements EventHandler<MouseEvent> {
             return;
         }
 
-        gui.getBoardFiller().addPiece(gui.getPane(), columnIndex, rowIndex, supervisor.getLastPlayer());
+        gui.getBoardFiller().addPiece(gui.getGridBoard(), columnIndex, rowIndex, supervisor.getLastPlayer());
 
         if(Rulebook.queryRule(supervisor, EndGameRule::new)){
             GUIMessageWriter.notifyEndGame(supervisor.getLastPlayer());

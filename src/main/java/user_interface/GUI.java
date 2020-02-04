@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -18,11 +19,11 @@ import javafx.stage.Stage;
 public class GUI extends Application {
     private final int TILESIZE = 50;
     private Stage stage;
-    private GridPane gridPane;
+    private GridPane gridBoard;
     private Supervisor supervisor;
     private GUIBoardFiller boardFiller;
 
-    public GridPane getPane() { return gridPane; }
+    public GridPane getGridBoard() { return gridBoard; }
     public Supervisor getSupervisor() { return supervisor; }
     public GUIBoardFiller getBoardFiller() { return boardFiller; }
 
@@ -36,20 +37,30 @@ public class GUI extends Application {
 
     public void initUI(int boardSize) {
 
+        GridPane pane = new GridPane();
+        pane.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+        pane.setVgap(20);
         supervisor = new Supervisor(boardSize);
         boardFiller = new GUIBoardFiller(boardSize, TILESIZE);
 
-        gridPane = boardFiller.createEmptyBoard();
-        gridPane.setGridLinesVisible(true);
+        gridBoard = boardFiller.createEmptyBoard();
+        gridBoard.setGridLinesVisible(true);
 
         GUIInputHandler inputHandler = new GUIInputHandler(this);
-        gridPane.setOnMouseClicked(inputHandler);
+        gridBoard.setOnMouseClicked(inputHandler);
 
-        Scene scene = new Scene(gridPane, Color.WHITESMOKE);
+        pane.add(gridBoard, 0, 0);
+
+        pane.add(boardFiller.createLabelPane(), 0, 1);
+
+
+        Scene scene = new Scene(pane, Color.WHITESMOKE);
         // TODO: questo risolve automaticamente il problema del resize, ma bisogna importare il jar
         /*SceneSizeChangeListener sizeListener = new SceneSizeChangeListener(scene, ratio, initHeight, initWidth, contentPane);
         scene.widthProperty().addListener(sizeListener);
         scene.heightProperty().addListener(sizeListener);*/
+
+
         stage.setTitle("ChessBoard");
         stage.setScene(scene);
         stage.show();
