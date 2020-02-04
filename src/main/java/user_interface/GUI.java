@@ -121,7 +121,7 @@ public class GUI extends Application {
         endButton.setOnAction((ActionEvent e) -> Platform.exit());
 
         Button rulesButton = createButton("Rules", width, height);
-        rulesButton.setOnAction((ActionEvent e) -> System.out.println("RULES NOT AVAILABLE YET"));
+        rulesButton.setOnAction((ActionEvent e) -> getHostServices().showDocument("https://boardgamegeek.com/boardgame/123213/konobi"));
 
         HBox hBox = new HBox();
         hBox.getChildren().addAll(startButton, endButton, rulesButton);
