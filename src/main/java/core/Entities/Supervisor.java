@@ -3,12 +3,11 @@ package core.Entities;
 import core.Rules.ValidPositionRule;
 
 import java.awt.*;
-
+// TODO: Supervisor dovrebbe diventare un GameStatus o StatusSupervisor
 public class Supervisor {
     private final Board board;
     private final Player playerOne;
     private final Player playerTwo;
-    // private final ArrayList<Point> moves;
     private Point currentPoint;
     private Color currentColor;
     private int nTurn;
@@ -19,7 +18,6 @@ public class Supervisor {
         playerTwo = new Player(Color.white, "playerTwo");
         currentColor = Color.black;
         nTurn = 1;
-        // moves = new ArrayList<>();
     }
 
     public Board getBoard() { return board; }
@@ -35,7 +33,6 @@ public class Supervisor {
     public int getTurn() { return nTurn; }
 
     private void updateStatus(Point newPoint) {
-        // moves.add(newPoint);
         board.setCell(newPoint, currentColor);
         currentColor = currentColor.getOppositeColor();
         nTurn++;
@@ -43,12 +40,10 @@ public class Supervisor {
 
     public boolean newMove(Point point){
         setCurrentPoint(point);
-
         if (Rulebook.queryRule(this, ValidPositionRule::new)) {
             updateStatus(point);
             return true;
         }
-
         return false;
     }
 
