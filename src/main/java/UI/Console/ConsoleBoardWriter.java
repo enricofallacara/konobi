@@ -1,4 +1,4 @@
-package user_interface;
+package UI.Console;
 
 import core.Board;
 import core.Cell;

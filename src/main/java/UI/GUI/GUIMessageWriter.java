@@ -1,5 +1,6 @@
-package user_interface;
+package UI.GUI;
 
+import UI.Messages;
 import core.Player;
 import javafx.scene.control.Alert;
 

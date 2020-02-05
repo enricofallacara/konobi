@@ -1,6 +1,6 @@
-package user_interface;
+package UI.GUI;
 
-import javafx.application.Platform;
+import UI.Messages;
 import javafx.scene.control.*;
 
 import java.util.ArrayList;

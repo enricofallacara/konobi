@@ -1,7 +1,7 @@
 package core;
 
 import javafx.application.Application;
-import user_interface.GUI;
+import UI.GUI.GUI;
 
 import java.util.Arrays;
 

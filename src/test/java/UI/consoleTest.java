@@ -1,9 +1,4 @@
-package user_interface;
-
-import core.Supervisor;
-import org.junit.Test;
-
-import java.awt.*;
+package UI;
 
 public class consoleTest {
 

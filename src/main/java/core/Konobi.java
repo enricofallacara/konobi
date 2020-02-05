@@ -1,9 +1,9 @@
 package core;
 
 
-import user_interface.ConsoleBoardWriter;
-import user_interface.ConsoleInputHandler;
-import user_interface.ConsoleMessageWriter;
+import UI.Console.ConsoleBoardWriter;
+import UI.Console.ConsoleInputHandler;
+import UI.Console.ConsoleMessageWriter;
 
 public class Konobi {
 

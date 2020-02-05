@@ -1,5 +1,6 @@
-package user_interface;
+package UI.Console;
 
+import UI.Messages;
 import core.Player;
 
 import java.awt.*;

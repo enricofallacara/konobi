@@ -1,4 +1,4 @@
-package user_interface;
+package UI;
 
 public class Messages {
     public final static String invalidMove = "Invalid move, try again!";

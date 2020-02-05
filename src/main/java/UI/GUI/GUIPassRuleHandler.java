@@ -1,4 +1,4 @@
-package user_interface;
+package UI.GUI;
 
 import core.PassRule;
 import core.Rulebook;

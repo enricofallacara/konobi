@@ -1,4 +1,5 @@
-package user_interface;
+package UI.GUI;
+
 
 import core.*;
 import javafx.application.Application;
@@ -15,14 +16,9 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import javax.swing.*;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 
 public class GUI extends Application {
@@ -131,6 +127,10 @@ public class GUI extends Application {
         stage.setTitle("Konobi");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static void main(String[] args) {
+        Application.launch(args);
     }
 
 }

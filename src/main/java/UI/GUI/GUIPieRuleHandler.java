@@ -1,4 +1,4 @@
-package user_interface;
+package UI.GUI;
 
 import core.PieRule;
 import core.Rulebook;

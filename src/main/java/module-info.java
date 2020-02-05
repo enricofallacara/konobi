@@ -4,5 +4,5 @@ module konobi.main {
     requires java.base;
     requires java.desktop;
 
-    opens user_interface;
+    opens UI.GUI;
 }
