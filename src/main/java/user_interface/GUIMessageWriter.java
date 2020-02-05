@@ -8,7 +8,7 @@ public class GUIMessageWriter {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Pass Rule Information");
                 alert.setHeaderText(null);
-                alert.setContentText("You shall pass!");
+                alert.setContentText(Messages.pass);
                 alert.showAndWait();
     }
 
@@ -16,7 +16,7 @@ public class GUIMessageWriter {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("End Game Information");
         alert.setHeaderText(null);
-        alert.setContentText(player.getName() + " has won!");
+        alert.setContentText(String.format(Messages.endGame, player.getName(), player.getColor()));
         alert.showAndWait();
     }
 
@@ -24,7 +24,7 @@ public class GUIMessageWriter {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Invalid Move Information");
         alert.setHeaderText(null);
-        alert.setContentText("Invalid move! Try again!");
+        alert.setContentText(Messages.invalidMove);
         alert.showAndWait();
     }
 }

@@ -1,7 +1,7 @@
 package user_interface;
 
 public class Messages {
-    public final static String invalidMove = "The Selected Position is Invalid!";
+    public final static String invalidMove = "Invalid move, try again!";
     public final static String endGame = "Congratulations %s (color %s), you won!";
     public final static String playerTurn = "%s's turn! %s";
     public final static String pass = "YOU SHALL PASS";
@@ -16,6 +16,6 @@ public class Messages {
                                         "\\_| \\_/\\___/|_| |_|\\___/|_.__/|_|\n" +
                                         "                                 ";
     public final static String invalidIntegerInput = "Invalid input, please insert a valid integer!";
-    public final static String askSize = "Invalid input, please insert a valid integer!";
+    public final static String askSize = "Please Enter the Size of the Board (must be at least 3):";
 
 }

@@ -14,7 +14,7 @@ public class GUIAsker {
         // TODO: aggiungere delay
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Pie Rule Dialog");
-        alert.setContentText("PlayerTwo: Do you want to apply the Pie Rule?");
+        alert.setContentText(Messages.pieRule);
         alert.setHeaderText(null);
 
         ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Yes");
@@ -31,7 +31,8 @@ public class GUIAsker {
         TextInputDialog dialog = new TextInputDialog(Integer.toString(size));
         dialog.setTitle("Enter Size");
         dialog.setHeaderText(null);
-        dialog.setContentText("Please Enter the Size of the Board:");
+        //TODO: impedire di mettere < 3 come size.
+        dialog.setContentText(Messages.askSize);
         dialog.getDialogPane().lookupButton(ButtonType.CANCEL).setDisable(true);
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
