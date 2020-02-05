@@ -16,6 +16,6 @@ public class Messages {
                                         "\\_| \\_/\\___/|_| |_|\\___/|_.__/|_|\n" +
                                         "                                 ";
     public final static String invalidIntegerInput = "Invalid input, please insert a valid integer!";
-    public final static String askSize = "Please Enter the Size of the Board (must be at least 3):";
+    public final static String askSize = "Please choose the size of the board (between 3 and 11):";
 
 }
