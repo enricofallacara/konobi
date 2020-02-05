@@ -44,9 +44,6 @@ public class Supervisor {
     public boolean newMove(Point point){
         setCurrentPoint(point);
 
-        // TODO: le mosse invalide (sopra una pedina o fuori dalla board)
-        //       sarebbero più propriamente eccezioni?
-
         if (Rulebook.queryRule(this, ValidPositionRule::new)) {
             updateStatus(point);
             return true;

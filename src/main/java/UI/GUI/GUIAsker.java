@@ -10,7 +10,6 @@ import java.util.Optional;
 public class GUIAsker {
 
     public static boolean askPieRule() {
-        // TODO: aggiungere delay
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Pie Rule Dialog");
         alert.setContentText(Messages.pieRule);
@@ -36,20 +35,5 @@ public class GUIAsker {
 
         Optional<Integer> result = dialog.showAndWait();
         return result.orElse(11);
-
-        /*
-        int size = 11;
-        TextInputDialog dialog = new TextInputDialog(Integer.toString(size));
-        dialog.setTitle("Enter Size");
-        dialog.setHeaderText(null);
-        dialog.setContentText(Messages.askSize);
-        dialog.getDialogPane().lookupButton(ButtonType.CANCEL).setDisable(true);
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
-            return Integer.parseInt(result.get());
-        }
-        Platform.exit();
-        return 0;
-         */
     }
 }

@@ -68,10 +68,6 @@ public class GUI extends Application {
         gridPane.add(labelBoard, 0, 1);
 
         Scene scene = new Scene(gridPane, Color.WHITESMOKE);
-        // TODO: questo risolve automaticamente il problema del resize, ma bisogna importare il jar
-        /*SceneSizeChangeListener sizeListener = new SceneSizeChangeListener(scene, ratio, initHeight, initWidth, contentPane);
-        scene.widthProperty().addListener(sizeListener);
-        scene.heightProperty().addListener(sizeListener);*/
 
         stage.setTitle("ChessBoard");
         stage.setScene(scene);

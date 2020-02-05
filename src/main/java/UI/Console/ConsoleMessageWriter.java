@@ -5,8 +5,6 @@ import core.Entities.Player;
 
 public class ConsoleMessageWriter {
 
-    //TODO: devono essere tutte static o nessuna?
-
     public static void notifyInvalidMove() { System.out.println(Messages.invalidMove); }
 
     public static void printLogo() { System.out.println(Messages.consoleLogo); }

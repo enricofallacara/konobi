@@ -38,7 +38,7 @@ public class GUIBoardFiller {
         return gridPane;
     }
 
-    // TODO: ha senso metterla nella classe Cell o in una nuova classe?
+    // TODO: creare una classe, forse astrarre intergaccia con ConsoleCellRepresentation
     private static final Map<core.Entities.Color, Paint> colorPaintMap = new HashMap<>() {{
         put(core.Entities.Color.black, Color.BLACK);
         put(core.Entities.Color.white, Color.WHITE);
@@ -81,6 +81,7 @@ public class GUIBoardFiller {
         return gridLabels;
     }
 
+    // TODO: aggiungere commento spiegando a cosa corrispondono i get(3), i vari numerini
     public void switchLabelsColors( GridPane labelBoard ){
         Circle cBlack = (Circle) labelBoard.getChildren().get(3);
         cBlack.setFill(Color.WHITE);
@@ -92,10 +93,6 @@ public class GUIBoardFiller {
 
     public void switchLabelsCurrentPlayer(GridPane labelBoard ){
         Circle cCircle = (Circle) labelBoard.getChildren().get(5);
-        //TODO: per ottenere il colore nel modo corrente bisognerebbe passare il supervisor, ha senso?
-       if(cCircle.getFill() == Color.BLACK)
-           cCircle.setFill(Color.WHITE);
-       else
-            cCircle.setFill(Color.BLACK);
+       cCircle.setFill(cCircle.getFill() == Color.BLACK ? Color.WHITE : Color.BLACK);
     }
 }
