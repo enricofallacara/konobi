@@ -6,6 +6,7 @@ import core.Entities.Player;
 import core.Entities.Supervisor;
 import core.Rules.CrosscutRule;
 import core.Rules.EmptyRule;
+import core.Rules.ValidPositionRule;
 import core.Rules.WeakRule;
 import org.junit.Test;
 import java.awt.*;
@@ -38,14 +39,10 @@ public class validPositionRuleTest {
         assertFalse(board.getColoredNeighbours(point, 1, player, Board::isWeakNeighbour).isEmpty());
     }
 
-
     @Test
     public void emptyPositionRule() {
         Board board = new Board(11);
-        //Player player = new Player(Color.black);
-
         board.setCell(new Point(1, 2), core.Entities.Color.black);
-
         Point point = new Point(1, 2);
         assertFalse(EmptyRule.isValid(point, board));
     }
@@ -85,20 +82,18 @@ public class validPositionRuleTest {
         Supervisor supervisor = new Supervisor(11);
         Board board = supervisor.getBoard();
 
-        // Checkerboard setting.
         board.setCell(new Point(0, 0), core.Entities.Color.black);
         board.setCell(new Point(2, 1), core.Entities.Color.black);
         board.setCell(new Point(0, 1), core.Entities.Color.white);
         board.setCell(new Point(2, 2), Color.white);
 
-        // Legal example move.
-        Point point1 = new Point(1, 1);
-        assertTrue(supervisor.newMove(point1));
+        ValidPositionRule rule1 = new ValidPositionRule();
+        supervisor.setCurrentPoint(new Point(1, 1));
+        assertTrue(rule1.isValid(supervisor));
 
-        // Illegal example move.
-        Point point2 = new Point(1, 0);
-        assertFalse(supervisor.newMove(point2));
-
+        ValidPositionRule rule2 = new ValidPositionRule();
+        supervisor.setCurrentPoint(new Point(1, 0));
+        assertFalse(rule2.isValid(supervisor));
     }
 
 }
