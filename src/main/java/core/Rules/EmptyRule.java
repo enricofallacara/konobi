@@ -1,4 +1,7 @@
-package core;
+package core.Rules;
+
+import core.Entities.Board;
+import core.Entities.Supervisor;
 
 import java.awt.Point;
 

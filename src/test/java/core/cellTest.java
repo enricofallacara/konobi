@@ -1,5 +1,7 @@
 package core;
 
+import core.Entities.Cell;
+import core.Entities.Color;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

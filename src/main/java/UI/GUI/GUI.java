@@ -1,7 +1,14 @@
 package UI.GUI;
 
 
-import core.*;
+import UI.GUI.Events.EndGameEvent;
+import UI.GUI.Events.PassRuleEvent;
+import UI.GUI.Events.PieRuleEvent;
+import UI.GUI.Handlers.GUIEndGameHandler;
+import UI.GUI.Handlers.GUIMouseInputHandler;
+import UI.GUI.Handlers.GUIPassRuleHandler;
+import UI.GUI.Handlers.GUIPieRuleHandler;
+import core.Entities.Supervisor;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -61,10 +68,6 @@ public class GUI extends Application {
         gridPane.add(labelBoard, 0, 1);
 
         Scene scene = new Scene(gridPane, Color.WHITESMOKE);
-        // TODO: questo risolve automaticamente il problema del resize, ma bisogna importare il jar
-        /*SceneSizeChangeListener sizeListener = new SceneSizeChangeListener(scene, ratio, initHeight, initWidth, contentPane);
-        scene.widthProperty().addListener(sizeListener);
-        scene.heightProperty().addListener(sizeListener);*/
 
         stage.setTitle("ChessBoard");
         stage.setScene(scene);

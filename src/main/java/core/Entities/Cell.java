@@ -1,4 +1,4 @@
-package core;
+package core.Entities;
 
 import java.awt.Point;
 

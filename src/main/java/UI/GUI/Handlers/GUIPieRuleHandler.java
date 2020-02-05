@@ -1,7 +1,10 @@
-package UI.GUI;
+package UI.GUI.Handlers;
 
-import core.PieRule;
-import core.Rulebook;
+import UI.GUI.Events.PieRuleEvent;
+import UI.GUI.GUI;
+import UI.GUI.GUIAsker;
+import core.Rules.PieRule;
+import core.Entities.Rulebook;
 import javafx.event.EventHandler;
 
 public class GUIPieRuleHandler implements EventHandler<PieRuleEvent> {
@@ -13,7 +16,6 @@ public class GUIPieRuleHandler implements EventHandler<PieRuleEvent> {
     public void handle(PieRuleEvent event) {
         if (Rulebook.queryRule(gui.getSupervisor(), PieRule::new) && GUIAsker.askPieRule()){
             gui.getSupervisor().performPieRule();
-            //TODO: Ha senso così?
             gui.getBoardFiller().switchLabelsColors(gui.getLabelBoard());
         }
     }

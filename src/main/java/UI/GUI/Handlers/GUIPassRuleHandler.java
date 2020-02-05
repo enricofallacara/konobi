@@ -1,7 +1,10 @@
-package UI.GUI;
+package UI.GUI.Handlers;
 
-import core.PassRule;
-import core.Rulebook;
+import UI.GUI.Events.PassRuleEvent;
+import UI.GUI.GUI;
+import UI.GUI.GUIMessageWriter;
+import core.Rules.PassRule;
+import core.Entities.Rulebook;
 import javafx.event.EventHandler;
 
 public class GUIPassRuleHandler implements EventHandler<PassRuleEvent> {

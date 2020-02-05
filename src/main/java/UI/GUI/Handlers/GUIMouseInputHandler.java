@@ -1,5 +1,10 @@
-package UI.GUI;
+package UI.GUI.Handlers;
 
+import UI.GUI.Events.EndGameEvent;
+import UI.GUI.Events.PassRuleEvent;
+import UI.GUI.Events.PieRuleEvent;
+import UI.GUI.GUI;
+import UI.GUI.GUIMessageWriter;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
@@ -7,11 +12,7 @@ import java.awt.Point;
 
 public class GUIMouseInputHandler implements EventHandler<MouseEvent> {
     private GUI gui;
-    // TODO: con questo design, sarebbe bello rimuovere la duplicazione sul costruttore e il
-    // membro privato degli Handler, ma la classe astratta non fa una bellissima figura
-    // TODO: si potrebbe anche aggiungere un evento InvalidMove e un evento ValidMove che a
-    // a sua volta scatena a cascata tutti gli eventi di "cambio turno", anche se sarebbe un poco
-    // eccessivo
+    // TODO: stesso problema ocp di ValidPositionRule
     public GUIMouseInputHandler(GUI g) { gui = g; }
 
     @Override

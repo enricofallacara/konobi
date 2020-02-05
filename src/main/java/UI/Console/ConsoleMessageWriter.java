@@ -1,11 +1,9 @@
 package UI.Console;
 
 import UI.Messages;
-import core.Player;
+import core.Entities.Player;
 
 public class ConsoleMessageWriter {
-
-    //TODO: devono essere tutte static o nessuna?
 
     public static void notifyInvalidMove() { System.out.println(Messages.invalidMove); }
 

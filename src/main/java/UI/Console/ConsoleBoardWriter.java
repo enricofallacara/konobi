@@ -1,7 +1,7 @@
 package UI.Console;
 
-import core.Board;
-import core.Cell;
+import core.Entities.Board;
+import core.Entities.Cell;
 
 import java.awt.*;
 import java.util.stream.IntStream;

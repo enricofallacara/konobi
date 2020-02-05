@@ -1,4 +1,8 @@
 package core;
+import core.Entities.Board;
+import core.Entities.Cell;
+import core.Entities.Color;
+import core.Entities.Player;
 import org.junit.Test;
 
 import java.awt.Point;
@@ -46,7 +50,6 @@ public class boardTest {
         Board board = new Board(11);
         Point[] list = new Point[11 * 11];
         Point[] actual = new Point[11 * 11];
-        // TODO: cerca maniera di trasformare questo in funzionale
         int idx = 0;
         for(int i = 0; i < board.getSize(); i++){
             for(int j = 0; j < board.getSize(); j++){
@@ -55,7 +58,6 @@ public class boardTest {
             }
         }
         idx = 0;
-        // TODO: cerca maniera di trasformare questo in funzionale
         for(Cell c: board){
             actual[idx] = c.getCoordinates();
             idx++;
