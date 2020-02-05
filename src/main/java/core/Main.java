@@ -1,8 +1,18 @@
 package core;
 
+import javafx.application.Application;
+import user_interface.GUI;
+
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
-        Konobi game = new Konobi();
-        game.play();
+
+        if (Arrays.asList(args).contains("--gui")) {
+            new Thread(() -> Application.launch(GUI.class)).start();
+        } else {
+            Konobi game = new Konobi();
+            game.play();
+        }
     }
 }
