@@ -1,18 +1,12 @@
 package core.Rules;
 
 import core.Entities.Supervisor;
+import java.util.stream.Stream;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-// TODO: forse le regole potrebbero diventare funzioni di questa classe, non viola l'OCP,
-//  si evita di tenere un array di regole che a sua volta lo viola
 public class ValidPositionRule implements Rule {
-    private ArrayList<Rule> positionRules;
+    private Stream<Rule> positionRules;
 
-    public ValidPositionRule() {
-        positionRules = new ArrayList<>(Arrays.asList(new EmptyRule(), new CrosscutRule(), new WeakRule()));
-    }
+    public ValidPositionRule() { positionRules = ValidPositionRulesFactory.create(); }
 
     @Override
     public boolean isValid(Supervisor supervisor) {
@@ -20,6 +14,6 @@ public class ValidPositionRule implements Rule {
         //  oppure eccezione in console al momento dell'input
         if(!supervisor.getBoard().isOnBoard(supervisor.getCurrentPoint()))
             return false;
-        return positionRules.stream().allMatch(x -> x.isValid(supervisor));
+        return positionRules.allMatch(x -> x.isValid(supervisor));
     }
 }
