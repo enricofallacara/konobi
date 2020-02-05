@@ -7,5 +7,4 @@ public class Rulebook {
         return ruleSupplier.get().isValid(supervisor);
     }
 
-
 }

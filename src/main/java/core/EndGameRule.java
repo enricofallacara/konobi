@@ -19,11 +19,8 @@ public class EndGameRule implements Rule{
 
     public boolean isValid(Board board, Player player) {
         ArrayList<Cell> startingPoints = getStartingPoints(board, player);
-
         if (startingPoints.isEmpty()) { return false;}
-
         table.clear();
-
         return startingPoints.stream().anyMatch(x -> searchForEndingEdge(x, board, player));
     }
 
@@ -37,9 +34,7 @@ public class EndGameRule implements Rule{
 
     public boolean searchForEndingEdge(Cell current, Board board, Player player) {
         if (board.isOnEndingEdge(current.getCoordinates(), player)) { return true; }
-
         table.add(current);
-
         for (Cell neighbour : board.getColoredNeighbours(current.getCoordinates(), 1, player, (x, y) -> true)) {
            if (!table.contains(neighbour)) { return searchForEndingEdge(neighbour, board, player); }
         }

@@ -6,11 +6,9 @@ import UI.Console.ConsoleInputHandler;
 import UI.Console.ConsoleMessageWriter;
 
 public class Konobi {
-
-    Supervisor supervisor;
-
-    ConsoleBoardWriter boardDisplayer = new ConsoleBoardWriter();
-    ConsoleInputHandler inputHandler = new ConsoleInputHandler();
+    private Supervisor supervisor;
+    private ConsoleBoardWriter boardDisplayer = new ConsoleBoardWriter();
+    private ConsoleInputHandler inputHandler = new ConsoleInputHandler();
 
     public Konobi() {
         ConsoleMessageWriter.printLogo();
@@ -20,7 +18,7 @@ public class Konobi {
     public void play() {
         do {
             playTurn();
-        }while(!Rulebook.queryRule(supervisor, EndGameRule::new));
+        } while(!Rulebook.queryRule(supervisor, EndGameRule::new));
 
         boardDisplayer.displayBoard(supervisor.getBoard());
         Player winner = supervisor.getLastPlayer();
