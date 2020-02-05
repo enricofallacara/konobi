@@ -13,7 +13,8 @@ public class GUIPieRuleHandler implements EventHandler<PieRuleEvent> {
     public void handle(PieRuleEvent event) {
         if (Rulebook.queryRule(gui.getSupervisor(), PieRule::new) && GUIAsker.askPieRule()){
             gui.getSupervisor().performPieRule();
-            gui.switchLabelsColors();
+            //TODO: Ha senso così?
+            gui.getBoardFiller().switchLabelsColors(gui.getLabelBoard());
         }
     }
 }

@@ -96,15 +96,6 @@ public class GUI extends Application {
         return button;
     }
 
-    // TODO: forse messa in GUIBoardFiller?
-    public void switchLabelsColors(){
-        GridPane labelBoard = getLabelBoard();
-        Circle cBlack = (Circle) labelBoard.getChildren().get(2);
-        cBlack.setFill(Color.WHITE);
-        Circle cWhite = (Circle) labelBoard.getChildren().get(3);
-        cWhite.setFill(Color.BLACK);
-    }
-
     public void initialize() {
         GridPane pane = new GridPane();
 

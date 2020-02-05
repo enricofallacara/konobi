@@ -28,8 +28,11 @@ public class GUIMouseInputHandler implements EventHandler<MouseEvent> {
 
     private void updateGUIAndFireEvents(int columnIndex, int rowIndex) {
         gui.getBoardFiller().addPiece(gui.getGridBoard(), columnIndex, rowIndex, gui.getSupervisor().getLastPlayer());
+        gui.getBoardFiller().switchLabelsCurrentPlayer(gui.getLabelBoard());
+
         gui.getGridBoard().fireEvent(new EndGameEvent());
         gui.getGridBoard().fireEvent(new PassRuleEvent());
         gui.getGridBoard().fireEvent(new PieRuleEvent());
+
     }
 }

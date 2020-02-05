@@ -62,19 +62,43 @@ public class GUIBoardFiller {
 
         Text p1 = new Text("PlayerOne: ");
         Text p2 = new Text("PlayerTwo: ");
+        Text currentPlayer = new Text("Current Player: ");
 
         gridLabels.add(p1, 0, 0);
         gridLabels.add(p2, 0, 1);
+        gridLabels.add(currentPlayer, 0, 2);
 
         Circle wCircle = new Circle(tileSize * 0.1);
         Circle bCircle = new Circle(tileSize * 0.1);
+        Circle cCurrent = new Circle(tileSize * 0.1);
 
         wCircle.setFill(Color.BLACK);
         bCircle.setFill(Color.WHITE);
+        cCurrent.setFill(Color.BLACK);
 
         gridLabels.add(wCircle, 1, 0);
         gridLabels.add(bCircle, 1, 1);
+        gridLabels.add(cCurrent, 1, 2);
+
 
         return gridLabels;
+    }
+
+    public void switchLabelsColors( GridPane labelBoard ){
+        Circle cBlack = (Circle) labelBoard.getChildren().get(3);
+        cBlack.setFill(Color.WHITE);
+        Circle cWhite = (Circle) labelBoard.getChildren().get(4);
+        cWhite.setFill(Color.BLACK);
+    }
+
+
+
+    public void switchLabelsCurrentPlayer(GridPane labelBoard ){
+        Circle cCircle = (Circle) labelBoard.getChildren().get(5);
+        //TODO: per ottenere il colore nel modo corrente bisognerebbe passare il supervisor, ha senso?
+       if(cCircle.getFill() == Color.BLACK)
+           cCircle.setFill(Color.WHITE);
+       else
+            cCircle.setFill(Color.BLACK);
     }
 }
