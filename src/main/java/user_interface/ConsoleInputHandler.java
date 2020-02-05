@@ -34,7 +34,7 @@ public class ConsoleInputHandler {
         do {
             System.out.println(Messages.askSize);
             size = getInteger();
-        } while( size <= 2 );
+        } while( size <= 2 || size > 11 );
 
         return size;
     }
