@@ -1,4 +1,8 @@
 package core;
+import core.Entities.Board;
+import core.Entities.Cell;
+import core.Entities.Color;
+import core.Entities.Player;
 import org.junit.Test;
 
 import java.awt.Point;

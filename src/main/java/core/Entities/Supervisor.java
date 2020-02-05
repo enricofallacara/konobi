@@ -1,4 +1,6 @@
-package core;
+package core.Entities;
+
+import core.Rules.ValidPositionRule;
 
 import java.awt.*;
 

@@ -1,5 +1,7 @@
-package core;
+package core.Rules;
 
+
+import core.Entities.Supervisor;
 
 public class PieRule implements Rule{
     @Override

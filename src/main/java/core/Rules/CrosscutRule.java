@@ -1,4 +1,9 @@
-package core;
+package core.Rules;
+
+import core.Entities.Board;
+import core.Entities.Cell;
+import core.Entities.Player;
+import core.Entities.Supervisor;
 
 import java.awt.*;
 import java.util.ArrayList;

@@ -1,4 +1,6 @@
-package core;
+package core.Rules;
+
+import core.Entities.Supervisor;
 
 import java.util.ArrayList;
 import java.util.Arrays;

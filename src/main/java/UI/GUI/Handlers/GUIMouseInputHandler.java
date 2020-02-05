@@ -1,5 +1,10 @@
-package UI.GUI;
+package UI.GUI.Handlers;
 
+import UI.GUI.Events.EndGameEvent;
+import UI.GUI.Events.PassRuleEvent;
+import UI.GUI.Events.PieRuleEvent;
+import UI.GUI.GUI;
+import UI.GUI.GUIMessageWriter;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 

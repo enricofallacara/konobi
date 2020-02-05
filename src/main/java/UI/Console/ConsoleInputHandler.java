@@ -1,7 +1,7 @@
 package UI.Console;
 
 import UI.Messages;
-import core.Player;
+import core.Entities.Player;
 
 import java.awt.*;
 import java.util.Scanner;

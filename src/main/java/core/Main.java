@@ -1,5 +1,6 @@
 package core;
 
+import core.Entities.Konobi;
 import javafx.application.Application;
 import UI.GUI.GUI;
 

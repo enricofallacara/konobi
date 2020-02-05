@@ -1,4 +1,4 @@
-package core;
+package core.Entities;
 
 public class Player {
     private Color color;

@@ -1,6 +1,6 @@
 package UI.GUI;
 
-import core.Player;
+import core.Entities.Player;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.layout.GridPane;
@@ -39,9 +39,9 @@ public class GUIBoardFiller {
     }
 
     // TODO: ha senso metterla nella classe Cell o in una nuova classe?
-    private static final Map<core.Color, Paint> colorPaintMap = new HashMap<>() {{
-        put(core.Color.black, Color.BLACK);
-        put(core.Color.white, Color.WHITE);
+    private static final Map<core.Entities.Color, Paint> colorPaintMap = new HashMap<>() {{
+        put(core.Entities.Color.black, Color.BLACK);
+        put(core.Entities.Color.white, Color.WHITE);
     }};
 
     public void addPiece(GridPane gridPane, int X, int Y, Player player) {

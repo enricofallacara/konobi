@@ -1,4 +1,7 @@
-package core;
+package core.Rules;
+
+import core.Entities.Rulebook;
+import core.Entities.Supervisor;
 
 import java.util.stream.StreamSupport;
 

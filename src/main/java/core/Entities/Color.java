@@ -1,4 +1,4 @@
-package core;
+package core.Entities;
 
 public enum Color { black, white;
 

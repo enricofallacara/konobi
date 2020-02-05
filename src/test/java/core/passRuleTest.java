@@ -1,10 +1,10 @@
 package core;
 
+import core.Entities.Board;
+import core.Entities.Cell;
+import core.Entities.Supervisor;
+import core.Rules.PassRule;
 import org.junit.Test;
-import org.junit.Test;
-
-import java.awt.*;
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 

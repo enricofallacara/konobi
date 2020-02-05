@@ -1,5 +1,7 @@
 package core;
 
+import core.Entities.Color;
+import core.Entities.Player;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
