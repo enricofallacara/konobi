@@ -70,12 +70,10 @@ public class GUI extends Application {
 
         Scene scene = new Scene(gridPane, Color.WHITESMOKE);
 
-        //String path = this.getClass().getResource("GUI.css").toExternalForm();
-       // System.out.println(path);
-       // scene.getStylesheets().add(path);
+        String path = this.getClass().getResource("/GUI.css").toExternalForm();
+        scene.getStylesheets().add(path);
 
         stage.setTitle("ChessBoard");
-        scene.getStylesheets().add(getClass().getResource("GUI.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
