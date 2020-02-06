@@ -31,6 +31,7 @@ public class GUIBoardFiller {
             for (int col = 0; col < boardSize; col++) {
                 Rectangle r = new Rectangle(col * tileSize,row * tileSize , tileSize, tileSize);
                 r.setFill( (col + row) % 2 == 0 ? Color.PALEVIOLETRED : Color.DARKSEAGREEN);
+                r.setStroke(Color.GRAY);
                 gridPane.addRow(row,r);
             }
         }
