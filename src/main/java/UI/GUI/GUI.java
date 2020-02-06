@@ -49,32 +49,15 @@ public class GUI extends Application {
 
     public void initUI(int boardSize) {
         gridPane = new GridPane();
-        //gridPane.setBackground(new Background(new BackgroundFill(Color.DODGERBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         gridPane.setVgap(20);
         supervisor = new Supervisor(boardSize);
         boardFiller = new GUIBoardFiller(boardSize, TILESIZE);
 
         GridPane gridBoard = boardFiller.createEmptyBoard();
-        //gridBoard.setGridLinesVisible(true);
-
-        //TODO: mettere in un file css.
-        gridBoard.setStyle("-fx-padding: 0;" +
-                "-fx-border-style: solid inside;" +
-                "-fx-border-radius: 5;" +
-                "-fx-border-width: 5;" +
-                "-fx-border-color: black white black white;"
-        );
+        gridBoard.getStyleClass().add("grid-board");
 
         GridPane labelBoard = boardFiller.createLabelPane();
-
-        //TODO: mettere in un file css.
-        labelBoard.setStyle("-fx-padding: 10;" +
-                "-fx-border-style: solid outside;" +
-                "-fx-border-width: 2;" +
-                "-fx-border-radius: 5;" +
-                "-fx-background-radius: 5;" +
-                "-fx-background-color: tan;" +
-                "-fx-border-color: black;");
+        labelBoard.getStyleClass().add("label-board");
 
         createAndSetHandlerOnNode(gridBoard, MouseEvent.MOUSE_CLICKED, new GUIMouseInputHandler(this));
         createAndSetHandlerOnNode(gridBoard, EndGameEvent.END_GAME_EVENT_TYPE, new GUIEndGameHandler(this));
@@ -83,17 +66,12 @@ public class GUI extends Application {
 
         gridPane.add(gridBoard, 0, 0);
         gridPane.add(labelBoard, 0, 1);
-
-        //TODO: mettere in un file css.
-        gridPane.setStyle("-fx-padding: 10;" +
-                            "-fx-border-style: solid inside;" +
-                            "-fx-border-width: 2;" +
-                            "-fx-border-insets: 5;" +
-                            "-fx-border-radius: 5;" +
-                            "-fx-background-color: wheat;" +
-                            "-fx-border-color: black;");
+        gridPane.getStyleClass().add("grid-pane");
 
         Scene scene = new Scene(gridPane, Color.WHITESMOKE);
+
+        String path = this.getClass().getResource("GUI.css").toExternalForm();
+        scene.getStylesheets().add(path);
 
         stage.setTitle("ChessBoard");
         stage.setScene(scene);
