@@ -2,8 +2,15 @@ package UI.Console;
 
 import UI.Messages;
 import core.Entities.Player;
+import core.Entities.Supervisor;
 
 public class ConsoleMessageWriter {
+
+    public static void showInstructions(Supervisor supervisor) {
+        System.out.println(String.format(Messages.instructions,
+                ConsoleCellRepresentation.getRepresentation(supervisor.getCurrentPlayer().getColor()),
+                ConsoleCellRepresentation.getRepresentation(supervisor.getLastPlayer().getColor())));
+    }
 
     public static void notifyInvalidMove() { System.out.println(Messages.invalidMove); }
 

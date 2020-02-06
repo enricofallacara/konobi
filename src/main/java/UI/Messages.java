@@ -17,5 +17,6 @@ public class Messages {
                                         "                                 ";
     public final static String invalidIntegerInput = "Invalid input, please insert a valid integer!";
     public final static String askSize = "Please choose the size of the board (between 3 and 11):";
+    public final static String instructions = "Color %s should connect vertical edges\nColor %s should connect horizontal edges\n";
 
 }

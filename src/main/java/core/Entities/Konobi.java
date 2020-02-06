@@ -15,6 +15,7 @@ public class Konobi {
     public Konobi() {
         ConsoleMessageWriter.printLogo();
         supervisor = new Supervisor(inputHandler.askSize());
+        ConsoleMessageWriter.showInstructions(supervisor);
     }
 
     public void play() {
