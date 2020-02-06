@@ -12,14 +12,11 @@ repositories {
    jcenter()
 }
 
-sourceSets {
-    main {
-        resources {
-            srcDirs = ["src/main/java"]
-            includes = ["**/*.css"]
-        }
-    }
+sourceSets.main.resources {
+    srcDirs = ["src/main/resources"]
+    includes = ["**/*.css"]
 }
+
 sourceCompatibility = 1.9
 targetCompatibility = 1.9
 
