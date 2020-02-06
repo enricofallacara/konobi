@@ -21,6 +21,7 @@ public class ConsoleBoardWriter {
     }
 
     public void displayBoard(Board board) {
+        System.out.println();
         IntStream.iterate(board.getSize() - 1, x -> --x).limit(board.getSize()).forEach(y -> displayRow(board, y));
         System.out.print("\t");
         IntStream.range(0, board.getSize()).forEach(i -> System.out.print(padLeft(i + " ")));

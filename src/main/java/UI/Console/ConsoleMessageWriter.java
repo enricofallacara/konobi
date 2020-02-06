@@ -2,8 +2,15 @@ package UI.Console;
 
 import UI.Messages;
 import core.Entities.Player;
+import core.Entities.Supervisor;
 
 public class ConsoleMessageWriter {
+
+    public static void showInstructions(Supervisor supervisor) {
+        System.out.println(String.format(Messages.instructions,
+                ConsoleCellRepresentation.getRepresentation(supervisor.getCurrentPlayer().getColor()),
+                ConsoleCellRepresentation.getRepresentation(supervisor.getLastPlayer().getColor())));
+    }
 
     public static void notifyInvalidMove() { System.out.println(Messages.invalidMove); }
 
@@ -20,7 +27,9 @@ public class ConsoleMessageWriter {
 
     public static void notifyPass() { System.out.println(Messages.pass); }
 
-    public static void pieRuleMessage() { System.out.println(Messages.pieRule); }
+    public static void pieRuleAskMessage() { System.out.println(Messages.pieRuleQuery); }
+
+    public static void notifyPieRule() { System.out.println(Messages.pieRule); }
 
     public static void getXInputMessage() { System.out.println(Messages.xInput); }
 

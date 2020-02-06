@@ -12,7 +12,7 @@ public class GUIAsker {
     public static boolean askPieRule() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Pie Rule Dialog");
-        alert.setContentText(Messages.pieRule);
+        alert.setContentText(Messages.pieRuleQuery);
         alert.setHeaderText(null);
 
         ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Yes");

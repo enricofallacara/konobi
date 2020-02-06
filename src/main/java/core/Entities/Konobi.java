@@ -15,6 +15,7 @@ public class Konobi {
     public Konobi() {
         ConsoleMessageWriter.printLogo();
         supervisor = new Supervisor(inputHandler.askSize());
+        ConsoleMessageWriter.showInstructions(supervisor);
     }
 
     public void play() {
@@ -36,6 +37,7 @@ public class Konobi {
         }
         if (Rulebook.queryRule(supervisor, PieRule::new) && inputHandler.askPieRule()) {
             supervisor.performPieRule();
+            ConsoleMessageWriter.notifyPieRule();
             return;
         }
         while (!supervisor.newMove(inputHandler.getInput(supervisor.getCurrentPlayer()))) {
