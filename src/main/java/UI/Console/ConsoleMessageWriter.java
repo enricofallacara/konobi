@@ -27,7 +27,9 @@ public class ConsoleMessageWriter {
 
     public static void notifyPass() { System.out.println(Messages.pass); }
 
-    public static void pieRuleMessage() { System.out.println(Messages.pieRule); }
+    public static void pieRuleAskMessage() { System.out.println(Messages.pieRuleQuery); }
+
+    public static void notifyPieRule() { System.out.println(Messages.pieRule); }
 
     public static void getXInputMessage() { System.out.println(Messages.xInput); }
 

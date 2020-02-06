@@ -37,6 +37,7 @@ public class Konobi {
         }
         if (Rulebook.queryRule(supervisor, PieRule::new) && inputHandler.askPieRule()) {
             supervisor.performPieRule();
+            ConsoleMessageWriter.notifyPieRule();
             return;
         }
         while (!supervisor.newMove(inputHandler.getInput(supervisor.getCurrentPlayer()))) {

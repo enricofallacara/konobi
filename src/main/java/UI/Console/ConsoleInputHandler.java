@@ -15,7 +15,7 @@ public class ConsoleInputHandler {
 
     public boolean askPieRule() {
         // TODO: eccezione se risponde qualcosa di diverso y/n.
-        ConsoleMessageWriter.pieRuleMessage();
+        ConsoleMessageWriter.pieRuleAskMessage();
         String answer = scanner.next();
         return answer.toLowerCase().equals("y");
     }
