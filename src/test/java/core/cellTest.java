@@ -2,25 +2,41 @@ package core;
 
 import core.Entities.Cell;
 import core.Entities.Color;
+import core.Entities.Player;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
-
 import java.awt.Point;
 
-
 public class cellTest {
+    private Cell cell = new Cell(new Point(3, 4));
+
     @Test
-    public void testVariables() {
-       Cell cell = new Cell(new Point(3, 4));
-       assertNull(cell.getColor());
+    public void testCoordinates() {
        assertEquals(cell.getCoordinates(), new Point(3, 4));
     }
 
     @Test
+    public void testNullColour() {
+        assertNull(cell.getColor());
+    }
+
+    @Test
     public void testChangeColour() {
-        Cell cell = new Cell(new Point (3, 4));
         cell.setColor(Color.black);
         assertEquals(cell.getColor(), Color.black);
     }
+
+    @Test
+    public void testColorEquality() {
+        cell.setColor(Color.white);
+        assertTrue(cell.hasThisColor(Color.white));
+    }
+
+    @Test
+    public void testColorEqualityWithPlayer() {
+        Player player = new Player(Color.white);
+        cell.setColor(Color.black);
+        assertFalse(cell.hasSameColorAsPlayer(player));
+    }
+
 }
