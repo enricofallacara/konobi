@@ -26,4 +26,14 @@ public class Cell {
     public boolean hasThisColor(Color otherColor) { return color == otherColor; }
     public boolean hasSameColorAsPlayer(Player player) {return hasThisColor(player.getColor()); }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+
+        Cell cell = (Cell) o;
+        if (!this.hasThisColor(cell.getColor())) return false;
+        return coordinates == ((Cell) o).getCoordinates();
+    }
+
 }

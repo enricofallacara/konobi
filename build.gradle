@@ -22,6 +22,7 @@ targetCompatibility = 1.9
 
 dependencies {
     testImplementation("junit:junit:4.12")
+    //testImplementation("org.hamcrest:hamcrest-library:2.2")
 }
 
 run {
