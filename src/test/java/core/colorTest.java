@@ -2,7 +2,6 @@ package core;
 
 import core.Entities.Color;
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 
 public class colorTest {
@@ -16,4 +15,5 @@ public class colorTest {
     public void testOppositeColorOfBlack() {
         assertEquals(Color.black.getOppositeColor(), Color.white);
     }
+
 }
