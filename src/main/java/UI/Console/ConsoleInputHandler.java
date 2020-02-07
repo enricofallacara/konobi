@@ -2,7 +2,6 @@ package UI.Console;
 
 import UI.Messages;
 import core.Entities.Player;
-
 import java.awt.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
