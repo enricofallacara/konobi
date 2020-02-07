@@ -20,5 +20,6 @@ public class Messages {
     public final static String askSize = "Please choose the size of the board (between 3 and 11):";
     public final static String instructions = "Color %s should connect edges vertically\n" +
                                               "Color %s should connect edges horizontally";
+    public final static String invalidStringInput = "Invalid input, please insert a valid string!";
 
 }
