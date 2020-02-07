@@ -4,6 +4,7 @@ import UI.Messages;
 import core.Entities.Player;
 
 import java.awt.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -14,30 +15,50 @@ public class ConsoleInputHandler {
     public ConsoleInputHandler() { scanner = new Scanner(System.in); }
 
     public boolean askPieRule() {
-        // TODO: eccezione se risponde qualcosa di diverso y/n.
         ConsoleMessageWriter.pieRuleAskMessage();
-        String answer = scanner.next();
+        String answer;
+        try{
+            answer = scanner.next();
+            if(!(answer.equals("y") || answer.equals("n")))
+                throw new InputPieRuleException(Messages.invalidStringInput);
+        }catch(InputPieRuleException e){
+            System.out.println(e.getMessage());
+            scanner.next();
+            return askPieRule();
+        }
         return answer.toLowerCase().equals("y");
     }
 
     public int getInteger(){
-        //TODO: potrebbe essere trattata come eccezione?
-        while(!scanner.hasNextInt()){
-            System.out.println(Messages.invalidIntegerInput);
-            scanner.next();
-        }
-        return scanner.nextInt();
+
+        try{
+            if(scanner.hasNextInt())
+                return scanner.nextInt();
+            else
+                throw new InputMismatchException();
+            }
+            catch(InputMismatchException e){
+                System.out.println(Messages.invalidIntegerInput);
+                scanner.next();
+                return getInteger();
+            }
+
     }
 
     public int askSize() {
+        System.out.println(Messages.askSize);
         int size;
-
-        do {
-            System.out.println(Messages.askSize);
+        try{
             size = getInteger();
-        } while( size <= 2 || size > 11 );
+            if(size < 3 || size > 11)
+                throw new InputSizeException(Messages.invalidIntegerInput);
 
+        }catch(InputSizeException e){
+            System.out.println(e.getMessage());
+            return askSize();
+        }
         return size;
+
     }
 
     public Point getInput(Player player) {

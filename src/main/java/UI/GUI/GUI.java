@@ -73,6 +73,8 @@ public class GUI extends Application {
         String path = this.getClass().getResource("/GUI.css").toExternalForm();
         scene.getStylesheets().add(path);
 
+       // System.out.println( getClass().getResource("/GUI.css"));
+
         stage.setTitle("ChessBoard");
         stage.setScene(scene);
         stage.show();
