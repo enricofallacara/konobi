@@ -3,17 +3,20 @@ package core.Entities;
 import java.awt.Point;
 
 public class Cell {
+    private Color color;
+    private final Point coordinates;
 
     public Cell(Point p) {
         color = null;
         coordinates = p;
     }
 
-    private Color color;
-    private final Point coordinates;
-
     public Color getColor() {
         return color;
+    }
+
+    public Point getCoordinates() {
+        return coordinates;
     }
 
     public void setColor(Color c) {
@@ -23,7 +26,4 @@ public class Cell {
     public boolean hasThisColor(Color otherColor) { return color == otherColor; }
     public boolean hasSameColorAsPlayer(Player player) {return hasThisColor(player.getColor()); }
 
-    public Point getCoordinates() {
-        return coordinates;
-    }
 }
