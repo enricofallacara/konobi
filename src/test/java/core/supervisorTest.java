@@ -3,33 +3,40 @@ package core;
 import core.Entities.Color;
 import core.Entities.Supervisor;
 import org.junit.Test;
-
-import java.awt.*;
+import java.awt.Point;
 
 import static org.junit.Assert.*;
 
 public class supervisorTest {
+    private Supervisor supervisor = new Supervisor(11);
 
     @Test
-    public void newMoveTest() {
-        Supervisor supervisor = new Supervisor(11);
-
+    public void testNewMoveInvalid() {
         assertFalse(supervisor.newMove(new Point(12, 3)));
-        assertSame(supervisor.getCurrentPlayer().getColor(), core.Entities.Color.black);
-        assertTrue(supervisor.newMove(new Point(2, 3)));
-        assertSame(supervisor.getCurrentPlayer().getColor(), core.Entities.Color.white);
+        assertSame(supervisor.getCurrentPlayer().getColor(), Color.black);
     }
 
     @Test
-    public void performPieRuleTest(){
+    public void testNewMoveValid() {
+        assertTrue(supervisor.newMove(new Point(2, 3)));
+        assertSame(supervisor.getCurrentPlayer().getColor(), Color.white);
+    }
 
-        Supervisor supervisor = new Supervisor(11);
-        assertEquals(supervisor.getCurrentPlayer().getColor(), core.Entities.Color.black);
+    @Test
+    public void testPerformPieRule() {
+        assertEquals(supervisor.getCurrentPlayer().getColor(), Color.black);
         supervisor.newMove(new Point(0,0));
-        assertEquals(supervisor.getCurrentPlayer().getColor(), core.Entities.Color.white);
+        assertEquals(supervisor.getCurrentPlayer().getColor(), Color.white);
         assertEquals(supervisor.getCurrentPlayer().getName(), "playerTwo");
         supervisor.performPieRule();
         assertEquals(supervisor.getCurrentPlayer().getColor(), Color.white);
         assertEquals(supervisor.getCurrentPlayer().getName(), "playerOne");
     }
+
+    @Test
+    public void testPerformPassRule() {
+        supervisor.performPassRule();
+        assertEquals(supervisor.getCurrentPlayer().getColor(), Color.white);
+    }
+
 }

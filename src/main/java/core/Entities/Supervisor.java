@@ -1,8 +1,7 @@
 package core.Entities;
 
 import core.Rules.ValidPositionRule;
-
-import java.awt.*;
+import java.awt.Point;
 // TODO: Supervisor dovrebbe diventare un GameStatus o StatusSupervisor
 public class Supervisor {
     private final Board board;
