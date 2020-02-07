@@ -8,6 +8,7 @@ import core.Rules.EndGameRule;
 import org.junit.Test;
 import java.awt.Point;
 import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class endGameTest {

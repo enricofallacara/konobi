@@ -9,14 +9,18 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class passRuleTest {
-    @Test
-    public void checkQuery(){
-        Supervisor supervisor = new Supervisor(11);
-        Board board = supervisor.getBoard();
-        PassRule passRule = new PassRule();
+    private Supervisor supervisor = new Supervisor(11);
+    private PassRule passRule = new PassRule();
 
+    @Test
+    public void testPassRuleEmptyBoard(){
         assertFalse(passRule.isValid(supervisor));
-        for(Cell c: board){ c.setColor(supervisor.getCurrentPlayer().getColor());}
+    }
+
+    @Test
+    public void testPassRuleFullBoard() {
+        for (Cell c: supervisor.getBoard()) { c.setColor(supervisor.getCurrentPlayer().getColor()); }
         assertTrue(passRule.isValid(supervisor));
     }
+
 }
