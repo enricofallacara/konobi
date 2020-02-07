@@ -1,6 +1,5 @@
 package UI.GUI;
 
-
 import UI.GUI.Events.EndGameEvent;
 import UI.GUI.Events.PassRuleEvent;
 import UI.GUI.Events.PieRuleEvent;
@@ -70,7 +69,7 @@ public class GUI extends Application {
 
         Scene scene = new Scene(gridPane, Color.WHITESMOKE);
 
-        String path = this.getClass().getResource("/GUI.css").toExternalForm();
+        String path = getClass().getResource("/GUI.css").toExternalForm();
         scene.getStylesheets().add(path);
 
         stage.setTitle("ChessBoard");
@@ -136,10 +135,6 @@ public class GUI extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
-        Application.launch(args);
-    }
+    public static void main(String[] args) { Application.launch(args); }
 
 }
-
-

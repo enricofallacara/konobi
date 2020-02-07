@@ -1,14 +1,15 @@
 package core;
+
 import core.Entities.Board;
 import core.Entities.Cell;
 import core.Entities.Color;
 import core.Entities.Player;
 import org.junit.Test;
-
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 public class boardTest {
@@ -81,7 +82,7 @@ public class boardTest {
         Board board = new Board(11);
         Point p = new Point(3,3);
 
-        ArrayList<Cell> strongNeighbours = board.getNeighbours(p, 1, Board::isStrongNeighbour);
+        ArrayList<Cell> strongNeighbours = board.getNeighbours(p, 1, Board::isStrongNeighbour).collect(Collectors.toCollection(ArrayList::new));
         ArrayList<Cell> expectedNeighbours = new ArrayList<>();
         expectedNeighbours.add(board.getCell(new Point(p.x,p.y+1)));
         expectedNeighbours.add(board.getCell(new Point(p.x,p.y-1)));
@@ -97,7 +98,7 @@ public class boardTest {
         Board board = new Board(11);
         Point p = new Point(3,3);
 
-        ArrayList<Cell> weakNeighbours = board.getNeighbours(p, 1, Board::isWeakNeighbour);
+        ArrayList<Cell> weakNeighbours = board.getNeighbours(p, 1, Board::isWeakNeighbour).collect(Collectors.toCollection(ArrayList::new));
         ArrayList<Cell> expectedNeighbours = new ArrayList<>();
         expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y+1)));
         expectedNeighbours.add(board.getCell(new Point(p.x+1,p.y-1)));
@@ -112,7 +113,7 @@ public class boardTest {
     public void testMooreNeighbours() {
         Board board = new Board(11);
         Point p = new Point(3,3);
-        ArrayList<Cell> mooreNeighbours = board.getMooreNeighbours(p, 1);
+        ArrayList<Cell> mooreNeighbours = board.getMooreNeighbours(p, 1).collect(Collectors.toCollection(ArrayList::new));
         ArrayList<Cell> expectedNeighbours = new ArrayList<>();
         expectedNeighbours.add(board.getCell(new Point(p.x,p.y+1)));
         expectedNeighbours.add(board.getCell(new Point(p.x,p.y-1)));

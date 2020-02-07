@@ -6,10 +6,8 @@ import core.Entities.Color;
 import core.Entities.Player;
 import core.Rules.EndGameRule;
 import org.junit.Test;
-
-import java.awt.*;
+import java.awt.Point;
 import java.util.ArrayList;
-
 import static org.junit.Assert.*;
 
 public class endGameTest {
@@ -51,6 +49,7 @@ public class endGameTest {
         board.setCell(new Point(2, 2), core.Entities.Color.white);
         assertFalse(endGameRule.searchForEndingEdge(board.getCell(point), board, player));
     }
+
     @Test
     public void testQuery() {
         Board board = new Board(4);
@@ -76,4 +75,5 @@ public class endGameTest {
         assertFalse(endGameRule.isValid(board, black));
         assertFalse(endGameRule.isValid(board, white));
     }
+
 }

@@ -37,8 +37,8 @@ public class EndGameRule implements Rule{
     public boolean searchForEndingEdge(Cell current, Board board, Player player) {
         if (board.isOnEndingEdge(current.getCoordinates(), player)) { return true; }
         table.add(current);
-        for (Cell neighbour : board.getColoredNeighbours(current.getCoordinates(), 1, player, (x, y) -> true)) {
-           if (!table.contains(neighbour)) { return searchForEndingEdge(neighbour, board, player); }
+        for (Cell neighbour : board.getColoredNeighbours(current.getCoordinates(), 1, player, (x, y) -> true).toArray(Cell[]::new)) {
+            if (!table.contains(neighbour)) { return searchForEndingEdge(neighbour, board, player); }
         }
         return false;
     }

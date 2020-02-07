@@ -1,12 +1,11 @@
 package core.Entities;
 
-import java.awt.*;
-import java.util.ArrayList;
+import java.awt.Point;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.function.BiPredicate;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Board implements Iterable<Cell>{
 
@@ -50,13 +49,13 @@ public class Board implements Iterable<Cell>{
         };
     }
 
-    public ArrayList<Cell> getMooreNeighbours(Point p, int level) {
-        return new ArrayList<>(Arrays.asList(
+    public Stream<Cell> getMooreNeighbours(Point p, int level) {
+        return Arrays.stream(
                 slice(  Math.max(0, p.y - level),
                         Math.min(p.y + level + 1, size),
                         Math.max(0, p.x - level),
                         Math.min(p.x + level + 1, size))
-                ));
+                );
     }
 
     public static boolean isStrongNeighbour(Point target, Point query) { return manhattanDistance(target.x, query.x, target.y, query.y) == 1.0; }
@@ -64,18 +63,13 @@ public class Board implements Iterable<Cell>{
     public static boolean isWeakNeighbour(Point target, Point query) { return manhattanDistance(target.x, query.x, target.y, query.y) == 2.0; }
 
     @SafeVarargs
-    public final ArrayList<Cell> getNeighbours(Point point, int level, BiPredicate<Point, Point>... functions) {
-        return getMooreNeighbours(point, level).stream()
-                .filter(cell -> Arrays.stream(functions)
-                        .allMatch(x -> x.test(point, cell.getCoordinates())))
-                .collect(Collectors.toCollection(ArrayList::new));
+    public final Stream<Cell> getNeighbours(Point point, int level, BiPredicate<Point, Point>... functions) {
+        return getMooreNeighbours(point, level).filter(cell -> Arrays.stream(functions).allMatch(x -> x.test(point, cell.getCoordinates())));
     }
 
     @SafeVarargs
-    public final ArrayList<Cell> getColoredNeighbours(Point point, int level, Player player, BiPredicate<Point, Point>... functions) {
-        ArrayList<Cell> neighbours = getNeighbours(point, level, functions);
-        neighbours.removeIf(x -> !x.hasSameColorAsPlayer(player));
-        return neighbours;
+    public final Stream<Cell> getColoredNeighbours(Point point, int level, Player player, BiPredicate<Point, Point>... functions) {
+        return getNeighbours(point, level, functions).filter(x -> x.hasSameColorAsPlayer(player));
     }
 
     public boolean isOnBoard(Point point){

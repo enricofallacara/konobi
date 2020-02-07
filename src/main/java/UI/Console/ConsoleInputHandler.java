@@ -2,8 +2,7 @@ package UI.Console;
 
 import UI.Messages;
 import core.Entities.Player;
-
-import java.awt.*;
+import java.awt.Point;
 import java.util.Scanner;
 
 

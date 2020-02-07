@@ -4,9 +4,8 @@ import core.Entities.Board;
 import core.Entities.Cell;
 import core.Entities.Player;
 import core.Entities.Supervisor;
-
-import java.awt.*;
-import java.util.ArrayList;
+import java.awt.Point;
+import java.util.stream.Stream;
 
 public class WeakRule implements Rule {
     @Override
@@ -15,17 +14,13 @@ public class WeakRule implements Rule {
     }
 
     public static boolean isValid(Point point, Board board, Player player) {
-        ArrayList<Cell> weakNeighbours = board.getColoredNeighbours(
+        Stream<Cell> weakNeighbours = board.getColoredNeighbours(
                                                 point, 1, player, Board::isWeakNeighbour);
-        if (weakNeighbours.isEmpty()) {
-            return true;
-        }
-        return weakNeighbours.stream()
-                .flatMap(
+        return weakNeighbours.flatMap(
                         c1 -> board.getNeighbours(c1.getCoordinates(), 1, Board::isStrongNeighbour)
-                                .stream().filter(c2 -> c2.hasThisColor(null))
-                                .map(c3 -> !board.getColoredNeighbours(c3.getCoordinates(), 1, player, Board::isWeakNeighbour)
-                                        .isEmpty()))
+                                .filter(c2 -> c2.hasThisColor(null))
+                                .map(c3 -> board.getColoredNeighbours(c3.getCoordinates(), 1, player, Board::isWeakNeighbour)
+                                        .findAny().isPresent()))
                 .allMatch(b -> b);
     }
 }

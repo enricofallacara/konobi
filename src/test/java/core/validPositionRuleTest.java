@@ -9,8 +9,7 @@ import core.Rules.EmptyRule;
 import core.Rules.ValidPositionRule;
 import core.Rules.WeakRule;
 import org.junit.Test;
-import java.awt.*;
-
+import java.awt.Point;
 import static org.junit.Assert.*;
 
 public class validPositionRuleTest {
@@ -20,11 +19,11 @@ public class validPositionRuleTest {
         Board board = new Board(11);
         Player player = new Player(core.Entities.Color.black);
         Point point = new Point(2, 3);
-        assertTrue(board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour).isEmpty());
+        assertFalse(board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour).findAny().isPresent());
         board.setCell(new Point(3, 3), core.Entities.Color.white);
-        assertTrue(board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour).isEmpty());
+        assertFalse(board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour).findAny().isPresent());
         board.setCell(new Point(1, 3), core.Entities.Color.black);
-        assertFalse(board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour).isEmpty());
+        assertTrue(board.getColoredNeighbours(point, 1, player, Board::isStrongNeighbour).findAny().isPresent());
     }
 
     @Test
@@ -32,11 +31,11 @@ public class validPositionRuleTest {
         Board board = new Board(11);
         Player player = new Player(core.Entities.Color.black);
         Point point = new Point(2, 3);
-        assertTrue(board.getColoredNeighbours(point, 1, player, Board::isWeakNeighbour).isEmpty());
+        assertFalse(board.getColoredNeighbours(point, 1, player, Board::isWeakNeighbour).findAny().isPresent());
         board.setCell(new Point(3, 4), core.Entities.Color.white);
-        assertTrue(board.getColoredNeighbours(point, 1, player, Board::isWeakNeighbour).isEmpty());
+        assertFalse(board.getColoredNeighbours(point, 1, player, Board::isWeakNeighbour).findAny().isPresent());
         board.setCell(new Point(1, 2), core.Entities.Color.black);
-        assertFalse(board.getColoredNeighbours(point, 1, player, Board::isWeakNeighbour).isEmpty());
+        assertTrue(board.getColoredNeighbours(point, 1, player, Board::isWeakNeighbour).findAny().isPresent());
     }
 
     @Test
