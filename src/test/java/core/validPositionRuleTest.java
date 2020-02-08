@@ -20,23 +20,6 @@ public class validPositionRuleTest {
         board.setCell(new Point(2, 2), Color.white);
     }
 
-    /*@Test
-    public void weakRuleTest() {
-        Board board = new Board(11);
-        Player player = new Player(Color.white);
-        Point point = new Point(1, 2);
-
-        board.setCell(new Point(0, 0), Color.white);
-        board.setCell(new Point(2, 1), Color.white);
-        board.setCell(new Point(3, 3), Color.white);
-
-        board.setCell(new Point(2, 0), Color.black);
-        board.setCell(new Point(3, 0), Color.black);
-        board.setCell(new Point(3, 1), Color.black);
-
-        assertTrue(WeakRule.isValid(point, board, player));
-    }*/
-
     @Test
     public void testValidPositionRule() {
         setTestBoard(supervisor.getBoard());
