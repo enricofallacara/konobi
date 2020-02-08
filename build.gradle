@@ -1,8 +1,18 @@
-
 plugins {
   id 'java'
   id 'application'
   id 'org.openjfx.javafxplugin' version '0.0.8'
+}
+
+task(runConsole, type: JavaExec) {
+   main = 'core.Main'
+   classpath = sourceSets.main.runtimeClasspath
+   standardInput = System.in
+}
+
+task(runGUI, type: JavaExec) {
+   main = 'core.MainGUI'
+   classpath = sourceSets.main.runtimeClasspath
 }
 
 mainClassName = 'konobi.main/core.Main'
@@ -22,7 +32,6 @@ targetCompatibility = 1.9
 
 dependencies {
     testImplementation("junit:junit:4.12")
-    //testImplementation("org.hamcrest:hamcrest-library:2.2")
 }
 
 run {
