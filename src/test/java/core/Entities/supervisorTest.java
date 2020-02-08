@@ -1,4 +1,4 @@
-package core;
+package core.Entities;
 
 import core.Entities.Color;
 import core.Entities.Supervisor;

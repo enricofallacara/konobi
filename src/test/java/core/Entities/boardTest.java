@@ -1,4 +1,4 @@
-package core;
+package core.Entities;
 
 import core.Entities.Board;
 import core.Entities.Cell;

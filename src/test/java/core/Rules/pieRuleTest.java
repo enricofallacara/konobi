@@ -1,4 +1,4 @@
-package core;
+package core.Rules;
 
 import core.Rules.PieRule;
 import org.junit.Test;

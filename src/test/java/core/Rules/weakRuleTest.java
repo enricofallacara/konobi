@@ -1,9 +1,8 @@
-package core;
+package core.Rules;
 
 import core.Entities.Board;
 import core.Entities.Color;
 import core.Entities.Player;
-import core.Rules.WeakRule;
 import org.junit.Test;
 import java.awt.Point;
 
