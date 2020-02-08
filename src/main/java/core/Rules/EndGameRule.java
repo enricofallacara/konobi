@@ -1,10 +1,9 @@
 package core.Rules;
 
 import core.Entities.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class EndGameRule implements Rule{
     private HashSet<Cell> table;
@@ -17,16 +16,14 @@ public class EndGameRule implements Rule{
     }
 
     public boolean isValid(Board board, Color color) {
-        ArrayList<Cell> startingPoints = getStartingPoints(board, color);
-        if (startingPoints.isEmpty()) { return false;}
-        return startingPoints.stream().anyMatch(x -> searchForEndingEdge(x, board, color));
+        return getStartingPoints(board, color).anyMatch(x -> searchForEndingEdge(x, board, color));
     }
 
-    public ArrayList<Cell> getStartingPoints(Board board, Color color) {
+    public Stream<Cell> getStartingPoints(Board board, Color color) {
         int size = board.getSize();
         int[] startIdxs = (color == Color.white) ? new int[]{0, size, 0, 1} :  new int[]{0, 1, 0, size};
         return Arrays.stream(board.slice(startIdxs[0], startIdxs[1], startIdxs[2], startIdxs[3])).
-                filter(x -> x.hasThisColor(color)).collect(Collectors.toCollection(ArrayList::new));
+                filter(x -> x.hasThisColor(color));//.collect(Collectors.toCollection(ArrayList::new));
     }
 
     public boolean searchForEndingEdge(Cell current, Board board, Color color) {

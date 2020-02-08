@@ -5,7 +5,6 @@ import core.Entities.Cell;
 import core.Entities.Color;
 import org.junit.Test;
 import java.awt.Point;
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -32,7 +31,7 @@ public class endGameTest {
     @Test
     public void testGetStartingPointsEmpty() {
         Board board = new Board(11);
-        assertTrue(endGameRule.getStartingPoints(board, Color.black).isEmpty());
+        assertFalse(endGameRule.getStartingPoints(board, Color.black).findAny().isPresent());
     }
 
     @Test
@@ -40,8 +39,8 @@ public class endGameTest {
         Board board = new Board(11);
         board.setCell(new Point(3, 0), Color.black);
         board.setCell(new Point(4, 0), Color.white);
-        ArrayList<Cell> expected = new ArrayList<>() {{ add(board.getCell(new Point(3, 0))); }};
-        assertEquals(expected, endGameRule.getStartingPoints(board, Color.black));
+        Cell[] expected = new Cell[] { board.getCell(new Point(3, 0)) };
+        assertArrayEquals(expected, endGameRule.getStartingPoints(board, Color.black).toArray());
     }
 
     @Test
@@ -50,9 +49,9 @@ public class endGameTest {
         board.setCell(new Point(0, 0), Color.black);
         board.setCell(new Point(0, 9), Color.white);
         board.setCell(new Point(0, 5), Color.white);
-        ArrayList<Cell> expected = new ArrayList<>() {{ add(board.getCell(new Point(0, 5)));
-                                                        add(board.getCell(new Point(0, 9))); }};
-        assertEquals(expected, endGameRule.getStartingPoints(board, Color.white));
+        Cell[] expected = new Cell[] { board.getCell(new Point(0, 5)),
+                                                        board.getCell(new Point(0, 9)) };
+        assertArrayEquals(expected, endGameRule.getStartingPoints(board, Color.white).toArray());
     }
 
     @Test
