@@ -14,13 +14,20 @@ public class testCrosscutRule {
     private Board board = new Board(2);
 
     @Test
+    public void testCrosscutRuleEmpty() {
+        Point point = new Point(1, 1);
+        Player player = new Player(Color.black);
+        assertTrue(CrosscutRule.isValid(point, board, player));
+    }
+
+    @Test
     public void testCrosscutRuleInvalid() {
         Player player = new Player(Color.black);
         Point point = new Point(0, 1);
         board.setCell(new Point(0, 0), Color.black);
         board.setCell(new Point(1, 1), Color.white);
         board.setCell(new Point(1, 0), Color.white);
-        assertFalse(CrosscutRule.isValid(point, board, player));
+        assertTrue(CrosscutRule.isValid(point, board, player));
     }
 
     @Test
@@ -30,7 +37,7 @@ public class testCrosscutRule {
         board.setCell(new Point(0, 1), Color.black);
         board.setCell(new Point(1, 1), Color.white);
         board.setCell(new Point(0, 0), Color.white);
-        assertTrue(CrosscutRule.isValid(point, board, player));
+        assertFalse(CrosscutRule.isValid(point, board, player));
     }
 
     @Test
@@ -40,7 +47,7 @@ public class testCrosscutRule {
         board.setCell(new Point(0, 1), Color.black);
         board.setCell(new Point(1, 1), Color.white);
         board.setCell(new Point(1, 0), Color.black);
-        assertTrue(CrosscutRule.isValid(point, board, player));
+        assertFalse(CrosscutRule.isValid(point, board, player));
     }
 
     @Test
@@ -50,7 +57,7 @@ public class testCrosscutRule {
         board.setCell(new Point(0, 1), Color.black);
         board.setCell(new Point(1, 0), Color.black);
         board.setCell(new Point(0, 0), Color.white);
-        assertTrue(CrosscutRule.isValid(point, board, player));
+        assertFalse(CrosscutRule.isValid(point, board, player));
     }
 
     @Test
@@ -60,7 +67,7 @@ public class testCrosscutRule {
         board.setCell(new Point(1, 0), Color.black);
         board.setCell(new Point(1, 1), Color.white);
         board.setCell(new Point(0, 0), Color.white);
-        assertTrue(CrosscutRule.isValid(point, board, player));
+        assertFalse(CrosscutRule.isValid(point, board, player));
     }
 
 }

@@ -13,30 +13,31 @@ public class supervisorTest {
     @Test
     public void testNewMoveInvalid() {
         assertFalse(supervisor.newMove(new Point(12, 3)));
-        assertSame(supervisor.getCurrentPlayer().getColor(), Color.black);
+        assertSame(Color.black, supervisor.getCurrentPlayer().getColor());
     }
 
     @Test
     public void testNewMoveValid() {
         assertTrue(supervisor.newMove(new Point(2, 3)));
-        assertSame(supervisor.getCurrentPlayer().getColor(), Color.white);
+        assertSame(Color.white, supervisor.getCurrentPlayer().getColor());
     }
-
+    // TODO: il test dei nomi dovrebbe andare nel playerTest, i quali dovrebbero a loro volta
+    //  essere incaricati di settare il nome di default, non il Supervisor
     @Test
     public void testPerformPieRule() {
-        assertEquals(supervisor.getCurrentPlayer().getColor(), Color.black);
+        assertEquals(Color.black, supervisor.getCurrentPlayer().getColor());
         supervisor.newMove(new Point(0,0));
-        assertEquals(supervisor.getCurrentPlayer().getColor(), Color.white);
-        assertEquals(supervisor.getCurrentPlayer().getName(), "playerTwo");
+        assertEquals(Color.white, supervisor.getCurrentPlayer().getColor());
+        assertEquals("playerTwo", supervisor.getCurrentPlayer().getName());
         supervisor.performPieRule();
-        assertEquals(supervisor.getCurrentPlayer().getColor(), Color.white);
-        assertEquals(supervisor.getCurrentPlayer().getName(), "playerOne");
+        assertEquals(Color.white, supervisor.getCurrentPlayer().getColor());
+        assertEquals("playerOne", supervisor.getCurrentPlayer().getName());
     }
 
     @Test
     public void testPerformPassRule() {
         supervisor.performPassRule();
-        assertEquals(supervisor.getCurrentPlayer().getColor(), Color.white);
+        assertEquals(Color.white, supervisor.getCurrentPlayer().getColor());
     }
 
 }
