@@ -68,16 +68,16 @@ public class Board implements Iterable<Cell>{
     }
 
     @SafeVarargs
-    public final Stream<Cell> getColoredNeighbours(Point point, int level, Player player, BiPredicate<Point, Point>... functions) {
-        return getNeighbours(point, level, functions).filter(x -> x.hasSameColorAsPlayer(player));
+    public final Stream<Cell> getColoredNeighbours(Point point, int level, Color color, BiPredicate<Point, Point>... functions) {
+        return getNeighbours(point, level, functions).filter(x -> x.hasThisColor(color));
     }
 
     public boolean isOnBoard(Point point){
         return (0<= point.x && point.x < size) && (0 <= point.y && point.y < size);
     }
 
-    public boolean isOnEndingEdge(Point point, Player player) {
-        return (player.getColor() == Color.white) ? point.x == size - 1 : point.y == size - 1;
+    public boolean isOnEndingEdge(Point point, Color color) {
+        return (color == Color.white) ? point.x == size - 1 : point.y == size - 1;
     }
 
     private static double manhattanDistance(int x1, int x2, int y1, int y2) { return Math.abs(x1 - x2) + Math.abs(y1 - y2); }

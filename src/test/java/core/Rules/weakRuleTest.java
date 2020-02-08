@@ -2,7 +2,6 @@ package core.Rules;
 
 import core.Entities.Board;
 import core.Entities.Color;
-import core.Entities.Player;
 import org.junit.Test;
 import java.awt.Point;
 
@@ -14,7 +13,6 @@ public class weakRuleTest {
 
     @Test
     public void weakRuleTestFirstConf() {
-        Player player = new Player(Color.white);
         Point point = new Point(1, 2);
 
         board.setCell(new Point(0, 0), Color.white);
@@ -25,12 +23,11 @@ public class weakRuleTest {
         board.setCell(new Point(3, 0), Color.black);
         board.setCell(new Point(3, 1), Color.black);
 
-        assertTrue(WeakRule.isValid(point, board, player));
+        assertTrue(WeakRule.isValid(point, board, Color.white));
     }
 
     @Test
     public void weakRuleTestSecondConf() {
-        Player player = new Player(Color.black);
         Point point = new Point(1, 1);
 
         board.setCell(new Point(3, 0), Color.white);
@@ -43,12 +40,11 @@ public class weakRuleTest {
         board.setCell(new Point(4, 2), Color.black);
         board.setCell(new Point(0, 2), Color.black);
 
-        assertFalse(WeakRule.isValid(point, board, player));
+        assertFalse(WeakRule.isValid(point, board, Color.black));
     }
 
     @Test
     public void weakRuleTestThirdConf() {
-        Player player = new Player(Color.black);
         Point point = new Point(1, 0);
 
         board.setCell(new Point(0, 1), Color.white);
@@ -57,7 +53,7 @@ public class weakRuleTest {
         board.setCell(new Point(0, 0), Color.black);
         board.setCell(new Point(2, 1), Color.black);
 
-        assertFalse(WeakRule.isValid(point, board, player));
+        assertFalse(WeakRule.isValid(point, board, Color.black));
     }
 
 }

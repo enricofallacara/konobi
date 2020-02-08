@@ -10,33 +10,30 @@ public class EndGameRule implements Rule{
     private HashSet<Cell> table;
 
     public EndGameRule(){ table = new HashSet<>(); }
-    // TODO: tutte le funzioni "interne" potrebbero lavorare sul Color invece che sul Player,
-    //  quindi cambiare anche isOnEndingEdge
+
     @Override
     public boolean isValid(Supervisor supervisor) {
-        return isValid(supervisor.getBoard(), supervisor.getLastPlayer());
+        return isValid(supervisor.getBoard(), supervisor.getLastPlayer().getColor());
     }
 
-    public boolean isValid(Board board, Player player) {
-        ArrayList<Cell> startingPoints = getStartingPoints(board, player);
+    public boolean isValid(Board board, Color color) {
+        ArrayList<Cell> startingPoints = getStartingPoints(board, color);
         if (startingPoints.isEmpty()) { return false;}
-        //table.clear();
-        return startingPoints.stream().anyMatch(x -> searchForEndingEdge(x, board, player));
+        return startingPoints.stream().anyMatch(x -> searchForEndingEdge(x, board, color));
     }
 
-    public ArrayList<Cell> getStartingPoints(Board board, Player player) {
-        Color color = player.getColor();
+    public ArrayList<Cell> getStartingPoints(Board board, Color color) {
         int size = board.getSize();
         int[] startIdxs = (color == Color.white) ? new int[]{0, size, 0, 1} :  new int[]{0, 1, 0, size};
         return Arrays.stream(board.slice(startIdxs[0], startIdxs[1], startIdxs[2], startIdxs[3])).
                 filter(x -> x.hasThisColor(color)).collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public boolean searchForEndingEdge(Cell current, Board board, Player player) {
-        if (board.isOnEndingEdge(current.getCoordinates(), player)) { return true; }
+    public boolean searchForEndingEdge(Cell current, Board board, Color color) {
+        if (board.isOnEndingEdge(current.getCoordinates(), color)) { return true; }
         table.add(current);
-        for (Cell neighbour : board.getColoredNeighbours(current.getCoordinates(), 1, player, (x, y) -> true).toArray(Cell[]::new)) {
-            if (!table.contains(neighbour)) { return searchForEndingEdge(neighbour, board, player); }
+        for (Cell neighbour : board.getColoredNeighbours(current.getCoordinates(), 1, color, (x, y) -> true).toArray(Cell[]::new)) {
+            if (!table.contains(neighbour)) { return searchForEndingEdge(neighbour, board, color); }
         }
         return false;
     }
