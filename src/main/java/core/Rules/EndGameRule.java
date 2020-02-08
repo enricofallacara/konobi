@@ -1,7 +1,6 @@
 package core.Rules;
 
 import core.Entities.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -10,10 +9,9 @@ import java.util.stream.Collectors;
 public class EndGameRule implements Rule{
     private HashSet<Cell> table;
 
-    public EndGameRule(){
-        table = new HashSet<>();
-    }
-
+    public EndGameRule(){ table = new HashSet<>(); }
+    // TODO: tutte le funzioni "interne" potrebbero lavorare sul Color invece che sul Player,
+    //  quindi cambiare anche isOnEndingEdge
     @Override
     public boolean isValid(Supervisor supervisor) {
         return isValid(supervisor.getBoard(), supervisor.getLastPlayer());
@@ -22,7 +20,7 @@ public class EndGameRule implements Rule{
     public boolean isValid(Board board, Player player) {
         ArrayList<Cell> startingPoints = getStartingPoints(board, player);
         if (startingPoints.isEmpty()) { return false;}
-        table.clear();
+        //table.clear();
         return startingPoints.stream().anyMatch(x -> searchForEndingEdge(x, board, player));
     }
 
