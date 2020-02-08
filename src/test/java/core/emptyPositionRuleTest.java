@@ -9,7 +9,7 @@ import java.awt.Point;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class testEmptyPositionRule {
+public class emptyPositionRuleTest {
     private Board board = new Board(11);
     private Point point = new Point(1, 2);
 

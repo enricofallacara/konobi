@@ -10,7 +10,7 @@ import java.awt.Point;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class testCrosscutRule {
+public class crosscutRuleTest {
     private Board board = new Board(2);
 
     @Test
