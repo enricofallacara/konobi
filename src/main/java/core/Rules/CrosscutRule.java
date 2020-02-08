@@ -6,7 +6,7 @@ import java.awt.Point;
 import java.util.stream.Stream;
 
 public class CrosscutRule implements Rule {
-    // TODO: passare a isValid interno solamente il colore
+
     @Override
     public boolean isValid(Supervisor supervisor) {
         return isValid(supervisor.getCurrentPoint(), supervisor.getBoard(), supervisor.getCurrentPlayer().getColor());

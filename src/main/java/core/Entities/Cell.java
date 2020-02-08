@@ -24,7 +24,6 @@ public class Cell {
     }
 
     public boolean hasThisColor(Color otherColor) { return color == otherColor; }
-    public boolean hasSameColorAsPlayer(Player player) {return hasThisColor(player.getColor()); }
 
     @Override
     public boolean equals(Object o) {

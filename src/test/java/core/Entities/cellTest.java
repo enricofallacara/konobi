@@ -30,11 +30,4 @@ public class cellTest {
         assertTrue(cell.hasThisColor(Color.white));
     }
 
-    @Test
-    public void testColorEqualityWithPlayer() {
-        Player player = new Player(Color.white);
-        cell.setColor(Color.black);
-        assertFalse(cell.hasSameColorAsPlayer(player));
-    }
-
 }
