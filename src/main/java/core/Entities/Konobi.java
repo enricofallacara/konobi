@@ -44,4 +44,5 @@ public class Konobi {
             ConsoleMessageWriter.notifyInvalidMove();
         }
     }
+
 }

@@ -1,9 +1,5 @@
-package core;
+package core.Entities;
 
-import core.Entities.Board;
-import core.Entities.Cell;
-import core.Entities.Color;
-import core.Entities.Player;
 import org.junit.Test;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -126,19 +122,17 @@ public class boardTest {
     @Test
     public void testIsOnEndingEdgeForBlack() {
         Point point1 = new Point(0, 10);
-        Player black = new Player(Color.black);
-        assertTrue(board.isOnEndingEdge(point1, black));
+        assertTrue(board.isOnEndingEdge(point1, Color.black));
         Point point2 = new Point(0, 5);
-        assertFalse(board.isOnEndingEdge(point2, black));
+        assertFalse(board.isOnEndingEdge(point2, Color.black));
     }
 
     @Test
     public void testIsOnEndingEdgeForWhite() {
         Point point1 = new Point(10, 1);
-        Player white = new Player(Color.white);
-        assertTrue(board.isOnEndingEdge(point1, white));
+        assertTrue(board.isOnEndingEdge(point1, Color.white));
         Point point2 = new Point(3, 0);
-        assertFalse(board.isOnEndingEdge(point2, white));
+        assertFalse(board.isOnEndingEdge(point2, Color.white));
     }
 
 }
