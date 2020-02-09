@@ -19,19 +19,18 @@ public class EndGameRule implements Rule {
 
     @Override
     public boolean isValid(Supervisor supervisor) {
-        return isValid(supervisor.getBoard(), supervisor.getLastPlayer());
+        return isValid(supervisor.getBoard(), supervisor.getLastPlayer().getColor());
     }
 
-    public boolean isValid(Board board, Player player) {
+    public boolean isValid(Board board, Color color) {
         // TODO: al di là dei test, creiamo un oggetto ogni volta: ha senso tenere i clear?
         visited.clear();
         endingPoints.clear();
-        getStartingPoints(board, player).forEach(x -> searchForEndingEdge(x, board, player));
+        getStartingPoints(board, color).forEach(x -> searchForEndingEdge(x, board, color));
         return !endingPoints.isEmpty();
     }
 
-    public Stream<Cell> getStartingPoints(Board board, Player player) {
-        Color color = player.getColor();
+    public Stream<Cell> getStartingPoints(Board board, Color color) {
         int size = board.getSize();
         int[] startIdxs = (color == Color.white) ? new int[]{0, size, 0, 1} : new int[]{0, 1, 0, size};
 
@@ -39,15 +38,15 @@ public class EndGameRule implements Rule {
                              filter(x -> x.hasThisColor(color));
     }
 
-    public void searchForEndingEdge(Cell current, Board board, Player player) {
-        if (board.isOnEndingEdge(current.getCoordinates(), player)) {
+    public void searchForEndingEdge(Cell current, Board board, Color color) {
+        if (board.isOnEndingEdge(current.getCoordinates(), color)) {
             endingPoints.add(current);
             return;
         }
         visited.add(current);
-        for (Cell neighbour : board.getColoredNeighbours(current.getCoordinates(), 1, player, (x, y) -> true).toArray(Cell[]::new)) {
+        for (Cell neighbour : board.getColoredNeighbours(current.getCoordinates(), 1, color, (x, y) -> true).toArray(Cell[]::new)) {
             if (!visited.contains(neighbour)) {
-                searchForEndingEdge(neighbour, board, player);
+                searchForEndingEdge(neighbour, board, color);
             }
         }
     }
