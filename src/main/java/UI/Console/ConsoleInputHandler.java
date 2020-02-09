@@ -2,6 +2,8 @@ package UI.Console;
 
 import UI.Messages;
 import core.Entities.Player;
+import core.Entities.Supervisor;
+
 import java.awt.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -26,8 +28,7 @@ public class ConsoleInputHandler {
         }
         return answer.toLowerCase().equals("y");
     }
-    // TODO: controllare anche che gli interi passati siano nel range giusto, magari
-    //  con relativa eccezione
+
     public int getInteger() {
         try {
             if (scanner.hasNextInt())
@@ -48,7 +49,7 @@ public class ConsoleInputHandler {
         try {
             size = getInteger();
             if(size < 3 || size > 11)
-                throw new InputSizeException(Messages.invalidIntegerInput);
+                throw new InputSizeException(Messages.invalidSizeInput);
 
         } catch(InputSizeException e){
             System.out.println(e.getMessage());
@@ -57,12 +58,23 @@ public class ConsoleInputHandler {
         return size;
     }
 
-    public Point getInput(Player player) {
-        ConsoleMessageWriter.displayPlayer(player);
+    public Point getInput(Supervisor supervisor) {
+
+        ConsoleMessageWriter.displayPlayer(supervisor.getCurrentPlayer());
         ConsoleMessageWriter.getXInputMessage();
         int newX = getInteger();
         ConsoleMessageWriter.getYInputMessage();
         int newY = getInteger();
-        return new Point(newX, newY);
+        Point point = new Point(newX,newY);
+
+        try{
+            if(!supervisor.getBoard().isOnBoard(point))
+                throw new InputCoordinatesException(Messages.invalidCoordinatesInput);
+
+        }catch(InputCoordinatesException e){
+            System.out.println(e.getMessage());
+            return getInput(supervisor);
+        }
+        return point;
     }
 }

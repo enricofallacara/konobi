@@ -21,5 +21,7 @@ public class Messages {
     public final static String instructions = "Color %s should connect edges vertically\n" +
                                               "Color %s should connect edges horizontally";
     public final static String invalidStringInput = "Invalid input, please insert a valid string!";
+    public final static String invalidSizeInput = "Invalid size, please choose a valid size for the board!";
+    public final static String invalidCoordinatesInput = "Invalid coordinates, please choose a point inside the board!";
 
 }
