@@ -1,8 +1,5 @@
-package core;
+package core.Entities;
 
-import core.Entities.Cell;
-import core.Entities.Color;
-import core.Entities.Player;
 import org.junit.Test;
 import java.awt.Point;
 
@@ -31,13 +28,6 @@ public class cellTest {
     public void testColorEquality() {
         cell.setColor(Color.white);
         assertTrue(cell.hasThisColor(Color.white));
-    }
-
-    @Test
-    public void testColorEqualityWithPlayer() {
-        Player player = new Player(Color.white);
-        cell.setColor(Color.black);
-        assertFalse(cell.hasSameColorAsPlayer(player));
     }
 
 }

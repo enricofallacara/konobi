@@ -40,8 +40,9 @@ public class Konobi {
             ConsoleMessageWriter.notifyPieRule();
             return;
         }
-        while (!supervisor.newMove(inputHandler.getInput(supervisor.getCurrentPlayer()))) {
+        while (!supervisor.newMove(inputHandler.getInput(supervisor))) {
             ConsoleMessageWriter.notifyInvalidMove();
         }
     }
+
 }
