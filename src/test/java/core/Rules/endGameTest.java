@@ -55,14 +55,6 @@ public class endGameTest {
     }
 
     @Test
-    public void testSearchForEndingEdge() {
-        Board board = getTestBoard();
-        Point point = new Point(1, 0);
-        assertTrue(endGameRule.searchForEndingEdge(board.getCell(point), board, Color.black));
-        assertFalse(endGameRule.searchForEndingEdge(board.getCell(point), board, Color.black));
-    }
-
-    @Test
     public void testEndGameRuleForBlack() {
         Board board = getTestBoard();
         assertTrue(endGameRule.isValid(board, Color.black));
