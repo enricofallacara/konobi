@@ -23,6 +23,9 @@ public class EndGameRule implements Rule {
     }
 
     public boolean isValid(Board board, Player player) {
+        // TODO: al di là dei test, creiamo un oggetto ogni volta: ha senso tenere i clear?
+        visited.clear();
+        endingPoints.clear();
         getStartingPoints(board, player).forEach(x -> searchForEndingEdge(x, board, player));
         return !endingPoints.isEmpty();
     }
