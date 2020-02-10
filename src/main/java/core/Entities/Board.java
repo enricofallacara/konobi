@@ -49,29 +49,6 @@ public class Board implements Iterable<Cell>{
         };
     }
 
-    public Stream<Cell> getMooreNeighbours(Point p, int level) {
-        return Arrays.stream(
-                slice(  Math.max(0, p.y - level),
-                        Math.min(p.y + level + 1, size),
-                        Math.max(0, p.x - level),
-                        Math.min(p.x + level + 1, size))
-                );
-    }
-
-    public static boolean isStrongNeighbour(Point target, Point query) { return manhattanDistance(target.x, query.x, target.y, query.y) == 1.0; }
-
-    public static boolean isWeakNeighbour(Point target, Point query) { return manhattanDistance(target.x, query.x, target.y, query.y) == 2.0; }
-
-    @SafeVarargs
-    public final Stream<Cell> getNeighbours(Point point, int level, BiPredicate<Point, Point>... functions) {
-        return getMooreNeighbours(point, level).filter(cell -> Arrays.stream(functions).allMatch(x -> x.test(point, cell.getCoordinates())));
-    }
-
-    @SafeVarargs
-    public final Stream<Cell> getColoredNeighbours(Point point, int level, Color color, BiPredicate<Point, Point>... functions) {
-        return getNeighbours(point, level, functions).filter(x -> x.hasThisColor(color));
-    }
-
     public boolean isOnBoard(Point point){
         return (0<= point.x && point.x < size) && (0 <= point.y && point.y < size);
     }
@@ -80,5 +57,5 @@ public class Board implements Iterable<Cell>{
         return (color == Color.white) ? point.x == size - 1 : point.y == size - 1;
     }
 
-    private static double manhattanDistance(int x1, int x2, int y1, int y2) { return Math.abs(x1 - x2) + Math.abs(y1 - y2); }
+
 }
