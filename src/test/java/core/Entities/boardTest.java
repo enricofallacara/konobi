@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import static org.junit.Assert.*;
 
 public class boardTest {
+
     private Board board = new Board(11);
 
     @Test
@@ -64,46 +65,7 @@ public class boardTest {
         assertArrayEquals(list, actual);
     }
 
-    @Test
-    public void testMooreNeighbours() {
-        Point p = new Point(3,3);
-        ArrayList<Cell> mooreNeighbours = board.getMooreNeighbours(p, 1).collect(Collectors.toCollection(ArrayList::new));
-        ArrayList<Cell> expectedNeighbours = new ArrayList<>() {{
-                                add(board.getCell(p));
-                                add(board.getCell(new Point(p.x,p.y+1)));
-                                add(board.getCell(new Point(p.x,p.y-1)));
-                                add(board.getCell(new Point(p.x+1,p.y)));
-                                add(board.getCell(new Point(p.x-1,p.y)));
-                                add(board.getCell(new Point(p.x+1,p.y+1)));
-                                add(board.getCell(new Point(p.x+1,p.y-1)));
-                                add(board.getCell(new Point(p.x-1,p.y+1)));
-                                add(board.getCell(new Point(p.x-1,p.y-1))); }};
-            assertEquals(new HashSet<>(mooreNeighbours), new HashSet<>(expectedNeighbours));
-    }
 
-    @Test
-    public void testStrongNeighbours(){
-        Point p = new Point(3,3);
-        ArrayList<Cell> strongNeighbours = board.getNeighbours(p, 1, Board::isStrongNeighbour).collect(Collectors.toCollection(ArrayList::new));
-        ArrayList<Cell> expectedNeighbours = new ArrayList<>() {{
-                                add(board.getCell(new Point(p.x,p.y + 1)));
-                                add(board.getCell(new Point(p.x - 1,p.y)));
-                                add(board.getCell(new Point(p.x + 1,p.y)));
-                                add(board.getCell(new Point(p.x,p.y - 1))); }};
-        assertEquals(new HashSet<>(strongNeighbours), new HashSet<>(expectedNeighbours));
-    }
-
-    @Test
-    public void testWeakNeighbours(){
-        Point p = new Point(3,3);
-        ArrayList<Cell> weakNeighbours = board.getNeighbours(p, 1, Board::isWeakNeighbour).collect(Collectors.toCollection(ArrayList::new));
-        ArrayList<Cell> expectedNeighbours = new ArrayList<>() {{
-                                add(board.getCell(new Point(p.x+1,p.y+1)));
-                                add(board.getCell(new Point(p.x+1,p.y-1)));
-                                add(board.getCell(new Point(p.x-1,p.y+1)));
-                                add(board.getCell(new Point(p.x-1,p.y-1))); }};
-        assertEquals(new HashSet<>(weakNeighbours), new HashSet<>(expectedNeighbours));
-    }
 
     @Test
     public void testOnBoard() {
