@@ -1,7 +1,7 @@
 package UI.GUI;
 
 import UI.Messages;
-import core.Entities.Player;
+import Core.Entities.Player;
 import javafx.scene.control.Alert;
 
 public class GUIMessageWriter {

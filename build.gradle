@@ -6,16 +6,16 @@ plugins {
 
 // Two tasks, one for Console and one for GUI application.
 task(runConsole, type: JavaExec) {
-   main = 'core.Main'
+   main = 'Core.Main'
    classpath = sourceSets.main.runtimeClasspath
    standardInput = System.in
 }
 task(runGUI, type: JavaExec) {
-   main = 'core.MainGUI'
+   main = 'Core.MainGUI'
    classpath = sourceSets.main.runtimeClasspath
 }
 
-mainClassName = 'konobi.main/core.Main'
+mainClassName = 'konobi.main/Core.Main'
 
 run {
     standardInput = System.in

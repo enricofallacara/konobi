@@ -1,8 +1,7 @@
 package UI.Console;
 
 import UI.Messages;
-import core.Entities.Player;
-import core.Entities.Supervisor;
+import Core.Entities.Supervisor;
 
 import java.awt.*;
 import java.util.InputMismatchException;

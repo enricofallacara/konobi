@@ -3,12 +3,12 @@ package UI.GUI.Handlers;
 import UI.GUI.Events.EndGameEvent;
 import UI.GUI.GUI;
 import UI.GUI.GUIMessageWriter;
-import core.Rules.EndGameRule;
-import core.Entities.Rulebook;
+import Core.Rules.EndGameRule;
+import Core.Entities.Rulebook;
 import javafx.event.EventHandler;
 
 public class GUIEndGameHandler implements EventHandler<EndGameEvent> {
-    private GUI gui;
+    private final GUI gui;
 
     public GUIEndGameHandler(GUI g) { gui = g; }
 

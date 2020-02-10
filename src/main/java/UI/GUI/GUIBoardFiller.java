@@ -1,6 +1,6 @@
 package UI.GUI;
 
-import core.Entities.Player;
+import Core.Entities.Player;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.layout.GridPane;
@@ -15,8 +15,8 @@ import java.util.Map;
 
 public class GUIBoardFiller {
 
-    int boardSize;
-    int tileSize;
+    final int boardSize;
+    final int tileSize;
 
     GUIBoardFiller(int bS, int tS) {
         boardSize = bS;
@@ -40,9 +40,9 @@ public class GUIBoardFiller {
     }
 
     // TODO: creare una classe, forse astrarre intergaccia con ConsoleCellRepresentation
-    private static final Map<core.Entities.Color, Paint> colorPaintMap = new HashMap<>() {{
-        put(core.Entities.Color.black, Color.BLACK);
-        put(core.Entities.Color.white, Color.WHITE);
+    private static final Map<Core.Entities.Color, Paint> colorPaintMap = new HashMap<>() {{
+        put(Core.Entities.Color.black, Color.BLACK);
+        put(Core.Entities.Color.white, Color.WHITE);
     }};
 
     public void addPiece(GridPane gridPane, int X, int Y, Player player) {
@@ -60,7 +60,7 @@ public class GUIBoardFiller {
 
         Text p1 = new Text("PlayerOne: ");
         Text p2 = new Text("PlayerTwo: ");
-        Text currentPlayer = new Text("Current Player: ");
+        Text currentPlayer = new Text("Now playing: ");
 
         gridLabels.add(p1, 0, 0);
         gridLabels.add(p2, 0, 1);
