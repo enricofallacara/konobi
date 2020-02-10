@@ -29,35 +29,40 @@ public class endGameTest {
     }
 
     @Test
-    public void testGetStartingPointsEmpty() {
+    public void testGetStartingCellsEmpty() {
         Board board = new Board(11);
-        assertFalse(endGameRule.getStartingPoints(board, Color.black).findAny().isPresent());
+        assertFalse(endGameRule.getStartingCells(board, Color.black).findAny().isPresent());
     }
 
     @Test
-    public void testGetStartingPointsForBlack() {
+    public void testGetStartingCellsForBlack() {
         Board board = new Board(11);
         board.setCell(new Point(3, 0), Color.black);
         board.setCell(new Point(4, 0), Color.white);
         Cell[] expected = new Cell[] { board.getCell(new Point(3, 0)) };
-        assertArrayEquals(expected, endGameRule.getStartingPoints(board, Color.black).toArray());
+        assertArrayEquals(expected, endGameRule.getStartingCells(board, Color.black).toArray());
     }
 
     @Test
-    public void testGetStartingPointsForWhite() {
+    public void testGetStartingCellsForWhite() {
         Board board = new Board(11);
         board.setCell(new Point(0, 0), Color.black);
         board.setCell(new Point(0, 9), Color.white);
         board.setCell(new Point(0, 5), Color.white);
         Cell[] expected = new Cell[] { board.getCell(new Point(0, 5)),
                                                         board.getCell(new Point(0, 9)) };
-        assertArrayEquals(expected, endGameRule.getStartingPoints(board, Color.white).toArray());
+        assertArrayEquals(expected, endGameRule.getStartingCells(board, Color.white).toArray());
     }
 
     @Test
-    public void testEndGameRuleForBlack() {
+    public void testEndGameRuleIsValidForBlack() {
         Board board = getTestBoard();
         assertTrue(endGameRule.isValid(board, Color.black));
+    }
+
+    @Test
+    public void testEndGameRuleIsInvalidForWhite() {
+        Board board = getTestBoard();
         assertFalse(endGameRule.isValid(board, Color.white));
     }
 
@@ -70,12 +75,20 @@ public class endGameTest {
     }
 
     @Test
-    public void testEndGameRuleForWhite() {
+    public void testEndGameRuleIsValidForWhite() {
         Board board = getTestBoard();
         board.setCell(new Point(0, 0), Color.white);
         board.setCell(new Point(2, 2), Color.white);
         board.setCell(new Point(3, 2), Color.white);
         assertTrue(endGameRule.isValid(board, Color.white));
+    }
+
+    @Test
+    public void testEndGameRuleIsInvalidForBlack() {
+        Board board = getTestBoard();
+        board.setCell(new Point(0, 0), Color.white);
+        board.setCell(new Point(2, 2), Color.white);
+        board.setCell(new Point(3, 2), Color.white);
         assertFalse(endGameRule.isValid(board, Color.black));
     }
 

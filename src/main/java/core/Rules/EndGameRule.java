@@ -8,13 +8,12 @@ import java.util.HashSet;
 import java.util.stream.Stream;
 
 public class EndGameRule implements Rule {
-
-    private HashSet<Cell> visited;
-    private ArrayList<Cell> endingPoints;
+    private HashSet<Cell> visitedCells;
+    private ArrayList<Cell> endingCells;
 
     public EndGameRule(){
-        visited = new HashSet<>();
-        endingPoints = new ArrayList<>();
+        visitedCells = new HashSet<>();
+        endingCells = new ArrayList<>();
     }
 
     @Override
@@ -23,29 +22,25 @@ public class EndGameRule implements Rule {
     }
 
     public boolean isValid(Board board, Color color) {
-        // TODO: al di là dei test, creiamo un oggetto ogni volta: ha senso tenere i clear?
-        visited.clear();
-        endingPoints.clear();
-        getStartingPoints(board, color).forEach(x -> searchForEndingEdge(x, board, color));
-        return !endingPoints.isEmpty();
+        getStartingCells(board, color).forEach(x -> searchForEndingEdge(x, board, color));
+        return !endingCells.isEmpty();
     }
 
-    public Stream<Cell> getStartingPoints(Board board, Color color) {
+    public Stream<Cell> getStartingCells(Board board, Color color) {
         int size = board.getSize();
         int[] startIdxs = (color == Color.white) ? new int[]{0, size, 0, 1} : new int[]{0, 1, 0, size};
-
         return Arrays.stream(board.slice(startIdxs[0], startIdxs[1], startIdxs[2], startIdxs[3])).
                              filter(x -> x.hasThisColor(color));
     }
 
     public void searchForEndingEdge(Cell current, Board board, Color color) {
         if (board.isOnEndingEdge(current.getCoordinates(), color)) {
-            endingPoints.add(current);
+            endingCells.add(current);
             return;
         }
-        visited.add(current);
+        visitedCells.add(current);
         for (Cell neighbour : board.getColoredNeighbours(current.getCoordinates(), 1, color, (x, y) -> true).toArray(Cell[]::new)) {
-            if (!visited.contains(neighbour)) {
+            if (!visitedCells.contains(neighbour)) {
                 searchForEndingEdge(neighbour, board, color);
             }
         }
