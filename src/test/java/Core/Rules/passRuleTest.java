@@ -1,13 +1,13 @@
 package Core.Rules;
 
 import Core.Entities.Cell;
-import Core.Entities.Supervisor;
+import Core.Entities.StatusSupervisor;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class passRuleTest {
-    private final Supervisor supervisor = new Supervisor(11);
+    private final StatusSupervisor supervisor = new StatusSupervisor(11);
     private final PassRule passRule = new PassRule();
 
     @Test

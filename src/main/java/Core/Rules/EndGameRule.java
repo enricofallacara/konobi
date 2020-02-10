@@ -17,7 +17,7 @@ public class EndGameRule implements Rule {
     }
 
     @Override
-    public boolean isValid(Supervisor supervisor) {
+    public boolean isValid(StatusSupervisor supervisor) {
         return isValid(supervisor.getBoard(), supervisor.getLastPlayer().getColor());
     }
 

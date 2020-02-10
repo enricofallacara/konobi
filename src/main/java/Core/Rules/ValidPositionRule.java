@@ -1,6 +1,6 @@
 package Core.Rules;
 
-import Core.Entities.Supervisor;
+import Core.Entities.StatusSupervisor;
 import java.util.stream.Stream;
 
 public class ValidPositionRule implements Rule {
@@ -9,7 +9,7 @@ public class ValidPositionRule implements Rule {
     public ValidPositionRule() { positionRules = ValidPositionRulesFactory.create(); }
 
     @Override
-    public boolean isValid(Supervisor supervisor) {
+    public boolean isValid(StatusSupervisor supervisor) {
         return positionRules.allMatch(x -> x.isValid(supervisor));
     }
 }

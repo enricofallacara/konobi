@@ -8,13 +8,13 @@ import Core.Rules.PassRule;
 import Core.Rules.PieRule;
 
 public class Konobi {
-    private final Supervisor supervisor;
+    private final StatusSupervisor supervisor;
     private final ConsoleBoardWriter boardDisplayer = new ConsoleBoardWriter();
     private final ConsoleInputHandler inputHandler = new ConsoleInputHandler();
 
     public Konobi() {
         ConsoleMessageWriter.printLogo();
-        supervisor = new Supervisor(inputHandler.askSize());
+        supervisor = new StatusSupervisor(inputHandler.askSize());
         ConsoleMessageWriter.showInstructions(supervisor);
     }
 

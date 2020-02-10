@@ -13,12 +13,12 @@ import javafx.scene.text.Text;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GUIBoardFiller {
+public class GUIBoardWriter {
 
     final int boardSize;
     final int tileSize;
 
-    GUIBoardFiller(int bS, int tS) {
+    GUIBoardWriter(int bS, int tS) {
         boardSize = bS;
         tileSize = tS;
     }
@@ -39,7 +39,6 @@ public class GUIBoardFiller {
         return gridPane;
     }
 
-    // TODO: creare una classe, forse astrarre intergaccia con ConsoleCellRepresentation
     private static final Map<Core.Entities.Color, Paint> colorPaintMap = new HashMap<>() {{
         put(Core.Entities.Color.black, Color.BLACK);
         put(Core.Entities.Color.white, Color.WHITE);
@@ -82,10 +81,11 @@ public class GUIBoardFiller {
         return gridLabels;
     }
 
-    // TODO: aggiungere commento spiegando a cosa corrispondono i get(3), i vari numerini
     public void switchLabelsColors( GridPane labelBoard ){
+        // The index 3 corresponds to the PlayerOne circle
         Circle cBlack = (Circle) labelBoard.getChildren().get(3);
         cBlack.setFill(Color.WHITE);
+        // The index 4 corresponds to the PlayerTwo circle
         Circle cWhite = (Circle) labelBoard.getChildren().get(4);
         cWhite.setFill(Color.BLACK);
     }
@@ -93,6 +93,7 @@ public class GUIBoardFiller {
 
 
     public void switchLabelsCurrentPlayer(GridPane labelBoard ){
+        // The index 5 corresponds to the CurrentPlayer circle
         Circle cCircle = (Circle) labelBoard.getChildren().get(5);
        cCircle.setFill(cCircle.getFill() == Color.BLACK ? Color.WHITE : Color.BLACK);
     }

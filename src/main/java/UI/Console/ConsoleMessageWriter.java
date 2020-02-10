@@ -2,11 +2,11 @@ package UI.Console;
 
 import UI.Messages;
 import Core.Entities.Player;
-import Core.Entities.Supervisor;
+import Core.Entities.StatusSupervisor;
 
 public class ConsoleMessageWriter {
 
-    public static void showInstructions(Supervisor supervisor) {
+    public static void showInstructions(StatusSupervisor supervisor) {
         System.out.println(String.format(Messages.instructions,
                 ConsoleCellRepresentation.getRepresentation(supervisor.getCurrentPlayer().getColor()),
                 ConsoleCellRepresentation.getRepresentation(supervisor.getLastPlayer().getColor())));

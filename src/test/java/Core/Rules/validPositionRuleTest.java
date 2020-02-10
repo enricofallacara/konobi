@@ -2,14 +2,14 @@ package Core.Rules;
 
 import Core.Entities.Board;
 import Core.Entities.Color;
-import Core.Entities.Supervisor;
+import Core.Entities.StatusSupervisor;
 import org.junit.Test;
 import java.awt.Point;
 
 import static org.junit.Assert.*;
 
 public class validPositionRuleTest {
-    private final Supervisor supervisor = new Supervisor(11);
+    private final StatusSupervisor supervisor = new StatusSupervisor(11);
     private final ValidPositionRule validPositionRule = new ValidPositionRule();
 
     private void setTestBoard(Board board) {

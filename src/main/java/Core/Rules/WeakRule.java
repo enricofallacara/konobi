@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 public class WeakRule implements Rule {
 
     @Override
-    public boolean isValid(Supervisor supervisor) {
+    public boolean isValid(StatusSupervisor supervisor) {
         return isValid(supervisor.getCurrentPoint(), supervisor.getBoard(), supervisor.getCurrentPlayer().getColor());
     }
 

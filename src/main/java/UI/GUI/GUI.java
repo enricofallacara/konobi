@@ -7,7 +7,7 @@ import UI.GUI.Handlers.GUIEndGameHandler;
 import UI.GUI.Handlers.GUIMouseInputHandler;
 import UI.GUI.Handlers.GUIPassRuleHandler;
 import UI.GUI.Handlers.GUIPieRuleHandler;
-import Core.Entities.Supervisor;
+import Core.Entities.StatusSupervisor;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -31,13 +31,13 @@ public class GUI extends Application {
     private final int TILESIZE = 50;
     private Stage stage;
     private GridPane gridPane;
-    private Supervisor supervisor;
-    private GUIBoardFiller boardFiller;
+    private StatusSupervisor supervisor;
+    private GUIBoardWriter boardFiller;
 
     public GridPane getGridBoard() { return (GridPane)gridPane.getChildren().get(0); }
     public GridPane getLabelBoard() { return (GridPane)gridPane.getChildren().get(1); }
-    public Supervisor getSupervisor() { return supervisor; }
-    public GUIBoardFiller getBoardFiller() { return boardFiller; }
+    public StatusSupervisor getSupervisor() { return supervisor; }
+    public GUIBoardWriter getBoardFiller() { return boardFiller; }
 
     @Override
     public void start(Stage primaryStage) {
@@ -49,8 +49,8 @@ public class GUI extends Application {
     public void initUI(int boardSize) {
         gridPane = new GridPane();
         gridPane.setVgap(20);
-        supervisor = new Supervisor(boardSize);
-        boardFiller = new GUIBoardFiller(boardSize, TILESIZE);
+        supervisor = new StatusSupervisor(boardSize);
+        boardFiller = new GUIBoardWriter(boardSize, TILESIZE);
 
         GridPane gridBoard = boardFiller.createEmptyBoard();
         gridBoard.getStyleClass().add("grid-board");

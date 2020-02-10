@@ -1,20 +1,18 @@
 package Core.Rules;
 
 import Core.Entities.Board;
-import Core.Entities.Supervisor;
+import Core.Entities.StatusSupervisor;
 
 import java.awt.Point;
 
 public class EmptyRule implements Rule {
     @Override
-    public boolean isValid(Supervisor supervisor) {
+    public boolean isValid(StatusSupervisor supervisor) {
         return isValid(supervisor.getCurrentPoint(), supervisor.getBoard());
     }
-    // TODO: se testiamo da qualche altra parte che il punto e nella Board, la prima condizione
-    //  sparisce
+
     public static boolean isValid(Point point, Board board) {
-        return board.isOnBoard(point)
-                && board.getCell(point).getColor() == null;
+        return board.getCell(point).getColor() == null;
     }
 }
 

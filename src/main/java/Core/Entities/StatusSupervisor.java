@@ -2,8 +2,8 @@ package Core.Entities;
 
 import Core.Rules.ValidPositionRule;
 import java.awt.Point;
-// TODO: Supervisor dovrebbe diventare un GameStatus o StatusSupervisor
-public class Supervisor {
+
+public class StatusSupervisor {
     private final Board board;
     private final Player playerOne;
     private final Player playerTwo;
@@ -11,7 +11,7 @@ public class Supervisor {
     private Color currentColor;
     private int nTurn;
 
-    public Supervisor(int boardSize) {
+    public StatusSupervisor(int boardSize) {
         board = new Board(boardSize);
         playerOne = new Player(Color.black, "playerOne");
         playerTwo = new Player(Color.white, "playerTwo");

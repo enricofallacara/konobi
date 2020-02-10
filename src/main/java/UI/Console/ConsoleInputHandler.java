@@ -1,7 +1,7 @@
 package UI.Console;
 
 import UI.Messages;
-import Core.Entities.Supervisor;
+import Core.Entities.StatusSupervisor;
 
 import java.awt.*;
 import java.util.InputMismatchException;
@@ -57,7 +57,7 @@ public class ConsoleInputHandler {
         return size;
     }
 
-    public Point getInput(Supervisor supervisor) {
+    public Point getInput(StatusSupervisor supervisor) {
 
         ConsoleMessageWriter.displayPlayer(supervisor.getCurrentPlayer());
         ConsoleMessageWriter.getXInputMessage();

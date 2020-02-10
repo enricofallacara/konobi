@@ -12,7 +12,6 @@ import java.awt.Point;
 
 public class GUIMouseInputHandler implements EventHandler<MouseEvent> {
     private final GUI gui;
-    // TODO: stesso problema ocp di ValidPositionRule
     public GUIMouseInputHandler(GUI g) { gui = g; }
 
     @Override

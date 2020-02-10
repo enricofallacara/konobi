@@ -1,7 +1,7 @@
 package Core.Rules;
 
-import Core.Entities.Supervisor;
+import Core.Entities.StatusSupervisor;
 
 public interface Rule {
-    boolean isValid(Supervisor supervisor);
+    boolean isValid(StatusSupervisor supervisor);
 }
