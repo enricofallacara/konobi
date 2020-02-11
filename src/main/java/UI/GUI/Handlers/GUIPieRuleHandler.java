@@ -4,8 +4,8 @@ import UI.GUI.Events.PieRuleEvent;
 import UI.GUI.GUI;
 import UI.GUI.GUIAsker;
 import UI.GUI.GUIMessageWriter;
-import core.Rules.PieRule;
-import core.Entities.Rulebook;
+import Core.Rules.PieRule;
+import Core.Entities.Rulebook;
 import javafx.event.EventHandler;
 
 public class GUIPieRuleHandler implements EventHandler<PieRuleEvent> {

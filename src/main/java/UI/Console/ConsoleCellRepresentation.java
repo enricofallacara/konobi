@@ -1,6 +1,6 @@
 package UI.Console;
 
-import core.Entities.Color;
+import Core.Entities.Color;
 
 import java.util.HashMap;
 import java.util.Map;

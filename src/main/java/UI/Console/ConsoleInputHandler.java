@@ -1,7 +1,7 @@
 package UI.Console;
 
 import UI.Messages;
-import core.Entities.StatusSupervisor;
+import Core.Entities.StatusSupervisor;
 
 import java.awt.*;
 import java.util.InputMismatchException;

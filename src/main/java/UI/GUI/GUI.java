@@ -7,7 +7,7 @@ import UI.GUI.Handlers.GUIEndGameHandler;
 import UI.GUI.Handlers.GUIMouseInputHandler;
 import UI.GUI.Handlers.GUIPassRuleHandler;
 import UI.GUI.Handlers.GUIPieRuleHandler;
-import core.Entities.StatusSupervisor;
+import Core.Entities.StatusSupervisor;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
