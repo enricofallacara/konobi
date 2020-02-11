@@ -9,14 +9,24 @@ public class supervisorTest {
 
     private final StatusSupervisor supervisor = new StatusSupervisor(11);
 
+    private void setTestBoard() {
+        Board board = supervisor.getBoard();
+        board.setCell(new Point(0, 0), Color.black);
+        board.setCell(new Point(0, 1), Color.white);
+        board.setCell(new Point(2, 2), Color.white);
+    }
+
     @Test
     public void testNewMoveInvalid() {
-        assertFalse(supervisor.newMove(new Point(12, 3)));
+        setTestBoard();
+        assertFalse(supervisor.newMove(new Point(1, 1)));
         assertSame(Color.black, supervisor.getCurrentPlayer().getColor());
     }
 
     @Test
     public void testNewMoveValid() {
+        setTestBoard();
+        supervisor.getBoard().setCell(new Point(2, 1), Color.black);
         assertTrue(supervisor.newMove(new Point(2, 3)));
         assertSame(Color.white, supervisor.getCurrentPlayer().getColor());
     }
