@@ -6,15 +6,14 @@ import java.awt.Point;
 import static org.junit.Assert.*;
 
 public class supervisorTest {
+
     private final StatusSupervisor supervisor = new StatusSupervisor(11);
 
-    /*
     @Test
     public void testNewMoveInvalid() {
         assertFalse(supervisor.newMove(new Point(12, 3)));
         assertSame(Color.black, supervisor.getCurrentPlayer().getColor());
     }
-     */
 
     @Test
     public void testNewMoveValid() {
