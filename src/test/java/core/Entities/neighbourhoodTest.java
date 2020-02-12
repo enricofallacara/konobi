@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+
 
 public class neighbourhoodTest {
 
@@ -29,6 +29,34 @@ public class neighbourhoodTest {
             add(board.getCell(new Point(p.x-1,p.y+1)));
             add(board.getCell(new Point(p.x-1,p.y-1))); }};
         assertEquals(new HashSet<>(mooreNeighbours), new HashSet<>(expectedNeighbours));
+    }
+
+    @Test
+    public void testIsStrongNeighbour() {
+        Point otherP = new Point(4, 3);
+        assertTrue(Neighbourhood.isStrongNeighbour(p, otherP));
+        assertTrue(Neighbourhood.isStrongNeighbour(otherP, p));
+    }
+
+    @Test
+    public void testIsNotStrongNeighbour() {
+        Point otherP = new Point(2, 2);
+        assertFalse(Neighbourhood.isStrongNeighbour(p, otherP));
+        assertFalse(Neighbourhood.isStrongNeighbour(otherP, p));
+    }
+
+    @Test
+    public void testIsWeakNeighbour() {
+        Point otherP = new Point(2, 2);
+        assertTrue(Neighbourhood.isWeakNeighbour(p, otherP));
+        assertTrue(Neighbourhood.isWeakNeighbour(otherP, p));
+    }
+
+    @Test
+    public void testIsNotWeakNeighbour() {
+        Point otherP = new Point(4, 3);
+        assertFalse(Neighbourhood.isWeakNeighbour(p, otherP));
+        assertFalse(Neighbourhood.isWeakNeighbour(otherP, p));
     }
 
     @Test

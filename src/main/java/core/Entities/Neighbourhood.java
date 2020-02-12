@@ -20,6 +20,7 @@ public class Neighbourhood {
     }
     // TODO: getMooreNeighbours, getNeighbours e getColoredNeighbours potrebbero diventare non-statiche e la
     //  Board assegnata nel costruttore della classe. Non e fondamentale ma diventerebbe piu elegante
+    // TODO: rendere i nomi piu espressivi, per esempio getNeighbours potrebbe diventare filterNeighboursByPosition
     public static boolean isStrongNeighbour(Point target, Point query) { return manhattanDistance(target.x, query.x, target.y, query.y) == 1.0; }
 
     public static boolean isWeakNeighbour(Point target, Point query) { return manhattanDistance(target.x, query.x, target.y, query.y) == 2.0; }
