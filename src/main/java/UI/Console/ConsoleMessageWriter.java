@@ -4,6 +4,7 @@ import UI.Messages;
 import core.Entities.Player;
 import core.Entities.StatusSupervisor;
 
+
 public class ConsoleMessageWriter {
 
     public static void showInstructions(StatusSupervisor supervisor) {

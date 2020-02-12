@@ -5,6 +5,7 @@ import core.Entities.Color;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class ConsoleCellRepresentation {
 
     private static final Map<Color, String> cellColorMap = new HashMap<>() {{
