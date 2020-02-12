@@ -7,7 +7,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.stream.Stream;
 
+
 public class EndGameRule implements Rule {
+
     private final HashSet<Cell> visitedCells;
     private final ArrayList<Cell> endingCells;
 

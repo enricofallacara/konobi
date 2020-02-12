@@ -5,18 +5,22 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.stream.IntStream;
 
+
 public class Board implements Iterable<Cell>{
+
+    private final int size;
+    private final Cell[][] grid;
 
     public Board(int s){
         size = s;
         grid = IntStream.range(0, s).mapToObj(x -> IntStream.range(0, s)
                 .mapToObj(y -> new Cell(new Point(x, y))).toArray(Cell[]::new)).toArray(Cell[][]::new);
     }
-    private final int size;
-    private final Cell[][] grid;
 
     public int getSize(){ return size; }
+
     public Cell getCell(Point p){ return grid[p.x][p.y]; }
+
     public void setCell(Point p, Color c) {
         getCell(p).setColor(c);
     }
@@ -54,6 +58,5 @@ public class Board implements Iterable<Cell>{
     public boolean isOnEndingEdge(Point point, Color color) {
         return (color == Color.white) ? point.x == size - 1 : point.y == size - 1;
     }
-
 
 }

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.function.BiPredicate;
 import java.util.stream.Stream;
 
+
 public class Neighbourhood {
     // TODO: trovare un modo di fare il bounds check in Board, non qua
     // TODO: si potrebbe togliere il parametro level, in quanto usiamo sempre 1

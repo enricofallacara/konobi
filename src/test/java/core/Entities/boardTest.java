@@ -3,8 +3,8 @@ package core.Entities;
 import org.junit.Test;
 import java.awt.Point;
 
-
 import static org.junit.Assert.*;
+
 
 public class boardTest {
 
@@ -24,7 +24,7 @@ public class boardTest {
     public void setCellTest(){
         Point p = new Point(2, 3);
         board.setCell(p, Color.black);
-        assertEquals(Color.black, board.getCell(p).getColor());
+        assertSame(Color.black, board.getCell(p).getColor());
     }
 
     @Test

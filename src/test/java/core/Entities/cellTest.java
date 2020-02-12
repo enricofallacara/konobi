@@ -5,12 +5,14 @@ import java.awt.Point;
 
 import static org.junit.Assert.*;
 
+
 public class cellTest {
+
     private final Cell cell = new Cell(new Point(3, 4));
 
     @Test
     public void testCoordinates() {
-       assertEquals(cell.getCoordinates(), new Point(3, 4));
+        assertEquals(cell.getCoordinates(), new Point(3, 4));
     }
 
     @Test
@@ -21,13 +23,14 @@ public class cellTest {
     @Test
     public void testChangeColour() {
         cell.setColor(Color.black);
-        assertEquals(cell.getColor(), Color.black);
+        assertSame(cell.getColor(), Color.black);
     }
 
     @Test
     public void testColorEquality() {
         cell.setColor(Color.white);
         assertTrue(cell.hasThisColor(Color.white));
+        assertFalse(cell.hasThisColor(Color.black));
     }
 
 }

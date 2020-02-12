@@ -8,7 +8,9 @@ import java.awt.Point;
 
 import static org.junit.Assert.*;
 
+
 public class endGameTest {
+
     private final EndGameRule endGameRule = new EndGameRule();
 
     private Board getTestBoard() {

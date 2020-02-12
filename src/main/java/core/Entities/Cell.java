@@ -2,7 +2,9 @@ package core.Entities;
 
 import java.awt.Point;
 
+
 public class Cell {
+
     private Color color;
     private final Point coordinates;
 
