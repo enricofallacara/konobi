@@ -1,6 +1,6 @@
 package UI.GUI;
 
-import Core.Entities.Player;
+import core.Entities.Player;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.layout.GridPane;
@@ -39,9 +39,9 @@ public class GUIBoardWriter {
         return gridPane;
     }
 
-    private static final Map<Core.Entities.Color, Paint> colorPaintMap = new HashMap<>() {{
-        put(Core.Entities.Color.black, Color.BLACK);
-        put(Core.Entities.Color.white, Color.WHITE);
+    private static final Map<core.Entities.Color, Paint> colorPaintMap = new HashMap<>() {{
+        put(core.Entities.Color.black, Color.BLACK);
+        put(core.Entities.Color.white, Color.WHITE);
     }};
 
     public void addPiece(GridPane gridPane, int X, int Y, Player player) {

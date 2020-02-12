@@ -3,8 +3,8 @@ package UI.GUI.Handlers;
 import UI.GUI.Events.EndGameEvent;
 import UI.GUI.GUI;
 import UI.GUI.GUIMessageWriter;
-import Core.Rules.EndGameRule;
-import Core.Entities.Rulebook;
+import core.Rules.EndGameRule;
+import core.Entities.Rulebook;
 import javafx.event.EventHandler;
 
 public class GUIEndGameHandler implements EventHandler<EndGameEvent> {

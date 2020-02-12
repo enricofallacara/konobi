@@ -1,8 +1,8 @@
 package UI.Console;
 
 import UI.Messages;
-import Core.Entities.Player;
-import Core.Entities.StatusSupervisor;
+import core.Entities.Player;
+import core.Entities.StatusSupervisor;
 
 public class ConsoleMessageWriter {
 
