@@ -1,10 +1,10 @@
 package UI.Console;
 
-import Core.Entities.Board;
-import Core.Entities.Cell;
-
-import java.awt.*;
+import core.Entities.Board;
+import core.Entities.Cell;
+import java.awt.Point;
 import java.util.stream.IntStream;
+
 
 public class ConsoleBoardWriter {
 

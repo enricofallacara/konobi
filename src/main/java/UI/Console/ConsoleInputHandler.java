@@ -1,11 +1,14 @@
 package UI.Console;
 
+import UI.Console.Exceptions.InputCoordinatesException;
+import UI.Console.Exceptions.InputPieRuleException;
+import UI.Console.Exceptions.InputSizeException;
 import UI.Messages;
-import Core.Entities.StatusSupervisor;
-
-import java.awt.*;
+import core.Entities.StatusSupervisor;
+import java.awt.Point;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 
 public class ConsoleInputHandler {
 
@@ -28,7 +31,7 @@ public class ConsoleInputHandler {
         return answer.toLowerCase().equals("y");
     }
 
-    public int getInteger() {
+    private int getInteger() {
         try {
             if (scanner.hasNextInt())
                 return scanner.nextInt();
@@ -56,9 +59,8 @@ public class ConsoleInputHandler {
         }
         return size;
     }
-
+    // TODO: Long Method smell
     public Point getInput(StatusSupervisor supervisor) {
-
         ConsoleMessageWriter.displayPlayer(supervisor.getCurrentPlayer());
         ConsoleMessageWriter.getXInputMessage();
         int newX = getInteger();
@@ -76,4 +78,5 @@ public class ConsoleInputHandler {
         }
         return point;
     }
+
 }

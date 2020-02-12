@@ -1,9 +1,10 @@
 package UI.Console;
 
-import Core.Entities.Color;
+import core.Entities.Color;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class ConsoleCellRepresentation {
 

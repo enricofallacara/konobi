@@ -1,8 +1,9 @@
 package UI.GUI;
 
 import UI.Messages;
-import Core.Entities.Player;
+import core.Entities.Player;
 import javafx.scene.control.Alert;
+
 
 public class GUIMessageWriter {
 
@@ -37,4 +38,5 @@ public class GUIMessageWriter {
         alert.setContentText(Messages.pieRule);
         alert.showAndWait();
     }
+
 }
