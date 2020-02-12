@@ -12,10 +12,10 @@ public class Neighbourhood {
     //  e complica un poco il codice
     public static Stream<Cell> getMooreNeighbours(Board board, Point p) {
         return Arrays.stream(
-                board.slice(  Math.max(0, p.y),
-                        Math.min(p.y + 1, board.getSize()),
-                        Math.max(0, p.x),
-                        Math.min(p.x + 1, board.getSize()))
+                board.slice(  Math.max(0, p.y - 1),
+                        Math.min(p.y + 2, board.getSize()),
+                        Math.max(0, p.x - 1),
+                        Math.min(p.x + 2, board.getSize()))
         );
     }
     // TODO: getMooreNeighbours, getNeighbours e getColoredNeighbours potrebbero diventare non-statiche e la
