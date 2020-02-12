@@ -7,7 +7,9 @@ import core.Rules.EndGameRule;
 import core.Rules.PassRule;
 import core.Rules.PieRule;
 
+
 public class Konobi {
+
     private final StatusSupervisor supervisor;
     private final ConsoleBoardWriter boardDisplayer = new ConsoleBoardWriter();
     private final ConsoleInputHandler inputHandler = new ConsoleInputHandler();
