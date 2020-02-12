@@ -13,10 +13,15 @@ import javafx.scene.text.Text;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class GUIBoardWriter {
 
     final int boardSize;
     final int tileSize;
+    private static final Map<core.Entities.Color, Paint> colorPaintMap = new HashMap<>() {{
+        put(core.Entities.Color.black, Color.BLACK);
+        put(core.Entities.Color.white, Color.WHITE);
+    }};
 
     GUIBoardWriter(int bS, int tS) {
         boardSize = bS;
@@ -39,11 +44,6 @@ public class GUIBoardWriter {
         return gridPane;
     }
 
-    private static final Map<core.Entities.Color, Paint> colorPaintMap = new HashMap<>() {{
-        put(core.Entities.Color.black, Color.BLACK);
-        put(core.Entities.Color.white, Color.WHITE);
-    }};
-
     public void addPiece(GridPane gridPane, int X, int Y, Player player) {
         Circle piece = new Circle(X * tileSize, Y * tileSize, tileSize*0.4);
         piece.setFill(colorPaintMap.get(player.getColor()));
@@ -52,7 +52,7 @@ public class GUIBoardWriter {
         gridPane.add(piece, X, Y);
 
     }
-
+    // TODO: Long Method smell?
     public GridPane createLabelPane() {
         GridPane gridLabels = new GridPane();
         gridLabels.setVgap(10);
@@ -77,7 +77,6 @@ public class GUIBoardWriter {
         gridLabels.add(bCircle, 1, 1);
         gridLabels.add(cCurrent, 1, 2);
 
-
         return gridLabels;
     }
 
@@ -90,11 +89,10 @@ public class GUIBoardWriter {
         cWhite.setFill(Color.BLACK);
     }
 
-
-
     public void switchLabelsCurrentPlayer(GridPane labelBoard ){
         // The index 5 corresponds to the CurrentPlayer circle
         Circle cCircle = (Circle) labelBoard.getChildren().get(5);
        cCircle.setFill(cCircle.getFill() == Color.BLACK ? Color.WHITE : Color.BLACK);
     }
+
 }

@@ -28,7 +28,8 @@ import javafx.stage.Stage;
 
 
 public class GUI extends Application {
-    private final int TILESIZE = 50;
+
+    private final int TILESIZE = 50;  // TODO: uniformare il nome della variabile
     private Stage stage;
     private GridPane gridPane;
     private StatusSupervisor supervisor;
@@ -45,7 +46,9 @@ public class GUI extends Application {
         stage.setResizable(false);
         initialize();
     }
-
+    // TODO: cambiare nome al metodo?
+    // TODO: Long Method smell?
+    // TODO: private?
     public void initUI(int boardSize) {
         gridPane = new GridPane();
         gridPane.setVgap(20);
@@ -72,14 +75,12 @@ public class GUI extends Application {
         String path = getClass().getResource("/GUI.css").toExternalForm();
         scene.getStylesheets().add(path);
 
-       // System.out.println( getClass().getResource("/GUI.css"));
-
         stage.setTitle("ChessBoard");
         stage.setScene(scene);
         stage.show();
     }
 
-    public <T extends Event> void createAndSetHandlerOnNode(Node source, EventType<T> eventType, EventHandler<? super T> eventHandler) {
+    private <T extends Event> void createAndSetHandlerOnNode(Node source, EventType<T> eventType, EventHandler<? super T> eventHandler) {
         source.addEventHandler(eventType, eventHandler);
     }
 
@@ -92,14 +93,15 @@ public class GUI extends Application {
         Platform.exit();
     }
 
-    public Button cretaeAndSetButton(String text, int width, int height, EventHandler<ActionEvent> handler) {
+    private Button createAndSetButton(String text, int width, int height, EventHandler<ActionEvent> handler) {
         Button button = new Button(text);
         button.setPrefWidth(width);
         button.setPrefHeight(height);
         button.setOnAction(handler);
         return button;
     }
-
+    // TODO: private?
+    // TODO: Long Method smell?
     public void initialize() {
         GridPane pane = new GridPane();
 
@@ -115,13 +117,13 @@ public class GUI extends Application {
         int width = 80;
         int height = 35;
 
-        Button startButton = cretaeAndSetButton("Start", width, height, (ActionEvent e) -> {
+        Button startButton = createAndSetButton("Start", width, height, (ActionEvent e) -> {
             int size = GUIAsker.askSize();
             initUI(size);});
 
-        Button endButton = cretaeAndSetButton("Exit", width, height, (ActionEvent e) -> stop());
+        Button endButton = createAndSetButton("Exit", width, height, (ActionEvent e) -> stop());
 
-        Button rulesButton = cretaeAndSetButton("Rules", width, height, (ActionEvent e) -> getHostServices().showDocument("https://boardgamegeek.com/boardgame/123213/konobi"));
+        Button rulesButton = createAndSetButton("Rules", width, height, (ActionEvent e) -> getHostServices().showDocument("https://boardgamegeek.com/boardgame/123213/konobi"));
 
         HBox hBox = new HBox();
         hBox.getChildren().addAll(startButton, endButton, rulesButton);

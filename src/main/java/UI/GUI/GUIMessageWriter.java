@@ -4,6 +4,7 @@ import UI.Messages;
 import core.Entities.Player;
 import javafx.scene.control.Alert;
 
+
 public class GUIMessageWriter {
 
     public static void notifyPass() {
@@ -37,4 +38,5 @@ public class GUIMessageWriter {
         alert.setContentText(Messages.pieRule);
         alert.showAndWait();
     }
+
 }
