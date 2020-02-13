@@ -43,13 +43,13 @@ public class boardTest {
         Cell[] expected = new Cell[]{};
         assertArrayEquals(actual, expected);
     }
-    // TODO: trovare un modo per far passare questo test?
-    /*@Test
+
+    @Test
     public void testNegativeSlice() {
         Cell[] actual = board.slice(3, 4, 0, -2);
         Cell[] expected = new Cell[]{};
         assertArrayEquals(actual, expected);
-    }*/
+    }
 
     @Test
     public void testIterator(){

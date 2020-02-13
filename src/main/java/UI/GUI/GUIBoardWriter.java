@@ -53,6 +53,7 @@ public class GUIBoardWriter {
 
     }
     // TODO: Long Method smell?
+    // No, vedi come in GUI.java
     public GridPane createLabelPane() {
         GridPane gridLabels = new GridPane();
         gridLabels.setVgap(10);

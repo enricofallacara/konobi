@@ -61,7 +61,7 @@ public class neighbourhoodTest {
 
     @Test
     public void testStrongNeighbours(){
-        ArrayList<Cell> strongNeighbours = Neighbourhood.getNeighbours(board, p, Neighbourhood::isStrongNeighbour).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Cell> strongNeighbours = Neighbourhood.getNeighboursByType(board, p, Neighbourhood::isStrongNeighbour).collect(Collectors.toCollection(ArrayList::new));
         ArrayList<Cell> expectedNeighbours = new ArrayList<>() {{
             add(board.getCell(new Point(p.x,p.y + 1)));
             add(board.getCell(new Point(p.x - 1,p.y)));
@@ -72,7 +72,7 @@ public class neighbourhoodTest {
 
     @Test
     public void testWeakNeighbours(){
-        ArrayList<Cell> weakNeighbours = Neighbourhood.getNeighbours(board, p, Neighbourhood::isWeakNeighbour).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Cell> weakNeighbours = Neighbourhood.getNeighboursByType(board, p, Neighbourhood::isWeakNeighbour).collect(Collectors.toCollection(ArrayList::new));
         ArrayList<Cell> expectedNeighbours = new ArrayList<>() {{
             add(board.getCell(new Point(p.x+1,p.y+1)));
             add(board.getCell(new Point(p.x+1,p.y-1)));
@@ -83,7 +83,7 @@ public class neighbourhoodTest {
 
     @Test
     public void testColoredNeighboursNone() {
-        ArrayList<Cell> coloredNeighbours = Neighbourhood.getColoredNeighbours(board, p, Color.black, Neighbourhood::isWeakNeighbour).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Cell> coloredNeighbours = Neighbourhood.getColoredNeighboursByType(board, p, Color.black, Neighbourhood::isWeakNeighbour).collect(Collectors.toCollection(ArrayList::new));
         assertTrue(coloredNeighbours.isEmpty());
     }
 
@@ -93,7 +93,7 @@ public class neighbourhoodTest {
         board.setCell(new Point(p.x + 1, p.y + 1), Color.white);
         board.setCell(new Point(p.x - 1, p.y), Color.white);
         board.setCell(new Point(p.x + 1, p.y - 1), Color.black);
-        ArrayList<Cell> coloredNeighbours = Neighbourhood.getColoredNeighbours(board, p, Color.black, Neighbourhood::isWeakNeighbour).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Cell> coloredNeighbours = Neighbourhood.getColoredNeighboursByType(board, p, Color.black, Neighbourhood::isWeakNeighbour).collect(Collectors.toCollection(ArrayList::new));
         ArrayList<Cell> expectedNeighbours = new ArrayList<>() {{ add(board.getCell(new Point(p.x+1,p.y-1))); }};
         assertEquals(expectedNeighbours, coloredNeighbours);
     }

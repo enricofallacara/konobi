@@ -29,7 +29,7 @@ import javafx.stage.Stage;
 
 public class GUI extends Application {
 
-    private final int TILESIZE = 50;  // TODO: uniformare il nome della variabile
+    private final int tilesize = 50;
     private Stage stage;
     private GridPane gridPane;
     private StatusSupervisor supervisor;
@@ -44,16 +44,18 @@ public class GUI extends Application {
     public void start(Stage primaryStage) {
         stage = primaryStage;
         stage.setResizable(false);
-        initialize();
+        initUI();
     }
-    // TODO: cambiare nome al metodo?
+
     // TODO: Long Method smell?
-    // TODO: private?
-    public void initUI(int boardSize) {
+    // No, perchè come hanno detto loro, purtoppo i metodi che cpopolano un interfaccia saranno sempre quantomeno "lunghi"
+    // perchè le compomnenti, in una parte o nell altra, devono essere comunque aggiunte e devono venire gestiti gli eventi.
+    // Al massimo si può pensare di fare un metodo  che esegua i createAndSetHandlerOnNode() ma non so quanto senso abbia
+    private void initGameInterface(int boardSize) {
         gridPane = new GridPane();
         gridPane.setVgap(20);
         supervisor = new StatusSupervisor(boardSize);
-        boardFiller = new GUIBoardWriter(boardSize, TILESIZE);
+        boardFiller = new GUIBoardWriter(boardSize, tilesize);
 
         GridPane gridBoard = boardFiller.createEmptyBoard();
         gridBoard.getStyleClass().add("grid-board");
@@ -85,7 +87,7 @@ public class GUI extends Application {
     }
 
     public int coordinateConversion(double coordinate) {
-        return (int)coordinate / TILESIZE;
+        return (int)coordinate / tilesize;
     }
 
     @Override
@@ -100,9 +102,10 @@ public class GUI extends Application {
         button.setOnAction(handler);
         return button;
     }
-    // TODO: private?
+
     // TODO: Long Method smell?
-    public void initialize() {
+    // No, idem with potatoes.
+    private void initUI() {
         GridPane pane = new GridPane();
 
         pane.setPadding(new Insets(20, 20, 20, 20));
@@ -119,7 +122,7 @@ public class GUI extends Application {
 
         Button startButton = createAndSetButton("Start", width, height, (ActionEvent e) -> {
             int size = GUIAsker.askSize();
-            initUI(size);});
+            initGameInterface(size);});
 
         Button endButton = createAndSetButton("Exit", width, height, (ActionEvent e) -> stop());
 

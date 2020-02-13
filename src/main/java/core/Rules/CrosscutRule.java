@@ -13,7 +13,8 @@ public class CrosscutRule implements Rule {
     }
 
     public static boolean isValid(Point point, Board board, Color color) {
-        Stream<Cell> neighbours = Neighbourhood.getColoredNeighbours(board, point, color, Neighbourhood::isWeakNeighbour);
+
+        Stream<Cell> neighbours = Neighbourhood.getColoredNeighboursByType(board, point, color, Neighbourhood::isWeakNeighbour);
         return neighbours.noneMatch(c ->
                         board.getCell(new Point(point.x, c.getCoordinates().y)).hasThisColor(color.getOppositeColor())
                         &&

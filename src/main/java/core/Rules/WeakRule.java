@@ -14,10 +14,10 @@ public class WeakRule implements Rule {
     }
 
     public static boolean isValid(Point point, Board board, Color color) {
-        Stream<Cell> weakNeighbours = Neighbourhood.getColoredNeighbours(board, point, color, Neighbourhood::isWeakNeighbour);
-        return weakNeighbours.flatMap(c1 -> Neighbourhood.getNeighbours(board, c1.getCoordinates(), Neighbourhood::isStrongNeighbour)
+        Stream<Cell> weakNeighbours = Neighbourhood.getColoredNeighboursByType(board, point, color, Neighbourhood::isWeakNeighbour);
+        return weakNeighbours.flatMap(c1 -> Neighbourhood.getNeighboursByType(board, c1.getCoordinates(), Neighbourhood::isStrongNeighbour)
                                             .filter(c2 -> c2.hasThisColor(null))
-                                            .map(c3 -> Neighbourhood.getColoredNeighbours(board, c3.getCoordinates(), color, Neighbourhood::isWeakNeighbour)
+                                            .map(c3 -> Neighbourhood.getColoredNeighboursByType(board, c3.getCoordinates(), color, Neighbourhood::isWeakNeighbour)
                                                             .findAny().isPresent()))
                 .allMatch(b -> b);
     }
