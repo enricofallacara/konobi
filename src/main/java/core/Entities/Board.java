@@ -27,7 +27,7 @@ public class Board implements Iterable<Cell>{
 
     public Cell[] slice(int startX, int endX, int startY, int endY) {
         Point p1 = new Point(startX,startY);
-        Point p2 = new Point(endX,endY );
+        Point p2 = new Point(endX-1,endY-1 );
         if(isOnBoard(p1) && isOnBoard(p2))
             return Arrays.stream(grid).skip(startY).limit(endY - startY).
                     flatMap(x -> Arrays.stream(x).skip(startX).limit(endX - startX)).toArray(Cell[]::new);
