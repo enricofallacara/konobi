@@ -1,7 +1,7 @@
 package core.Rules;
 
 import core.Entities.Board;
-import core.Entities.Color;
+import core.Entities.Colour;
 import org.junit.Test;
 import java.awt.Point;
 
@@ -19,7 +19,7 @@ public class emptyPositionRuleTest {
 
     @Test
     public void emptyPositionRuleInvalid() {
-        board.setCell(new Point(1, 2), Color.black);
+        board.setCell(new Point(1, 2), Colour.black);
         assertFalse(EmptyRule.isValid(point, board));
     }
 

@@ -8,14 +8,14 @@ import java.util.stream.Stream;
 
 public class Neighbourhood {
 
-    public Neighbourhood( Board b){
+    /*public Neighbourhood( Board b){
 
-    }
+    }*/
 
     public static Stream<Cell> getMooreNeighbours(Board board, Point p) {
         return Arrays.stream(board.slice(p.y - 1, p.y + 2, p.x - 1, p.x + 2));
     }
-    // TODO: getMooreNeighbours, getNeighbours e getColoredNeighbours potrebbero diventare non-statiche e la
+    // TODO: getMooreNeighbours, getNeighbours e getColouredNeighbours potrebbero diventare non-statiche e la
     //  Board assegnata nel costruttore della classe. Non e fondamentale ma diventerebbe piu elegante
     // Risp: Non penso sia una buona idea perchè ciò implicherebbe una duplicazione della board,
     // cosa che credo dobbiamo evitare e che non sia necessaria. Per non parlare del fatto che dovremmo creare
@@ -29,8 +29,8 @@ public class Neighbourhood {
         return getMooreNeighbours(board, point).filter(cell -> function.test(point, cell.getCoordinates()));
     }
 
-    public static Stream<Cell> getColoredNeighboursByType(Board board, Point point, Color color, BiPredicate<Point, Point> function) {
-        return getNeighboursByType(board, point, function).filter(x -> x.hasThisColor(color));
+    public static Stream<Cell> getColouredNeighboursByType(Board board, Point point, Colour colour, BiPredicate<Point, Point> function) {
+        return getNeighboursByType(board, point, function).filter(x -> x.hasThisColor(colour));
     }
 
     private static double manhattanDistance(int x1, int x2, int y1, int y2) { return Math.abs(x1 - x2) + Math.abs(y1 - y2); }

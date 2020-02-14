@@ -14,7 +14,7 @@ public class EmptyRule implements Rule {
     }
 
     public static boolean isValid(Point point, Board board) {
-        return board.getCell(point).getColor() == null;
+        return board.getCell(point).getColour() == null;
     }
 
 }

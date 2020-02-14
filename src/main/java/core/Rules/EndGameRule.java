@@ -3,9 +3,7 @@ package core.Rules;
 import core.Entities.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.stream.Stream;
 
 
 public class EndGameRule implements Rule {
@@ -20,23 +18,23 @@ public class EndGameRule implements Rule {
 
     @Override
     public boolean isValid(StatusSupervisor supervisor) {
-        return isValid(supervisor.getBoard(), supervisor.getLastPlayer().getColor());
+        return isValid(supervisor.getBoard(), supervisor.getLastPlayer().getColour());
     }
 
-    public boolean isValid(Board board, Color color) {
-        board.getStartingCells(color).forEach(x -> searchForEndingEdge(x, board, color));
+    public boolean isValid(Board board, Colour colour) {
+        board.getStartingCells(colour).forEach(x -> searchForEndingEdge(x, board, colour));
         return !endingCells.isEmpty();
     }
 
-    public void searchForEndingEdge(Cell current, Board board, Color color) {
-        if (board.isOnEndingEdge(current.getCoordinates(), color)) {
+    public void searchForEndingEdge(Cell current, Board board, Colour colour) {
+        if (board.isOnEndingEdge(current.getCoordinates(), colour)) {
             endingCells.add(current);
             return;
         }
         visitedCells.add(current);
-        for (Cell neighbour : Neighbourhood.getColoredNeighboursByType(board, current.getCoordinates(), color, (x, y) -> true).toArray(Cell[]::new)) {
+        for (Cell neighbour : Neighbourhood.getColouredNeighboursByType(board, current.getCoordinates(), colour, (x, y) -> true).toArray(Cell[]::new)) {
             if (!visitedCells.contains(neighbour)) {
-                searchForEndingEdge(neighbour, board, color);
+                searchForEndingEdge(neighbour, board, colour);
             }
         }
     }

@@ -22,8 +22,8 @@ public class Board implements Iterable<Cell>{
 
     public Cell getCell(Point p){ return grid[p.x][p.y]; }
 
-    public void setCell(Point p, Color c) {
-        getCell(p).setColor(c);
+    public void setCell(Point p, Colour c) {
+        getCell(p).setColour(c);
     }
 
     public Cell[] slice(int startX, int endX, int startY, int endY) {
@@ -53,14 +53,14 @@ public class Board implements Iterable<Cell>{
         };
     }
 
-    public Stream<Cell> getStartingCells(Color color) {
-        int[] startIdxs = getStartingIndices(color);
+    public Stream<Cell> getStartingCells(Colour colour) {
+        int[] startIdxs = getStartingIndices(colour);
         return Arrays.stream(slice(startIdxs[0], startIdxs[1], startIdxs[2], startIdxs[3])).
-                filter(x -> x.hasThisColor(color));
+                filter(x -> x.hasThisColor(colour));
     }
 
-    private int[] getStartingIndices(Color color) {
-        return (color == Color.white) ? new int[]{0, size, 0, 1} : new int[]{0, 1, 0, size};
+    private int[] getStartingIndices(Colour colour) {
+        return (colour == Colour.white) ? new int[]{0, size, 0, 1} : new int[]{0, 1, 0, size};
     }
 
     public boolean isOnBoard(Point point){
@@ -72,8 +72,8 @@ public class Board implements Iterable<Cell>{
                 Math.min(Math.max(0, startY), size - 1), Math.max(0, Math.min(size, endY))};
     }
 
-    public boolean isOnEndingEdge(Point point, Color color) {
-        return (color == Color.white) ? point.x == size - 1 : point.y == size - 1;
+    public boolean isOnEndingEdge(Point point, Colour colour) {
+        return (colour == Colour.white) ? point.x == size - 1 : point.y == size - 1;
     }
 
 }

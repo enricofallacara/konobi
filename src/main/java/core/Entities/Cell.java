@@ -5,27 +5,27 @@ import java.awt.Point;
 
 public class Cell {
 
-    private Color color;
+    private Colour colour;
     private final Point coordinates;
 
     public Cell(Point p) {
-        color = null;
+        colour = null;
         coordinates = p;
     }
 
-    public Color getColor() {
-        return color;
+    public Colour getColour() {
+        return colour;
     }
 
     public Point getCoordinates() {
         return coordinates;
     }
 
-    public void setColor(Color c) {
-        color = c;
+    public void setColour(Colour c) {
+        colour = c;
     }
 
-    public boolean hasThisColor(Color otherColor) { return color == otherColor; }
+    public boolean hasThisColor(Colour otherColour) { return colour == otherColour; }
 
     @Override
     public boolean equals(Object o) {
@@ -33,7 +33,7 @@ public class Cell {
         if (o == null || this.getClass() != o.getClass()) return false;
 
         Cell cell = (Cell) o;
-        if (!this.hasThisColor(cell.getColor())) return false;
+        if (!this.hasThisColor(cell.getColour())) return false;
         return coordinates == ((Cell) o).getCoordinates();
     }
 

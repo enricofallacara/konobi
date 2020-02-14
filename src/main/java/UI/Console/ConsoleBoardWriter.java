@@ -11,7 +11,7 @@ public class ConsoleBoardWriter {
     private String padLeft(String s) { return String.format("%" + 3 + "s", s); }
 
     private void displayCell(Cell cell) {
-        System.out.print(ConsoleCellRepresentation.getRepresentation(cell.getColor()));
+        System.out.print(ConsoleCellRepresentation.getRepresentation(cell.getColour()));
     }
 
     private void displayRow(Board board, int y) {

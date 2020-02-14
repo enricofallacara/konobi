@@ -1,5 +1,6 @@
 package UI.GUI;
 
+import core.Entities.Colour;
 import core.Entities.Player;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -18,9 +19,9 @@ public class GUIBoardWriter {
 
     final int boardSize;
     final int tileSize;
-    private static final Map<core.Entities.Color, Paint> colorPaintMap = new HashMap<>() {{
-        put(core.Entities.Color.black, Color.BLACK);
-        put(core.Entities.Color.white, Color.WHITE);
+    private static final Map<Colour, Paint> colorPaintMap = new HashMap<>() {{
+        put(Colour.black, Color.BLACK);
+        put(Colour.white, Color.WHITE);
     }};
 
     GUIBoardWriter(int bS, int tS) {
@@ -46,7 +47,7 @@ public class GUIBoardWriter {
 
     public void addPiece(GridPane gridPane, int X, int Y, Player player) {
         Circle piece = new Circle(X * tileSize, Y * tileSize, tileSize*0.4);
-        piece.setFill(colorPaintMap.get(player.getColor()));
+        piece.setFill(colorPaintMap.get(player.getColour()));
         GridPane.setHalignment(piece, HPos.CENTER); // To align horizontally in the cell
         GridPane.setValignment(piece, VPos.CENTER); // To align vertically in the cell
         gridPane.add(piece, X, Y);
