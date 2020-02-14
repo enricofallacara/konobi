@@ -33,7 +33,7 @@ public class endGameTest {
     @Test
     public void testGetStartingCellsEmpty() {
         Board board = new Board(11);
-        assertFalse(endGameRule.getStartingCells(board, Color.black).findAny().isPresent());
+        assertFalse(board.getStartingCells(Color.black).findAny().isPresent());
     }
 
     @Test
@@ -42,7 +42,7 @@ public class endGameTest {
         board.setCell(new Point(3, 0), Color.black);
         board.setCell(new Point(4, 0), Color.white);
         Cell[] expected = new Cell[] { board.getCell(new Point(3, 0)) };
-        assertArrayEquals(expected, endGameRule.getStartingCells(board, Color.black).toArray());
+        assertArrayEquals(expected, board.getStartingCells(Color.black).toArray());
     }
 
     @Test
@@ -53,7 +53,7 @@ public class endGameTest {
         board.setCell(new Point(0, 5), Color.white);
         Cell[] expected = new Cell[] { board.getCell(new Point(0, 5)),
                                                         board.getCell(new Point(0, 9)) };
-        assertArrayEquals(expected, endGameRule.getStartingCells(board, Color.white).toArray());
+        assertArrayEquals(expected, board.getStartingCells(Color.white).toArray());
     }
 
     @Test

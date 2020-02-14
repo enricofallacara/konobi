@@ -24,15 +24,8 @@ public class EndGameRule implements Rule {
     }
 
     public boolean isValid(Board board, Color color) {
-        getStartingCells(board, color).forEach(x -> searchForEndingEdge(x, board, color));
+        board.getStartingCells(color).forEach(x -> searchForEndingEdge(x, board, color));
         return !endingCells.isEmpty();
-    }
-
-    public Stream<Cell> getStartingCells(Board board, Color color) {
-        int size = board.getSize();
-        int[] startIdxs = (color == Color.white) ? new int[]{0, size, 0, 1} : new int[]{0, 1, 0, size};
-        return Arrays.stream(board.slice(startIdxs[0], startIdxs[1], startIdxs[2], startIdxs[3])).
-                             filter(x -> x.hasThisColor(color));
     }
 
     public void searchForEndingEdge(Cell current, Board board, Color color) {

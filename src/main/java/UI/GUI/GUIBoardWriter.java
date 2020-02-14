@@ -52,8 +52,7 @@ public class GUIBoardWriter {
         gridPane.add(piece, X, Y);
 
     }
-    // TODO: Long Method smell?
-    // No, vedi come in GUI.java
+
     public GridPane createLabelPane() {
         GridPane gridLabels = new GridPane();
         gridLabels.setVgap(10);
@@ -69,10 +68,6 @@ public class GUIBoardWriter {
         Circle wCircle = new Circle(tileSize * 0.1, Color.BLACK);
         Circle bCircle = new Circle(tileSize * 0.1, Color.WHITE);
         Circle cCurrent = new Circle(tileSize * 0.1, Color.BLACK);
-
-        //wCircle.setFill(Color.BLACK);
-        //bCircle.setFill(Color.WHITE);
-        //cCurrent.setFill(Color.BLACK);
 
         gridLabels.add(wCircle, 1, 0);
         gridLabels.add(bCircle, 1, 1);

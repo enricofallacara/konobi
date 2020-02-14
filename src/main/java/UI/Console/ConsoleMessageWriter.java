@@ -23,7 +23,8 @@ public class ConsoleMessageWriter {
     }
 
     public static void notifyEndGame(Player player) {
-        System.out.println(String.format(Messages.endGame, player.getName(), player.getColor()));
+        System.out.println(String.format(Messages.endGame, player.getName(),
+                ConsoleCellRepresentation.getRepresentation(player.getColor())));
     }
 
     public static void notifyPass() { System.out.println(Messages.pass); }

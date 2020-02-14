@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 
 public class Board implements Iterable<Cell>{
@@ -50,6 +51,16 @@ public class Board implements Iterable<Cell>{
                 return getCell(tmp);
             }
         };
+    }
+
+    public Stream<Cell> getStartingCells(Color color) {
+        int[] startIdxs = getStartingIndices(color);
+        return Arrays.stream(slice(startIdxs[0], startIdxs[1], startIdxs[2], startIdxs[3])).
+                filter(x -> x.hasThisColor(color));
+    }
+
+    private int[] getStartingIndices(Color color) {
+        return (color == Color.white) ? new int[]{0, size, 0, 1} : new int[]{0, 1, 0, size};
     }
 
     public boolean isOnBoard(Point point){

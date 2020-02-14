@@ -47,10 +47,6 @@ public class GUI extends Application {
         initUI();
     }
 
-    // TODO: Long Method smell?
-    // No, perchè come hanno detto loro, purtoppo i metodi che cpopolano un interfaccia saranno sempre quantomeno "lunghi"
-    // perchè le compomnenti, in una parte o nell altra, devono essere comunque aggiunte e devono venire gestiti gli eventi.
-    // Al massimo si può pensare di fare un metodo  che esegua i createAndSetHandlerOnNode() ma non so quanto senso abbia
     private void initGameInterface(int boardSize) {
         gridPane = new GridPane();
         gridPane.setVgap(20);
@@ -103,8 +99,6 @@ public class GUI extends Application {
         return button;
     }
 
-    // TODO: Long Method smell?
-    // No, idem with potatoes.
     private void initUI() {
         GridPane pane = new GridPane();
 
