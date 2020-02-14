@@ -26,13 +26,9 @@ public class Board implements Iterable<Cell>{
     }
 
     public Cell[] slice(int startX, int endX, int startY, int endY) {
-        Point p1 = new Point(startX,startY);
-        Point p2 = new Point(endX-1,endY-1 );
-        if(isOnBoard(p1) && isOnBoard(p2))
-            return Arrays.stream(grid).skip(startY).limit(endY - startY).
-                    flatMap(x -> Arrays.stream(x).skip(startX).limit(endX - startX)).toArray(Cell[]::new);
-        else
-            return new Cell[]{};
+        int[] indices = filterIndices(startX, endX, startY, endY);
+        return Arrays.stream(grid).skip(indices[2]).limit(indices[3] - indices[2]).
+                flatMap(x -> Arrays.stream(x).skip(indices[0]).limit(indices[1] - indices[0])).toArray(Cell[]::new);
     }
 
     @Override
@@ -58,6 +54,11 @@ public class Board implements Iterable<Cell>{
 
     public boolean isOnBoard(Point point){
         return (0<= point.x && point.x < size) && (0 <= point.y && point.y < size);
+    }
+
+    private int[] filterIndices(int startX, int endX, int startY, int endY) {
+        return new int[]{Math.min(Math.max(0, startX), size - 1), Math.max(0, Math.min(size, endX)),
+                Math.min(Math.max(0, startY), size - 1), Math.max(0, Math.min(size, endY))};
     }
 
     public boolean isOnEndingEdge(Point point, Color color) {

@@ -50,7 +50,7 @@ public class ConsoleInputHandler {
         int size;
         try {
             size = getInteger();
-            if(size < 3 || size > 11)
+            if (size < 3 || size > 11)
                 throw new InputSizeException(Messages.invalidSizeInput);
 
         } catch(InputSizeException e){
@@ -68,11 +68,11 @@ public class ConsoleInputHandler {
         int newY = getInteger();
         Point point = new Point(newX,newY);
 
-        try{
+        try {
             if(!supervisor.getBoard().isOnBoard(point))
                 throw new InputCoordinatesException(Messages.invalidCoordinatesInput);
 
-        }catch(InputCoordinatesException e){
+        } catch(InputCoordinatesException e){
             System.out.println(e.getMessage());
             return getInput(supervisor);
         }

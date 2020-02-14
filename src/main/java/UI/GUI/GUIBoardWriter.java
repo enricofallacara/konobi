@@ -66,13 +66,13 @@ public class GUIBoardWriter {
         gridLabels.add(p2, 0, 1);
         gridLabels.add(currentPlayer, 0, 2);
 
-        Circle wCircle = new Circle(tileSize * 0.1);
-        Circle bCircle = new Circle(tileSize * 0.1);
-        Circle cCurrent = new Circle(tileSize * 0.1);
+        Circle wCircle = new Circle(tileSize * 0.1, Color.BLACK);
+        Circle bCircle = new Circle(tileSize * 0.1, Color.WHITE);
+        Circle cCurrent = new Circle(tileSize * 0.1, Color.BLACK);
 
-        wCircle.setFill(Color.BLACK);
-        bCircle.setFill(Color.WHITE);
-        cCurrent.setFill(Color.BLACK);
+        //wCircle.setFill(Color.BLACK);
+        //bCircle.setFill(Color.WHITE);
+        //cCurrent.setFill(Color.BLACK);
 
         gridLabels.add(wCircle, 1, 0);
         gridLabels.add(bCircle, 1, 1);

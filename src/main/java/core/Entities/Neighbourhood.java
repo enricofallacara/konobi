@@ -11,14 +11,9 @@ public class Neighbourhood {
     public Neighbourhood( Board b){
 
     }
-    // TODO: trovare un modo di fare il bounds check in Board, non qua
+
     public static Stream<Cell> getMooreNeighbours(Board board, Point p) {
-        return Arrays.stream(
-                board.slice(  Math.max(0, p.y - 1),
-                        Math.min(p.y + 2, board.getSize()),
-                        Math.max(0, p.x - 1),
-                        Math.min(p.x + 2, board.getSize()))
-        );
+        return Arrays.stream(board.slice(p.y - 1, p.y + 2, p.x - 1, p.x + 2));
     }
     // TODO: getMooreNeighbours, getNeighbours e getColoredNeighbours potrebbero diventare non-statiche e la
     //  Board assegnata nel costruttore della classe. Non e fondamentale ma diventerebbe piu elegante
