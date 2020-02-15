@@ -59,7 +59,7 @@ public class ConsoleInputHandler {
         }
         return size;
     }
-    // TODO: Long Method smell
+
     public Point getInput(StatusSupervisor supervisor) {
         ConsoleMessageWriter.displayPlayer(supervisor.getCurrentPlayer());
         ConsoleMessageWriter.getXInputMessage();
