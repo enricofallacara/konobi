@@ -17,9 +17,7 @@ public class Neighbourhood {
     }
     // TODO: getMooreNeighbours, getNeighbours e getColouredNeighbours potrebbero diventare non-statiche e la
     //  Board assegnata nel costruttore della classe. Non e fondamentale ma diventerebbe piu elegante
-    // Risp: Non penso sia una buona idea perchè ciò implicherebbe una duplicazione della board,
-    // cosa che credo dobbiamo evitare e che non sia necessaria. Per non parlare del fatto che dovremmo creare
-    // un oggetto Neighbourhood ogni volta che chiamiamo una regola.
+    // TODO: chiedere ai prof
 
     public static boolean isStrongNeighbour(Point target, Point query) { return manhattanDistance(target.x, query.x, target.y, query.y) == 1.0; }
 
@@ -30,7 +28,7 @@ public class Neighbourhood {
     }
 
     public static Stream<Cell> getColouredNeighboursByType(Board board, Point point, Colour colour, BiPredicate<Point, Point> function) {
-        return getNeighboursByType(board, point, function).filter(x -> x.hasThisColor(colour));
+        return getNeighboursByType(board, point, function).filter(x -> x.hasThisColour(colour));
     }
 
     private static double manhattanDistance(int x1, int x2, int y1, int y2) { return Math.abs(x1 - x2) + Math.abs(y1 - y2); }

@@ -29,8 +29,8 @@ public class cellTest {
     @Test
     public void testColorEquality() {
         cell.setColour(Colour.white);
-        assertTrue(cell.hasThisColor(Colour.white));
-        assertFalse(cell.hasThisColor(Colour.black));
+        assertTrue(cell.hasThisColour(Colour.white));
+        assertFalse(cell.hasThisColour(Colour.black));
     }
 
 }

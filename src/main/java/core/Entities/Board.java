@@ -56,7 +56,7 @@ public class Board implements Iterable<Cell>{
     public Stream<Cell> getStartingCells(Colour colour) {
         int[] startIdxs = getStartingIndices(colour);
         return Arrays.stream(slice(startIdxs[0], startIdxs[1], startIdxs[2], startIdxs[3])).
-                filter(x -> x.hasThisColor(colour));
+                filter(x -> x.hasThisColour(colour));
     }
 
     private int[] getStartingIndices(Colour colour) {

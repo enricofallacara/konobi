@@ -25,7 +25,7 @@ public class Cell {
         colour = c;
     }
 
-    public boolean hasThisColor(Colour otherColour) { return colour == otherColour; }
+    public boolean hasThisColour(Colour c) { return colour == c; }
 
     @Override
     public boolean equals(Object o) {
@@ -33,7 +33,7 @@ public class Cell {
         if (o == null || this.getClass() != o.getClass()) return false;
 
         Cell cell = (Cell) o;
-        if (!this.hasThisColor(cell.getColour())) return false;
+        if (!this.hasThisColour(cell.getColour())) return false;
         return coordinates == ((Cell) o).getCoordinates();
     }
 
