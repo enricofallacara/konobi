@@ -8,16 +8,9 @@ import java.util.stream.Stream;
 
 public class Neighbourhood {
 
-    /*public Neighbourhood( Board b){
-
-    }*/
-
     public static Stream<Cell> getMooreNeighbours(Board board, Point p) {
         return Arrays.stream(board.slice(p.y - 1, p.y + 2, p.x - 1, p.x + 2));
     }
-    // TODO: getMooreNeighbours, getNeighbours e getColouredNeighbours potrebbero diventare non-statiche e la
-    //  Board assegnata nel costruttore della classe. Non e fondamentale ma diventerebbe piu elegante
-    // TODO: chiedere ai prof
 
     public static boolean isStrongNeighbour(Point target, Point query) { return manhattanDistance(target.x, query.x, target.y, query.y) == 1.0; }
 
