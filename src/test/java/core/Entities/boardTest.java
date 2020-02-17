@@ -23,8 +23,8 @@ public class boardTest {
     @Test
     public void setCellTest(){
         Point p = new Point(2, 3);
-        board.setCell(p, Color.black);
-        assertSame(Color.black, board.getCell(p).getColor());
+        board.setCell(p, Colour.black);
+        assertSame(Colour.black, board.getCell(p).getColour());
     }
 
     @Test
@@ -43,13 +43,13 @@ public class boardTest {
         Cell[] expected = new Cell[]{};
         assertArrayEquals(actual, expected);
     }
-    // TODO: trovare un modo per far passare questo test?
-    /*@Test
+
+    @Test
     public void testNegativeSlice() {
         Cell[] actual = board.slice(3, 4, 0, -2);
         Cell[] expected = new Cell[]{};
         assertArrayEquals(actual, expected);
-    }*/
+    }
 
     @Test
     public void testIterator(){
@@ -87,17 +87,17 @@ public class boardTest {
     @Test
     public void testIsOnEndingEdgeForBlack() {
         Point point1 = new Point(0, 10);
-        assertTrue(board.isOnEndingEdge(point1, Color.black));
+        assertTrue(board.isOnEndingEdge(point1, Colour.black));
         Point point2 = new Point(0, 5);
-        assertFalse(board.isOnEndingEdge(point2, Color.black));
+        assertFalse(board.isOnEndingEdge(point2, Colour.black));
     }
 
     @Test
     public void testIsOnEndingEdgeForWhite() {
         Point point1 = new Point(10, 1);
-        assertTrue(board.isOnEndingEdge(point1, Color.white));
+        assertTrue(board.isOnEndingEdge(point1, Colour.white));
         Point point2 = new Point(3, 0);
-        assertFalse(board.isOnEndingEdge(point2, Color.white));
+        assertFalse(board.isOnEndingEdge(point2, Colour.white));
     }
 
 }

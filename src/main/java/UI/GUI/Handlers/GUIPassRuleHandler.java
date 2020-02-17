@@ -19,4 +19,5 @@ public class GUIPassRuleHandler implements EventHandler<PassRuleEvent> {
             GUIMessageWriter.notifyPass();
         }
     }
+
 }

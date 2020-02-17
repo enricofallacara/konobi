@@ -17,7 +17,7 @@ public class passRuleTest {
 
     @Test
     public void testPassRuleFullBoard() {
-        for (Cell c: supervisor.getBoard()) { c.setColor(supervisor.getCurrentPlayer().getColor()); }
+        for (Cell c: supervisor.getBoard()) { c.setColour(supervisor.getCurrentPlayer().getColour()); }
         assertTrue(passRule.isValid(supervisor));
     }
 

@@ -1,6 +1,6 @@
 package UI.Console;
 
-import core.Entities.Color;
+import core.Entities.Colour;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,14 +8,14 @@ import java.util.Map;
 
 public class ConsoleCellRepresentation {
 
-    private static final Map<Color, String> cellColorMap = new HashMap<>() {{
-        put(Color.black, "[\u25A0]");
-        put(Color.white, "[\u25A1]");
+    private static final Map<Colour, String> cellColorMap = new HashMap<>() {{
+        put(Colour.black, "[\u25A0]");
+        put(Colour.white, "[\u25A1]");
         put(null, "[ ]");
     }};
 
-    public static String getRepresentation(Color color) {
-        return cellColorMap.get(color);
+    public static String getRepresentation(Colour colour) {
+        return cellColorMap.get(colour);
     }
 
 }

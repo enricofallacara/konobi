@@ -11,7 +11,7 @@ import core.Rules.PieRule;
 public class Konobi {
 
     private final StatusSupervisor supervisor;
-    private final ConsoleBoardWriter boardDisplayer = new ConsoleBoardWriter();
+    private final ConsoleBoardWriter boardWriter = new ConsoleBoardWriter();
     private final ConsoleInputHandler inputHandler = new ConsoleInputHandler();
 
     public Konobi() {
@@ -25,13 +25,13 @@ public class Konobi {
             playTurn();
         } while(!Rulebook.queryRule(supervisor, EndGameRule::new));
 
-        boardDisplayer.displayBoard(supervisor.getBoard());
+        boardWriter.displayBoard(supervisor.getBoard());
         Player winner = supervisor.getLastPlayer();
         ConsoleMessageWriter.notifyEndGame(winner);
     }
 
     private void playTurn() {
-        boardDisplayer.displayBoard(supervisor.getBoard());
+        boardWriter.displayBoard(supervisor.getBoard());
         if (Rulebook.queryRule(supervisor, PassRule::new)) {
             supervisor.performPassRule();
             ConsoleMessageWriter.notifyPass();

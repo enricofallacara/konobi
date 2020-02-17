@@ -8,12 +8,12 @@ public class colorTest {
 
     @Test
     public void testOppositeColorOfWhite() {
-        assertEquals(Color.white.getOppositeColor(), Color.black);
+        assertEquals(Colour.white.getOppositeColor(), Colour.black);
     }
 
     @Test
     public void testOppositeColorOfBlack() {
-        assertEquals(Color.black.getOppositeColor(), Color.white);
+        assertEquals(Colour.black.getOppositeColor(), Colour.white);
     }
 
 }

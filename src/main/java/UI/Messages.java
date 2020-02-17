@@ -4,7 +4,7 @@ package UI;
 public class Messages {
 
     public final static String invalidMove = "Invalid move, try again!";
-    public final static String endGame = "Congratulations %s (color %s), you won!";
+    public final static String endGame = "Congratulations %s (%s), you won!";
     public final static String playerTurn = "%s's turn! %s";
     public final static String pass = "YOU SHALL PASS";
     public final static String pieRuleQuery = "PlayerTwo, do you want to apply the Pie Rule? (y/n)";

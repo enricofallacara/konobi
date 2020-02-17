@@ -11,41 +11,41 @@ public class supervisorTest {
 
     private void setTestBoard() {
         Board board = supervisor.getBoard();
-        board.setCell(new Point(0, 0), Color.black);
-        board.setCell(new Point(0, 1), Color.white);
-        board.setCell(new Point(2, 2), Color.white);
+        board.setCell(new Point(0, 0), Colour.black);
+        board.setCell(new Point(0, 1), Colour.white);
+        board.setCell(new Point(2, 2), Colour.white);
     }
 
     @Test
     public void testNewMoveInvalid() {
         setTestBoard();
         assertFalse(supervisor.newMove(new Point(1, 1)));
-        assertSame(Color.black, supervisor.getCurrentPlayer().getColor());
+        assertSame(Colour.black, supervisor.getCurrentPlayer().getColour());
     }
 
     @Test
     public void testNewMoveValid() {
         setTestBoard();
-        supervisor.getBoard().setCell(new Point(2, 1), Color.black);
+        supervisor.getBoard().setCell(new Point(2, 1), Colour.black);
         assertTrue(supervisor.newMove(new Point(2, 3)));
-        assertSame(Color.white, supervisor.getCurrentPlayer().getColor());
+        assertSame(Colour.white, supervisor.getCurrentPlayer().getColour());
     }
 
     @Test
     public void testPerformPieRule() {
-        assertEquals(Color.black, supervisor.getCurrentPlayer().getColor());
+        assertEquals(Colour.black, supervisor.getCurrentPlayer().getColour());
         supervisor.newMove(new Point(0,0));
-        assertEquals(Color.white, supervisor.getCurrentPlayer().getColor());
+        assertEquals(Colour.white, supervisor.getCurrentPlayer().getColour());
         assertEquals("playerTwo", supervisor.getCurrentPlayer().getName());
         supervisor.performPieRule();
-        assertEquals(Color.white, supervisor.getCurrentPlayer().getColor());
+        assertEquals(Colour.white, supervisor.getCurrentPlayer().getColour());
         assertEquals("playerOne", supervisor.getCurrentPlayer().getName());
     }
 
     @Test
     public void testPerformPassRule() {
         supervisor.performPassRule();
-        assertEquals(Color.white, supervisor.getCurrentPlayer().getColor());
+        assertEquals(Colour.white, supervisor.getCurrentPlayer().getColour());
     }
 
 }

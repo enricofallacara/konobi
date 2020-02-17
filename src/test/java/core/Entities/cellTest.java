@@ -17,20 +17,20 @@ public class cellTest {
 
     @Test
     public void testNullColour() {
-        assertNull(cell.getColor());
+        assertNull(cell.getColour());
     }
 
     @Test
     public void testChangeColour() {
-        cell.setColor(Color.black);
-        assertSame(cell.getColor(), Color.black);
+        cell.setColour(Colour.black);
+        assertSame(cell.getColour(), Colour.black);
     }
 
     @Test
     public void testColorEquality() {
-        cell.setColor(Color.white);
-        assertTrue(cell.hasThisColor(Color.white));
-        assertFalse(cell.hasThisColor(Color.black));
+        cell.setColour(Colour.white);
+        assertTrue(cell.hasThisColour(Colour.white));
+        assertFalse(cell.hasThisColour(Colour.black));
     }
 
 }

@@ -1,7 +1,8 @@
 package core.Rules;
 
 import core.Entities.Board;
-import core.Entities.Color;
+import core.Entities.Colour;
+import core.Entities.StatusSupervisor;
 import org.junit.Test;
 import java.awt.Point;
 
@@ -9,18 +10,22 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class emptyPositionRuleTest {
-    private final Board board = new Board(11);
+    private final StatusSupervisor supervisor = new StatusSupervisor(11);
+    private final Board board = supervisor.getBoard();//new Board(11);
     private final Point point = new Point(1, 2);
+    private final EmptyRule emptyRule = new EmptyRule();
 
     @Test
     public void emptyPositionRuleValid() {
-        assertTrue(EmptyRule.isValid(point, board));
+        supervisor.setCurrentPoint(point);
+        assertTrue(emptyRule.isValid(supervisor));
     }
 
     @Test
     public void emptyPositionRuleInvalid() {
-        board.setCell(new Point(1, 2), Color.black);
-        assertFalse(EmptyRule.isValid(point, board));
+        supervisor.setCurrentPoint(point);
+        board.setCell(point, Colour.black);
+        assertFalse(emptyRule.isValid(supervisor));
     }
 
 }

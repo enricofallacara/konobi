@@ -1,22 +1,22 @@
 package core.Entities;
 
 public class Player {
-    private Color color;
+    private Colour colour;
     private String name;
 
-    public Player(Color c) {
-        color = c;
+    public Player(Colour c) {
+        colour = c;
     }
-    public Player(Color c, String n){
-        color = c;
+    public Player(Colour c, String n){
+        colour = c;
         name = n;
     }
-    public Color getColor() {
-        return color;
+    public Colour getColour() {
+        return colour;
     }
     public String getName(){ return name;}
 
     public void changeSide() {
-        color = color.getOppositeColor();
+        colour = colour.getOppositeColor();
     }
 }
