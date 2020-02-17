@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 
-// TODO: forse Asker non e una parola inglese?
+
 public class GUIAsker {
 
     public static boolean askPieRule() {

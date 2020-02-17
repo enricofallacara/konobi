@@ -1,7 +1,7 @@
 package core.Rules;
 
 import core.Entities.Board;
-import core.Entities.Color;
+import core.Entities.Colour;
 import core.Entities.StatusSupervisor;
 import org.junit.Test;
 import java.awt.Point;
@@ -13,10 +13,10 @@ public class validPositionRuleTest {
     private final ValidPositionRule validPositionRule = new ValidPositionRule();
 
     private void setTestBoard(Board board) {
-        board.setCell(new Point(0, 0), Color.black);
-        board.setCell(new Point(2, 1), Color.black);
-        board.setCell(new Point(0, 1), Color.white);
-        board.setCell(new Point(2, 2), Color.white);
+        board.setCell(new Point(0, 0), Colour.black);
+        board.setCell(new Point(2, 1), Colour.black);
+        board.setCell(new Point(0, 1), Colour.white);
+        board.setCell(new Point(2, 2), Colour.white);
     }
 
     @Test

@@ -9,8 +9,8 @@ public class ConsoleMessageWriter {
 
     public static void showInstructions(StatusSupervisor supervisor) {
         System.out.println(String.format(Messages.instructions,
-                ConsoleCellRepresentation.getRepresentation(supervisor.getCurrentPlayer().getColor()),
-                ConsoleCellRepresentation.getRepresentation(supervisor.getLastPlayer().getColor())));
+                ConsoleCellRepresentation.getRepresentation(supervisor.getCurrentPlayer().getColour()),
+                ConsoleCellRepresentation.getRepresentation(supervisor.getLastPlayer().getColour())));
     }
 
     public static void notifyInvalidMove() { System.out.println(Messages.invalidMove); }
@@ -19,11 +19,12 @@ public class ConsoleMessageWriter {
 
     public static void displayPlayer(Player player) {
         System.out.println(String.format(Messages.playerTurn, player.getName(),
-                ConsoleCellRepresentation.getRepresentation(player.getColor())));
+                ConsoleCellRepresentation.getRepresentation(player.getColour())));
     }
 
     public static void notifyEndGame(Player player) {
-        System.out.println(String.format(Messages.endGame, player.getName(), player.getColor()));
+        System.out.println(String.format(Messages.endGame, player.getName(),
+                ConsoleCellRepresentation.getRepresentation(player.getColour())));
     }
 
     public static void notifyPass() { System.out.println(Messages.pass); }

@@ -9,15 +9,23 @@ public class CrosscutRule implements Rule {
 
     @Override
     public boolean isValid(StatusSupervisor supervisor) {
-        return isValid(supervisor.getCurrentPoint(), supervisor.getBoard(), supervisor.getCurrentPlayer().getColor());
+        Point point = supervisor.getCurrentPoint();
+        Board board = supervisor.getBoard();
+        Colour colour = supervisor.getCurrentPlayer().getColour();
+        Stream<Cell> neighbours = Neighbourhood.getColouredNeighboursByType(board, point, colour, Neighbourhood::isWeakNeighbour);
+        return neighbours.noneMatch(c ->
+                board.getCell(new Point(point.x, c.getCoordinates().y)).hasThisColour(colour.getOppositeColor())
+                        &&
+                        board.getCell(new Point(c.getCoordinates().x, point.y)).hasThisColour(colour.getOppositeColor()));
     }
 
-    public static boolean isValid(Point point, Board board, Color color) {
-        Stream<Cell> neighbours = Neighbourhood.getColoredNeighbours(board, point, color, Neighbourhood::isWeakNeighbour);
+    /*public static boolean isValid(Point point, Board board, Colour colour) {
+
+        Stream<Cell> neighbours = Neighbourhood.getColouredNeighboursByType(board, point, colour, Neighbourhood::isWeakNeighbour);
         return neighbours.noneMatch(c ->
-                        board.getCell(new Point(point.x, c.getCoordinates().y)).hasThisColor(color.getOppositeColor())
+                        board.getCell(new Point(point.x, c.getCoordinates().y)).hasThisColor(colour.getOppositeColor())
                         &&
-                        board.getCell(new Point(c.getCoordinates().x, point.y)).hasThisColor(color.getOppositeColor()));
-    }
+                        board.getCell(new Point(c.getCoordinates().x, point.y)).hasThisColor(colour.getOppositeColor()));
+    }*/
 
 }
