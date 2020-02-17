@@ -44,9 +44,13 @@
 
     The top and bottom edges of the board are coloured black; the left and right edges are coloured white.
 
-    \begin{figure}
-      \includegraphics[width=3.8cm, height=3.8cm]{img/board.jpg}
-    \end{figure}
+    \vspace{1em}
+
+    \begin{centering}
+
+      \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.35\textwidth]{img/empty.png}}
+
+    \end{centering}
 
   \end{frame}
 
@@ -67,6 +71,31 @@
   \end{frame}
 
 
+  \begin{frame}{Legal and Illegal Moves}
+
+    % Mettere margine più grande per la color box.
+    \begin{centering}
+
+      Legal moves:
+
+      \vspace{1em}
+
+      \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.25\textwidth]{img/legal1.png}}\hspace{0.1\textwidth}%
+      \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.25\textwidth]{img/legal2.png}}
+
+      \vspace{1em}
+
+      Illegal moves:
+
+      \vspace{1em}
+
+      \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.25\textwidth]{img/illegal1.png}}\hspace{0.1\textwidth}%
+      \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.25\textwidth]{img/illegal2.png}}\par
+
+    \end{centering}
+
+
+  \end{frame}
 
   \begin{frame}{Legal and Illegal Moves}
 
@@ -91,12 +120,30 @@
       \fcolorbox{black}{white}{\includegraphics[width=0.25\textwidth]{img/crosscut.jpg}}
     \end{figure}
 
-    \vspace{1em}
 
     If a player can't make a move on his turn, he must \textbf{pass}. Passing is otherwise not allowed. There will always be a move available to at least one of the players.
 
   \end{frame}
 
+
+
+  \begin{frame}{Konobi rules Cont.}
+
+    It's also \textbf{illegal} to form a \textbf{crosscut}, i.e., a 2x2 pattern of stones consisting of two weakly connected Black stones and two weakly connected White stones.
+
+    \vspace{1em}
+
+    \begin{centering}
+
+      \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.25\textwidth]{img/cross.png}}
+
+    \end{centering}
+
+    \vspace{1em}
+
+    If a player can't make a move on his turn, he must \textbf{pass}. Passing is otherwise not allowed. There will always be a move available to at least one of the players.
+
+  \end{frame}
 
 
   \begin{frame}{Konobi rules Cont.}
