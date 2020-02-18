@@ -2,6 +2,7 @@
 
 \usepackage{blindtext}
 \usepackage{tcolorbox}
+\usepackage{listings}
 
 \usetheme{Patorikku}
 
@@ -22,6 +23,8 @@
 	\setcounter{framenumber}{0}
 	\setcounter{showSlideNumbers}{1}
 
+  
+%\section{Introduction and rules}
 
 
   \begin{frame}{Goal}
@@ -74,7 +77,6 @@
 
   \begin{frame}{Legal and Illegal Moves}
 
-    % Mettere margine più grande per la color box.
     \begin{centering}
 
       Legal moves:
@@ -95,32 +97,6 @@
 
     \end{centering}
 
-
-  \end{frame}
-
-  \begin{frame}{Legal and Illegal Moves}
-
-    \begin{figure}
-      \centering
-      \fcolorbox{black}{white}{\includegraphics[width=0.55\textwidth]{img/moves.jpg}}
-    \end{figure}
-
-  \end{frame}
-
-
-
-  \begin{frame}{Konobi rules Cont.}
-
-    It's also \textbf{illegal} to form a \textbf{crosscut}, i.e., a 2x2 pattern of stones consisting of two weakly connected Black stones and two weakly connected White stones.
-
-    \vspace{1em}
-
-    \begin{figure}
-      \fcolorbox{black}{white}{\includegraphics[width=0.25\textwidth]{img/crosscut.jpg}}
-    \end{figure}
-
-
-    If a player can't make a move on his turn, he must \textbf{pass}. Passing is otherwise not allowed. There will always be a move available to at least one of the players.
 
   \end{frame}
 
@@ -152,6 +128,29 @@
     \vspace{3em}
 
     The game is \textbf{won} by the player who completes a chain of his color touching the two opposite board edges of his color. \textbf{Draws are not possible}.
+
+  \end{frame}
+
+
+%\section{UI}
+
+  \begin{frame}[fragile]{Starting game}
+
+    %TODO: style listings.
+
+    The console version of the game can be started using:
+
+    \begin{lstlisting} 
+$ ./gradlew runConsole
+    \end{lstlisting}
+
+    \vspace{1em}
+
+    The GUI version of the game can be started using:
+
+    \begin{lstlisting} 
+$ ./gradlew runGUI
+    \end{lstlisting}
 
   \end{frame}
 
