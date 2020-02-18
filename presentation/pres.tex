@@ -3,6 +3,16 @@
 \usepackage{blindtext}
 \usepackage{tcolorbox}
 \usepackage{listings}
+\lstset{
+	frame=tb,                        % = tb to put top and bottom
+	framerule=0pt,
+	framextopmargin=3pt,
+	framexbottommargin=3pt,
+	basicstyle=\small\ttfamily,      % the size of the fonts that are used for the code
+	backgroundcolor=\color{gray!10},
+	numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
+	stringstyle=\color{black},       % string literal style
+}
 
 \usetheme{Patorikku}
 
@@ -144,7 +154,6 @@
 
 %\section{UI}
 
-    %TODO: stile dei listings.
     %TODO: menzionare i due main?
     %TODO: come interagisce il core con console/GUI?
 
@@ -153,16 +162,16 @@
 
     The console version of the game can be started using:
 
-    \begin{lstlisting} 
-$ ./gradlew runConsole
+    \begin{lstlisting}
+ > ./gradlew runConsole
     \end{lstlisting}
 
-    \vspace{1em}
+    \vspace{3em}
 
     The GUI version of the game can be started using:
 
     \begin{lstlisting} 
-$ ./gradlew runGUI
+ > ./gradlew runGUI
     \end{lstlisting}
 
   \end{frame}
