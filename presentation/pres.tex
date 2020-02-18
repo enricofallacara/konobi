@@ -1,6 +1,7 @@
 \documentclass{beamer}
 
 \usepackage{blindtext}
+\usepackage{tcolorbox}
 
 \usetheme{Patorikku}
 
@@ -25,11 +26,11 @@
 
   \begin{frame}{Goal}
 
-    %\begin{tcolorbox}
-    \begin{center}
-      The goal of our project is to implement the \textbf{Konobi game} in Java, giving also the user the opportunity to choose between two interfaces: \textbf{console version} or \textbf{GUI version}
-    \end{center}
-    %%\end{tcolorbox}
+    \begin{tcolorbox}[colback=red!90!black!10]
+      \begin{center}
+        The goal of our project is to implement the \textbf{Konobi game} in Java, giving also the user the opportunity to choose between two interfaces: \textbf{console version} or \textbf{GUI version}
+      \end{center}
+    \end{tcolorbox}
 
   \end{frame}
 
@@ -58,11 +59,11 @@
 
   \begin{frame}{Konobi Rules}
 
-    \textbf{Starting with Black}, the players take turns placing stones of their own color on empty points of the board, one stone per turn.
+    \textbf{Starting with Black}, the players take turns placing stones of their own color on empty points of the board, one stone per turn.\pause
 
     \vspace{1em}
 
-    Two like-coloured stones are \textbf{strongly connected} if they are orthogonally adjacent to each other, and \textbf{weakly connected} if they are diagonally adjacent to each other without sharing any strongly connected neighbour.
+    Two like-coloured stones are \textbf{strongly connected} if they are orthogonally adjacent to each other, and \textbf{weakly connected} if they are diagonally adjacent to each other without sharing any strongly connected neighbour.\pause
 
     \vspace{1em}
 
@@ -80,8 +81,8 @@
 
       \vspace{1em}
 
-      \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.25\textwidth]{img/legal1.png}}\hspace{0.1\textwidth}%
-      \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.25\textwidth]{img/legal2.png}}
+      \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.25\textwidth]{img/legal1.png}}\hspace{0.1\textwidth}
+      \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.25\textwidth]{img/legal2.png}}\pause
 
       \vspace{1em}
 
@@ -98,8 +99,6 @@
   \end{frame}
 
   \begin{frame}{Legal and Illegal Moves}
-
-    % Mettere margine più grande per la color box.
 
     \begin{figure}
       \centering
@@ -137,7 +136,7 @@
 
       \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.25\textwidth]{img/cross.png}}
 
-    \end{centering}
+    \end{centering}\pause
 
     \vspace{1em}
 
@@ -148,7 +147,7 @@
 
   \begin{frame}{Konobi rules Cont.}
 
-    The \textbf{pie rule} is used in order to make the game fair. This means that White will have the option, on his first turn only, to change sides instead of making a regular move.
+    The \textbf{pie rule} is used in order to make the game fair. This means that White will have the option, on his first turn only, to change sides instead of making a regular move.\pause
 
     \vspace{3em}
 
