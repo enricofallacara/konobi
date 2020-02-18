@@ -26,15 +26,24 @@
   
 %\section{Introduction and rules}
 
-  %TODO: elencare strumenti utilizzati.
-
-  \begin{frame}{Goal}
+  \begin{frame}{Introduction}
 
     \begin{tcolorbox}[colback=red!90!black!10]
-      \begin{center}
-        The goal of our project is to implement the \textbf{Konobi game} in Java, giving also the user the opportunity to choose between two interfaces: \textbf{console version} or \textbf{GUI version}
-      \end{center}
+      The \textbf{goal} of our project is to implement the \textbf{Konobi game} in Java, giving also the user the opportunity to choose between two interfaces: \textbf{console version} or \textbf{GUI version}
     \end{tcolorbox}
+
+    \vspace{1em}
+
+    \begin{block}{Tools}
+      \begin{itemize}
+        \item IntelliJ;
+        \item GitHub;
+        \item Gradle: building;
+        \item TravisCI: continuous integrations;
+        \item JavaFX: ;
+        \item \textcolor{red}{Other?}
+      \end{itemize}
+    \end{block}
 
   \end{frame}
 
@@ -136,9 +145,7 @@
 %\section{UI}
 
     %TODO: stile dei listings.
-    %TODO: elencare dependencies (cosa è necessario per fa funzionare il proramma).
-    %TODO: una slide per elencare le componenti del pacchetto console.
-    %TODO: una slide per elencare le componenti del pacchetto GUI (menzionare JavaFX).
+    %TODO: menzionare i due main?
     %TODO: come interagisce il core con console/GUI?
 
 
@@ -160,6 +167,45 @@ $ ./gradlew runGUI
 
   \end{frame}
 
+
+
+  \begin{frame}{Console User Interface}
+
+    \begin{itemize}
+      \setlength\itemsep{1em}
+      \item \texttt{ConsoleBoardWriter}: board display;
+      \item \texttt{ConsoleCellRepresentation}: conversion between cell color and its representation;
+      \item \texttt{ConsoleInputHandler}: player input handling;
+      \item \texttt{ConsoleMessageWriter}: messages to the players.
+    \end{itemize}
+
+    \vspace{1em}
+
+    Messages are contained in the \texttt{Messages} class: its messages are used by the GUI implementation as well.
+
+    %TODO: aggiungere imagine della console.
+
+  \end{frame}
+
+
+
+  \begin{frame}{Graphical User Interface}
+
+    \begin{itemize}
+      \setlength\itemsep{1em}
+      \item \texttt{GUI}: implements the game flow in a \texttt{JavaFX} application;
+      \item \texttt{GUIBoardWriter}: board and GUI display;
+      \item \texttt{GUIAsker}: \textcolor{red}{boh};
+      \item \texttt{GUIMessageWriter}: messages to the players.
+    \end{itemize}
+
+    \vspace{1em}
+
+    The \texttt{Events} package defines events for the rules (PieRule, PassRule and EndGameRule); the events are processed by the \texttt{Handlers} package, which handles mouse inputs as well.
+
+    %TODO: aggiungere imagine della GUI.
+
+  \end{frame}
 
 
 \end{document}
