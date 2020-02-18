@@ -3,10 +3,10 @@ package core.Rules;
 import core.Entities.StatusSupervisor;
 
 
-public class EmptyRule implements Rule {
+public class EmptyRule implements PositionRule {
 
     @Override
-    public boolean isValid(StatusSupervisor supervisor) {
+    public boolean isValidPosition(StatusSupervisor supervisor) {
         return supervisor.getBoard().getCell(supervisor.getCurrentPoint()).hasThisColour(null);
     }
 

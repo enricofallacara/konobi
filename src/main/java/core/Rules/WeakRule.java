@@ -6,10 +6,10 @@ import java.awt.Point;
 import java.util.stream.Stream;
 
 
-public class WeakRule implements Rule {
+public class WeakRule implements PositionRule {
 
     @Override
-    public boolean isValid(StatusSupervisor supervisor) {
+    public boolean isValidPosition(StatusSupervisor supervisor) {
         Point point = supervisor.getCurrentPoint();
         Board board = supervisor.getBoard();
         Colour colour = supervisor.getCurrentPlayer().getColour();

@@ -27,7 +27,7 @@ public class weakRuleTest {
         board.setCell(new Point(3, 0), Colour.black);
         board.setCell(new Point(3, 1), Colour.black);
 
-        assertTrue(weakRule.isValid(supervisor));
+        assertTrue(weakRule.isValidPosition(supervisor));
     }
 
     @Test
@@ -45,7 +45,7 @@ public class weakRuleTest {
         board.setCell(new Point(4, 2), Colour.black);
         board.setCell(new Point(0, 2), Colour.black);
 
-        assertFalse(weakRule.isValid(supervisor));
+        assertFalse(weakRule.isValidPosition(supervisor));
     }
 
     @Test
@@ -59,7 +59,7 @@ public class weakRuleTest {
         board.setCell(new Point(0, 0), Colour.black);
         board.setCell(new Point(2, 1), Colour.black);
 
-        assertFalse(weakRule.isValid(supervisor));
+        assertFalse(weakRule.isValidPosition(supervisor));
     }
 
 }

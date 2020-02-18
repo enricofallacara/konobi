@@ -18,7 +18,7 @@ public class crosscutRuleTest {
     public void testCrosscutRuleEmpty() {
         //Point point = new Point(1, 1);
         supervisor.setCurrentPoint(new Point(1, 1));
-        assertTrue(crosscutRule.isValid(supervisor));
+        assertTrue(crosscutRule.isValidPosition(supervisor));
     }
 
     @Test
@@ -28,7 +28,7 @@ public class crosscutRuleTest {
         board.setCell(new Point(0, 0), Colour.black);
         board.setCell(new Point(1, 1), Colour.white);
         board.setCell(new Point(1, 0), Colour.white);
-        assertTrue(crosscutRule.isValid(supervisor));
+        assertTrue(crosscutRule.isValidPosition(supervisor));
     }
 
     @Test
@@ -38,7 +38,7 @@ public class crosscutRuleTest {
         board.setCell(new Point(0, 1), Colour.black);
         board.setCell(new Point(1, 1), Colour.white);
         board.setCell(new Point(0, 0), Colour.white);
-        assertFalse(crosscutRule.isValid(supervisor));
+        assertFalse(crosscutRule.isValidPosition(supervisor));
     }
 
     @Test
@@ -48,7 +48,7 @@ public class crosscutRuleTest {
         board.setCell(new Point(0, 1), Colour.black);
         board.setCell(new Point(1, 1), Colour.white);
         board.setCell(new Point(1, 0), Colour.black);
-        assertTrue(crosscutRule.isValid(supervisor));
+        assertTrue(crosscutRule.isValidPosition(supervisor));
     }
 
     @Test
@@ -58,7 +58,7 @@ public class crosscutRuleTest {
         board.setCell(new Point(0, 1), Colour.black);
         board.setCell(new Point(1, 0), Colour.black);
         board.setCell(new Point(0, 0), Colour.white);
-        assertTrue(crosscutRule.isValid(supervisor));
+        assertTrue(crosscutRule.isValidPosition(supervisor));
     }
 
     @Test
@@ -68,7 +68,7 @@ public class crosscutRuleTest {
         board.setCell(new Point(1, 0), Colour.black);
         board.setCell(new Point(1, 1), Colour.white);
         board.setCell(new Point(0, 0), Colour.white);
-        assertFalse(crosscutRule.isValid(supervisor));
+        assertFalse(crosscutRule.isValidPosition(supervisor));
     }
 
 }

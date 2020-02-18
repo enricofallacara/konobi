@@ -18,14 +18,14 @@ public class emptyPositionRuleTest {
     @Test
     public void emptyPositionRuleValid() {
         supervisor.setCurrentPoint(point);
-        assertTrue(emptyRule.isValid(supervisor));
+        assertTrue(emptyRule.isValidPosition(supervisor));
     }
 
     @Test
     public void emptyPositionRuleInvalid() {
         supervisor.setCurrentPoint(point);
         board.setCell(point, Colour.black);
-        assertFalse(emptyRule.isValid(supervisor));
+        assertFalse(emptyRule.isValidPosition(supervisor));
     }
 
 }
