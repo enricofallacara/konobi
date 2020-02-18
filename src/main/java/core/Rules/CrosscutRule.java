@@ -12,7 +12,7 @@ public class CrosscutRule implements PositionRule {
         Point point = supervisor.getCurrentPoint();
         Board board = supervisor.getBoard();
         Colour colour = supervisor.getCurrentPlayer().getColour();
-        Stream<Cell> neighbours = Neighbourhood.getColouredNeighboursByType(board, point, colour, Neighbourhood::isWeakNeighbour);
+        Stream<Cell> neighbours = Neighbourhood.getNeighboursByPositionAndColour(board, point, colour, Neighbourhood::isWeakNeighbour);
         return neighbours.noneMatch(c ->
                 board.getCell(new Point(point.x, c.getCoordinates().y)).hasThisColour(colour.getOppositeColor())
                         &&

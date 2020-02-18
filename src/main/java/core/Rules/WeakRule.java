@@ -13,10 +13,10 @@ public class WeakRule implements PositionRule {
         Point point = supervisor.getCurrentPoint();
         Board board = supervisor.getBoard();
         Colour colour = supervisor.getCurrentPlayer().getColour();
-        Stream<Cell> weakNeighbours = Neighbourhood.getColouredNeighboursByType(board, point, colour, Neighbourhood::isWeakNeighbour);
-        return weakNeighbours.flatMap(c1 -> Neighbourhood.getNeighboursByType(board, c1.getCoordinates(), Neighbourhood::isStrongNeighbour)
+        Stream<Cell> weakNeighbours = Neighbourhood.getNeighboursByPositionAndColour(board, point, colour, Neighbourhood::isWeakNeighbour);
+        return weakNeighbours.flatMap(c1 -> Neighbourhood.getNeighboursByPosition(board, c1.getCoordinates(), Neighbourhood::isStrongNeighbour)
                 .filter(c2 -> c2.hasThisColour(null))
-                .map(c3 -> Neighbourhood.getColouredNeighboursByType(board, c3.getCoordinates(), colour, Neighbourhood::isWeakNeighbour)
+                .map(c3 -> Neighbourhood.getNeighboursByPositionAndColour(board, c3.getCoordinates(), colour, Neighbourhood::isWeakNeighbour)
                         .findAny().isPresent()))
                 .allMatch(b -> b);
     }

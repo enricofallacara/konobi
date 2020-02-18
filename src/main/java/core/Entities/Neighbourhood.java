@@ -16,12 +16,16 @@ public class Neighbourhood {
 
     public static boolean isWeakNeighbour(Point target, Point query) { return manhattanDistance(target.x, query.x, target.y, query.y) == 2.0; }
 
-    public static Stream<Cell> getNeighboursByType(Board board, Point point, BiPredicate<Point, Point> function) {
+    public static Stream<Cell> getNeighboursByPosition(Board board, Point point, BiPredicate<Point, Point> function) {
         return getMooreNeighbours(board, point).filter(cell -> function.test(point, cell.getCoordinates()));
     }
 
-    public static Stream<Cell> getColouredNeighboursByType(Board board, Point point, Colour colour, BiPredicate<Point, Point> function) {
-        return getNeighboursByType(board, point, function).filter(x -> x.hasThisColour(colour));
+    public static Stream<Cell> getNeighboursByColour(Board board, Point point, Colour colour) {
+        return getMooreNeighbours(board, point).filter(cell -> cell.hasThisColour(colour));
+    }
+
+    public static Stream<Cell> getNeighboursByPositionAndColour(Board board, Point point, Colour colour, BiPredicate<Point, Point> function) {
+        return getNeighboursByPosition(board, point, function).filter(x -> x.hasThisColour(colour));
     }
 
     private static double manhattanDistance(int x1, int x2, int y1, int y2) { return Math.abs(x1 - x2) + Math.abs(y1 - y2); }
