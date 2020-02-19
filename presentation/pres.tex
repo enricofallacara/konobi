@@ -253,22 +253,9 @@ Each \textbf{Rule} can be queried by passing a \textbf{Supplier} for it to the \
     %TODO: menzionare i due main?
     %TODO: come interagisce il core con console/GUI?
 
+  \begin{frame}{Interacting with the game}
 
-  \begin{frame}[fragile]{Starting game}
-
-    The console version of the game can be started using:
-
-    \begin{lstlisting}
- > ./gradlew runConsole
-    \end{lstlisting}
-
-    \vspace{3em}
-
-    The GUI version of the game can be started using:
-
-    \begin{lstlisting} 
- > ./gradlew runGUI
-    \end{lstlisting}
+    \textcolor{red}{Both TUI and GUI, at first with a common interface (leads to very long classes with SRP problems and the approaches have little in common).}
 
   \end{frame}
 
@@ -309,6 +296,35 @@ Each \textbf{Rule} can be queried by passing a \textbf{Supplier} for it to the \
     The \texttt{Events} package defines events for the rules (PieRule, PassRule and EndGameRule); the events are processed by the \texttt{Handlers} package, which handles mouse inputs as well.
 
     %TODO: aggiungere imagine della GUI.
+
+  \end{frame}
+
+
+  \begin{frame}{Long method smell in GUI?}
+
+    \textcolor{red}{GUI verbosity, code snippet.}
+
+  \end{frame}
+
+
+
+  \begin{frame}[fragile]{Starting game}
+
+    \textcolor{red}{No need for Java or anything, use the executable.}
+
+    The console version of the game can be started using:
+
+    \begin{lstlisting}
+ > ./gradlew runConsole
+    \end{lstlisting}
+
+    \vspace{3em}
+
+    The GUI version of the game can be started using:
+
+    \begin{lstlisting} 
+ > ./gradlew runGUI
+    \end{lstlisting}
 
   \end{frame}
 
