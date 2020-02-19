@@ -39,7 +39,7 @@
   \begin{frame}{Introduction}
 
     \begin{tcolorbox}[colback=red!90!black!10]
-      The \textbf{goal} of our project is to implement the \textbf{Konobi game} in Java, giving also the user the opportunity to choose between two interfaces: \textbf{console version} or \textbf{GUI version}
+      The \textbf{goal} of our project is to implement the \textbf{Konobi game} in Java, giving also the user the opportunity to choose between two interfaces: \textbf{console version} or \textbf{GUI version}.
     \end{tcolorbox}
 
     \vspace{1em}
@@ -47,10 +47,10 @@
     \begin{block}{Tools}
       \begin{itemize}
         \item IntelliJ;
+        \item OpenJDK11 and JavaFX;
         \item GitHub;
         \item Gradle: building;
         \item TravisCI: continuous integrations;
-        \item JavaFX: ;
         \item \textcolor{red}{Other?}
       \end{itemize}
     \end{block}
@@ -58,6 +58,7 @@
   \end{frame}
 
 
+\section{Konobi Game}
 
   \begin{frame}{Konobi}
 
@@ -152,110 +153,169 @@
   \end{frame}
 
 
+ \section{Project Structure}
 
-\begin{frame}{Building Blocks}
+  \begin{frame}{Project Structure} 
+  The project is subdivided in two main packages:
+    \begin{itemize}
+        \item \textcolor{red}{core}
+        \item \textcolor{red}{user interface}
+     \end{itemize}
 
-\textbf{Cell} class is the fundamental building block of the game engine. It is associated to a \textbf{Colour}, and has a \textbf{Point} for the coordinates.
+ \vspace{4em}
 
-\vspace{1em}
+	
+    \end{frame}
 
-\textbf{Board} class is a collection of \textbf{Cell}s, and implements the \textbf{Iterable} interface. It conveys a notion of geometrical arrangement among the \textbf{Cell}s.
+ \begin{frame}{Project  Strcuture}
+  The project is subdivided in two main packages:
+  \begin{itemize}
+        \item \textcolor{red}{core}
+        \item \textcolor{red}{user interface}
+   \end{itemize}
 
-\vspace{1em}
+ \vspace{1em}
 
-\textbf{Player} class represents each of the two players.
+  The \textbf{core package}  contains all the elements concerning the functional logic of the game.
 
-\end{frame}
+ \vspace{2em}
 
+	
+ \end{frame}
 
+ \begin{frame}{Project  Strcuture}
+  The project is subdivided in two main packages:
+  \begin{itemize}
+        \item \textcolor{red}{core}
+        \item \textcolor{red}{user interface}
+   \end{itemize}
 
-\begin{frame}{Building Blocks - TDD}
+ \vspace{1em}
 
-\begin{centering}
+  The \textbf{core package}  contains all the elements concerning the functional logic of the game.
 
-\fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.75\textwidth]{img/TDD.png}}
+ \vspace{1em}
 
-\end{centering}
-
-\vspace{1em}
-
-\textbf{Test Driven Development} was adopted from the very onset, committing after every red-light/green-light pattern.
-
-\end{frame}
-
-
-
-\begin{frame}{SRP and Board}
-
-\includegraphics[width=0.45\textwidth]{img/singleresponsibilityprinciple.jpg}
-\fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.5\textwidth]{img/Board.png}}
-
-\vspace{3em}
-
-\textbf{Board} class was doing too much, so we performed a \textbf{refactor}...
-
-\end{frame}
-
-
-\begin{frame} {Neighbourhood}
-
-...and created the \textbf{Neighbourhood} class. It shows a \textbf{Monostate Pattern}, having only static methods to compute different flavours of neighbourhoods from an instance of \textbf{Board} and a target \textbf{Point}.
-
-\end{frame}
+ The \textbf{UI package}, on the other hand, contains all the elements that are used to create the two different user interfaces: \textbf{command line} and \textbf{desktop interface}.
+	
+ \end{frame}
 
 
-\begin{frame} {Building Blocks Cont.}
 
-\textbf{StatusSupervisor} is in charge of holding the state of the game, and updating it whenever it changes (new move, pass rule, pie rule).
+\section{Core Package}
 
-\vspace{1em}
+  \begin{frame}{Building Blocks}
 
-It is employed as an interface between the \textbf{UI} module and the \textbf{core} module, allowing the two to communicate without knowing anything of each other.
-
-\end{frame}
-
-\begin{frame} {Rules}
-The package \textbf{Rules} contains the true logic of the game. We started off by defining a class per rule, later to realize there was room for abstraction...
-
-\vspace{1em}
-
-...we introduced \textbf{StatusSupervisor} as a \textbf{parameter object}, and allowed each of the classes to implement the \textbf{Rule} interface.
-
-\vspace{1em}
-
-Each \textbf{Rule} can be queried by passing a \textbf{Supplier} for it to the \textbf{Rulebook}.
-
-\end{frame}
-
-
-  \begin{frame} {Rules Cont.}
-
-    \textbf{ValidPositionRule} class had something wrong...
+    \textbf{Cell} class is the fundamental building block of the game engine. It is associated to a \textbf{Colour}, and has a \textbf{Point} for the coordinates.
 
     \vspace{1em}
 
-
-    \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.5\textwidth]{img/validpositionrule.png}}\pause
-    \hfill
-    \includegraphics[width=0.45\textwidth]{img/openclosedprinciple.jpeg}
-
-    \pause
+    \textbf{Board} class is a collection of \textbf{Cell}s, and implements the \textbf{Iterable} interface. It conveys a notion of geometrical arrangement among the \textbf{Cell}s.
 
     \vspace{1em}
 
-    Violation was solved creating \textbf{ValidPositionRulesFactory} class, which follows the \textbf{Factory Pattern}.
+    \textbf{Player} class represents each of the two players.
 
-  \end{frame}
+    \end{frame}
 
 
-%\section{UI}
+    \begin{frame}{Building Blocks - TDD}
+
+    \begin{centering}
+
+     \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.75\textwidth]{img/TDD.png}}
+
+     \end{centering}
+
+     \vspace{1em}
+
+     \textbf{Test Driven Development} was adopted from the very onset, committing after every red-light/green-light pattern.
+
+     \end{frame}
+
+
+     \begin{frame}{SRP and Board}
+
+     {\includegraphics[width=0.45\textwidth]{img/singleresponsibilityprinciple.jpg}}
+     \fcolorbox{black}{yellow!70!black!40}  	  {\includegraphics[width=0.5\textwidth]{img/Board.png}}
+        \fcolorbox{black}{yellow!70!black!40}
+
+        \vspace{3em}
+
+        \textbf{Board} class was doing too much, so we performed a \textbf{refactor}...
+
+     \end{frame}
+
+
+     \begin{frame} {Neighbourhood}
+
+     ...and created the \textbf{Neighbourhood} class. It shows a \textbf{Monostate Pattern}, having only static methods to compute different flavours of neighbourhoods from an instance of \textbf{Board} and a target \textbf{Point}.
+
+     \end{frame}
+
+
+     \begin{frame} {Building Blocks Cont.}
+
+     \textbf{StatusSupervisor} is in charge of holding the state of the game, and updating it whenever it changes (new move, pass rule, pie rule).
+
+     \vspace{1em}
+
+     It is employed as an interface between the \textbf{UI} module and the \textbf{core} module, allowing the two to communicate without knowing anything of each other.
+
+     \end{frame}
+
+     \begin{frame} {Rules}
+     The package \textbf{Rules} contains the true logic of the game. We started off by defining a class per rule, later to realize there was room for abstraction...
+
+  	\vspace{1em}
+
+     ...we introduced \textbf{StatusSupervisor} as a \textbf{parameter object}, and allowed each of the classes to implement the \textbf{Rule} interface.
+
+     \vspace{1em}
+
+     Each \textbf{Rule} can be queried by passing a \textbf{Supplier} for it to the \textbf{Rulebook}.
+
+     \end{frame}
+
+
+     \begin{frame} {Rules Cont.}
+     \textbf{ValidPositionRule} class had something wrong...
+
+     \vspace{1em}
+
+     {\includegraphics[width=0.5\textwidth]{img/validpositionrule.png}}
+        \fcolorbox{black}{yellow!70!black!40}\pause
+     {\includegraphics[width=0.45\textwidth]{img/openclosedprinciple.jpeg}}
+     \fcolorbox{black}{yellow!70!black!40}\pause
+
+     \vspace{1em}
+
+     Violation was solved creating \textbf{ValidPositionRulesFactory} class, which follows the \textbf{Factory Pattern}.
+
+     \end{frame}
+
+
+\section{UI Package}
 
     %TODO: menzionare i due main?
     %TODO: come interagisce il core con console/GUI?
 
-  \begin{frame}{Interacting with the game}
 
-    \textcolor{red}{Both TUI and GUI, at first with a common interface (leads to very long classes with SRP problems and the approaches have little in common).}
+  \begin{frame}[fragile]{Starting game}
+
+    The console version of the game can be started using:
+
+    \begin{lstlisting}
+ > ./gradlew runConsole
+    \end{lstlisting}
+
+    \vspace{3em}
+
+    The GUI version of the game can be started using:
+
+    \begin{lstlisting} 
+ > ./gradlew runGUI
+    \end{lstlisting}
 
   \end{frame}
 
@@ -296,35 +356,6 @@ Each \textbf{Rule} can be queried by passing a \textbf{Supplier} for it to the \
     The \texttt{Events} package defines events for the rules (PieRule, PassRule and EndGameRule); the events are processed by the \texttt{Handlers} package, which handles mouse inputs as well.
 
     %TODO: aggiungere imagine della GUI.
-
-  \end{frame}
-
-
-  \begin{frame}{Long method smell in GUI?}
-
-    \textcolor{red}{GUI verbosity, code snippet.}
-
-  \end{frame}
-
-
-
-  \begin{frame}[fragile]{Starting game}
-
-    \textcolor{red}{No need for Java or anything, use the executable.}
-
-    The console version of the game can be started using:
-
-    \begin{lstlisting}
- > ./gradlew runConsole
-    \end{lstlisting}
-
-    \vspace{3em}
-
-    The GUI version of the game can be started using:
-
-    \begin{lstlisting} 
- > ./gradlew runGUI
-    \end{lstlisting}
 
   \end{frame}
 
