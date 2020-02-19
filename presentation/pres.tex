@@ -13,6 +13,7 @@
 	numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
 	stringstyle=\color{black},       % string literal style
 }
+\usepackage{wrapfig}
 
 \usetheme{Patorikku}
 
@@ -290,7 +291,27 @@
 
   \begin{frame}{Interacting with the game}
 
-    \textcolor{red}{Both TUI and GUI, at first with a common interface (leads to very long classes with SRP problems and the approaches have little in common).}
+
+  \begin{minipage}{\textwidth}
+  \begin{columns}[T]
+    \begin{column}{0.6\textwidth}
+
+      %\textcolor{red}{Both TUI and GUI, at first with a common interface (leads to very long classes with SRP problems and the approaches have little in common).}
+
+      At first, we considered abstracting the console and the graphical interfaces with a common Java interface.
+
+      \vspace{1em}
+      
+      We realised this was leading us to \textit{conceptualisation abuse}.
+
+    \end{column}
+    \begin{column}{0.4\textwidth}
+
+      \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.9\textwidth]{img/interfaceinterface.png}}
+
+    \end{column}
+  \end{columns}
+  \end{minipage}
 
   \end{frame}
 
@@ -300,10 +321,10 @@
 
     \begin{itemize}
       \setlength\itemsep{1em}
-      \item \texttt{ConsoleBoardWriter}: board display;
-      \item \texttt{ConsoleCellRepresentation}: conversion between cell color and its representation;
-      \item \texttt{ConsoleInputHandler}: player input handling;
-      \item \texttt{ConsoleMessageWriter}: messages to the players.
+      \item \textbf{\texttt{ConsoleBoardWriter}}: board display;
+      \item \textbf{\texttt{ConsoleCellRepresentation}}: conversion between cell color and its representation;
+      \item \textbf{\texttt{ConsoleInputHandler}}: player input handling;
+      \item \textbf{\texttt{ConsoleMessageWriter}}: messages to the players.
     \end{itemize}
 
     \vspace{1em}
@@ -320,15 +341,15 @@
 
     \begin{itemize}
       \setlength\itemsep{1em}
-      \item \texttt{GUI}: implements the game flow in a \texttt{JavaFX} application;
-      \item \texttt{GUIBoardWriter}: board and GUI display;
-      \item \texttt{GUIAsker}: \textcolor{red}{boh};
-      \item \texttt{GUIMessageWriter}: messages to the players.
+      \item \textbf{\texttt{GUI}}: implements the game flow in a \texttt{JavaFX} application;
+      \item \textbf{\texttt{GUIBoardWriter}}: board and GUI display;
+      \item \textbf{\texttt{GUIAsker}}: \textcolor{red}{boh};
+      \item \textbf{\texttt{GUIMessageWriter}}: messages to the players.
     \end{itemize}
 
     \vspace{1em}
 
-    The \texttt{Events} package defines events for the rules (PieRule, PassRule and EndGameRule); the events are processed by the \texttt{Handlers} package, which handles mouse inputs as well.
+    The \textbf{\texttt{Events}} package defines events for the rules (PieRule, PassRule and EndGameRule); the events are processed by the \textbf{\texttt{Handlers}} package, which handles mouse inputs as well.
 
     %TODO: aggiungere imagine della GUI.
 
