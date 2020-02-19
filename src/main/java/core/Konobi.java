@@ -1,8 +1,11 @@
-package core.Entities;
+package core;
 
 import UI.Console.ConsoleBoardWriter;
 import UI.Console.ConsoleInputHandler;
 import UI.Console.ConsoleMessageWriter;
+import core.Entities.Player;
+import core.Entities.Rulebook;
+import core.Entities.StatusSupervisor;
 import core.Rules.EndGameRule;
 import core.Rules.PassRule;
 import core.Rules.PieRule;

@@ -23,7 +23,6 @@ public class GUIAsker {
         return result.filter(buttonType -> buttonType == ButtonType.OK).isPresent();
     }
 
-
     public static int askSize() {
         ArrayList<Integer> sizes = new ArrayList<>(Arrays.asList(3, 4, 5, 6, 7, 8, 9, 10, 11));
         ChoiceDialog<Integer> dialog = new ChoiceDialog<>(11, sizes);

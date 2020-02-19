@@ -64,7 +64,7 @@ public class Board implements Iterable<Cell>{
     }
 
     public boolean isOnBoard(Point point){
-        return (0<= point.x && point.x < size) && (0 <= point.y && point.y < size);
+        return (0 <= point.x && point.x < size) && (0 <= point.y && point.y < size);
     }
 
     private int[] filterIndices(int startX, int endX, int startY, int endY) {

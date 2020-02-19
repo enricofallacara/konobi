@@ -9,6 +9,7 @@ import core.Entities.Rulebook;
 import javafx.event.EventHandler;
 
 public class GUIPieRuleHandler implements EventHandler<PieRuleEvent> {
+
     private final GUI gui;
 
     public GUIPieRuleHandler(GUI g) { gui = g; }

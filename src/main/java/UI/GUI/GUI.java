@@ -29,7 +29,7 @@ import javafx.stage.Stage;
 
 public class GUI extends Application {
 
-    private final int tilesize = 50;
+    private final int tileSize = 50;
     private Stage stage;
     private GridPane gridPane;
     private StatusSupervisor supervisor;
@@ -51,7 +51,7 @@ public class GUI extends Application {
         gridPane = new GridPane();
         gridPane.setVgap(20);
         supervisor = new StatusSupervisor(boardSize);
-        boardFiller = new GUIBoardWriter(boardSize, tilesize);
+        boardFiller = new GUIBoardWriter(boardSize, tileSize);
 
         GridPane gridBoard = boardFiller.createEmptyBoard();
         gridBoard.getStyleClass().add("grid-board");
@@ -83,7 +83,7 @@ public class GUI extends Application {
     }
 
     public int coordinateConversion(double coordinate) {
-        return (int)coordinate / tilesize;
+        return (int)coordinate / tileSize;
     }
 
     @Override
