@@ -152,95 +152,100 @@
   \end{frame}
 
 
-  \begin{frame}{Building Blocks}
 
-    \textbf{Cell} class is the fundamental building block of the game engine. It is associated to a \textbf{Colour}, and has a \textbf{Point} for the coordinates.
+\begin{frame}{Building Blocks}
+
+\textbf{Cell} class is the fundamental building block of the game engine. It is associated to a \textbf{Colour}, and has a \textbf{Point} for the coordinates.
+
+\vspace{1em}
+
+\textbf{Board} class is a collection of \textbf{Cell}s, and implements the \textbf{Iterable} interface. It conveys a notion of geometrical arrangement among the \textbf{Cell}s.
+
+\vspace{1em}
+
+\textbf{Player} class represents each of the two players.
+
+\end{frame}
+
+
+
+\begin{frame}{Building Blocks - TDD}
+
+\begin{centering}
+
+\fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.75\textwidth]{img/TDD.png}}
+
+\end{centering}
+
+\vspace{1em}
+
+\textbf{Test Driven Development} was adopted from the very onset, committing after every red-light/green-light pattern.
+
+\end{frame}
+
+
+
+\begin{frame}{SRP and Board}
+
+\includegraphics[width=0.45\textwidth]{img/singleresponsibilityprinciple.jpg}
+\fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.5\textwidth]{img/Board.png}}
+
+\vspace{3em}
+
+\textbf{Board} class was doing too much, so we performed a \textbf{refactor}...
+
+\end{frame}
+
+
+\begin{frame} {Neighbourhood}
+
+...and created the \textbf{Neighbourhood} class. It shows a \textbf{Monostate Pattern}, having only static methods to compute different flavours of neighbourhoods from an instance of \textbf{Board} and a target \textbf{Point}.
+
+\end{frame}
+
+
+\begin{frame} {Building Blocks Cont.}
+
+\textbf{StatusSupervisor} is in charge of holding the state of the game, and updating it whenever it changes (new move, pass rule, pie rule).
+
+\vspace{1em}
+
+It is employed as an interface between the \textbf{UI} module and the \textbf{core} module, allowing the two to communicate without knowing anything of each other.
+
+\end{frame}
+
+\begin{frame} {Rules}
+The package \textbf{Rules} contains the true logic of the game. We started off by defining a class per rule, later to realize there was room for abstraction...
+
+\vspace{1em}
+
+...we introduced \textbf{StatusSupervisor} as a \textbf{parameter object}, and allowed each of the classes to implement the \textbf{Rule} interface.
+
+\vspace{1em}
+
+Each \textbf{Rule} can be queried by passing a \textbf{Supplier} for it to the \textbf{Rulebook}.
+
+\end{frame}
+
+
+  \begin{frame} {Rules Cont.}
+
+    \textbf{ValidPositionRule} class had something wrong...
 
     \vspace{1em}
 
-    \textbf{Board} class is a collection of \textbf{Cell}s, and implements the \textbf{Iterable} interface. It conveys a notion of geometrical arrangement among the \textbf{Cell}s.
+
+    \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.5\textwidth]{img/validpositionrule.png}}\pause
+    \hfill
+    \includegraphics[width=0.45\textwidth]{img/openclosedprinciple.jpeg}
+
+    \pause
 
     \vspace{1em}
 
-    \textbf{Player} class represents each of the two players.
+    Violation was solved creating \textbf{ValidPositionRulesFactory} class, which follows the \textbf{Factory Pattern}.
 
-    \end{frame}
-
-
-    \begin{frame}{Building Blocks - TDD}
-
-    \begin{centering}
-
-     \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.75\textwidth]{img/TDD.png}}
-
-     \end{centering}
-
-     \vspace{1em}
-
-     \textbf{Test Driven Development} was adopted from the very onset, committing after every red-light/green-light pattern.
-
-     \end{frame}
-
-
-     \begin{frame}{SRP and Board}
-
-     {\includegraphics[width=0.45\textwidth]{img/singleresponsibilityprinciple.jpg}}
-     \fcolorbox{black}{yellow!70!black!40}  	  {\includegraphics[width=0.5\textwidth]{img/Board.png}}
-        \fcolorbox{black}{yellow!70!black!40}
-
-        \vspace{3em}
-
-        \textbf{Board} class was doing too much, so we performed a \textbf{refactor}...
-
-     \end{frame}
-
-
-     \begin{frame} {Neighbourhood}
-
-     ...and created the \textbf{Neighbourhood} class. It shows a \textbf{Monostate Pattern}, having only static methods to compute different flavours of neighbourhoods from an instance of \textbf{Board} and a target \textbf{Point}.
-
-     \end{frame}
-
-
-     \begin{frame} {Building Blocks Cont.}
-
-     \textbf{StatusSupervisor} is in charge of holding the state of the game, and updating it whenever it changes (new move, pass rule, pie rule).
-
-     \vspace{1em}
-
-     It is employed as an interface between the \textbf{UI} module and the \textbf{core} module, allowing the two to communicate without knowing anything of each other.
-
-     \end{frame}
-
-     \begin{frame} {Rules}
-     The package \textbf{Rules} contains the true logic of the game. We started off by defining a class per rule, later to realize there was room for abstraction...
-
-  	\vspace{1em}
-
-     ...we introduced \textbf{StatusSupervisor} as a \textbf{parameter object}, and allowed each of the classes to implement the \textbf{Rule} interface.
-
-     \vspace{1em}
-
-     Each \textbf{Rule} can be queried by passing a \textbf{Supplier} for it to the \textbf{Rulebook}.
-
-     \end{frame}
-
-
-     \begin{frame} {Rules Cont.}
-     \textbf{ValidPositionRule} class had something wrong...
-
-     \vspace{1em}
-
-     {\includegraphics[width=0.5\textwidth]{img/validpositionrule.png}}
-        \fcolorbox{black}{yellow!70!black!40}\pause
-     {\includegraphics[width=0.45\textwidth]{img/openclosedprinciple.jpeg}}
-     \fcolorbox{black}{yellow!70!black!40}\pause
-
-     \vspace{1em}
-
-     Violation was solved creating \textbf{ValidPositionRulesFactory} class, which follows the \textbf{Factory Pattern}.
-
-     \end{frame}
+  \end{frame}
 
 
 %\section{UI}
