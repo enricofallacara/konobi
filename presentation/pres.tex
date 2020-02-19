@@ -65,7 +65,7 @@
   \begin{frame}{Konobi}
 
     Konobi is a drawless connection game for two players: \textbf{Black}
-    and \textbf{White}. It's played on the a square board, which is initially empty. 
+    and \textbf{White}. It's played on a square board, which is initially empty. 
 
     \vspace{1em}
 
@@ -287,8 +287,6 @@
 
 \section{UI Package}
 
-    %TODO: menzionare i due main?
-    %TODO: come interagisce il core con console/GUI?
 
   \begin{frame}{Interacting with the game}
 
@@ -319,7 +317,7 @@
 
     \vspace{1em}
 
-    The two interfaces are diverse enough, so we decided to crate two distinct packages with different classes.
+    The two interfaces are diverse enough, so we decided to create two distinct packages with different classes.
 
   \end{frame}
 
@@ -339,8 +337,6 @@
 
     Messages are contained in the \textbf{\texttt{Messages}} class: its messages are used by the GUI implementation as well.
 
-    %TODO: aggiungere imagine della console.
-
   \end{frame}
 
 
@@ -357,11 +353,10 @@
 
     \vspace{1em}
 
-    The \textbf{\texttt{Events}} package defines events for the rules (PieRule, PassRule and EndGameRule); the events are processed by the \textbf{\texttt{Handlers}} package, which handles mouse inputs as well.
-
-    %TODO: aggiungere imagine della GUI.
+    The \textbf{\texttt{Events}} package defines events for the rules (pie, pass and end-game rules); the events are processed by the \textbf{\texttt{Handlers}} package, which handles mouse inputs as well.
 
   \end{frame}
+
 
 
   \begin{frame}{Long method smell in GUI?}
@@ -374,7 +369,7 @@
 
   \begin{frame}[fragile]{Starting game}
 
-    For portability, the project is shipped with the \texttt{\textbf{gradlew}} executable to run the code without any dependency.
+    For portability, the project is shipped with the \texttt{\textbf{gradlew}} (\texttt{\textbf{gradlew.bat}} for Windows) executable to run the code without manually handling dependencies.
 
     \vspace{2em}
 
