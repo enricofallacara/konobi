@@ -12,7 +12,7 @@ public class ValidPositionRule implements Rule {
 
     @Override
     public boolean isValid(StatusSupervisor supervisor) {
-        return positionRules.allMatch(x -> x.isValidPosition(supervisor));
+        return positionRules.allMatch(x -> x.isValid(supervisor));
     }
 
 }

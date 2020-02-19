@@ -1,8 +1,12 @@
 package core.Rules;
 
+import core.Entities.Board;
+import core.Entities.Colour;
 import core.Entities.StatusSupervisor;
 
-public interface PositionRule {
+import java.awt.*;
 
-    public boolean isValidPosition(StatusSupervisor supervisor);
+public interface PositionRule extends Rule{
+
+    boolean isValidPosition(Board board, Point point, Colour colour);
 }
