@@ -39,7 +39,7 @@
   \begin{frame}{Introduction}
 
     \begin{tcolorbox}[colback=red!90!black!10]
-      The \textbf{goal} of our project is to implement the \textbf{Konobi game} in Java, giving also the user the opportunity to choose between two interfaces: \textbf{console version} or \textbf{GUI version}
+      The \textbf{goal} of our project is to implement the \textbf{Konobi game} in Java, giving also the user the opportunity to choose between two interfaces: \textbf{console version} or \textbf{GUI version}.
     \end{tcolorbox}
 
     \vspace{1em}
@@ -47,10 +47,10 @@
     \begin{block}{Tools}
       \begin{itemize}
         \item IntelliJ;
+        \item OpenJDK11 and JavaFX;
         \item GitHub;
         \item Gradle: building;
         \item TravisCI: continuous integrations;
-        \item JavaFX: ;
         \item \textcolor{red}{Other?}
       \end{itemize}
     \end{block}
@@ -58,6 +58,7 @@
   \end{frame}
 
 
+\section{Konobi Game}
 
   \begin{frame}{Konobi}
 
@@ -152,6 +153,57 @@
   \end{frame}
 
 
+ \section{Project Structure}
+
+  \begin{frame}{Project Structure} 
+  The project is subdivided in two main packages:
+    \begin{itemize}
+        \item \textcolor{red}{core}
+        \item \textcolor{red}{user interface}
+     \end{itemize}
+
+ \vspace{4em}
+
+	
+    \end{frame}
+
+ \begin{frame}{Project  Strcuture}
+  The project is subdivided in two main packages:
+  \begin{itemize}
+        \item \textcolor{red}{core}
+        \item \textcolor{red}{user interface}
+   \end{itemize}
+
+ \vspace{1em}
+
+  The \textbf{core package}  contains all the elements concerning the functional logic of the game.
+
+ \vspace{2em}
+
+	
+ \end{frame}
+
+ \begin{frame}{Project  Strcuture}
+  The project is subdivided in two main packages:
+  \begin{itemize}
+        \item \textcolor{red}{core}
+        \item \textcolor{red}{user interface}
+   \end{itemize}
+
+ \vspace{1em}
+
+  The \textbf{core package}  contains all the elements concerning the functional logic of the game.
+
+ \vspace{1em}
+
+ The \textbf{UI package}, on the other hand, contains all the elements that are used to create the two different user interfaces: \textbf{command line} and \textbf{desktop interface}.
+	
+ \end{frame}
+
+
+
+\section{Core Package}
+
   \begin{frame}{Building Blocks}
 
     \textbf{Cell} class is the fundamental building block of the game engine. It is associated to a \textbf{Colour}, and has a \textbf{Point} for the coordinates.
@@ -243,7 +295,7 @@
      \end{frame}
 
 
-%\section{UI}
+\section{UI Package}
 
     %TODO: menzionare i due main?
     %TODO: come interagisce il core con console/GUI?
