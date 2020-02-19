@@ -27,14 +27,4 @@ public class Cell {
 
     public boolean hasThisColour(Colour c) { return colour == c; }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || this.getClass() != o.getClass()) return false;
-
-        Cell cell = (Cell) o;
-        if (!this.hasThisColour(cell.getColour())) return false;
-        return coordinates == ((Cell) o).getCoordinates();
-    }
-
 }

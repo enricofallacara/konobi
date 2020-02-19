@@ -1,18 +1,16 @@
 package core.Rules;
 
-import core.Entities.StatusSupervisor;
+import core.Entities.Board;
+import core.Entities.Colour;
+
+import java.awt.*;
 
 
-public class EmptyRule implements Rule {
+public class EmptyRule implements PositionRule {
 
     @Override
-    public boolean isValid(StatusSupervisor supervisor) {
-        return supervisor.getBoard().getCell(supervisor.getCurrentPoint()).hasThisColour(null);
+    public boolean isValidPosition(Board board, Point point, Colour colour) {
+        return !board.getCell(point).hasThisColour(colour) && !board.getCell(point).hasThisColour(colour.getOppositeColor());
     }
 
-   // public static boolean isValid(Point point, Board board) {
-       // return board.getCell(point).hasThisColor(null);
-    //}
-
 }
-

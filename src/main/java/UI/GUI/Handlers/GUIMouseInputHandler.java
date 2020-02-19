@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import java.awt.Point;
 
 public class GUIMouseInputHandler implements EventHandler<MouseEvent> {
+
     private final GUI gui;
     public GUIMouseInputHandler(GUI g) { gui = g; }
 

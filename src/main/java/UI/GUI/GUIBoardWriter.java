@@ -17,8 +17,8 @@ import java.util.Map;
 
 public class GUIBoardWriter {
 
-    final int boardSize;
-    final int tileSize;
+    private final int boardSize;
+    private final int tileSize;
     private static final Map<Colour, Paint> colorPaintMap = new HashMap<>() {{
         put(Colour.black, Color.BLACK);
         put(Colour.white, Color.WHITE);

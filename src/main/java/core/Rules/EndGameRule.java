@@ -32,7 +32,7 @@ public class EndGameRule implements Rule {
             return;
         }
         visitedCells.add(current);
-        for (Cell neighbour : Neighbourhood.getColouredNeighboursByType(board, current.getCoordinates(), colour, (x, y) -> true).toArray(Cell[]::new)) {
+        for (Cell neighbour : Neighbourhood.getNeighboursByColour(board, current.getCoordinates(), colour).toArray(Cell[]::new)) {
             if (!visitedCells.contains(neighbour)) {
                 searchForEndingEdge(neighbour, board, colour);
             }

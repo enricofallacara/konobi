@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 public class ValidPositionRule implements Rule {
 
-    private final Stream<Rule> positionRules;
+    private final Stream<PositionRule> positionRules;
 
     public ValidPositionRule() { positionRules = ValidPositionRulesFactory.create(); }
 

@@ -9,9 +9,11 @@ import java.awt.Point;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+
 public class emptyPositionRuleTest {
+
     private final StatusSupervisor supervisor = new StatusSupervisor(11);
-    private final Board board = supervisor.getBoard();//new Board(11);
+    private final Board board = supervisor.getBoard();
     private final Point point = new Point(1, 2);
     private final EmptyRule emptyRule = new EmptyRule();
 

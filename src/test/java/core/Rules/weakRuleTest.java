@@ -9,14 +9,15 @@ import java.awt.Point;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+
 public class weakRuleTest {
+
     private final StatusSupervisor supervisor = new StatusSupervisor(5);
     private final Board board = supervisor.getBoard();
     private final WeakRule weakRule = new WeakRule();
 
     @Test
     public void weakRuleTestFirstConf() {
-        //Point point = new Point(1, 2);
         supervisor.setCurrentPoint(new Point(1, 2));
 
         board.setCell(new Point(0, 0), Colour.white);
@@ -32,7 +33,6 @@ public class weakRuleTest {
 
     @Test
     public void weakRuleTestSecondConf() {
-        //Point point = new Point(1, 1);
         supervisor.setCurrentPoint(new Point(1, 1));
 
         board.setCell(new Point(3, 0), Colour.white);
@@ -50,7 +50,6 @@ public class weakRuleTest {
 
     @Test
     public void weakRuleTestThirdConf() {
-        //Point point = new Point(1, 0);
         supervisor.setCurrentPoint(new Point(1, 0));
 
         board.setCell(new Point(0, 1), Colour.white);

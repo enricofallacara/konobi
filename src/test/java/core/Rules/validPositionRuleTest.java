@@ -8,7 +8,9 @@ import java.awt.Point;
 
 import static org.junit.Assert.*;
 
+
 public class validPositionRuleTest {
+
     private final StatusSupervisor supervisor = new StatusSupervisor(11);
     private final ValidPositionRule validPositionRule = new ValidPositionRule();
 
