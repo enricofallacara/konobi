@@ -3,7 +3,9 @@ package core.Entities;
 import core.Rules.ValidPositionRule;
 import java.awt.Point;
 
+
 public class StatusSupervisor {
+
     private final Board board;
     private final Player playerOne;
     private final Player playerTwo;

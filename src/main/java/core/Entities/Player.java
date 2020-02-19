@@ -1,6 +1,8 @@
 package core.Entities;
 
+
 public class Player {
+
     private Colour colour;
     private String name;
 
