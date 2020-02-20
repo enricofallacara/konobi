@@ -8,6 +8,7 @@ import core.Rules.PieRule;
 import core.Entities.Rulebook;
 import javafx.event.EventHandler;
 
+
 public class GUIPieRuleHandler implements EventHandler<PieRuleEvent> {
 
     private final GUI gui;
@@ -21,5 +22,7 @@ public class GUIPieRuleHandler implements EventHandler<PieRuleEvent> {
             gui.getBoardFiller().switchLabelsColors(gui.getLabelBoard());
             GUIMessageWriter.notifyPieRule();
         }
+        event.consume();
     }
+
 }

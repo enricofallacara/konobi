@@ -7,7 +7,9 @@ import core.Rules.PassRule;
 import core.Entities.Rulebook;
 import javafx.event.EventHandler;
 
+
 public class GUIPassRuleHandler implements EventHandler<PassRuleEvent> {
+
     private final GUI gui;
 
     public GUIPassRuleHandler(GUI g) { gui = g; }
@@ -18,6 +20,7 @@ public class GUIPassRuleHandler implements EventHandler<PassRuleEvent> {
             gui.getSupervisor().performPassRule();
             GUIMessageWriter.notifyPass();
         }
+        event.consume();
     }
 
 }

@@ -26,6 +26,8 @@ public class Board implements Iterable<Cell>{
         getCell(p).setColour(c);
     }
 
+    // slice uses non-inclusive end indices (e.g. slice(0, 1, 0, 1) returns only the Cell at position
+    // (0, 0)), Python-style
     public Cell[] slice(int startX, int endX, int startY, int endY) {
         int[] indices = filterIndices(startX, endX, startY, endY);
         return Arrays.stream(grid).skip(indices[2]).limit(indices[3] - indices[2]).

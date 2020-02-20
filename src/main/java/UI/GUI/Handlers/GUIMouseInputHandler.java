@@ -7,12 +7,13 @@ import UI.GUI.GUI;
 import UI.GUI.GUIMessageWriter;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-
 import java.awt.Point;
+
 
 public class GUIMouseInputHandler implements EventHandler<MouseEvent> {
 
     private final GUI gui;
+
     public GUIMouseInputHandler(GUI g) { gui = g; }
 
     @Override
@@ -25,6 +26,7 @@ public class GUIMouseInputHandler implements EventHandler<MouseEvent> {
             return;
         }
         updateGUIAndFireEvents(columnIndex, rowIndex);
+        event.consume();
     }
 
     private void updateGUIAndFireEvents(int columnIndex, int rowIndex) {
@@ -36,4 +38,5 @@ public class GUIMouseInputHandler implements EventHandler<MouseEvent> {
         gui.getGridBoard().fireEvent(new PieRuleEvent());
 
     }
+
 }
