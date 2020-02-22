@@ -7,6 +7,7 @@ import core.Rules.EndGameRule;
 import core.Rules.PassRule;
 import core.Rules.PieRule;
 
+import java.awt.*;
 import java.util.concurrent.Callable;
 import java.util.function.Supplier;
 
@@ -37,6 +38,15 @@ public class Konobi {
         return false;
     }
 
+    public boolean checkAndPerformNewMove(Runnable notifier, Point point) {
+        if (!supervisor.newMove(point)) {
+            notifier.run();
+            return false;
+        }
+        return true;
+    }
+
+
     public void play() {
         do {
             playTurn();
@@ -55,8 +65,9 @@ public class Konobi {
         if (checkAndPerformPieRule(ConsoleMessageWriter::notifyPieRule, ConsoleInputHandler::askPieRule)) {
             return;
         }
-        while (!supervisor.newMove(ConsoleInputHandler.getInput(supervisor))) {
-            ConsoleMessageWriter.notifyInvalidMove();
+        while (true) {
+            if (checkAndPerformNewMove(ConsoleMessageWriter::notifyInvalidMove, ConsoleInputHandler.getInput(supervisor)))
+                break;
         }
     }
 
