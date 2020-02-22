@@ -22,12 +22,12 @@ public class EndGameRule implements Rule {
     }
 
     public boolean isValid(Board board, Colour colour) {
-        board.getStartingCells(colour).forEach(x -> searchForEndingEdge(x, board, colour));
+        board.getStartingCellsForColour(colour).forEach(x -> searchForEndingEdge(x, board, colour));
         return !endingCells.isEmpty();
     }
 
     public void searchForEndingEdge(Cell current, Board board, Colour colour) {
-        if (board.isOnEndingEdge(current.getCoordinates(), colour)) {
+        if (board.isOnEndingEdgeForColour(current.getCoordinates(), colour)) {
             endingCells.add(current);
             return;
         }

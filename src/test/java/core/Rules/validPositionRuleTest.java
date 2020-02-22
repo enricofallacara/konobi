@@ -15,10 +15,10 @@ public class validPositionRuleTest {
     private final ValidPositionRule validPositionRule = new ValidPositionRule();
 
     private void setTestBoard(Board board) {
-        board.setCell(new Point(0, 0), Colour.black);
-        board.setCell(new Point(2, 1), Colour.black);
-        board.setCell(new Point(0, 1), Colour.white);
-        board.setCell(new Point(2, 2), Colour.white);
+        board.setCellColour(new Point(0, 0), Colour.BLACK);
+        board.setCellColour(new Point(2, 1), Colour.BLACK);
+        board.setCellColour(new Point(0, 1), Colour.WHITE);
+        board.setCellColour(new Point(2, 2), Colour.WHITE);
     }
 
     @Test

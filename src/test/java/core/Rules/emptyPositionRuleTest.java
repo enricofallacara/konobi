@@ -26,7 +26,7 @@ public class emptyPositionRuleTest {
     @Test
     public void emptyPositionRuleInvalid() {
         supervisor.setCurrentPoint(point);
-        board.setCell(point, Colour.black);
+        board.setCellColour(point, Colour.BLACK);
         assertFalse(emptyRule.isValid(supervisor));
     }
 

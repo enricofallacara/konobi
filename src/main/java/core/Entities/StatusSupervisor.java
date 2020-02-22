@@ -15,9 +15,9 @@ public class StatusSupervisor {
 
     public StatusSupervisor(int boardSize) {
         board = new Board(boardSize);
-        playerOne = new Player(Colour.black, "playerOne");
-        playerTwo = new Player(Colour.white, "playerTwo");
-        currentColour = Colour.black;
+        playerOne = new Player(Colour.BLACK, "playerOne");
+        playerTwo = new Player(Colour.WHITE, "playerTwo");
+        currentColour = Colour.BLACK;
         nTurn = 1;
     }
 
@@ -34,7 +34,7 @@ public class StatusSupervisor {
     public int getTurn() { return nTurn; }
 
     private void updateStatus(Point newPoint) {
-        board.setCell(newPoint, currentColour);
+        board.setCellColour(newPoint, currentColour);
         currentColour = currentColour.getOppositeColor();
         nTurn++;
     }

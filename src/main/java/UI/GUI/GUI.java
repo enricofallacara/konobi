@@ -56,7 +56,7 @@ public class GUI extends Application {
         GridPane gridBoard = boardFiller.createEmptyBoard();
         gridBoard.getStyleClass().add("grid-board");
 
-        GridPane labelBoard = boardFiller.createLabelPane();
+        GridPane labelBoard = boardFiller.createLabelPane(supervisor.getCurrentPlayer().getName(), supervisor.getLastPlayer().getName());
         labelBoard.getStyleClass().add("label-board");
 
         createAndSetHandlerOnNode(gridBoard, MouseEvent.MOUSE_CLICKED, new GUIMouseInputHandler(this));
@@ -84,11 +84,6 @@ public class GUI extends Application {
 
     public int coordinateConversion(double coordinate) {
         return (int)coordinate / tileSize;
-    }
-
-    @Override
-    public void stop(){
-        Platform.exit();
     }
 
     private Button createAndSetButton(String text, int width, int height, EventHandler<ActionEvent> handler) {
@@ -135,6 +130,9 @@ public class GUI extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
+    @Override
+    public void stop() { Platform.exit(); }
 
     public static void main(String[] args) { Application.launch(args); }
 

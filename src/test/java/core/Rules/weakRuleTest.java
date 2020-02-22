@@ -20,13 +20,13 @@ public class weakRuleTest {
     public void weakRuleTestFirstConf() {
         supervisor.setCurrentPoint(new Point(1, 2));
 
-        board.setCell(new Point(0, 0), Colour.white);
-        board.setCell(new Point(2, 1), Colour.white);
-        board.setCell(new Point(3, 3), Colour.white);
+        board.setCellColour(new Point(0, 0), Colour.WHITE);
+        board.setCellColour(new Point(2, 1), Colour.WHITE);
+        board.setCellColour(new Point(3, 3), Colour.WHITE);
 
-        board.setCell(new Point(2, 0), Colour.black);
-        board.setCell(new Point(3, 0), Colour.black);
-        board.setCell(new Point(3, 1), Colour.black);
+        board.setCellColour(new Point(2, 0), Colour.BLACK);
+        board.setCellColour(new Point(3, 0), Colour.BLACK);
+        board.setCellColour(new Point(3, 1), Colour.BLACK);
 
         assertTrue(weakRule.isValid(supervisor));
     }
@@ -35,15 +35,15 @@ public class weakRuleTest {
     public void weakRuleTestSecondConf() {
         supervisor.setCurrentPoint(new Point(1, 1));
 
-        board.setCell(new Point(3, 0), Colour.white);
-        board.setCell(new Point(0, 3), Colour.white);
-        board.setCell(new Point(2, 2), Colour.white);
-        board.setCell(new Point(2, 3), Colour.white);
+        board.setCellColour(new Point(3, 0), Colour.WHITE);
+        board.setCellColour(new Point(0, 3), Colour.WHITE);
+        board.setCellColour(new Point(2, 2), Colour.WHITE);
+        board.setCellColour(new Point(2, 3), Colour.WHITE);
 
-        board.setCell(new Point(2, 0), Colour.black);
-        board.setCell(new Point(2, 1), Colour.black);
-        board.setCell(new Point(4, 2), Colour.black);
-        board.setCell(new Point(0, 2), Colour.black);
+        board.setCellColour(new Point(2, 0), Colour.BLACK);
+        board.setCellColour(new Point(2, 1), Colour.BLACK);
+        board.setCellColour(new Point(4, 2), Colour.BLACK);
+        board.setCellColour(new Point(0, 2), Colour.BLACK);
 
         assertFalse(weakRule.isValid(supervisor));
     }
@@ -52,11 +52,11 @@ public class weakRuleTest {
     public void weakRuleTestThirdConf() {
         supervisor.setCurrentPoint(new Point(1, 0));
 
-        board.setCell(new Point(0, 1), Colour.white);
-        board.setCell(new Point(2, 2), Colour.white);
+        board.setCellColour(new Point(0, 1), Colour.WHITE);
+        board.setCellColour(new Point(2, 2), Colour.WHITE);
 
-        board.setCell(new Point(0, 0), Colour.black);
-        board.setCell(new Point(2, 1), Colour.black);
+        board.setCellColour(new Point(0, 0), Colour.BLACK);
+        board.setCellColour(new Point(2, 1), Colour.BLACK);
 
         assertFalse(weakRule.isValid(supervisor));
     }

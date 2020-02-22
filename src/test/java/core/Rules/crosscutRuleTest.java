@@ -24,45 +24,45 @@ public class crosscutRuleTest {
     @Test
     public void testCrosscutRuleInvalid() {
         supervisor.setCurrentPoint(new Point(0, 1));
-        board.setCell(new Point(0, 0), Colour.black);
-        board.setCell(new Point(1, 1), Colour.white);
-        board.setCell(new Point(1, 0), Colour.white);
+        board.setCellColour(new Point(0, 0), Colour.BLACK);
+        board.setCellColour(new Point(1, 1), Colour.WHITE);
+        board.setCellColour(new Point(1, 0), Colour.WHITE);
         assertTrue(crosscutRule.isValid(supervisor));
     }
 
     @Test
     public void testCrosscutRuleFirstConf() {
         supervisor.setCurrentPoint(new Point(1, 0));
-        board.setCell(new Point(0, 1), Colour.black);
-        board.setCell(new Point(1, 1), Colour.white);
-        board.setCell(new Point(0, 0), Colour.white);
+        board.setCellColour(new Point(0, 1), Colour.BLACK);
+        board.setCellColour(new Point(1, 1), Colour.WHITE);
+        board.setCellColour(new Point(0, 0), Colour.WHITE);
         assertFalse(crosscutRule.isValid(supervisor));
     }
 
     @Test
     public void testCrosscutRuleInvalidSecondConf() {
         supervisor.setCurrentPoint(new Point(0, 0));
-        board.setCell(new Point(0, 1), Colour.black);
-        board.setCell(new Point(1, 1), Colour.white);
-        board.setCell(new Point(1, 0), Colour.black);
+        board.setCellColour(new Point(0, 1), Colour.BLACK);
+        board.setCellColour(new Point(1, 1), Colour.WHITE);
+        board.setCellColour(new Point(1, 0), Colour.BLACK);
         assertTrue(crosscutRule.isValid(supervisor));
     }
 
     @Test
     public void testCrosscutRuleInvalidThirdConf() {
         supervisor.setCurrentPoint(new Point(1, 1));
-        board.setCell(new Point(0, 1), Colour.black);
-        board.setCell(new Point(1, 0), Colour.black);
-        board.setCell(new Point(0, 0), Colour.white);
+        board.setCellColour(new Point(0, 1), Colour.BLACK);
+        board.setCellColour(new Point(1, 0), Colour.BLACK);
+        board.setCellColour(new Point(0, 0), Colour.WHITE);
         assertTrue(crosscutRule.isValid(supervisor));
     }
 
     @Test
     public void testCrosscutRuleFourthConf() {
         supervisor.setCurrentPoint(new Point(0, 1));
-        board.setCell(new Point(1, 0), Colour.black);
-        board.setCell(new Point(1, 1), Colour.white);
-        board.setCell(new Point(0, 0), Colour.white);
+        board.setCellColour(new Point(1, 0), Colour.BLACK);
+        board.setCellColour(new Point(1, 1), Colour.WHITE);
+        board.setCellColour(new Point(0, 0), Colour.WHITE);
         assertFalse(crosscutRule.isValid(supervisor));
     }
 

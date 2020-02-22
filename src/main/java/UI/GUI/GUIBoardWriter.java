@@ -1,7 +1,6 @@
 package UI.GUI;
 
 import core.Entities.Colour;
-import core.Entities.Player;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.layout.GridPane;
@@ -20,8 +19,8 @@ public class GUIBoardWriter {
     private final int boardSize;
     private final int tileSize;
     private static final Map<Colour, Paint> colorPaintMap = new HashMap<>() {{
-        put(Colour.black, Color.BLACK);
-        put(Colour.white, Color.WHITE);
+        put(Colour.BLACK, Color.BLACK);
+        put(Colour.WHITE, Color.WHITE);
     }};
 
     GUIBoardWriter(int bS, int tS) {
@@ -38,28 +37,27 @@ public class GUIBoardWriter {
                 Rectangle r = new Rectangle(col * tileSize,row * tileSize , tileSize, tileSize);
                 r.setFill( (col + row) % 2 == 0 ? Color.PALEVIOLETRED : Color.DARKSEAGREEN);
                 r.setStroke(Color.GRAY);
-                gridPane.addRow(row,r);
+                gridPane.addRow(row, r);
             }
         }
 
         return gridPane;
     }
 
-    public void addPiece(GridPane gridPane, int X, int Y, Player player) {
+    public void addPiece(GridPane gridPane, int X, int Y, Colour colour) {
         Circle piece = new Circle(X * tileSize, Y * tileSize, tileSize*0.4);
-        piece.setFill(colorPaintMap.get(player.getColour()));
+        piece.setFill(colorPaintMap.get(colour));
         GridPane.setHalignment(piece, HPos.CENTER); // To align horizontally in the cell
         GridPane.setValignment(piece, VPos.CENTER); // To align vertically in the cell
         gridPane.add(piece, X, Y);
-
     }
 
-    public GridPane createLabelPane() {
+    public GridPane createLabelPane(String namePLayerOne, String namePlayerTwo) {
         GridPane gridLabels = new GridPane();
         gridLabels.setVgap(10);
 
-        Text p1 = new Text("PlayerOne: ");
-        Text p2 = new Text("PlayerTwo: ");
+        Text p1 = new Text(namePLayerOne + ": ");
+        Text p2 = new Text(namePlayerTwo + ": ");
         Text currentPlayer = new Text("Now playing: ");
 
         gridLabels.add(p1, 0, 0);
@@ -77,7 +75,7 @@ public class GUIBoardWriter {
         return gridLabels;
     }
 
-    public void switchLabelsColors( GridPane labelBoard ){
+    public void switchLabelsColors(GridPane labelBoard ){
         // The index 3 corresponds to the PlayerOne circle
         Circle cBlack = (Circle) labelBoard.getChildren().get(3);
         cBlack.setFill(Color.WHITE);
@@ -89,7 +87,7 @@ public class GUIBoardWriter {
     public void switchLabelsCurrentPlayer(GridPane labelBoard ){
         // The index 5 corresponds to the CurrentPlayer circle
         Circle cCircle = (Circle) labelBoard.getChildren().get(5);
-       cCircle.setFill(cCircle.getFill() == Color.BLACK ? Color.WHITE : Color.BLACK);
+        cCircle.setFill(cCircle.getFill() == Color.BLACK ? Color.WHITE : Color.BLACK);
     }
 
 }

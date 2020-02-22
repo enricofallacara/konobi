@@ -1,9 +1,14 @@
 package core.Entities;
 
-public enum Colour { black, white;
+
+public enum Colour {
+
+    BLACK, WHITE;
 
     public Colour getOppositeColor() {
-    return (this == Colour.black) ? Colour.white : Colour.black;
-}}
+        return (this == Colour.BLACK) ? Colour.WHITE : Colour.BLACK;
+    }
+
+}
 
 

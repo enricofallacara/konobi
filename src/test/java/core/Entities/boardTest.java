@@ -23,8 +23,8 @@ public class boardTest {
     @Test
     public void setCellTest(){
         Point p = new Point(2, 3);
-        board.setCell(p, Colour.black);
-        assertSame(Colour.black, board.getCell(p).getColour());
+        board.setCellColour(p, Colour.BLACK);
+        assertSame(Colour.BLACK, board.getCell(p).getColour());
     }
 
     @Test
@@ -87,17 +87,17 @@ public class boardTest {
     @Test
     public void testIsOnEndingEdgeForBlack() {
         Point point1 = new Point(0, 10);
-        assertTrue(board.isOnEndingEdge(point1, Colour.black));
+        assertTrue(board.isOnEndingEdgeForColour(point1, Colour.BLACK));
         Point point2 = new Point(0, 5);
-        assertFalse(board.isOnEndingEdge(point2, Colour.black));
+        assertFalse(board.isOnEndingEdgeForColour(point2, Colour.BLACK));
     }
 
     @Test
     public void testIsOnEndingEdgeForWhite() {
         Point point1 = new Point(10, 1);
-        assertTrue(board.isOnEndingEdge(point1, Colour.white));
+        assertTrue(board.isOnEndingEdgeForColour(point1, Colour.WHITE));
         Point point2 = new Point(3, 0);
-        assertFalse(board.isOnEndingEdge(point2, Colour.white));
+        assertFalse(board.isOnEndingEdgeForColour(point2, Colour.WHITE));
     }
 
 }

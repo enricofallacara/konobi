@@ -1,8 +1,6 @@
 package UI.GUI.Handlers;
 
-import UI.GUI.Events.EndGameEvent;
-import UI.GUI.Events.PassRuleEvent;
-import UI.GUI.Events.PieRuleEvent;
+import UI.GUI.EventsFactory;
 import UI.GUI.GUI;
 import UI.GUI.GUIMessageWriter;
 import javafx.event.EventHandler;
@@ -30,13 +28,9 @@ public class GUIMouseInputHandler implements EventHandler<MouseEvent> {
     }
 
     private void updateGUIAndFireEvents(int columnIndex, int rowIndex) {
-        gui.getBoardFiller().addPiece(gui.getGridBoard(), columnIndex, rowIndex, gui.getSupervisor().getLastPlayer());
+        gui.getBoardFiller().addPiece(gui.getGridBoard(), columnIndex, rowIndex, gui.getSupervisor().getLastPlayer().getColour());
         gui.getBoardFiller().switchLabelsCurrentPlayer(gui.getLabelBoard());
-
-        gui.getGridBoard().fireEvent(new EndGameEvent());
-        gui.getGridBoard().fireEvent(new PassRuleEvent());
-        gui.getGridBoard().fireEvent(new PieRuleEvent());
-
+        EventsFactory.createEvents().forEach(x -> gui.getGridBoard().fireEvent(x));
     }
 
 }

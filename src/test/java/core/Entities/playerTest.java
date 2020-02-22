@@ -8,28 +8,28 @@ public class playerTest {
 
     @Test
     public void testColorBlack() {
-        Player player = new Player(Colour.black);
-        assertEquals(player.getColour(), Colour.black);
+        Player player = new Player(Colour.BLACK);
+        assertEquals(player.getColour(), Colour.BLACK);
     }
 
     @Test
     public void testColorWhite() {
-        Player player = new Player(Colour.white);
-        assertEquals(player.getColour(), Colour.white);
+        Player player = new Player(Colour.WHITE);
+        assertEquals(player.getColour(), Colour.WHITE);
     }
 
     @Test
     public void testSwitchSidesFromWhiteToBlack() {
-        Player player = new Player(Colour.white);
+        Player player = new Player(Colour.WHITE);
         player.changeSide();
-        assertEquals(player.getColour(), Colour.black);
+        assertEquals(player.getColour(), Colour.BLACK);
     }
 
     @Test
     public void testSwitchSidesFromBlackToWhite() {
-        Player player = new Player(Colour.black);
+        Player player = new Player(Colour.BLACK);
         player.changeSide();
-        assertEquals(player.getColour(), Colour.white);
+        assertEquals(player.getColour(), Colour.WHITE);
     }
 
 }

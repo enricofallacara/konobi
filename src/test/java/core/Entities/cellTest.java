@@ -22,15 +22,15 @@ public class cellTest {
 
     @Test
     public void testChangeColour() {
-        cell.setColour(Colour.black);
-        assertSame(cell.getColour(), Colour.black);
+        cell.setColour(Colour.BLACK);
+        assertSame(cell.getColour(), Colour.BLACK);
     }
 
     @Test
     public void testColorEquality() {
-        cell.setColour(Colour.white);
-        assertTrue(cell.hasThisColour(Colour.white));
-        assertFalse(cell.hasThisColour(Colour.black));
+        cell.setColour(Colour.WHITE);
+        assertTrue(cell.hasThisColour(Colour.WHITE));
+        assertFalse(cell.hasThisColour(Colour.BLACK));
     }
 
 }
