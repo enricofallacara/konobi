@@ -11,13 +11,9 @@ import core.Rules.PieRule;
 public class Konobi {
 
     private final StatusSupervisor supervisor;
-    private final ConsoleBoardWriter boardWriter = new ConsoleBoardWriter();
-    private final ConsoleInputHandler inputHandler = new ConsoleInputHandler();
 
-    public Konobi() {
-        ConsoleMessageWriter.printLogo();
-        supervisor = new StatusSupervisor(inputHandler.askSize());
-        ConsoleMessageWriter.showInstructions(supervisor);
+    public Konobi(int size) {
+        supervisor = new StatusSupervisor(size);
     }
 
     public void play() {
@@ -25,24 +21,24 @@ public class Konobi {
             playTurn();
         } while(!Rulebook.queryRule(supervisor, EndGameRule::new));
 
-        boardWriter.displayBoard(supervisor.getBoard());
+        ConsoleBoardWriter.displayBoard(supervisor.getBoard());
         Player winner = supervisor.getLastPlayer();
         ConsoleMessageWriter.notifyEndGame(winner);
     }
 
     private void playTurn() {
-        boardWriter.displayBoard(supervisor.getBoard());
+        ConsoleBoardWriter.displayBoard(supervisor.getBoard());
         if (Rulebook.queryRule(supervisor, PassRule::new)) {
             supervisor.performPassRule();
             ConsoleMessageWriter.notifyPass();
             return;
         }
-        if (Rulebook.queryRule(supervisor, PieRule::new) && inputHandler.askPieRule()) {
+        if (Rulebook.queryRule(supervisor, PieRule::new) && ConsoleInputHandler.askPieRule()) {
             supervisor.performPieRule();
             ConsoleMessageWriter.notifyPieRule();
             return;
         }
-        while (!supervisor.newMove(inputHandler.getInput(supervisor))) {
+        while (!supervisor.newMove(ConsoleInputHandler.getInput(supervisor))) {
             ConsoleMessageWriter.notifyInvalidMove();
         }
     }

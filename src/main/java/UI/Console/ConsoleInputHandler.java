@@ -12,11 +12,9 @@ import java.util.Scanner;
 
 public class ConsoleInputHandler {
 
-    private final Scanner scanner;
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public ConsoleInputHandler() { scanner = new Scanner(System.in); }
-
-    public boolean askPieRule() {
+    public static boolean askPieRule() {
         ConsoleMessageWriter.pieRuleAskMessage();
         String answer;
         try {
@@ -31,7 +29,7 @@ public class ConsoleInputHandler {
         return answer.toLowerCase().equals("y");
     }
 
-    private int getInteger() {
+    private static int getInteger() {
         try {
             if (scanner.hasNextInt())
                 return scanner.nextInt();
@@ -45,7 +43,7 @@ public class ConsoleInputHandler {
             }
     }
 
-    public int askSize() {
+    public static int askSize() {
         System.out.println(Messages.askSize);
         int size;
         try {
@@ -60,7 +58,7 @@ public class ConsoleInputHandler {
         return size;
     }
 
-    public Point getInput(StatusSupervisor supervisor) {
+    public static Point getInput(StatusSupervisor supervisor) {
         ConsoleMessageWriter.displayPlayer(supervisor.getCurrentPlayer());
         ConsoleMessageWriter.getXInputMessage();
         int newX = getInteger();

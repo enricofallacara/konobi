@@ -1,16 +1,17 @@
 package UI.Console;
 
 import UI.Messages;
+import core.Entities.Colour;
 import core.Entities.Player;
 import core.Entities.StatusSupervisor;
 
 
 public class ConsoleMessageWriter {
 
-    public static void showInstructions(StatusSupervisor supervisor) {
+    public static void showInstructions() {
         System.out.println(String.format(Messages.instructions,
-                ConsoleCellRepresentation.getRepresentation(supervisor.getCurrentPlayer().getColour()),
-                ConsoleCellRepresentation.getRepresentation(supervisor.getLastPlayer().getColour())));
+                ConsoleCellRepresentation.getRepresentation(Colour.BLACK),
+                ConsoleCellRepresentation.getRepresentation(Colour.WHITE)));
     }
 
     public static void notifyInvalidMove() { System.out.println(Messages.invalidMove); }
