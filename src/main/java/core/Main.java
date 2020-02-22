@@ -1,9 +1,8 @@
 package core;
 
-
 import UI.Console.ConsoleInputHandler;
 import UI.Console.ConsoleMessageWriter;
-import core.Entities.Konobi;
+import core.Konobi;
 
 public class Main {
 

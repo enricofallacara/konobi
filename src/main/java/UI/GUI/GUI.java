@@ -7,7 +7,7 @@ import UI.GUI.Handlers.GUIEndGameHandler;
 import UI.GUI.Handlers.GUIMouseInputHandler;
 import UI.GUI.Handlers.GUIPassRuleHandler;
 import UI.GUI.Handlers.GUIPieRuleHandler;
-import core.Entities.Konobi;
+import core.Konobi;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -83,6 +83,7 @@ public class GUI extends Application {
         source.addEventHandler(eventType, eventHandler);
     }
 
+    //TODO: sistemare arrotondamento.
     public int coordinateConversion(double coordinate) {
         return (int)coordinate / tileSize;
     }
