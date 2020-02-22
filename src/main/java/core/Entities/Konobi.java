@@ -9,6 +9,7 @@ import core.Rules.PieRule;
 
 import java.awt.*;
 import java.util.concurrent.Callable;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 
@@ -46,15 +47,29 @@ public class Konobi {
         return true;
     }
 
+    public boolean checkAndPerformEndGameRule(Consumer<Player> consumer) {
+       if (Rulebook.queryRule(supervisor, EndGameRule::new)) {
+           Player winner = supervisor.getLastPlayer();
+           consumer.accept(winner);
+           return true;
+       }
+       return false;
+    }
+
+    public Player getCurrentPlayer() {
+        return supervisor.getCurrentPlayer();
+    }
+
+    public Player getLastPlayer() {
+        return supervisor.getLastPlayer();
+    }
 
     public void play() {
         do {
             playTurn();
-        } while(!Rulebook.queryRule(supervisor, EndGameRule::new));
+        } while(!checkAndPerformEndGameRule(ConsoleMessageWriter::notifyEndGame));
 
         ConsoleBoardWriter.displayBoard(supervisor.getBoard());
-        Player winner = supervisor.getLastPlayer();
-        ConsoleMessageWriter.notifyEndGame(winner);
     }
 
     private void playTurn() {
