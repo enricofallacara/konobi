@@ -35,12 +35,11 @@ public class GUI extends Application {
     private Konobi konobiGame;
     private GUIBoardWriter boardFiller;
 
-    // TODO: soluzione mega hacky.
     public GridPane getGridBoard() {
-        GridPane borders = (GridPane)gridPane.getChildrenUnmodifiable().get(0);
-        return (GridPane)borders.getChildren().get(0);
+        GridPane borders = (GridPane) gridPane.getChildrenUnmodifiable().get(0);
+        return (GridPane) borders.getChildren().get(0);
     }
-    public GridPane getLabelBoard() { return (GridPane)gridPane.getChildren().get(1); }
+    public GridPane getLabelBoard() { return (GridPane) gridPane.getChildren().get(1); }
     public Konobi getGame() { return konobiGame; }
     public GUIBoardWriter getBoardFiller() { return boardFiller; }
 
@@ -90,7 +89,6 @@ public class GUI extends Application {
         source.addEventHandler(eventType, eventHandler);
     }
 
-    //TODO: sistemare arrotondamento.
     public int coordinateConversion(double coordinate) {
         System.out.println(coordinate);
         return (int)(coordinate - 1) / tileSize;
