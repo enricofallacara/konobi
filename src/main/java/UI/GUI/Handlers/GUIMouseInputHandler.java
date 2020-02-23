@@ -2,7 +2,6 @@ package UI.GUI.Handlers;
 
 import UI.GUI.EventsFactory;
 import UI.GUI.GUI;
-import UI.GUI.GUIMessageWriter;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import java.awt.Point;
@@ -29,7 +28,7 @@ public class GUIMouseInputHandler implements EventHandler<MouseEvent> {
     private void updateGUIAndFireEvents(int columnIndex, int rowIndex) {
         gui.getBoardFiller().addPiece(gui.getGridBoard(), columnIndex, rowIndex, gui.getGame().getLastPlayer().getColour());
         gui.getBoardFiller().switchLabelsCurrentPlayer(gui.getLabelBoard());
-        EventsFactory.createEvents().forEach(x -> gui.getGridBoard().fireEvent(x));
+        EventsFactory.create().forEach(x -> gui.getGridBoard().fireEvent(x));
     }
 
 }

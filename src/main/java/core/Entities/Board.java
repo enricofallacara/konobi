@@ -18,9 +18,9 @@ public class Board implements Iterable<Cell>{
                 .mapToObj(y -> new Cell(new Point(x, y))).toArray(Cell[]::new)).toArray(Cell[][]::new);
     }
 
-    public int getSize(){ return size; }
+    public int getSize() { return size; }
 
-    public Cell getCell(Point p){ return grid[p.x][p.y]; }
+    public Cell getCell(Point p) { return grid[p.x][p.y]; }
 
     public void setCellColour(Point p, Colour c) {
         getCell(p).setColour(c);

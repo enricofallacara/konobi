@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 public class EventsFactory {
 
-    public static Stream<? extends Event> createEvents() {
+    public static Stream<? extends Event> create() {
         return Stream.of(new EndGameEvent(), new PieRuleEvent(), new PassRuleEvent());
     }
 

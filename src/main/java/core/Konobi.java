@@ -2,7 +2,6 @@ package core;
 
 import UI.Console.ConsoleBoardWriter;
 import UI.Console.ConsoleInputHandler;
-import UI.Console.ConsoleMessageWriter;
 import UI.InputHandler;
 import UI.MessageWriter;
 import core.Entities.Player;
@@ -11,24 +10,19 @@ import core.Entities.StatusSupervisor;
 import core.Rules.EndGameRule;
 import core.Rules.PassRule;
 import core.Rules.PieRule;
-
-import java.awt.*;
-import java.util.concurrent.Callable;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
+import java.awt.Point;
 
 
-public class Konobi<T extends InputHandler> {
+public class Konobi<T extends MessageWriter, V extends InputHandler> {
 
     private final StatusSupervisor supervisor;
-    private final MessageWriter messageWriter;
-    private final T inputHandler;
+    private final T messageWriter;
+    private final V inputHandler;
 
-    public Konobi(int size, MessageWriter mw, T ih) {
+    public Konobi(int size, T mw, V ih) {
         supervisor = new StatusSupervisor(size);
         messageWriter = mw;
         inputHandler = ih;
-
     }
 
     public boolean checkAndPerformPassRule() {
@@ -59,26 +53,20 @@ public class Konobi<T extends InputHandler> {
 
     public boolean checkAndPerformEndGameRule() {
        if (Rulebook.queryRule(supervisor, EndGameRule::new)) {
-           Player winner = supervisor.getLastPlayer();
-           messageWriter.notifyEndGame(winner);
+           messageWriter.notifyEndGame(supervisor.getLastPlayer());
            return true;
        }
        return false;
     }
 
-    public Player getCurrentPlayer() {
-        return supervisor.getCurrentPlayer();
-    }
+    public Player getCurrentPlayer() { return supervisor.getCurrentPlayer(); }
 
-    public Player getLastPlayer() {
-        return supervisor.getLastPlayer();
-    }
+    public Player getLastPlayer() { return supervisor.getLastPlayer(); }
 
     public void play() {
         do {
             playTurn();
         } while(!checkAndPerformEndGameRule());
-
         ConsoleBoardWriter.displayBoard(supervisor.getBoard());
     }
 

@@ -7,8 +7,6 @@ import UI.GUI.Handlers.GUIEndGameHandler;
 import UI.GUI.Handlers.GUIMouseInputHandler;
 import UI.GUI.Handlers.GUIPassRuleHandler;
 import UI.GUI.Handlers.GUIPieRuleHandler;
-import UI.InputHandler;
-import UI.MessageWriter;
 import core.Konobi;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -34,16 +32,16 @@ public class GUI extends Application {
     private final int tileSize = 50;
     private Stage stage;
     private GridPane gridPane;
-    private Konobi<GUIInputHandler> konobiGame;
+    private Konobi<GUIMessageWriter, GUIInputHandler> konobiGame;
     private GUIBoardWriter boardFiller;
-    private GUIInputHandler inputHandler = new GUIInputHandler();
+    private final GUIInputHandler inputHandler = new GUIInputHandler();
 
     public GridPane getGridBoard() {
         GridPane borders = (GridPane) gridPane.getChildrenUnmodifiable().get(0);
         return (GridPane) borders.getChildren().get(0);
     }
     public GridPane getLabelBoard() { return (GridPane) gridPane.getChildren().get(1); }
-    public Konobi<GUIInputHandler> getGame() { return konobiGame; }
+    public Konobi<GUIMessageWriter, GUIInputHandler> getGame() { return konobiGame; }
     public GUIBoardWriter getBoardFiller() { return boardFiller; }
 
     @Override
@@ -54,10 +52,9 @@ public class GUI extends Application {
     }
 
     private void initGameInterface(int boardSize) {
-        MessageWriter messageWriter = new GUIMessageWriter();
         gridPane = new GridPane();
         gridPane.setVgap(20);
-        konobiGame = new Konobi<>(boardSize, messageWriter, inputHandler);
+        konobiGame = new Konobi<>(boardSize, new GUIMessageWriter(), inputHandler);
         boardFiller = new GUIBoardWriter(boardSize, tileSize);
 
         GridPane borders = new GridPane();
