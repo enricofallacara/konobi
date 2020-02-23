@@ -7,6 +7,7 @@ import UI.GUI.Handlers.GUIEndGameHandler;
 import UI.GUI.Handlers.GUIMouseInputHandler;
 import UI.GUI.Handlers.GUIPassRuleHandler;
 import UI.GUI.Handlers.GUIPieRuleHandler;
+import UI.MessageWriter;
 import core.Konobi;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -51,14 +52,14 @@ public class GUI extends Application {
     }
 
     private void initGameInterface(int boardSize) {
+        MessageWriter messageWriter = new GUIMessageWriter();
         gridPane = new GridPane();
         gridPane.setVgap(20);
-        konobiGame = new Konobi(boardSize);
+        konobiGame = new Konobi(boardSize, messageWriter);
         boardFiller = new GUIBoardWriter(boardSize, tileSize);
 
         GridPane borders = new GridPane();
         GridPane gridBoard = boardFiller.createEmptyBoard();
-        //gridBoard.getStyleClass().add("grid-board");
         borders.getStyleClass().add("borders");
         borders.add(gridBoard, 0, 0);
 

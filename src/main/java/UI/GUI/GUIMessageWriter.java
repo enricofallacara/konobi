@@ -1,11 +1,12 @@
 package UI.GUI;
 
+import UI.MessageWriter;
 import UI.Messages;
 import core.Entities.Player;
 import javafx.scene.control.Alert;
 
 
-public class GUIMessageWriter {
+public class GUIMessageWriter implements MessageWriter {
 
     private static void createAndSetAlert(String title, String contentText) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -15,19 +16,19 @@ public class GUIMessageWriter {
         alert.showAndWait();
     }
 
-    public static void notifyPass() {
+    public void notifyPass() {
         createAndSetAlert("Pass Rule Information", Messages.pass);
     }
 
-    public static void notifyEndGame(Player player) {
+    public void notifyEndGame(Player player) {
         createAndSetAlert("End Game Information", String.format(Messages.endGame, player.getName(), player.getColour()));
     }
 
-    public static void notifyInvalidMove() {
+    public void notifyInvalidMove() {
         createAndSetAlert("Invalid Move Information", Messages.invalidMove);
     }
 
-    public static void notifyPieRule() {
+    public void notifyPieRule() {
         createAndSetAlert("Pie Rule Information", Messages.pieRule);
     }
 

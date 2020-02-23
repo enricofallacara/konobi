@@ -3,6 +3,7 @@ package core;
 import UI.Console.ConsoleBoardWriter;
 import UI.Console.ConsoleInputHandler;
 import UI.Console.ConsoleMessageWriter;
+import UI.MessageWriter;
 import core.Entities.Player;
 import core.Entities.Rulebook;
 import core.Entities.StatusSupervisor;
@@ -19,41 +20,43 @@ import java.util.function.Supplier;
 public class Konobi {
 
     private final StatusSupervisor supervisor;
+    private final MessageWriter messageWriter;
 
-    public Konobi(int size) {
+    public Konobi(int size, MessageWriter mw) {
         supervisor = new StatusSupervisor(size);
+        messageWriter = mw;
     }
 
-    public boolean checkAndPerformPassRule(Runnable notifier) {
+    public boolean checkAndPerformPassRule() {
         if (Rulebook.queryRule(supervisor, PassRule::new)) {
             supervisor.performPassRule();
-            notifier.run();
+            messageWriter.notifyPass();
             return true;
         }
         return false;
     }
 
-    public boolean checkAndPerformPieRule(Runnable notifier, Supplier<Boolean> asker) {
+    public boolean checkAndPerformPieRule(Supplier<Boolean> asker) {
         if (Rulebook.queryRule(supervisor, PieRule::new) && asker.get()) {
             supervisor.performPieRule();
-            notifier.run();
+            messageWriter.notifyPieRule();
             return true;
         }
         return false;
     }
 
-    public boolean checkAndPerformNewMove(Runnable notifier, Point point) {
+    public boolean checkAndPerformNewMove(Point point) {
         if (!supervisor.newMove(point)) {
-            notifier.run();
+            messageWriter.notifyInvalidMove();
             return false;
         }
         return true;
     }
 
-    public boolean checkAndPerformEndGameRule(Consumer<Player> consumer) {
+    public boolean checkAndPerformEndGameRule() {
        if (Rulebook.queryRule(supervisor, EndGameRule::new)) {
            Player winner = supervisor.getLastPlayer();
-           consumer.accept(winner);
+           messageWriter.notifyEndGame(winner);
            return true;
        }
        return false;
@@ -70,21 +73,21 @@ public class Konobi {
     public void play() {
         do {
             playTurn();
-        } while(!checkAndPerformEndGameRule(ConsoleMessageWriter::notifyEndGame));
+        } while(!checkAndPerformEndGameRule());
 
         ConsoleBoardWriter.displayBoard(supervisor.getBoard());
     }
 
     private void playTurn() {
         ConsoleBoardWriter.displayBoard(supervisor.getBoard());
-        if (checkAndPerformPassRule(ConsoleMessageWriter::notifyPass)) {
+        if (checkAndPerformPassRule()) {
             return;
         }
-        if (checkAndPerformPieRule(ConsoleMessageWriter::notifyPieRule, ConsoleInputHandler::askPieRule)) {
+        if (checkAndPerformPieRule(ConsoleInputHandler::askPieRule)) {
             return;
         }
         while (true) {
-            if (checkAndPerformNewMove(ConsoleMessageWriter::notifyInvalidMove, ConsoleInputHandler.getInput(supervisor)))
+            if (checkAndPerformNewMove(ConsoleInputHandler.getInput(supervisor)))
                 break;
         }
     }

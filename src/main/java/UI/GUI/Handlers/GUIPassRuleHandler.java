@@ -16,7 +16,7 @@ public class GUIPassRuleHandler implements EventHandler<PassRuleEvent> {
 
     @Override
     public void handle(PassRuleEvent event) {
-        gui.getGame().checkAndPerformPassRule(GUIMessageWriter::notifyPass);
+        gui.getGame().checkAndPerformPassRule();
         event.consume();
     }
 
