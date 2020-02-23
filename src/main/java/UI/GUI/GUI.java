@@ -11,12 +11,9 @@ import core.Konobi;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -66,10 +63,10 @@ public class GUI extends Application {
                 konobiGame.getLastPlayer().getName());
         labelBoard.getStyleClass().add("label-board");
 
-        createAndSetHandlerOnNode(gridBoard, MouseEvent.MOUSE_CLICKED, new GUIMouseInputHandler(this));
-        createAndSetHandlerOnNode(gridBoard, EndGameEvent.END_GAME_EVENT_TYPE, new GUIEndGameHandler(this));
-        createAndSetHandlerOnNode(gridBoard, PassRuleEvent.PASS_RULE_EVENT_TYPE, new GUIPassRuleHandler(this));
-        createAndSetHandlerOnNode(gridBoard, PieRuleEvent.PIE_RULE_EVENT_TYPE, new GUIPieRuleHandler(this));
+        gridBoard.addEventHandler(MouseEvent.MOUSE_CLICKED, new GUIMouseInputHandler(this));
+        gridBoard.addEventHandler(EndGameEvent.END_GAME_EVENT_TYPE, new GUIEndGameHandler(this));
+        gridBoard.addEventHandler(PassRuleEvent.PASS_RULE_EVENT_TYPE, new GUIPassRuleHandler(this));
+        gridBoard.addEventHandler(PieRuleEvent.PIE_RULE_EVENT_TYPE, new GUIPieRuleHandler(this));
 
         gridPane.add(borders, 0, 0);
         gridPane.add(labelBoard, 0, 1);
@@ -83,10 +80,6 @@ public class GUI extends Application {
         stage.setTitle("ChessBoard");
         stage.setScene(scene);
         stage.show();
-    }
-
-    private <T extends Event> void createAndSetHandlerOnNode(Node source, EventType<T> eventType, EventHandler<? super T> eventHandler) {
-        source.addEventHandler(eventType, eventHandler);
     }
 
     public int coordinateConversion(double coordinate) {

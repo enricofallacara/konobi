@@ -3,7 +3,6 @@ package UI.GUI;
 import UI.InputHandler;
 import UI.Messages;
 import javafx.scene.control.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;

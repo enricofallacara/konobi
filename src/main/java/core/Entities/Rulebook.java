@@ -1,7 +1,6 @@
 package core.Entities;
 
 import core.Rules.Rule;
-
 import java.util.function.Supplier;
 
 

@@ -2,6 +2,7 @@ package UI;
 
 import core.Entities.Player;
 
+
 public interface MessageWriter {
 
     void notifyPass();
@@ -11,4 +12,5 @@ public interface MessageWriter {
     void notifyInvalidMove();
 
     void notifyPieRule();
+
 }
