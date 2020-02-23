@@ -7,7 +7,7 @@ import UI.GUI.Handlers.GUIEndGameHandler;
 import UI.GUI.Handlers.GUIMouseInputHandler;
 import UI.GUI.Handlers.GUIPassRuleHandler;
 import UI.GUI.Handlers.GUIPieRuleHandler;
-import core.Entities.StatusSupervisor;
+import core.Konobi;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -32,12 +32,15 @@ public class GUI extends Application {
     private final int tileSize = 50;
     private Stage stage;
     private GridPane gridPane;
-    private StatusSupervisor supervisor;
+    private Konobi konobiGame;
     private GUIBoardWriter boardFiller;
 
-    public GridPane getGridBoard() { return (GridPane)gridPane.getChildren().get(0); }
-    public GridPane getLabelBoard() { return (GridPane)gridPane.getChildren().get(1); }
-    public StatusSupervisor getSupervisor() { return supervisor; }
+    public GridPane getGridBoard() {
+        GridPane borders = (GridPane) gridPane.getChildrenUnmodifiable().get(0);
+        return (GridPane) borders.getChildren().get(0);
+    }
+    public GridPane getLabelBoard() { return (GridPane) gridPane.getChildren().get(1); }
+    public Konobi getGame() { return konobiGame; }
     public GUIBoardWriter getBoardFiller() { return boardFiller; }
 
     @Override
@@ -50,13 +53,17 @@ public class GUI extends Application {
     private void initGameInterface(int boardSize) {
         gridPane = new GridPane();
         gridPane.setVgap(20);
-        supervisor = new StatusSupervisor(boardSize);
+        konobiGame = new Konobi(boardSize);
         boardFiller = new GUIBoardWriter(boardSize, tileSize);
 
+        GridPane borders = new GridPane();
         GridPane gridBoard = boardFiller.createEmptyBoard();
-        gridBoard.getStyleClass().add("grid-board");
+        //gridBoard.getStyleClass().add("grid-board");
+        borders.getStyleClass().add("borders");
+        borders.add(gridBoard, 0, 0);
 
-        GridPane labelBoard = boardFiller.createLabelPane(supervisor.getCurrentPlayer().getName(), supervisor.getLastPlayer().getName());
+        GridPane labelBoard = boardFiller.createLabelPane(konobiGame.getCurrentPlayer().getName(),
+                konobiGame.getLastPlayer().getName());
         labelBoard.getStyleClass().add("label-board");
 
         createAndSetHandlerOnNode(gridBoard, MouseEvent.MOUSE_CLICKED, new GUIMouseInputHandler(this));
@@ -64,7 +71,7 @@ public class GUI extends Application {
         createAndSetHandlerOnNode(gridBoard, PassRuleEvent.PASS_RULE_EVENT_TYPE, new GUIPassRuleHandler(this));
         createAndSetHandlerOnNode(gridBoard, PieRuleEvent.PIE_RULE_EVENT_TYPE, new GUIPieRuleHandler(this));
 
-        gridPane.add(gridBoard, 0, 0);
+        gridPane.add(borders, 0, 0);
         gridPane.add(labelBoard, 0, 1);
         gridPane.getStyleClass().add("grid-pane");
 
@@ -83,7 +90,8 @@ public class GUI extends Application {
     }
 
     public int coordinateConversion(double coordinate) {
-        return (int)coordinate / tileSize;
+        System.out.println(coordinate);
+        return (int)(coordinate - 1) / tileSize;
     }
 
     private Button createAndSetButton(String text, int width, int height, EventHandler<ActionEvent> handler) {

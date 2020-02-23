@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
 
 import java.util.HashMap;
@@ -36,6 +37,7 @@ public class GUIBoardWriter {
             for (int col = 0; col < boardSize; col++) {
                 Rectangle r = new Rectangle(col * tileSize,row * tileSize , tileSize, tileSize);
                 r.setFill( (col + row) % 2 == 0 ? Color.PALEVIOLETRED : Color.DARKSEAGREEN);
+                r.setStrokeType(StrokeType.INSIDE);
                 r.setStroke(Color.GRAY);
                 gridPane.addRow(row, r);
             }

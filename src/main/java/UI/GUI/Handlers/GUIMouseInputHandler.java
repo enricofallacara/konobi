@@ -18,9 +18,10 @@ public class GUIMouseInputHandler implements EventHandler<MouseEvent> {
     public void handle(MouseEvent event) {
         int columnIndex = gui.coordinateConversion(event.getX());
         int rowIndex = gui.coordinateConversion(event.getY());
+        System.out.println("column: " + columnIndex + " row: " + rowIndex);
 
-        if(!gui.getSupervisor().newMove(new Point(columnIndex, rowIndex))) {
-            GUIMessageWriter.notifyInvalidMove();
+        if (!gui.getGame().checkAndPerformNewMove(GUIMessageWriter::notifyInvalidMove,
+                new Point(columnIndex, rowIndex))) {
             return;
         }
         updateGUIAndFireEvents(columnIndex, rowIndex);
@@ -28,7 +29,7 @@ public class GUIMouseInputHandler implements EventHandler<MouseEvent> {
     }
 
     private void updateGUIAndFireEvents(int columnIndex, int rowIndex) {
-        gui.getBoardFiller().addPiece(gui.getGridBoard(), columnIndex, rowIndex, gui.getSupervisor().getLastPlayer().getColour());
+        gui.getBoardFiller().addPiece(gui.getGridBoard(), columnIndex, rowIndex, gui.getGame().getLastPlayer().getColour());
         gui.getBoardFiller().switchLabelsCurrentPlayer(gui.getLabelBoard());
         EventsFactory.createEvents().forEach(x -> gui.getGridBoard().fireEvent(x));
     }

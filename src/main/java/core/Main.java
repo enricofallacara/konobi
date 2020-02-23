@@ -1,12 +1,16 @@
 package core;
 
-
-import core.Entities.Konobi;
+import UI.Console.ConsoleInputHandler;
+import UI.Console.ConsoleMessageWriter;
+import core.Konobi;
 
 public class Main {
 
+
     public static void main(String[] args) {
-        Konobi game = new Konobi();
+        ConsoleMessageWriter.printLogo();
+        ConsoleMessageWriter.showInstructions();
+        Konobi game = new Konobi(ConsoleInputHandler.askSize());
         game.play();
     }
 

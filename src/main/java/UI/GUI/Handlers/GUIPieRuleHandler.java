@@ -17,10 +17,8 @@ public class GUIPieRuleHandler implements EventHandler<PieRuleEvent> {
 
     @Override
     public void handle(PieRuleEvent event) {
-        if (Rulebook.queryRule(gui.getSupervisor(), PieRule::new) && GUIAsker.askPieRule()){
-            gui.getSupervisor().performPieRule();
+        if (gui.getGame().checkAndPerformPieRule(GUIMessageWriter::notifyPieRule, GUIAsker::askPieRule)) {
             gui.getBoardFiller().switchLabelsColors(gui.getLabelBoard());
-            GUIMessageWriter.notifyPieRule();
         }
         event.consume();
     }
