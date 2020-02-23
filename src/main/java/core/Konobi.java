@@ -3,6 +3,7 @@ package core;
 import UI.Console.ConsoleBoardWriter;
 import UI.Console.ConsoleInputHandler;
 import UI.Console.ConsoleMessageWriter;
+import UI.InputHandler;
 import UI.MessageWriter;
 import core.Entities.Player;
 import core.Entities.Rulebook;
@@ -17,14 +18,17 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 
-public class Konobi {
+public class Konobi<T extends InputHandler> {
 
     private final StatusSupervisor supervisor;
     private final MessageWriter messageWriter;
+    private final T inputHandler;
 
-    public Konobi(int size, MessageWriter mw) {
+    public Konobi(int size, MessageWriter mw, T ih) {
         supervisor = new StatusSupervisor(size);
         messageWriter = mw;
+        inputHandler = ih;
+
     }
 
     public boolean checkAndPerformPassRule() {
@@ -36,8 +40,8 @@ public class Konobi {
         return false;
     }
 
-    public boolean checkAndPerformPieRule(Supplier<Boolean> asker) {
-        if (Rulebook.queryRule(supervisor, PieRule::new) && asker.get()) {
+    public boolean checkAndPerformPieRule() {
+        if (Rulebook.queryRule(supervisor, PieRule::new) && inputHandler.askPieRule()) {
             supervisor.performPieRule();
             messageWriter.notifyPieRule();
             return true;
@@ -83,7 +87,7 @@ public class Konobi {
         if (checkAndPerformPassRule()) {
             return;
         }
-        if (checkAndPerformPieRule(ConsoleInputHandler::askPieRule)) {
+        if (checkAndPerformPieRule()) {
             return;
         }
         while (true) {

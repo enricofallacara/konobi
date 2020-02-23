@@ -18,7 +18,6 @@ public class GUIMouseInputHandler implements EventHandler<MouseEvent> {
     public void handle(MouseEvent event) {
         int columnIndex = gui.coordinateConversion(event.getX());
         int rowIndex = gui.coordinateConversion(event.getY());
-        System.out.println("column: " + columnIndex + " row: " + rowIndex);
 
         if (!gui.getGame().checkAndPerformNewMove(new Point(columnIndex, rowIndex))) {
             return;

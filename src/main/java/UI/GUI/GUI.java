@@ -7,6 +7,7 @@ import UI.GUI.Handlers.GUIEndGameHandler;
 import UI.GUI.Handlers.GUIMouseInputHandler;
 import UI.GUI.Handlers.GUIPassRuleHandler;
 import UI.GUI.Handlers.GUIPieRuleHandler;
+import UI.InputHandler;
 import UI.MessageWriter;
 import core.Konobi;
 import javafx.application.Application;
@@ -33,15 +34,16 @@ public class GUI extends Application {
     private final int tileSize = 50;
     private Stage stage;
     private GridPane gridPane;
-    private Konobi konobiGame;
+    private Konobi<GUIInputHandler> konobiGame;
     private GUIBoardWriter boardFiller;
+    private GUIInputHandler inputHandler = new GUIInputHandler();
 
     public GridPane getGridBoard() {
         GridPane borders = (GridPane) gridPane.getChildrenUnmodifiable().get(0);
         return (GridPane) borders.getChildren().get(0);
     }
     public GridPane getLabelBoard() { return (GridPane) gridPane.getChildren().get(1); }
-    public Konobi getGame() { return konobiGame; }
+    public Konobi<GUIInputHandler> getGame() { return konobiGame; }
     public GUIBoardWriter getBoardFiller() { return boardFiller; }
 
     @Override
@@ -55,7 +57,7 @@ public class GUI extends Application {
         MessageWriter messageWriter = new GUIMessageWriter();
         gridPane = new GridPane();
         gridPane.setVgap(20);
-        konobiGame = new Konobi(boardSize, messageWriter);
+        konobiGame = new Konobi<>(boardSize, messageWriter, inputHandler);
         boardFiller = new GUIBoardWriter(boardSize, tileSize);
 
         GridPane borders = new GridPane();
@@ -91,7 +93,6 @@ public class GUI extends Application {
     }
 
     public int coordinateConversion(double coordinate) {
-        System.out.println(coordinate);
         return (int)(coordinate - 1) / tileSize;
     }
 
@@ -119,7 +120,7 @@ public class GUI extends Application {
         int height = 35;
 
         Button startButton = createAndSetButton("Start", width, height, (ActionEvent e) -> {
-            int size = GUIAsker.askSize();
+            int size = inputHandler.askSize();
             initGameInterface(size);});
 
         Button endButton = createAndSetButton("Exit", width, height, (ActionEvent e) -> stop());

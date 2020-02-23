@@ -2,10 +2,7 @@ package UI.GUI.Handlers;
 
 import UI.GUI.Events.PieRuleEvent;
 import UI.GUI.GUI;
-import UI.GUI.GUIAsker;
-import UI.GUI.GUIMessageWriter;
-import core.Rules.PieRule;
-import core.Entities.Rulebook;
+import UI.GUI.GUIInputHandler;
 import javafx.event.EventHandler;
 
 
@@ -17,7 +14,7 @@ public class GUIPieRuleHandler implements EventHandler<PieRuleEvent> {
 
     @Override
     public void handle(PieRuleEvent event) {
-        if (gui.getGame().checkAndPerformPieRule(GUIAsker::askPieRule)) {
+        if (gui.getGame().checkAndPerformPieRule()) {
             gui.getBoardFiller().switchLabelsColors(gui.getLabelBoard());
         }
         event.consume();

@@ -3,6 +3,7 @@ package UI.Console;
 import UI.Console.Exceptions.InputCoordinatesException;
 import UI.Console.Exceptions.InputPieRuleException;
 import UI.Console.Exceptions.InputSizeException;
+import UI.InputHandler;
 import UI.Messages;
 import core.Entities.StatusSupervisor;
 import java.awt.Point;
@@ -10,11 +11,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
-public class ConsoleInputHandler {
+public class ConsoleInputHandler implements InputHandler {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static boolean askPieRule() {
+    public boolean askPieRule() {
         ConsoleMessageWriter.pieRuleAskMessage();
         String answer;
         try {
@@ -43,7 +44,7 @@ public class ConsoleInputHandler {
             }
     }
 
-    public static int askSize() {
+    public int askSize() {
         System.out.println(Messages.askSize);
         int size;
         try {

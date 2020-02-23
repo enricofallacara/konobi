@@ -2,6 +2,7 @@ package core;
 
 import UI.Console.ConsoleInputHandler;
 import UI.Console.ConsoleMessageWriter;
+import UI.InputHandler;
 
 public class Main {
 
@@ -9,7 +10,9 @@ public class Main {
     public static void main(String[] args) {
         ConsoleMessageWriter.printLogo();
         ConsoleMessageWriter.showInstructions();
-        Konobi game = new Konobi(ConsoleInputHandler.askSize(), new ConsoleMessageWriter());
+        InputHandler inputHandler = new ConsoleInputHandler();
+        int size = inputHandler.askSize();
+        Konobi<InputHandler> game = new Konobi<>(size, new ConsoleMessageWriter(), inputHandler);
         game.play();
     }
 
