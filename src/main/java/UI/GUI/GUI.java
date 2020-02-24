@@ -7,7 +7,7 @@ import UI.GUI.Handlers.GUIEndGameHandler;
 import UI.GUI.Handlers.GUIMouseInputHandler;
 import UI.GUI.Handlers.GUIPassRuleHandler;
 import UI.GUI.Handlers.GUIPieRuleHandler;
-import core.Konobi;
+import core.KonobiGUI;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -29,7 +29,7 @@ public class GUI extends Application {
     private final int tileSize = 50;
     private Stage stage;
     private GridPane gridPane;
-    private Konobi<GUIMessageWriter, GUIInputHandler> konobiGame;
+    private KonobiGUI konobiGUIGame;
     private GUIBoardWriter boardFiller;
     private final GUIInputHandler inputHandler = new GUIInputHandler();
 
@@ -38,7 +38,7 @@ public class GUI extends Application {
         return (GridPane) borders.getChildren().get(0);
     }
     public GridPane getLabelBoard() { return (GridPane) gridPane.getChildren().get(1); }
-    public Konobi<GUIMessageWriter, GUIInputHandler> getGame() { return konobiGame; }
+    public KonobiGUI getGame() { return konobiGUIGame; }
     public GUIBoardWriter getBoardFiller() { return boardFiller; }
 
     @Override
@@ -51,7 +51,7 @@ public class GUI extends Application {
     private void initGameInterface(int boardSize) {
         gridPane = new GridPane();
         gridPane.setVgap(20);
-        konobiGame = new Konobi<>(boardSize, new GUIMessageWriter(), inputHandler);
+        konobiGUIGame = new KonobiGUI(boardSize, new GUIMessageWriter(), inputHandler);
         boardFiller = new GUIBoardWriter(boardSize, tileSize);
 
         GridPane borders = new GridPane();
@@ -59,8 +59,8 @@ public class GUI extends Application {
         borders.getStyleClass().add("borders");
         borders.add(gridBoard, 0, 0);
 
-        GridPane labelBoard = boardFiller.createLabelPane(konobiGame.getCurrentPlayer().getName(),
-                konobiGame.getLastPlayer().getName());
+        GridPane labelBoard = boardFiller.createLabelPane(konobiGUIGame.getCurrentPlayer().getName(),
+                konobiGUIGame.getLastPlayer().getName());
         labelBoard.getStyleClass().add("label-board");
 
         gridBoard.addEventHandler(MouseEvent.MOUSE_CLICKED, new GUIMouseInputHandler(this));

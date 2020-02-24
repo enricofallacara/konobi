@@ -12,7 +12,7 @@ public class Main {
         ConsoleMessageWriter.showInstructions();
         ConsoleInputHandler inputHandler = new ConsoleInputHandler();
         int size = inputHandler.askSize();
-        Konobi<ConsoleMessageWriter, ConsoleInputHandler> game = new Konobi<>(size, new ConsoleMessageWriter(), inputHandler);
+        KonobiConsole game = new KonobiConsole(size, new ConsoleMessageWriter(), inputHandler);
         game.play();
     }
 
