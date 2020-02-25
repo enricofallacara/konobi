@@ -4,8 +4,8 @@ import UI.Console.ConsoleBoardWriter;
 import UI.Console.ConsoleInputHandler;
 import UI.Console.ConsoleMessageWriter;
 
-public class KonobiConsole extends AbstractKonobi<ConsoleMessageWriter, ConsoleInputHandler> {
 
+public class KonobiConsole extends AbstractKonobi<ConsoleMessageWriter, ConsoleInputHandler> {
 
     public KonobiConsole(int size, ConsoleMessageWriter mw, ConsoleInputHandler ih) {
         super(size, mw, ih);
@@ -31,4 +31,5 @@ public class KonobiConsole extends AbstractKonobi<ConsoleMessageWriter, ConsoleI
                 break;
         }
     }
+
 }

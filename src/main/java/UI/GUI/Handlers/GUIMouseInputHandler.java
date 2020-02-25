@@ -26,7 +26,7 @@ public class GUIMouseInputHandler implements EventHandler<MouseEvent> {
     }
 
     private void updateGUIAndFireEvents(int columnIndex, int rowIndex) {
-        gui.getBoardFiller().addPiece(gui.getGridBoard(), columnIndex, rowIndex, gui.getGame().getLastPlayer().getColour());
+        gui.getBoardFiller().addPiece(gui.getGridBoard(), columnIndex, rowIndex, gui.getGame().getLastPlayerColour());
         gui.getBoardFiller().switchLabelsCurrentPlayer(gui.getLabelBoard());
         EventsFactory.create().forEach(x -> gui.getGridBoard().fireEvent(x));
     }

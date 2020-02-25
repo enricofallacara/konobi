@@ -7,8 +7,8 @@ import core.Entities.StatusSupervisor;
 import core.Rules.EndGameRule;
 import core.Rules.PassRule;
 import core.Rules.PieRule;
+import java.awt.Point;
 
-import java.awt.*;
 
 public abstract class AbstractKonobi<T extends MessageWriter, V extends InputHandler> {
 
@@ -55,9 +55,5 @@ public abstract class AbstractKonobi<T extends MessageWriter, V extends InputHan
         }
         return false;
     }
-
-
-
-
 
 }

@@ -59,8 +59,8 @@ public class GUI extends Application {
         borders.getStyleClass().add("borders");
         borders.add(gridBoard, 0, 0);
 
-        GridPane labelBoard = boardFiller.createLabelPane(konobiGUIGame.getCurrentPlayer().getName(),
-                konobiGUIGame.getLastPlayer().getName());
+        GridPane labelBoard = boardFiller.createLabelPane(konobiGUIGame.getCurrentPlayerName(),
+                konobiGUIGame.getLastPlayerName());
         labelBoard.getStyleClass().add("label-board");
 
         gridBoard.addEventHandler(MouseEvent.MOUSE_CLICKED, new GUIMouseInputHandler(this));
