@@ -2,7 +2,6 @@ package UI.GUI.Handlers;
 
 import UI.GUI.Events.PieRuleEvent;
 import UI.GUI.GUI;
-import UI.GUI.GUIInputHandler;
 import javafx.event.EventHandler;
 
 

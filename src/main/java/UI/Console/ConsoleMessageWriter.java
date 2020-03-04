@@ -4,7 +4,6 @@ import UI.MessageWriter;
 import UI.Messages;
 import core.Entities.Colour;
 import core.Entities.Player;
-import core.Entities.StatusSupervisor;
 
 
 public class ConsoleMessageWriter implements MessageWriter {

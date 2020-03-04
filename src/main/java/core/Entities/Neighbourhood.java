@@ -28,8 +28,10 @@ public class Neighbourhood {
         return getMooreNeighbours(board, point).filter(cell -> cell.hasThisColour(colour));
     }
 
-    public static Stream<Cell> getNeighboursByPositionAndColour(Board board, Point point, Colour colour, BiPredicate<Point, Point> function) {
-        return getMooreNeighbours(board, point).filter(cell -> cell.hasThisColour(colour) && function.test(point, cell.getCoordinates()));
+    public static Stream<Cell> getNeighboursByPositionAndColour(Board board, Point point, Colour colour,
+                                                                BiPredicate<Point, Point> function) {
+        return getMooreNeighbours(board, point).filter(cell -> cell.hasThisColour(colour)
+                                                                 && function.test(point, cell.getCoordinates()));
     }
 
     private static double manhattanDistance(int x1, int x2, int y1, int y2) {
