@@ -1,14 +1,19 @@
 ## Konobi game
 [![Build Status](https://travis-ci.org/pindri/konobi.svg?branch=master)](https://travis-ci.org/pindri/konobi)
 
-Konobi is a connection game for two players, played on a chequerboard. 
+Konobi is a connection game for two players, **black** and **white**, played on a chequerboard. 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis, risus et tempus porta, nisl orci posuere felis, quis tempus massa nunc eu ex. In tristique, lacus nec bibendum ullamcorper, dui metus aliquet orci, a suscipit ligula nisl in ipsum. Integer urna nibh, feugiat nec ex id, vehicula molestie nibh. Sed eu feugiat ante. Mauris volutpat eros id vulputate bibendum. Vestibulum a ultrices nulla. Nunc ante nisi, consequat quis feugiat et, rutrum ac leo. Nulla facilisi. Phasellus elementum gravida ante a tristique. Mauris nisi metus, tincidunt a enim sit amet, cursus laoreet turpis. Pellentesque eleifend, mi nec rhoncus molestie, ipsum sem cursus enim, et pharetra enim massa sed mauris. Nunc facilisis risus vitae congue semper. Vestibulum id fringilla lacus. 
-
-<img align="right" src="presentation/img/empty.png" width="100">
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis, risus et tempus porta, nisl orci posuere felis, quis tempus massa nunc eu ex. In tristique, lacus nec bibendum ullamcorper, dui metus aliquet orci, a suscipit ligula nisl in ipsum. Integer urna nibh, feugiat nec ex id, vehicula molestie nibh. Sed eu feugiat ante. Mauris volutpat eros id vulputate bibendum. Vestibulum a ultrices nulla. Nunc ante nisi, consequat quis feugiat et, rutrum ac leo. Nulla facilisi. Phasellus elementum gravida ante a tristique. Mauris nisi metus, tincidunt a enim sit amet, cursus laoreet turpis. Pellentesque eleifend, mi nec rhoncus molestie, ipsum sem cursus enim, et pharetra enim massa sed mauris. Nunc facilisis risus vitae congue semper. Vestibulum id fringilla lacus. 
+<img align="right" src="presentation/img/empty.png" width="200">
 
 ### Rules
 
-Black starts
+* Each player places stone of the corresponding colour on the board;
+* Two stones of the same colour are **strongly connected** if they are orthogonally connected;
+* Two stones of the colour are **weakly connected** if they are diagonally connected;
+* On white's first turn, they can decide to switch colour with the other player instead of placing a stone (**pie rule**);
+* **Winning condition**: player win when they have connected their own edges;
+* If a player cannot make any legal move, they shall pass.
+
+#### Illegal moves
+* It is illegal to make a weak connection with a stone unless it is not possible to make placement which is both strongly connected to that stone and not weakly connected to another stone;
+* Cross-cuts (2x2 configuration consisting of two weakly connected white stones and two weakly connected black stones) are illegal.
