@@ -1,7 +1,7 @@
 ## Konobi game
 [![Build Status](https://travis-ci.org/pindri/konobi.svg?branch=master)](https://travis-ci.org/pindri/konobi)
 
-Konobi is a connection game for two players, **black** and **white**, played on a chequerboard. 
+Konobi is a connection game for two players, **black** and **white**, and it's played on a chequerboard. 
 
 <img align="right" src="presentation/img/empty.png" width="200">
 
@@ -11,8 +11,8 @@ Konobi is a connection game for two players, **black** and **white**, played on 
 * Two stones of the same colour are **strongly connected** if they are orthogonally connected;
 * Two stones of the colour are **weakly connected** if they are diagonally connected;
 * On white's first turn, they can decide to switch colour with the other player instead of placing a stone (**pie rule**);
-* **Winning condition**: player win when they have connected their own edges;
-* If a player cannot make any legal move, they shall pass.
+* If a player cannot make any legal move, they shall pass;
+* **Winning condition**: player win when they have connected their own edges.
 
 #### Illegal moves
 * It is illegal to make a weak connection with a stone unless it is not possible to make placement which is both strongly connected to that stone and not weakly connected to another stone;
