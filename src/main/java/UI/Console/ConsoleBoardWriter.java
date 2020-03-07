@@ -8,6 +8,8 @@ import java.util.stream.IntStream;
 
 public class ConsoleBoardWriter {
 
+    private ConsoleBoardWriter() {}
+
     private static String padLeft(String s) { return String.format("%" + 3 + "s", s); }
 
     private static void displayCell(Cell cell) {

@@ -14,6 +14,8 @@ public class ConsoleCellRepresentation {
         put(null, "[ ]");
     }};
 
+    private ConsoleCellRepresentation() {}
+
     public static String getRepresentation(Colour colour) {
         return cellColourMap.get(colour);
     }

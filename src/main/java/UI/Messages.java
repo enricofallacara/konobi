@@ -26,4 +26,6 @@ public class Messages {
     public final static String INVALID_SIZE_INPUT = "Invalid size, please choose a valid size for the board!";
     public final static String INVALID_COORDINATES_INPUT = "Invalid coordinates, please choose a point inside the board!";
 
+    private Messages() {}
+
 }

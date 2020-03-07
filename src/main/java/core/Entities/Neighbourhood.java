@@ -8,6 +8,8 @@ import java.util.stream.Stream;
 
 public class Neighbourhood {
 
+    private Neighbourhood() {}
+
     public static Stream<Cell> getMooreNeighbours(Board board, Point p) {
         return Arrays.stream(board.slice(p.y - 1, p.y + 2, p.x - 1, p.x + 2));
     }
