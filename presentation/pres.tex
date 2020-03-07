@@ -284,6 +284,22 @@
   \end{frame}
 
 
+  \begin{frame} {Konobi}
+
+    \texttt{\textbf{AbstractKonobi}} provides an abstraction for the game itself, containing functions to check and apply the various rules; it is extended by:
+
+    \vspace{1em}
+
+    \begin{itemize}
+      \item \textbf{\texttt{KonobiConsole}};
+      \item \textbf{\texttt{KonobiGUI}}.
+    \end{itemize}
+
+
+  \end{frame}
+
+
+
 
 \section{UI Package}
 
@@ -317,9 +333,17 @@
 
     \vspace{1em}
 
-    The two interfaces are diverse enough, so we decided to create two distinct packages with different classes. \textcolor{red}{But we did use some abstractions.}
+    The two interfaces are diverse enough, so we decided to create two distinct packages with different classes.
+  \end{frame}
+  
+
+
+  \begin{frame} {Common elements}
+
+    The two interfaces do have something in common. They use the same \texttt{\textbf{Messages}} and they both implement an \textbf{\texttt{InputHandler}} to ask the users for input and a \textbf{\texttt{MessageWriter}} to communicate with them.
 
   \end{frame}
+
 
 
 
@@ -333,14 +357,6 @@
       \item \textbf{\texttt{ConsoleMessageWriter}}: messages to the players, implements \textbf{\texttt{MessageWriter}}.
     \end{itemize}
 
-    \vspace{1em}
-
-    The \textbf{\texttt{Exceptions}} package handles exceptions.
-
-    \vspace{1em}
-
-    Messages are contained in the \textbf{\texttt{Messages}} class: its messages are used by the GUI implementation as well.
-
   \end{frame}
 
 
@@ -349,9 +365,9 @@
 
     \begin{itemize}
       \setlength\itemsep{1em}
-      \item \textbf{\texttt{GUI}}: implements the game flow in a \texttt{JavaFX} application;
+      \item \textbf{\texttt{GUI}}: implements the game flow in a \texttt{JavaFX} application; \textcolor{red}{perché non lo fa KonobiGUI? Perché non si può estendere da due classi è una buona giustificazione?}
       \item \textbf{\texttt{GUIBoardWriter}}: board and GUI display;
-      \item \textbf{\texttt{GUIAsker}}: asks the user for interaction;
+      \item \textbf{\texttt{GUIAsker}}: asks the user for interaction; \textcolor{red}{Cambiare nome}
       \item \textbf{\texttt{GUIMessageWriter}}: messages to the players.
     \end{itemize}
 
