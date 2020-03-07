@@ -169,13 +169,13 @@
 
     \vspace{1em}
 
-    The \textbf{core package} contains all the elements concerning the functional logic of the game.
+    The \textbf{\texttt{core} package} contains all the elements concerning the functional logic of the game.
 
     \pause
 
     \vspace{1em}
 
-    The \textbf{UI package}, on the other hand, contains all the elements that are used to create the two different user interfaces: \textbf{command line} and \textbf{desktop interface}.
+    The \textbf{\texttt{UI} package}, on the other hand, contains all the elements that are used to create the two different user interfaces: \textbf{command line} and \textbf{desktop interface}.
 
   \end{frame}
 
@@ -185,15 +185,15 @@
 
   \begin{frame}{Building Blocks}
 
-    \textbf{Cell} class is the fundamental building block of the game engine. It is associated to a \textbf{Colour}, and has a \textbf{Point} for the coordinates.
+    \texttt{\textbf{Cell}} class is the fundamental building block of the game engine. It is associated to a \textbf{\texttt{Colour}}, and has a \textbf{\texttt{Point}} for the coordinates.
 
     \vspace{1em}
 
-    \textbf{Board} class is a collection of \textbf{Cell}s, and implements the \textbf{Iterable} interface. It conveys a notion of geometrical arrangement among the \textbf{Cell}s.
+    \textbf{\texttt{Board}} class is a collection of \textbf{\texttt{Cell}}s, and implements the \textbf{\texttt{Iterable}} interface. It conveys a notion of geometrical arrangement among the \textbf{\texttt{Cell}}s.
 
     \vspace{1em}
 
-    \textbf{Player} class represents each of the two players.
+    \textbf{\texttt{Player}} class represents each of the two players.
 
   \end{frame}
 
@@ -222,7 +222,7 @@
 
     \vspace{3em}
 
-    \textbf{Board} class was doing too much, so we performed a \textbf{refactor}...
+    \textbf{\texttt{Board}} class was doing too much, so we performed a \textbf{refactor}...
 
   \end{frame}
 
@@ -230,7 +230,7 @@
 
   \begin{frame} {Neighbourhood}
 
-    ...and created the \textbf{Neighbourhood} class. It shows a \textbf{Monostate Pattern}, having only static methods to compute different flavours of neighbourhoods from an instance of \textbf{Board} and a target \textbf{Point}.
+    ...and created the \textbf{\texttt{Neighbourhood}} class. It shows a \textbf{Monostate Pattern}, having only static methods to compute different flavours of neighbourhoods from an instance of \textbf{\texttt{Board}} and a target \textbf{\texttt{Point}}.
 
   \end{frame}
 
@@ -238,11 +238,11 @@
 
   \begin{frame} {Building Blocks Cont.}
 
-    \textbf{StatusSupervisor} is in charge of holding the state of the game, and updating it whenever it changes (new move, pass rule, pie rule).
+    \textbf{\texttt{StatusSupervisor}} is in charge of holding the state of the game, and updating it whenever it changes (new move, pass rule, pie rule).
 
     \vspace{1em}
 
-    It is employed as an interface between the \textbf{UI} module and the \textbf{core} module, allowing the two to communicate without knowing anything of each other.
+    It is employed as an interface between the \textbf{\texttt{UI}} module and the \textbf{\texttt{core}} module, allowing the two to communicate without knowing anything of each other.
 
   \end{frame}
 
@@ -250,15 +250,15 @@
 
   \begin{frame} {Rules}
 
-    The package \textbf{Rules} contains the true logic of the game. We started off by defining a class per rule, later to realize there was room for abstraction...
+    The package \textbf{\texttt{Rules}} contains the true logic of the game. We started off by defining a class per rule, later to realize there was room for abstraction...
 
     \vspace{1em}
 
-    ...we introduced \textbf{StatusSupervisor} as a \textbf{Preserve Whole Object}, and allowed each of the classes to implement the \textbf{Rule} interface.
+    ...we introduced \textbf{\texttt{StatusSupervisor}} as a \textbf{Preserve Whole Object}, and allowed each of the classes to implement the \textbf{\texttt{Rule}} interface.
 
     \vspace{1em}
 
-    Each \textbf{Rule} can be queried by passing a \textbf{Supplier} for it to the \textbf{Rulebook}.
+    Each \textbf{\texttt{Rule}} can be queried by passing a \textbf{\texttt{Supplier}} for it to the \textbf{\texttt{Rulebook}}.
 
   \end{frame}
 
@@ -266,7 +266,7 @@
 
   \begin{frame} {Rules Cont.}
 
-    \textbf{ValidPositionRule} class had something wrong...
+    \textbf{\texttt{ValidPositionRule}} class had something wrong...
 
     \vspace{1em}
 
@@ -279,7 +279,7 @@
 
     \vspace{1em}
 
-    Violation was solved creating \textbf{ValidPositionRulesFactory} class, which follows the \textbf{Factory Pattern}.
+    Violation was solved creating \textbf{\texttt{ValidPositionRulesFactory}} class, which follows the \textbf{Factory Pattern}.
 
   \end{frame}
 
@@ -313,11 +313,11 @@
 
     \vspace{2em}
 
-    Implementation of \texttt{\textbf{UserInterface}} would have led to violations of the SRP.
+    Implementation of \texttt{\textbf{UserInterface}} would have led to violations of the \textit{SRP}.
 
     \vspace{1em}
 
-    The two interfaces are diverse enough, so we decided to create two distinct packages with different classes.
+    The two interfaces are diverse enough, so we decided to create two distinct packages with different classes. \textcolor{red}{But we did use some abstractions.}
 
   \end{frame}
 
@@ -329,9 +329,13 @@
       \setlength\itemsep{1em}
       \item \textbf{\texttt{ConsoleBoardWriter}}: board display;
       \item \textbf{\texttt{ConsoleCellRepresentation}}: conversion between cell color and its representation;
-      \item \textbf{\texttt{ConsoleInputHandler}}: player input handling;
-      \item \textbf{\texttt{ConsoleMessageWriter}}: messages to the players.
+      \item \textbf{\texttt{ConsoleInputHandler}}: player input handling, implements \textbf{\texttt{InputHandler}};
+      \item \textbf{\texttt{ConsoleMessageWriter}}: messages to the players, implements \textbf{\texttt{MessageWriter}}.
     \end{itemize}
+
+    \vspace{1em}
+
+    The \textbf{\texttt{Exceptions}} package handles exceptions.
 
     \vspace{1em}
 
