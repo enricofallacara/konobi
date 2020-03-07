@@ -13,7 +13,7 @@ public class GUIInputHandler implements InputHandler {
     public boolean askPieRule() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Pie Rule Dialog");
-        alert.setContentText(Messages.pieRuleQuery);
+        alert.setContentText(Messages.PIE_RULE_QUERY);
         alert.setHeaderText(null);
 
         ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Yes");
@@ -29,7 +29,7 @@ public class GUIInputHandler implements InputHandler {
 
         dialog.setTitle("Enter Size");
         dialog.setHeaderText(null);
-        dialog.setContentText(Messages.askSize);
+        dialog.setContentText(Messages.ASK_SIZE);
         dialog.getDialogPane().lookupButton(ButtonType.CANCEL).setDisable(true);
 
         Optional<Integer> result = dialog.showAndWait();

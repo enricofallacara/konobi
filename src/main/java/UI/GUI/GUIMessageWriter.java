@@ -17,19 +17,19 @@ public class GUIMessageWriter implements MessageWriter {
     }
 
     public void notifyPass() {
-        createAndSetAlert("Pass Rule Information", Messages.pass);
+        createAndSetAlert("Pass Rule Information", Messages.PASS);
     }
 
     public void notifyEndGame(Player player) {
-        createAndSetAlert("End Game Information", String.format(Messages.endGame, player.getName(), player.getColour()));
+        createAndSetAlert("End Game Information", String.format(Messages.END_GAME, player.getName(), player.getColour()));
     }
 
     public void notifyInvalidMove() {
-        createAndSetAlert("Invalid Move Information", Messages.invalidMove);
+        createAndSetAlert("Invalid Move Information", Messages.INVALID_MOVE);
     }
 
     public void notifyPieRule() {
-        createAndSetAlert("Pie Rule Information", Messages.pieRule);
+        createAndSetAlert("Pie Rule Information", Messages.PIE_RULE);
     }
 
 }

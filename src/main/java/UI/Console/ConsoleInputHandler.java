@@ -21,7 +21,7 @@ public class ConsoleInputHandler implements InputHandler {
         try {
             answer = scanner.next();
             if(!(answer.equals("y") || answer.equals("n")))
-                throw new InputPieRuleException(Messages.invalidStringInput);
+                throw new InputPieRuleException(Messages.INVALID_STRING_INPUT);
         } catch(InputPieRuleException e) {
             System.out.println(e.getMessage());
             scanner.next();
@@ -38,19 +38,19 @@ public class ConsoleInputHandler implements InputHandler {
                 throw new InputMismatchException();
             }
             catch (InputMismatchException e) {
-                System.out.println(Messages.invalidIntegerInput);
+                System.out.println(Messages.INVALID_INTEGER_INPUT);
                 scanner.next();
                 return getInteger();
             }
     }
 
     public int askSize() {
-        System.out.println(Messages.askSize);
+        System.out.println(Messages.ASK_SIZE);
         int size;
         try {
             size = getInteger();
             if (size < 3 || size > 11)
-                throw new InputSizeException(Messages.invalidSizeInput);
+                throw new InputSizeException(Messages.INVALID_SIZE_INPUT);
 
         } catch(InputSizeException e) {
             System.out.println(e.getMessage());
@@ -69,7 +69,7 @@ public class ConsoleInputHandler implements InputHandler {
 
         try {
             if(!supervisor.getBoard().isOnBoard(point))
-                throw new InputCoordinatesException(Messages.invalidCoordinatesInput);
+                throw new InputCoordinatesException(Messages.INVALID_COORDINATES_INPUT);
 
         } catch(InputCoordinatesException e) {
             System.out.println(e.getMessage());
