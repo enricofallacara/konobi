@@ -342,6 +342,10 @@
 
     The two interfaces do have something in common. They use the same \texttt{\textbf{Messages}} and they both implement an \textbf{\texttt{InputHandler}} to ask the users for input and a \textbf{\texttt{MessageWriter}} to communicate with them.
 
+    \vspace{1em}
+
+    \textcolor{red}{Magari il diagramma uml qui ha senso?}
+
   \end{frame}
 
 
@@ -349,13 +353,7 @@
 
   \begin{frame}{Console User Interface}
 
-    \begin{itemize}
-      \setlength\itemsep{1em}
-      \item \textbf{\texttt{ConsoleBoardWriter}}: board display;
-      \item \textbf{\texttt{ConsoleCellRepresentation}}: conversion between cell color and its representation;
-      \item \textbf{\texttt{ConsoleInputHandler}}: player input handling, implements \textbf{\texttt{InputHandler}};
-      \item \textbf{\texttt{ConsoleMessageWriter}}: messages to the players, implements \textbf{\texttt{MessageWriter}}.
-    \end{itemize}
+    \textbf{\texttt{ConsoleBoardWriter}} handles the display of cells using \textbf{\texttt{ConsoleCellRepresentation}} to map the cell \textbf{\texttt{Colour}} to a symbol (convenient to avoid confusion with black/white console backgrounds).
 
   \end{frame}
 
@@ -363,17 +361,16 @@
 
   \begin{frame}{Graphical User Interface}
 
-    \begin{itemize}
-      \setlength\itemsep{1em}
-      \item \textbf{\texttt{GUI}}: implements the game flow in a \texttt{JavaFX} application; \textcolor{red}{perché non lo fa KonobiGUI? Perché non si può estendere da due classi è una buona giustificazione?}
-      \item \textbf{\texttt{GUIBoardWriter}}: board and GUI display;
-      \item \textbf{\texttt{GUIAsker}}: asks the user for interaction; \textcolor{red}{Cambiare nome}
-      \item \textbf{\texttt{GUIMessageWriter}}: messages to the players.
-    \end{itemize}
+
+    The \textbf{\texttt{GUI}} class implements the game flow in a \texttt{JavaFX} application; \textcolor{red}{perché non lo fa KonobiGUI? Perché non si può estendere da due classi è una buona giustificazione?}. \textbf{\texttt{GUIBoardWriter}} deals with the creation of an empty grid and its update after each move.
 
     \vspace{1em}
 
     The \textbf{\texttt{Events}} package defines events for the rules (pie, pass and end-game rules); the events are processed by the \textbf{\texttt{Handlers}} package, which handles mouse inputs as well.
+
+    \vspace{1em}
+
+    At each mouse input, \textbf{\texttt{GUIMouseInputHandler}} fires the rule events using \textbf{\texttt{EventsFactory}}.
 
   \end{frame}
 
@@ -381,7 +378,15 @@
 
   \begin{frame}{Long method smell in GUI?}
 
-    \textcolor{red}{GUI verbosity, code snippet.}
+    The \textbf{\texttt{GUI}} class is quite long: should this be regarded as a \textit{Long method smell}?
+
+    \vspace{1em}
+
+    \texttt{code snippet}
+
+    \vspace{1em}
+
+    \texttt{JavaFX} applications are very verbose and moderately long methods should not be alarming.
 
   \end{frame}
 
