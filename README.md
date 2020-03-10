@@ -22,3 +22,17 @@ Konobi is a connection game for two players, **black** and **white**, and it's p
 #### Illegal moves
 * It is illegal to make a weak connection with a stone unless it is not possible to make placement which is both strongly connected to that stone and not weakly connected to another stone;
 * Cross-cuts (2x2 configuration consisting of two weakly connected white stones and two weakly connected black stones) are illegal.
+
+### Compile and run
+For portability, the project is shipped with the `gradlew` (`gradlew.bat` for Windows) executable to run the code without manually handling dependencies.
+
+The console version of the game can be started using:
+
+```
+ > ./gradlew runConsole
+```
+The GUI version of the game can be started using:
+
+```
+ > ./gradlew runGUI
+```
