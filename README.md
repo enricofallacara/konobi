@@ -2,9 +2,9 @@
 [![Build Status](https://travis-ci.org/pindri/konobi.svg?branch=master)](https://travis-ci.org/pindri/konobi)
 
 ### Authors
-* Enrico Fallacara
-* Patrick Indri
-* Federico Pigozzi
+* **Enrico Fallacara**
+* **Patrick Indri**
+* **Federico Pigozzi**
 
 Konobi is a connection game for two players, **black** and **white**, and it's played on a chequerboard. 
 
