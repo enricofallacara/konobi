@@ -285,19 +285,30 @@
 
   \begin{frame} {Konobi}
 
-    \texttt{\textbf{AbstractKonobi}} provides an abstraction for the game itself, containing functions to check and apply the various rules; it is extended by:
+    \begin{minipage}{\textwidth}
+    \begin{columns}[t]
+      \begin{column}{0.40\textwidth}
 
-    \vspace{1em}
+        \vspace{3em}
 
-    \begin{itemize}
-      \item \textbf{\texttt{KonobiConsole}};
-      \item \textbf{\texttt{KonobiGUI}}.
-    \end{itemize}
+        \justifying
+        \texttt{\textbf{AbstractKonobi}} provides an abstraction for the game itself, containing functions to check and apply the various rules; it is extended by:
 
-    \vspace{1em}
+        \vspace{1em}
 
-    \textcolor{red}{UML?}
+        \begin{itemize}
+          \item \textbf{\texttt{KonobiConsole}};
+          \item \textbf{\texttt{KonobiGUI}}.
+        \end{itemize}
 
+      \end{column}
+      \begin{column}{0.50\textwidth}
+
+        \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.9\textwidth]{uml_diagrams/core.pdf}}
+
+      \end{column}
+    \end{columns}
+    \end{minipage}
 
   \end{frame}
 
@@ -347,7 +358,11 @@
 
     \vspace{1em}
 
-    \textcolor{red}{Magari il diagramma uml qui ha senso?}
+    \begin{centering}
+
+      \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.75\textwidth]{uml_diagrams/UI.pdf}}
+
+    \end{centering}
 
   \end{frame}
 
@@ -358,6 +373,14 @@
 
     \textbf{\texttt{ConsoleBoardWriter}} handles the display of cells using \textbf{\texttt{ConsoleCellRepresentation}} to map the cell \textbf{\texttt{Colour}} to a symbol (convenient to avoid confusion with black/white console backgrounds).
 
+    \vspace{1em}
+
+    \begin{centering}
+
+      \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.75\textwidth]{uml_diagrams/Console.pdf}}
+
+    \end{centering}
+
   \end{frame}
 
 
@@ -365,7 +388,7 @@
   \begin{frame}{Graphical User Interface}
 
 
-    The \textbf{\texttt{GUI}} class implements the game flow in a \texttt{JavaFX} application; \textcolor{red}{perché non lo fa KonobiGUI? Perché non si può estendere da due classi è una buona giustificazione?}. \textbf{\texttt{GUIBoardWriter}} deals with the creation of an empty grid and its update after each move.
+    The \textbf{\texttt{GUI}} class implements the game flow in a \texttt{JavaFX} application. \textbf{\texttt{GUIBoardWriter}} deals with the creation of an empty grid and its update after each move.
 
     \vspace{1em}
 
@@ -412,6 +435,8 @@
     \end{lstlisting}
 
     \vspace{1em}
+
+    \pause
 
     The GUI version of the game can be started using:
 
