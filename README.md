@@ -6,11 +6,11 @@
 * **Patrick Indri**
 * **Federico Pigozzi**
 
-Konobi is a connection game for two players, **black** and **white**, and it's played on a chequerboard. 
-
 <img align="right" src="presentation/img/empty.png" width="200">
 
 ### Rules
+
+Konobi is a connection game for two players, **black** and **white**, and it's played on a chequerboard. 
 
 * Each player places stone of the corresponding colour on the board;
 * Two stones of the same colour are **strongly connected** if they are orthogonally connected;
