@@ -11,7 +11,7 @@ public class KonobiConsole extends AbstractKonobi<ConsoleMessageWriter, ConsoleI
         super(size, mw, ih);
     }
 
-    public void play() {
+    public void play(){
         do {
             playTurn();
         } while(!checkAndPerformEndGameRule());

@@ -11,8 +11,6 @@ public class KonobiGUI extends AbstractKonobi<GUIMessageWriter, GUIInputHandler>
         super(size, mw, ih);
     }
 
-    //TODO: Vedere se implementare metodo play come accade in KonobiConsole
-
     public String getCurrentPlayerName() { return supervisor.getCurrentPlayer().getName(); }
 
     public String getLastPlayerName() { return supervisor.getLastPlayer().getName(); }
