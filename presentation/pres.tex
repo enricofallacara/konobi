@@ -208,7 +208,7 @@
 
     \vspace{1em}
 
-    \textbf{Test Driven Development} was adopted from the very onset, committing after every red-light/green-light pattern.
+    \textbf{Test Driven Development} was adopted from the very onset, committing after every red-light/green-light cycle.
 
   \end{frame}
 
@@ -221,7 +221,7 @@
 
     \vspace{3em}
 
-    \textbf{\texttt{Board}} class was doing too much, so we performed a \textbf{refactor}...
+    \textbf{\texttt{Board}} class was doing too much, so we performed an \textbf{Extract Class} refactor...
 
   \end{frame}
 
@@ -236,12 +236,24 @@
 
 
   \begin{frame} {Building Blocks Cont.}
+  
+  \begin{columns}[t]
+      \begin{column}{0.40\textwidth}
 
+	\justifying
     \textbf{\texttt{StatusSupervisor}} is in charge of holding the state of the game, and updating it whenever it changes (new move, pass rule, pie rule).
 
     \vspace{1em}
 
-    It is employed as an interface between the \textbf{\texttt{UI}} module and the \textbf{\texttt{core}} module, allowing the two to communicate without knowing anything of each other.
+    It is the middle-man that upper-level classes use to modify the status of the game.
+    
+    \end{column}
+      \begin{column}{0.50\textwidth}
+
+      \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.9\textwidth]{uml_diagrams/Entities.pdf}}
+
+     \end{column}
+    \end{columns}
 
   \end{frame}
 
@@ -249,15 +261,10 @@
 
   \begin{frame} {Rules}
 
-    The package \textbf{\texttt{Rules}} contains the true logic of the game. We started off by defining a class per rule, later to realize there was room for abstraction...
+    The package \textbf{\texttt{Rules}} contains the true logic of the game. We started off by defining a class per rule, later to realize there was room for abstraction. 
+    We introduced \textbf{\texttt{StatusSupervisor}} as a \textbf{Preserve Whole Object}, allowing each of the classes to implement the \textbf{\texttt{Rule}} interface.
 
-    \vspace{1em}
-
-    ...we introduced \textbf{\texttt{StatusSupervisor}} as a \textbf{Preserve Whole Object}, and allowed each of the classes to implement the \textbf{\texttt{Rule}} interface.
-
-    \vspace{1em}
-
-    Each \textbf{\texttt{Rule}} can be queried by passing a \textbf{\texttt{Supplier}} for it to the \textbf{\texttt{Rulebook}}.
+	\fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.75\textwidth]{uml_diagrams/Rules.pdf}}
 
   \end{frame}
 
@@ -270,7 +277,7 @@
     \vspace{1em}
 
 
-    \raisebox{2.5em}{\fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.5\textwidth]{img/validpositionrule.png}}}\pause
+    \raisebox{2.5em}{\fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.5\textwidth]{img/validpositionrule.png}}}
     \hfill
     \includegraphics[width=0.45\textwidth]{img/openclosedprinciple.jpeg}
 
@@ -278,7 +285,7 @@
 
     \vspace{1em}
 
-    Violation was solved creating \textbf{\texttt{ValidPositionRulesFactory}} class, which follows the \textbf{Factory Pattern}.
+    Violation was solved creating \textbf{\texttt{ValidPositionRulesFactory}} class (which follows the \textbf{Factory Pattern}), and \textbf{\texttt{PositionRule}} interface to be used inside it.
 
   \end{frame}
 
@@ -392,15 +399,11 @@
 
     \vspace{1em}
 
-    The \textbf{\texttt{Events}} package defines events for the rules (pie, pass and end-game rules); the events are processed by the \textbf{\texttt{Handlers}} package, which handles mouse inputs as well. At each mouse input, \textbf{\texttt{GUIMouseInputHandler}} fires the rule events using \textbf{\texttt{EventsFactory}}.
+    The \textbf{\texttt{Events}} package defines events for the rules (pie, pass and end-game rules); the events are processed by the \textbf{\texttt{Handlers}} package, which handles mouse inputs as well.
 
     \vspace{1em}
 
-    \begin{centering}
-
-      \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.75\textwidth]{uml_diagrams/GUI.pdf}}
-
-    \end{centering}
+    At each mouse input, \textbf{\texttt{GUIMouseInputHandler}} fires the rule events using \textbf{\texttt{EventsFactory}}.
 
   \end{frame}
 
