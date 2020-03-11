@@ -392,11 +392,15 @@
 
     \vspace{1em}
 
-    The \textbf{\texttt{Events}} package defines events for the rules (pie, pass and end-game rules); the events are processed by the \textbf{\texttt{Handlers}} package, which handles mouse inputs as well.
+    The \textbf{\texttt{Events}} package defines events for the rules (pie, pass and end-game rules); the events are processed by the \textbf{\texttt{Handlers}} package, which handles mouse inputs as well. At each mouse input, \textbf{\texttt{GUIMouseInputHandler}} fires the rule events using \textbf{\texttt{EventsFactory}}.
 
     \vspace{1em}
 
-    At each mouse input, \textbf{\texttt{GUIMouseInputHandler}} fires the rule events using \textbf{\texttt{EventsFactory}}.
+    \begin{centering}
+
+      \fcolorbox{black}{yellow!70!black!40}{\includegraphics[width=0.75\textwidth]{uml_diagrams/GUI.pdf}}
+
+    \end{centering}
 
   \end{frame}
 
